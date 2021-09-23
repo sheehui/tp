@@ -48,7 +48,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, this);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
@@ -93,7 +93,6 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
-
     public GuiSettings getGuiSettings() {
         return logic.getGuiSettings();
     };
@@ -102,8 +101,7 @@ public class UiManager implements Ui {
         return logic.getFilteredPersonList();
     };
 
-
-    public Path getAddressBookFilePath(){
+    public Path getAddressBookFilePath() {
         return logic.getAddressBookFilePath();
     };
 
