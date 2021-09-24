@@ -1,16 +1,23 @@
 package seedu.address.ui;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The manager of the UI component.
@@ -41,7 +48,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, this);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
@@ -86,4 +93,23 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    public GuiSettings getGuiSettings() {
+        return logic.getGuiSettings();
+    };
+
+    public ObservableList<Person> getFilteredPersonList() {
+        return logic.getFilteredPersonList();
+    };
+
+    public Path getAddressBookFilePath() {
+        return logic.getAddressBookFilePath();
+    };
+
+    public void setGuiSettings(GuiSettings guiSettings) {
+        logic.setGuiSettings(guiSettings);
+    };
+
+    public CommandResult execute(String commandText) throws CommandException, ParseException {
+        return logic.execute(commandText);
+    };
 }
