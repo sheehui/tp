@@ -93,6 +93,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void saveAddressBook() throws IOException {
+        assert this.storage != null : "ModelManager created without storage cannot save.";
         storage.saveAddressBook(getAddressBook());
     }
 
