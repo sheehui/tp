@@ -257,29 +257,60 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Financial Advisor
+* Has a need to manage a significant number of contacts
+  * Keep track of their financial and personal information
+* Prefer desktop apps over other types
+* Tech-savvy, comfortable with keyboard shortcuts (CLI apps)
+* Can type fast
+* Prefers typing to mouse interactions
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: manage customers faster than a typical mouse/GUI driven app
+
+The product provides financial advisors with a clean, easy to use interface to prepare 
+them for meetings and maintain good relationships with their clients. On a per user basis 
+it keeps track and displays customer’s financial details, their personal details, and 
+presents upcoming events and todo lists. In the main page, it collates tasks and events 
+for easy access.
+
+The product will not help them with work relations with other Financial Advisors as the 
+product’s scope only covers the personal use of the product. It does not link with any 
+financial calculators, financial databases or cover policy / assets / market information.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                  | I want to …​               | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new client               | add new clients to my list                                             |
+| `* * *`  | user                                       | delete a client                | remove clients that I no longer have                                   |
+| `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
+| `* * *`  | user                                       | edit client's personal info    | access and update client personal information                          |
+| `* * *`  | user                                       | edit client's financial info   | access and update client financial information                         |
+| `* * *`  | user                                       | add meeting entry for clients  | track my client meetings                                               |
+| `* * *`  | user                                       | delete meeting entry of clients| remove meetings that are no longer valid                               |
+| `* * *`  | user                                       | view meeting entries associated with any client | access all meeting info of my clients                 |
+| `* * *`  | user                                       | update existing meeting entries with corrections to timings or meeting notes |keep track of all meetings|
+| `* * *`  | user                                       | hide and show my completed tasks | keep my todo list uncluttered and view uncompleted tasks             |
+| `* * *`  | user                                       | create todo tasks              | add todo tasks                                                         |
+| `* * *`  | user                                       | view todo tasks                | see all my tasks                                                       |
+| `* * *`  | user                                       | update todo tasks              | make changes to upcoming tasks                                         |
+| `* * *`  | user                                       | delete todo tasks              | remove tasks that are no longer needed                                 |
+| `* * *`  | user with many clients in the address book | have a overview page that lists all todos / meetings coming up | Can be organised and easily see all tasks across all of my clients |
+| `* * *`  | user with many clients in the address book | quickly jump to the client when clicking on an upcoming todo/meeting | Easily see accompanying details (financial / personal) when working on a specific task |
+| `* *`    | user                                       | be able to create special dates that have notifications for reminders|set reminders for special occasions |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`    | user                                       | view free time slots that take into account all existing meetings | easily pick out a new meeting slot based on free times. |
+| `*`      | user with many clients in the address book | sort clients by name           | locate a client easily                                                 |
+| `*`      | frequent user with many clients            | get a notification when a meeting / todo deadline is X days away | be reminded of upcoming tasks / meetings. |
+| `*`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
+| `*`      | new user                                   | follow a tutorial when editing a client       | learn how to update clients' personal / finance info    |
+| `*`      | new user                                   | follow a tutorial when creating my first meeting | learn how to CRUD meeting / todo objects             |
 
-*{More to be added}*
 
 ### Use cases
 
