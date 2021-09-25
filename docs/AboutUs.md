@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Storage + Scheduling and Deliverables
 
-### Jane Doe
+### Bharath Chandra Sudheer
 
-<img src="images/johndoe.png" width="200px">
+<img src="./images/bharathcs.png" alt="Bharath" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bharathcs)]
+[[portfolio](team/bharathcs.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Git Expert
+* Responsibilities: Model layer, CI/CD, Code Quality
 
 ### Johnny Doe
 
