@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+DonnaFin.io is a desktop address book application used by financial advisors to keep track of their client information and related tasks. This is a Java program with about 10 kloc with a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a faster workflow for input and output. If you can type fast, you can use our CLI-like commands to manage and view your notes, upcoming meetings and todo lists much faster than your typical customer relationship manager apps.
 
 * Table of Contents
 {:toc}
