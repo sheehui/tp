@@ -112,7 +112,7 @@ Examples:
 
 ### **View and edit fields and notes for a person : view**
 
-Edits an existing person's financial information in the address book.
+Access client information in a 'client view' mode where all data on the client is presented to you. Once in the page, you can see each field in detail and edit existing information.
 
 Format: view INDEX
 
