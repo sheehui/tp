@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Bharath Chandra Sudheer
 
-<img src="./images/bharathcs.png" alt="Bharath" width="200px">
+<img src="images/bharathcs.png" alt="Bharath" width="200px">
 
 [[github](http://github.com/bharathcs)]
 [[portfolio](team/bharathcs.md)]
@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, In charge of Documentation
 * Responsibilities: In charge of UI
 
-### Jean Doe
+### Tee Chin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bluntsord.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Bluntsord)]
+[[portfolio](team/bluntsord.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, Architect, 
+* Responsibilities: UI layer and commons, Architecture
 
 ### James Doe
 
