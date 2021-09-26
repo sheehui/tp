@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Mrinal Ganesh
 
-<img src="images/mrinal.png" width="200px">
+<img src="images/mrmrinal.png" width="200px">
 
-[[github](http://github.com/mrmrinal)] [[portfolio](team/mrinal.md)]
+[[github](http://github.com/mrmrinal)] [[portfolio](team/mrmrinal.md)]
 
 * Role: Developer, In charge of Documentation
 * Responsibilities: In charge of UI
