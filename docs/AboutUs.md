@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Shee Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sheehui.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sheehui)]
+[[portfolio](team/sheehui.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Storage + Scheduling and Deliverables
 
-### Jane Doe
+### Bharath Chandra Sudheer
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bharathcs.png" alt="Bharath" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bharathcs)]
+[[portfolio](team/bharathcs.md)]
+
+* Role: Developer, Git Expert
+* Responsibilities: Model layer, CI/CD, Code Quality
+
+### Mrinal Ganesh
+
+<img src="images/mrinal.png" width="200px">
+
+[[github](http://github.com/mrmrinal)] [[portfolio](team/mrinal.md)]
+
+* Role: Developer, In charge of Documentation
+* Responsibilities: In charge of UI
+
+### Tee Chin
+
+<img src="images/bluntsord.png" width="200px">
+
+[[github](http://github.com/Bluntsord)]
+[[portfolio](team/bluntsord.md)]
+
+* Role: Developer, Architect, 
+* Responsibilities: UI layer and commons, Architecture
+
+### Donny Suriyanto
+
+<img src="images/donnys57.png" width="200px">
+
+[[github](http://github.com/DonnyS57)]
+[[portfolio](team/donny.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic Layer
