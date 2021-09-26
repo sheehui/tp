@@ -29,6 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, Git Expert
 * Responsibilities: Model layer, CI/CD, Code Quality
 
+### Mrinal Ganesh
+
+<img src="images/mrinal.png" width="200px">
+
+[[github](http://github.com/mrmrinal)] [[portfolio](team/mrinal.md)]
+
+* Role: Developer, In charge of Documentation
+* Responsibilities: In charge of UI
+
 ### Tee Chin
 
 <img src="images/bluntsord.png" width="200px">
@@ -38,16 +47,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer, Architect, 
 * Responsibilities: UI layer and commons, Architecture
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Donny Suriyanto
 
