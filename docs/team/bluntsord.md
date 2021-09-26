@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide: 
-  * Developer Guide: Update architecture diagram (Pull requests [\#23]())
+  * Developer Guide: Update architecture diagram (Pull requests [\#23](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/23))
   * AboutUs
 
 * **Community**:
