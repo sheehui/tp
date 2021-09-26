@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, Git Expert
 * Responsibilities: Model layer, CI/CD, Code Quality
 
-### Johnny Doe
+### Mrinal Ganesh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mrinal.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/mrmrinal)] [[portfolio](team/mrinal.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, In charge of Documentation
+* Responsibilities: In charge of UI
 
 ### Jean Doe
 
