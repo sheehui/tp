@@ -314,40 +314,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DonnaFin` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC01: Adding a contact to DonnaFin**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User chooses to add contact along with the relevant details
+2.  DonnaFin announces that the contact has been successfully added.\
+    Use Case ends.
 
-    Use case ends.
+**Extensions**
+* 1a. The user types the command using the wrong syntax.
+  * 1a1. DonnaFin shows an error message.\
+         Use Case resumes from step 1. 
+
+**UC02: Deleting a contact from DonnaFin**
+
+**MSS**
+
+1. User requests to delete a contact from DonnaFin using the right syntax.
+2. DonnaFin announces that the contact has been successfully deleted.\
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    * 1a1. DonnaFin shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes from step 1.
 
-    * 3a1. AddressBook shows an error message.
+**UC03: Finding a contact by name**
 
-      Use case resumes at step 2.
+**MSS**
+1. User chooses to find a contact within DonnaFin using the right syntax.
+2. DonnaFin displays the contacts that match the keyword inputted.
 
-*{More to be added}*
+**Extensions**
+* 1a. The user types the command using the wrong syntax.
+  * 1a1. DonnaFin shows an error message.\
+         Use Case resumes at step 1.
+* 1b. The keyword does not match any contacts.
+  * 1b1. DonnaFin does not display any contact.\
+         Use Case ends.
+
+**UC04: Editing the details of a contact**
+
+**MSS**
+1. User requests to edit a contact using the right syntax.
+2. DonnaFin announces that the contact has been successfully updated and displays the new details.
+
+**Extensions**
+* 1a. The user types the command using the wrong syntax.
+    * 1a1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
+* 1b. The given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
+
+**UC05: Getting help**
+
+**MSS**
+1. User requests for help to get assistance on commands.
+2. DonnaFin displays a window with the user guide for the DonnaFin application.
+ 
+**UC06: List**
+
+**MSS**
+1. User requests for the list of all the registered contacts.
+2. DonnaFin displays all the contacts that has been registered within DonnaFin.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  A novice with no coding background should be able to use the address book. 
+5.  The system should respond within 100 milliseconds.
+6.  The size of the application should be no more than 100 MB.
+7.  All data should be stored locally.
+8.  The application should not need a remote server to function.
+9.  The application should not require any installer to start functioning.
+10. The GUI should appear fine for screen resolutions 1920x1080 and higher.
 
 ### Glossary
 
