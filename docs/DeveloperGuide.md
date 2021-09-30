@@ -320,46 +320,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types command to add contact along with the relevant details
-2.  DonnaFin announces that the contact has been successfully added.
+1.  User chooses to add contact along with the relevant details
+2.  DonnaFin announces that the contact has been successfully added.\
     Use Case ends.
 
 **Extensions**
-* 1a. The user types the command using the wrong format.
+* 1a. The user types the command using the wrong syntax.
   * 1a1. DonnaFin shows an error message.\
-         Use Case resumes at step 1. 
+         Use Case resumes from step 1. 
 
 **UC02: Deleting a contact from DonnaFin**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User requests to delete a contact from DonnaFin using the right syntax.
+2. DonnaFin announces that the contact has been successfully deleted.\
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    * 1a1. DonnaFin shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes from step 1.
 
-    * 3a1. DonnaFin shows an error message.
-
-      Use case resumes at step 2.
-
-**UC03: Locating a contact by name**
+**UC03: Finding a contact by name**
 
 **MSS**
-1. User types the command to find the person in the appropriate format.
+1. User chooses to find a contact within DonnaFin using the right syntax.
 2. DonnaFin displays the contacts that match the keyword inputted.
 
 **Extensions**
-* 1a. The user types the command using the wrong format.
+* 1a. The user types the command using the wrong syntax.
   * 1a1. DonnaFin shows an error message.\
          Use Case resumes at step 1.
 * 1b. The keyword does not match any contacts.
@@ -369,17 +362,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **UC04: Editing the details of a contact**
 
 **MSS**
-1. User types the command to edit a contact in the appropriate format.
+1. User requests to edit a contact using the right syntax.
 2. DonnaFin announces that the contact has been successfully updated and displays the new details.
 
 **Extensions**
-* 1a. The user types the command using the wrong format.
+* 1a. The user types the command using the wrong syntax.
     * 1a1. DonnaFin shows an error message.\
       Use Case resumes at step 1.
 * 1b. The given index is invalid.
     * 1b1. DonnaFin shows an error message.\
       Use Case resumes at step 1.
-  
+
+**UC05: Getting help**
+
+**MSS**
+1. User requests for help to get assistance on commands.
+2. DonnaFin displays a window with the user guide for the DonnaFin application.
+ 
+**UC06: List**
+
+**MSS**
+1. User requests for the list of all the registered contacts.
+2. DonnaFin displays all the contacts that has been registered within DonnaFin.
 
 ### Non-Functional Requirements
 
