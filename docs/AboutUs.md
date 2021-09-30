@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/sheehui)]
 [[portfolio](team/sheehui.md)]
 
-* Role: Developer
+* Role: Team Lead
 * Responsibilities: Storage + Scheduling and Deliverables
 
 ### Bharath Chandra Sudheer
@@ -55,5 +55,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/DonnyS57)]
 [[portfolio](team/donny.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: Logic Layer
