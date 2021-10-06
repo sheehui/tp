@@ -24,7 +24,9 @@ public class PersonAdapter {
         this.subject = subject;
     }
 
-    /** Get the immutable Person object. */
+    /**
+     * Get the immutable Person object.
+     */
     public Person getSubject() {
         return this.subject;
     }
@@ -32,20 +34,24 @@ public class PersonAdapter {
     /**
      * Accept parameters to edit the person
      *
-     * @param field to be edited.
+     * @param field    to be edited.
      * @param newValue to replace the current value.
      * @return new Person object which is modified if no errors with the new field input.
      */
-    public Person edit(PersonField field, String newValue) {
-        Person curr = this.subject;
-        Person newPerson = editPerson(curr, field, newValue);
-        this.subject = newPerson;
-        return newPerson;
+    public Person edit(PersonField field, String newValue) throws InvalidFieldException {
+        try {
+            Person curr = this.subject;
+            Person newPerson = editPerson(curr, field, newValue);
+            this.subject = newPerson;
+            return newPerson;
+        } catch (Exception e) {
+            throw new InvalidFieldException(field);
+        }
     }
 
     //TODO add edit field for tags.
     private Person editPerson(Person personToEdit, PersonField field, String newValue) {
-        switch(field) {
+        switch (field) {
         case NAME:
             return editPersonName(personToEdit, newValue);
         case PHONE:
@@ -60,51 +66,31 @@ public class PersonAdapter {
     }
 
     private Person editPersonName(Person personToEdit, String newValue) {
-        try {
-            Name newName = new Name(newValue);
-            return new Person(
-                    newName, personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return personToEdit;
-        }
+        Name newName = new Name(newValue);
+        return new Person(
+                newName, personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags());
     }
 
     private Person editPersonPhone(Person personToEdit, String newValue) {
-        try {
-            Phone newPhone = new Phone(newValue);
-            return new Person(
-                    personToEdit.getName(), newPhone, personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return personToEdit;
-        }
+        Phone newPhone = new Phone(newValue);
+        return new Person(
+                personToEdit.getName(), newPhone, personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags());
     }
 
     private Person editPersonEmail(Person personToEdit, String newValue) {
-        try {
-            Email newEmail = new Email(newValue);
-            return new Person(
-                    personToEdit.getName(), personToEdit.getPhone(), newEmail,
-                    personToEdit.getAddress(), personToEdit.getTags());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return personToEdit;
-        }
+        Email newEmail = new Email(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), newEmail,
+                personToEdit.getAddress(), personToEdit.getTags());
     }
 
     private Person editPersonAddress(Person personToEdit, String newValue) {
-        try {
-            Address newAddress = new Address(newValue);
-            return new Person(
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    newAddress, personToEdit.getTags());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return personToEdit;
-        }
+        Address newAddress = new Address(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                newAddress, personToEdit.getTags());
     }
 
 }
