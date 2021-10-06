@@ -24,9 +24,7 @@ public class PersonAdapter {
         this.subject = subject;
     }
 
-    /**
-     * Get the immutable Person object.
-     */
+    /** Get the immutable Person object. */
     public Person getSubject() {
         return this.subject;
     }
@@ -37,6 +35,7 @@ public class PersonAdapter {
      * @param field    to be edited.
      * @param newValue to replace the current value.
      * @return new Person object which is modified if no errors with the new field input.
+     * @throws InvalidFieldException if creating a new {@code Person} was not possible with the value.
      */
     public Person edit(PersonField field, String newValue) throws InvalidFieldException {
         try {
@@ -44,7 +43,7 @@ public class PersonAdapter {
             Person newPerson = editPerson(curr, field, newValue);
             this.subject = newPerson;
             return newPerson;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new InvalidFieldException(field);
         }
     }
