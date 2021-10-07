@@ -5,15 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.PersonAdapter;
-import seedu.address.model.person.Attributes;
 
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Attribute;
 
-import javax.print.attribute.Attribute;
-import java.util.Collections;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -23,7 +20,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     private PersonAdapter personAdapter;
 
     @FXML
-    private VBox attributesListView = new VBox();
+    private ListView<AttributePanel> clientInfoList;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -32,18 +29,22 @@ public class ClientInfoPanel extends UiPart<Region> {
         super(FXML);
         this.personAdapter = personAdapter;
         // Make all the attributes into FXML AttributePanel
+        ////Filter has to be removed. Not sure why it returns other shit other than the attributes
         ObservableList<AttributePanel> attributePanelObservableList =
-                personAdapter.getAllAttributesList().stream().map(x -> new AttributePanel(x)).
+                personAdapter.getAllAttributesList().stream().
+                        map(x -> new AttributePanel(x)).
                         collect(Collectors.toCollection(FXCollections::observableArrayList));
-        for (AttributePanel attributePanel : attributePanelObservableList) {
-            attributesListView.getChildren().add(attributePanel.getRoot());
-        };
+        clientInfoList.setItems(attributePanelObservableList);
+        clientInfoList.setCellFactory(listView -> new AttributeListViewCell());
+//        for (AttributePanel attributePanel : attributePanelObservableList) {
+//            attributesListView.setItems();
+//        (attributePanel.getRoot());
 //        attributesListView.setCellFactory(listView -> new AttributeListViewCell());
     }
 
-    class AttributeListViewCell extends ListCell<Attributes> {
+    class AttributeListViewCell extends ListCell<AttributePanel> {
         @Override
-        protected void updateItem(Attributes attribute, boolean empty) {
+        protected void updateItem(AttributePanel attribute, boolean empty) {
             super.updateItem(attribute, empty);
 
             if (empty || attribute == null) {

@@ -122,12 +122,12 @@ public class Person {
         return builder.toString();
     }
 
-    public ObservableList<Attributes> getAllAttributesList() {
-        ObservableList<Attributes> attributesObservableList = FXCollections.observableArrayList();
-        attributesObservableList.add(name);
-        attributesObservableList.add(phone);
-        attributesObservableList.add(email);
-        attributesObservableList.add(address);
-        return attributesObservableList;
+    public ObservableList<Attribute> getAllAttributesList() {
+        ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
+        attributeObservableList.add(name);
+        attributeObservableList.add(phone);
+        attributeObservableList.add(email);
+        attributeObservableList.add(address);
+        return attributeObservableList;
     }
 }

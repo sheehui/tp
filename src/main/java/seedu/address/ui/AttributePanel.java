@@ -6,14 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Attributes;
+import seedu.address.model.person.Attribute;
 
 import static java.util.Objects.requireNonNull;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class AttributePanel extends UiPart<Region> implements Attributes {
+public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private static final String FXML = "AttributePanel.fxml";
 
@@ -31,11 +31,16 @@ public class AttributePanel extends UiPart<Region> implements Attributes {
     @FXML
     private TextField textField;
 
-    private Attributes attribute;
+    private Attribute attribute;
 
-    public AttributePanel(Attributes attribute) {
+    private String packagedExtraField = "class seedu.address.ui.Att";
+    public AttributePanel(Attribute attribute) {
         super(FXML);
         this.attribute = attribute;
+        label.setText("salsd");
+        textField.setText(attribute.toString());
+//        label.setText(attribute.getClass().toString());
+//        textField.setText(attribute.toString());
     }
 
     @Override

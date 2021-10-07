@@ -3,7 +3,7 @@ package seedu.address.logic;
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Attributes;
+import seedu.address.model.person.Attribute;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -50,7 +50,7 @@ public class PersonAdapter {
         }
     }
 
-    public ObservableList<Attributes> getAllAttributesList() {
+    public ObservableList<Attribute> getAllAttributesList() {
         return subject.getAllAttributesList();
     }
 

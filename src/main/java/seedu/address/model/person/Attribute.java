@@ -3,7 +3,7 @@ package seedu.address.model.person;
 /**
  * The fields in the person class should implement these attributes
  */
-public interface Attributes {
+public interface Attribute {
 
 
     public String toString();
