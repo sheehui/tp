@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.PersonAdapter;
@@ -9,9 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-public class ViewCommand extends Command{
+public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
@@ -29,11 +29,14 @@ public class ViewCommand extends Command{
 
     private final Index index;
 
+    /**
+     * The Constructor for the view command.
+     * @param index index of the person that you want to view.
+     */
     public ViewCommand(Index index) {
         requireAllNonNull(index);
         this.index = index;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -43,7 +46,7 @@ public class ViewCommand extends Command{
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person person= lastShownList.get(index.getZeroBased());
+        Person person = lastShownList.get(index.getZeroBased());
         PersonAdapter personToView = new PersonAdapter(model, person);
         //TODO: Please do your magic Tee Chin
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, person.getName()));
