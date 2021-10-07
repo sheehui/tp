@@ -76,9 +76,4 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
-
-    @Override
-    public PersonAdapter getPersonAdapter(Index i) {
-        return new PersonAdapter(model, model.getFilteredPersonList().get(i.getZeroBased()));
-    }
 }
