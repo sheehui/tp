@@ -48,13 +48,16 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiAction.equals(otherCommandResult.uiAction);
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser);
+        // it is no longer possible to compare it on the basis of show help or exit
+        // due to the nature of lambdas.
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, uiAction);
+        return Objects.hash(feedbackToUser);
+        // it is no longer possible to compare it on the basis of show help or exit
+        // due to the nature of lambdas.
     }
 
 }
