@@ -33,14 +33,13 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private Attribute attribute;
 
-    private String packagedExtraField = "class seedu.address.ui.Att";
+    private String packagedExtraField = "seedu.address.model.person.";
     public AttributePanel(Attribute attribute) {
         super(FXML);
         this.attribute = attribute;
-        label.setText("salsd");
+        String attributeName = attribute.getClass().getName().replace(packagedExtraField,"");
+        label.setText(attributeName);
         textField.setText(attribute.toString());
-//        label.setText(attribute.getClass().toString());
-//        textField.setText(attribute.toString());
     }
 
     @Override

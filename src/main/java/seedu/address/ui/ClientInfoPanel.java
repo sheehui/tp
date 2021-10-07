@@ -34,6 +34,7 @@ public class ClientInfoPanel extends UiPart<Region> {
                 personAdapter.getAllAttributesList().stream().
                         map(x -> new AttributePanel(x)).
                         collect(Collectors.toCollection(FXCollections::observableArrayList));
+        System.out.println(attributePanelObservableList);
         clientInfoList.setItems(attributePanelObservableList);
         clientInfoList.setCellFactory(listView -> new AttributeListViewCell());
 //        for (AttributePanel attributePanel : attributePanelObservableList) {
@@ -51,7 +52,7 @@ public class ClientInfoPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AttributePanel(attribute).getRoot());
+                setGraphic(attribute.getRoot());
             }
         }
     }
