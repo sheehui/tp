@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attributes;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -48,6 +50,11 @@ public class PersonAdapter {
         }
     }
 
+    public ObservableList<Attributes> getAllAttributesList() {
+        return subject.getAllAttributesList();
+    }
+
+
     //TODO add edit field for tags.
     private Person editPerson(Person personToEdit, PersonField field, String newValue) {
         switch (field) {
@@ -91,5 +98,6 @@ public class PersonAdapter {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 newAddress, personToEdit.getTags());
     }
+
 
 }

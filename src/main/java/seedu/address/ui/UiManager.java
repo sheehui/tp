@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -8,16 +9,24 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.PersonAdapter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * The manager of the UI component.
@@ -51,6 +60,8 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, this);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            UiPart<Region> tempRegion = new ClientInfoPanel(logic.getPersonAdapter(Index.fromOneBased(3)));
+            mainWindow.switchTab(tempRegion);
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -112,4 +123,8 @@ public class UiManager implements Ui {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         return logic.execute(commandText);
     };
+
+    public PersonAdapter getPersonAdapter(Index i) {
+        return logic.getPersonAdapter(i);
+    }
 }

@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,4 +122,12 @@ public class Person {
         return builder.toString();
     }
 
+    public ObservableList<Attributes> getAllAttributesList() {
+        ObservableList<Attributes> attributesObservableList = FXCollections.observableArrayList();
+        attributesObservableList.add(name);
+        attributesObservableList.add(phone);
+        attributesObservableList.add(email);
+        attributesObservableList.add(address);
+        return attributesObservableList;
+    }
 }

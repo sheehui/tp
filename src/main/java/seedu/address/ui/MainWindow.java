@@ -8,10 +8,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ClientInfoPanel clientInfoPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -41,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane viewFinderPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(uiManager.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        viewFinderPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -120,6 +123,19 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+
+    public void switchTab(StackPane holder, UiPart<Region> tab) {
+        logger.info("Switching tab");
+        holder.getChildren().clear();
+        holder.getChildren().add(tab.getRoot());
+    }
+
+    public void switchTab(UiPart<Region> tab) {
+        logger.info("Switching tab");
+        viewFinderPlaceholder.getChildren().clear();
+        viewFinderPlaceholder.getChildren().add(tab.getRoot());
     }
 
     /**
