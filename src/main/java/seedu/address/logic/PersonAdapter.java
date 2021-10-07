@@ -12,11 +12,7 @@ public class PersonAdapter {
     private final Model model;
     private Person subject;
 
-    /**
-     * Constructor for the PersonAdapter.
-     * @param model the model of the current DonnaFin application.
-     * @param subject person that you want to work on.
-     */
+
 
     public enum PersonField {
         NAME,
@@ -25,6 +21,11 @@ public class PersonAdapter {
         ADDRESS,
     }
 
+    /**
+     * Constructor for the PersonAdapter.
+     * @param model the model of the current DonnaFin application.
+     * @param subject person that you want to work on.
+     */
     public PersonAdapter(Model model, Person subject) {
         this.model = model;
         this.subject = subject;
