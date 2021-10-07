@@ -1,7 +1,11 @@
 package seedu.address.logic;
 
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 public class PersonAdapter {
 
@@ -13,6 +17,14 @@ public class PersonAdapter {
      * @param model the model of the current DonnaFin application.
      * @param subject person that you want to work on.
      */
+
+    public enum PersonField {
+        NAME,
+        PHONE,
+        EMAIL,
+        ADDRESS,
+    }
+
     public PersonAdapter(Model model, Person subject) {
         this.model = model;
         this.subject = subject;
@@ -23,29 +35,67 @@ public class PersonAdapter {
         return this.subject;
     }
 
-    // TODO: use proper types for field and newValue
-    // Use an enum for field
-    // newValue should be a valid type for the given enum, not sure how, generic?
-
     /**
-     * Accept parameters to edit the Person.
+     * Accept parameters to edit the person
      *
-     * @param field to be edited.
-     * @param newValue to replace current value.
-     * @return new Person object.
+     * @param field    to be edited.
+     * @param newValue to replace the current value.
+     * @return new Person object which is modified if no errors with the new field input.
+     * @throws InvalidFieldException if creating a new {@code Person} was not possible with the value.
      */
-    public Person edit(Object field, Object newValue) {
-        Person curr = this.subject;
-        Person newPerson = editPerson(curr, field, newValue);
-        model.setPerson(curr, newPerson);
-        this.subject = newPerson;
-        return newPerson;
+    public Person edit(PersonField field, String newValue) throws InvalidFieldException {
+        try {
+            Person curr = this.subject;
+            Person newPerson = editPerson(curr, field, newValue);
+            this.subject = newPerson;
+            return newPerson;
+        } catch (IllegalArgumentException e) {
+            throw new InvalidFieldException(field);
+        }
     }
 
-    // TODO use field and newValue properly.
-    private Person editPerson(Person personToEdit, Object field, Object newValue) {
+    //TODO add edit field for tags.
+    private Person editPerson(Person personToEdit, PersonField field, String newValue) {
+        switch (field) {
+        case NAME:
+            return editPersonName(personToEdit, newValue);
+        case PHONE:
+            return editPersonPhone(personToEdit, newValue);
+        case EMAIL:
+            return editPersonEmail(personToEdit, newValue);
+        case ADDRESS:
+            return editPersonAddress(personToEdit, newValue);
+        default:
+            return personToEdit;
+        }
+    }
+
+    private Person editPersonName(Person personToEdit, String newValue) {
+        Name newName = new Name(newValue);
         return new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                newName, personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags());
     }
+
+    private Person editPersonPhone(Person personToEdit, String newValue) {
+        Phone newPhone = new Phone(newValue);
+        return new Person(
+                personToEdit.getName(), newPhone, personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags());
+    }
+
+    private Person editPersonEmail(Person personToEdit, String newValue) {
+        Email newEmail = new Email(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), newEmail,
+                personToEdit.getAddress(), personToEdit.getTags());
+    }
+
+    private Person editPersonAddress(Person personToEdit, String newValue) {
+        Address newAddress = new Address(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                newAddress, personToEdit.getTags());
+    }
+
 }
