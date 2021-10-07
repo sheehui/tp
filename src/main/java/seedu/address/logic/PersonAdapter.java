@@ -8,7 +8,7 @@ public class PersonAdapter {
     private final Model model;
     private Person subject;
 
-    PersonAdapter(Model model, Person subject) {
+    public PersonAdapter(Model model, Person subject) {
         this.model = model;
         this.subject = subject;
     }
