@@ -126,12 +126,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
+    /**
+     * Switches the children inside the holder with the tab
+     * @param holder container for tab
+     * @param tab specified tab to be swapped in
+     */
     public void switchTab(StackPane holder, UiPart<Region> tab) {
         logger.info("Switching tab");
         holder.getChildren().clear();
         holder.getChildren().add(tab.getRoot());
     }
 
+    /**
+     * Switches the children isnide of viewFinder with the specified tab
+     * @param tab specified tab to be swapped in
+     */
     public void switchTab(UiPart<Region> tab) {
         logger.info("Switching tab");
         viewFinderPlaceholder.getChildren().clear();

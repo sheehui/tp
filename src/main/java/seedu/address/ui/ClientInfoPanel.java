@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ClientInfoPanel.class);
     private PersonAdapter personAdapter;
 
     @FXML
@@ -29,18 +28,12 @@ public class ClientInfoPanel extends UiPart<Region> {
         super(FXML);
         this.personAdapter = personAdapter;
         // Make all the attributes into FXML AttributePanel
-        ////Filter has to be removed. Not sure why it returns other shit other than the attributes
         ObservableList<AttributePanel> attributePanelObservableList =
                 personAdapter.getAllAttributesList().stream().
                         map(x -> new AttributePanel(x)).
                         collect(Collectors.toCollection(FXCollections::observableArrayList));
-        System.out.println(attributePanelObservableList);
         clientInfoList.setItems(attributePanelObservableList);
         clientInfoList.setCellFactory(listView -> new AttributeListViewCell());
-//        for (AttributePanel attributePanel : attributePanelObservableList) {
-//            attributesListView.setItems();
-//        (attributePanel.getRoot());
-//        attributesListView.setCellFactory(listView -> new AttributeListViewCell());
     }
 
     class AttributeListViewCell extends ListCell<AttributePanel> {
@@ -55,5 +48,13 @@ public class ClientInfoPanel extends UiPart<Region> {
                 setGraphic(attribute.getRoot());
             }
         }
+    }
+
+
+    /**
+     * Handles the Enter button pressed event.
+     */
+    private void handleCommandEntered(String attributeChanged) {
+        personAdapter.
     }
 }

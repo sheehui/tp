@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attribute;
 
 import static java.util.Objects.requireNonNull;
@@ -34,6 +36,11 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     private Attribute attribute;
 
     private String packagedExtraField = "seedu.address.model.person.";
+
+    /**
+     * Constructor for Attribute panel
+     * @param attribute
+     */
     public AttributePanel(Attribute attribute) {
         super(FXML);
         this.attribute = attribute;
@@ -56,5 +63,23 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     public int hashCode() {
         return Objects.hash(attribute, label, textField);
     }
+
+    public void setLabel(String text) {
+        label.setText(text);
+    }
+
+    public void setTextField(String text) {
+        textField.setText(text);
+    }
+
+    /**
+     * Handles the Enter button pressed event.
+     */
+    @FXML
+    private void handleCommandEntered() {
+        String newTextField = textField.getText();
+        System.out.println(attribute.toString());
+    }
+
 }
 
