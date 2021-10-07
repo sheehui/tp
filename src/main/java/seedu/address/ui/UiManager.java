@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.PersonAdapter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -29,7 +30,7 @@ public class UiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
-    private Logic logic;
+    private final Logic logic;
     private MainWindow mainWindow;
 
     /**
@@ -56,6 +57,21 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    @Override
+    public void showHelp() {
+        this.mainWindow.handleHelp();
+    }
+
+    @Override
+    public void beginExit() {
+        this.mainWindow.handleExit();
+    }
+
+    @Override
+    public void showClientView(PersonAdapter subject) {
+
     }
 
     private Image getImage(String imagePath) {
