@@ -60,4 +60,7 @@ public class CommandResult {
         // due to the nature of lambdas.
     }
 
+    public Consumer<Ui> getUiAction() {
+        return uiAction;
+    }
 }

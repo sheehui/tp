@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
@@ -52,8 +54,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, this);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            //UiPart<Region> tempRegion = new ClientInfoPanel(logic.getPersonAdapter(Index.fromOneBased(3)));
-            //mainWindow.switchTab(tempRegion);
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -72,7 +72,8 @@ public class UiManager implements Ui {
 
     @Override
     public void showClientView(PersonAdapter subject) {
-
+        UiPart<Region> clientView = new ClientInfoPanel(subject);
+        mainWindow.switchTab(clientView);
     }
 
     private Image getImage(String imagePath) {
@@ -126,7 +127,20 @@ public class UiManager implements Ui {
         logic.setGuiSettings(guiSettings);
     };
 
+    /**
+     * Passes the string to logic to execute. Gets the command result back from logic, along with any
+     * uiConsumer. If there is one, apply it to the ui
+     * @param commandText String entered by the user
+     * @return  result of the command of class Command result
+     * @throws CommandException
+     * @throws ParseException
+     */
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        return logic.execute(commandText);
+        CommandResult commandResult = logic.execute(commandText);
+        Consumer<Ui> uiConsumer = commandResult.getUiAction();
+        if (!uiConsumer.equals(null)) {
+            uiConsumer.accept(this);
+        }
+        return commandResult;
     };
 }
