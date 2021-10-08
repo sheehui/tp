@@ -6,11 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attribute;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -44,19 +40,23 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     public AttributePanel(Attribute attribute) {
         super(FXML);
         this.attribute = attribute;
-        String attributeName = attribute.getClass().getName().replace(packagedExtraField,"");
+        String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
         textField.setText(attribute.toString());
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         AttributePanel attributePanel = (AttributePanel) o;
-        return Objects.equals(attributePanel, attributePanel) &&
-                Objects.equals(label, attributePanel.label) &&
-                Objects.equals(textField, attributePanel.textField);
+        return Objects.equals(attributePanel, attributePanel)
+                && Objects.equals(label, attributePanel.label)
+                && Objects.equals(textField, attributePanel.textField);
     }
 
     @Override

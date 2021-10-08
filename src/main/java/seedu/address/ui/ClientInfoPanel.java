@@ -1,18 +1,14 @@
 package seedu.address.ui;
 
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.PersonAdapter;
-
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Attribute;
-
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
+import seedu.address.logic.PersonAdapter;
 
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
@@ -29,9 +25,9 @@ public class ClientInfoPanel extends UiPart<Region> {
         this.personAdapter = personAdapter;
         // Make all the attributes into FXML AttributePanel
         ObservableList<AttributePanel> attributePanelObservableList =
-                personAdapter.getAllAttributesList().stream().
-                        map(x -> new AttributePanel(x)).
-                        collect(Collectors.toCollection(FXCollections::observableArrayList));
+                personAdapter.getAllAttributesList().stream()
+                        .map(x -> new AttributePanel(x))
+                        .collect(Collectors.toCollection(FXCollections::observableArrayList));
         clientInfoList.setItems(attributePanelObservableList);
         clientInfoList.setCellFactory(listView -> new AttributeListViewCell());
     }
@@ -55,6 +51,6 @@ public class ClientInfoPanel extends UiPart<Region> {
      * Handles the Enter button pressed event.
      */
     private void handleCommandEntered(String attributeChanged) {
-        personAdapter.
+        System.out.println(attributeChanged);
     }
 }
