@@ -48,8 +48,10 @@ public class ViewCommand extends Command {
         }
         Person person = lastShownList.get(index.getZeroBased());
         PersonAdapter personToView = new PersonAdapter(model, person);
-        //TODO: Please do your magic Tee Chin
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, person.getName()));
+        String feedbackToUser = String.format(MESSAGE_VIEW_PERSON_SUCCESS, person.getName());
+        return new CommandResult(feedbackToUser, ui -> {
+            ui.showClientView(personToView);
+        });
     }
 
     @Override
