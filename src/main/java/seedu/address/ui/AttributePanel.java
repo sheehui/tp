@@ -27,7 +27,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     private Label label;
 
     @FXML
-    private TextField value;
+    private TextField textField;
 
     private Attribute attribute;
 
@@ -42,7 +42,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         this.attribute = attribute;
         String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
-        value.setText(attribute.toString());
+        textField.setText(attribute.toString());
     }
 
     @Override
@@ -56,12 +56,12 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         AttributePanel attributePanel = (AttributePanel) o;
         return Objects.equals(attributePanel, attributePanel)
                 && Objects.equals(label, attributePanel.label)
-                && Objects.equals(value, attributePanel.value);
+                && Objects.equals(textField, attributePanel.textField);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(attribute, label, value);
+        return Objects.hash(attribute, label, textField);
     }
 
     public void setLabel(String text) {
@@ -73,11 +73,11 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     }
 
     public void setValue(String text) {
-        value.setText(text);
+        textField.setText(text);
     }
 
     public String getValue() {
-        return this.value.getText();
+        return this.textField.getText();
     }
 
     /**
@@ -85,7 +85,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        String newTextField = value.getText();
+        String newTextField = textField.getText();
         System.out.println(attribute.toString());
     }
 
