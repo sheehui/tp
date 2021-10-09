@@ -148,6 +148,10 @@ public class MainWindow extends UiPart<Stage> {
         switchTab(this.viewFinderPlaceholder, tab);
     }
 
+    public void switchToHome() {
+        switchTab(this.viewFinderPlaceholder, personListPanel);
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
