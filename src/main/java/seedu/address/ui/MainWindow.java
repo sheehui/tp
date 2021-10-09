@@ -145,9 +145,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param tab specified tab to be swapped in
      */
     public void switchTab(UiPart<Region> tab) {
-        logger.info("Switching tab");
-        viewFinderPlaceholder.getChildren().clear();
-        viewFinderPlaceholder.getChildren().add(tab.getRoot());
+        switchTab(this.viewFinderPlaceholder, tab);
     }
 
     /**

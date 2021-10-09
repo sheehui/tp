@@ -142,9 +142,10 @@ public class UiManager implements Ui {
      */
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         CommandResult commandResult = logic.execute(commandText);
-        Consumer<Ui> uiConsumer = commandResult.getUiAction();
-        if (!uiConsumer.equals(null)) {
-            uiConsumer.accept(this);
+        Consumer<Ui> uiAction = commandResult.getUiAction();
+        assert !uiAction.equals(null) : "commandResult.uiAction was set as null";
+        if (!uiAction.equals(null)) {
+            uiAction.accept(this);
         }
         return commandResult;
     };
@@ -155,7 +156,7 @@ public class UiManager implements Ui {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || o instanceof UiManager) {
             return false;
         }
         UiManager uiManager = (UiManager) o;
