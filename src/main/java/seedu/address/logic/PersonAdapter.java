@@ -61,7 +61,6 @@ public class PersonAdapter {
         return subject.getAllAttributesList();
     }
 
-
     //TODO add edit field for tags.
     private Person editPerson(Person personToEdit, PersonField field, String newValue) {
         switch (field) {
@@ -105,7 +104,4 @@ public class PersonAdapter {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 newAddress, personToEdit.getTags());
     }
-
-
-
 }

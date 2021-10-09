@@ -114,7 +114,6 @@ public class UiManagerTest {
         assertEquals(logicFilePath, uiManagerFilePath);
     }
 
-
     /*
     Unclean way of testing for parse exception
      */

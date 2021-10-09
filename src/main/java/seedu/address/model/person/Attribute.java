@@ -5,7 +5,6 @@ package seedu.address.model.person;
  */
 public interface Attribute {
 
-
     public String toString();
     public boolean equals(Object other);
     public int hashCode();
