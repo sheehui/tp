@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -33,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ClientInfoPanel clientInfoPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -73,6 +75,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    public StackPane getViewFinderPlaceholder() {
+        return this.viewFinderPlaceholder;
     }
 
     /**
@@ -120,6 +126,26 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+
+    /**
+     * Switches the children inside the holder with the tab
+     * @param holder container for tab
+     * @param tab specified tab to be swapped in
+     */
+    public void switchTab(StackPane holder, UiPart<Region> tab) {
+        logger.info("Switching tab");
+        holder.getChildren().clear();
+        holder.getChildren().add(tab.getRoot());
+    }
+
+    /**
+     * Switches the children isnide of viewFinder with the specified tab
+     * @param tab specified tab to be swapped in
+     */
+    public void switchTab(UiPart<Region> tab) {
+        switchTab(this.viewFinderPlaceholder, tab);
     }
 
     /**

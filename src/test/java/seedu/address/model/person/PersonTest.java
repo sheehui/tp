@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -13,6 +14,8 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -88,4 +91,15 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void checkGetAllObservableListFunction() {
+        ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
+        attributeObservableList.add(ALICE.getName());
+        attributeObservableList.add(ALICE.getPhone());
+        attributeObservableList.add(ALICE.getEmail());
+        attributeObservableList.add(ALICE.getAddress());
+        assertEquals(attributeObservableList, ALICE.getAllAttributesList());
+    }
+
 }

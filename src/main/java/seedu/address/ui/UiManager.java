@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -8,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
@@ -52,7 +55,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, this);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -71,7 +73,8 @@ public class UiManager implements Ui {
 
     @Override
     public void showClientView(PersonAdapter subject) {
-
+        UiPart<Region> clientView = new ClientInfoPanel(subject);
+        mainWindow.switchTab(clientView);
     }
 
     private Image getImage(String imagePath) {
@@ -125,7 +128,43 @@ public class UiManager implements Ui {
         logic.setGuiSettings(guiSettings);
     };
 
+    public MainWindow getMainWindow() {
+        return this.mainWindow;
+    }
+
+    /**
+     * Passes the string to logic to execute. Gets the command result back from logic, along with any
+     * uiConsumer. If there is one, apply it to the ui
+     * @param commandText String entered by the user
+     * @return  result of the command of class Command result
+     * @throws CommandException
+     * @throws ParseException
+     */
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        return logic.execute(commandText);
+        CommandResult commandResult = logic.execute(commandText);
+        Consumer<Ui> uiAction = commandResult.getUiAction();
+        assert !uiAction.equals(null) : "commandResult.uiAction was set as null";
+        if (!uiAction.equals(null)) {
+            uiAction.accept(this);
+        }
+        return commandResult;
     };
+
+    //For testing purposes. See UiManager Test for more info
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || !(o instanceof UiManager)) {
+            return false;
+        }
+        UiManager uiManager = (UiManager) o;
+        return Objects.equals(logic, uiManager.logic) && Objects.equals(mainWindow, uiManager.mainWindow);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(logic, mainWindow);
+    }
 }
