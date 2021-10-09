@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -127,6 +128,10 @@ public class UiManager implements Ui {
         logic.setGuiSettings(guiSettings);
     };
 
+    public MainWindow getMainWindow() {
+        return this.mainWindow;
+    }
+
     /**
      * Passes the string to logic to execute. Gets the command result back from logic, along with any
      * uiConsumer. If there is one, apply it to the ui
@@ -143,4 +148,22 @@ public class UiManager implements Ui {
         }
         return commandResult;
     };
+
+    //For testing purposes. See UiManager Test for more info
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UiManager uiManager = (UiManager) o;
+        return Objects.equals(logic, uiManager.logic) && Objects.equals(mainWindow, uiManager.mainWindow);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(logic, mainWindow);
+    }
 }

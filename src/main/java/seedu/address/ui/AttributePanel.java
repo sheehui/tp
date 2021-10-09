@@ -68,8 +68,16 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         label.setText(text);
     }
 
+    public String getLabelText() {
+        return this.label.getText();
+    }
+
     public void setTextField(String text) {
         textField.setText(text);
+    }
+
+    public String getTextFieldString() {
+        return this.textField.getText();
     }
 
     /**

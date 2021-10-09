@@ -33,6 +33,7 @@ public class UiManagerTest {
     public Path temporaryFolder;
 
     private UiManager uiManager;
+    private UiManager backUpUiManager;
     private Logic logic;
     private Model model;
 
@@ -45,6 +46,7 @@ public class UiManagerTest {
         this.model = new ModelManager(new AddressBook(), new UserPrefs(), storage);
         logic = new LogicManager(model);
         uiManager = new UiManager(logic);
+        backUpUiManager = new UiManager(logic);
     }
 
     @Test
@@ -56,24 +58,7 @@ public class UiManagerTest {
     }
 
     @Test
-    public void testGetFilteredPersonList() {
-        ObservableList<Person> logicFilteredPersonList = logic.getFilteredPersonList();
-        ObservableList<Person> uiManagerFilteredPersonList = uiManager.getFilteredPersonList();
-
-
-        assertEquals(logicFilteredPersonList, uiManagerFilteredPersonList);
-    }
-
-    @Test
-    public void testGetAddressBookFilePath() {
-        Path logicFilePath = logic.getAddressBookFilePath();
-        Path uiManagerFilePath = uiManager.getAddressBookFilePath();
-
-        assertEquals(logicFilePath, uiManagerFilePath);
-    }
-
-    @Test
-    public void testExecuteSuccess() throws CommandException, ParseException {
+    public void testExecuteSuccessNoUiAction() throws CommandException, ParseException {
         String listCommand = "list";
         String addCommand = "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01";
         String deleteCommand = "delete 1";
@@ -99,11 +84,36 @@ public class UiManagerTest {
                 logicCommandResult = logic.execute(command);
                 logic.execute(addCommand);
                 uiManagerCommandResult = uiManager.execute(command);
+            } else {
+                logicCommandResult = logic.execute(command);
+                uiManagerCommandResult = uiManager.execute(command);
             }
 
+
             assertEquals(logicCommandResult, uiManagerCommandResult);
+            assertEquals(backUpUiManager, uiManager);
+            uiManagerCommandResult.getUiAction().accept(uiManager);
+            assertEquals(backUpUiManager, uiManager);
         }
     }
+
+    @Test
+    public void testGetFilteredPersonList() {
+        ObservableList<Person> logicFilteredPersonList = logic.getFilteredPersonList();
+        ObservableList<Person> uiManagerFilteredPersonList = uiManager.getFilteredPersonList();
+
+
+        assertEquals(logicFilteredPersonList, uiManagerFilteredPersonList);
+    }
+
+    @Test
+    public void testGetAddressBookFilePath() {
+        Path logicFilePath = logic.getAddressBookFilePath();
+        Path uiManagerFilePath = uiManager.getAddressBookFilePath();
+
+        assertEquals(logicFilePath, uiManagerFilePath);
+    }
+
 
     /*
     Unclean way of testing for parse exception

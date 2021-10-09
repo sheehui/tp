@@ -46,11 +46,9 @@ public class ClientInfoPanel extends UiPart<Region> {
         }
     }
 
-
     /**
      * Handles the Enter button pressed event.
      */
     private void handleCommandEntered(String attributeChanged) {
-        System.out.println(attributeChanged);
     }
 }
