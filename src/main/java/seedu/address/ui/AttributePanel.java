@@ -27,7 +27,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     private Label label;
 
     @FXML
-    private TextField textField;
+    private TextField value;
 
     private Attribute attribute;
 
@@ -42,7 +42,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         this.attribute = attribute;
         String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
-        textField.setText(attribute.toString());
+        value.setText(attribute.toString());
     }
 
     @Override
@@ -56,28 +56,28 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         AttributePanel attributePanel = (AttributePanel) o;
         return Objects.equals(attributePanel, attributePanel)
                 && Objects.equals(label, attributePanel.label)
-                && Objects.equals(textField, attributePanel.textField);
+                && Objects.equals(value, attributePanel.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(attribute, label, textField);
+        return Objects.hash(attribute, label, value);
     }
 
     public void setLabel(String text) {
         label.setText(text);
     }
 
-    public String getLabelText() {
+    public String getLabel() {
         return this.label.getText();
     }
 
-    public void setTextField(String text) {
-        textField.setText(text);
+    public void setValue(String text) {
+        value.setText(text);
     }
 
-    public String getTextFieldString() {
-        return this.textField.getText();
+    public String getValue() {
+        return this.value.getText();
     }
 
     /**
@@ -85,7 +85,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        String newTextField = textField.getText();
+        String newTextField = value.getText();
         System.out.println(attribute.toString());
     }
 

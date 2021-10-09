@@ -156,7 +156,7 @@ public class UiManager implements Ui {
         if (this == o) {
             return true;
         }
-        if (o == null || o instanceof UiManager) {
+        if (o == null || !(o instanceof UiManager)) {
             return false;
         }
         UiManager uiManager = (UiManager) o;
