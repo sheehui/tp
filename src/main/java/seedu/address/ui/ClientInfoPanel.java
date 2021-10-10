@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.stream.Collectors;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.logic.PersonAdapter;
+import seedu.address.model.person.Attribute;
 
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
@@ -17,12 +20,23 @@ public class ClientInfoPanel extends UiPart<Region> {
     @FXML
     private ListView<AttributePanel> clientInfoList;
 
+    @FXML
+    private AttributePanel attributePanelController;
+
+    private final ObjectProperty<PersonAdapter> adapter = new SimpleObjectProperty<>();
+
+    public void initialize() {
+        adapter.set(personAdapter);
+        attributePanelController.personAdapterProperty().bind(adapter);
+    }
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public ClientInfoPanel(PersonAdapter personAdapter) {
         super(FXML);
         this.personAdapter = personAdapter;
+        initialize();
         // Make all the attributes into FXML AttributePanel
         ObservableList<AttributePanel> attributePanelObservableList =
                 personAdapter.getAllAttributesList().stream()
@@ -44,11 +58,5 @@ public class ClientInfoPanel extends UiPart<Region> {
                 setGraphic(attribute.getRoot());
             }
         }
-    }
-
-    /**
-     * Handles the Enter button pressed event.
-     */
-    private void handleCommandEntered(String attributeChanged) {
     }
 }

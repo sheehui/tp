@@ -2,10 +2,14 @@ package seedu.address.ui;
 
 import java.util.Objects;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import seedu.address.logic.PersonAdapter;
 import seedu.address.model.person.Attribute;
 
 /**
@@ -14,6 +18,10 @@ import seedu.address.model.person.Attribute;
 public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private static final String FXML = "AttributePanel.fxml";
+
+    private final String packagedExtraField = "seedu.address.model.person.";
+
+    private final ObjectProperty<PersonAdapter> personAdapter = new SimpleObjectProperty<>();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,7 +39,9 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private Attribute attribute;
 
-    private String packagedExtraField = "seedu.address.model.person.";
+    public AttributePanel() {
+        super(FXML);
+    };
 
     /**
      * Constructor for Attribute panel
@@ -43,6 +53,10 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
         textField.setText(attribute.toString());
+    }
+
+    public ObjectProperty<PersonAdapter> personAdapterProperty() {
+        return personAdapter;
     }
 
     @Override
@@ -82,12 +96,30 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     /**
      * Handles the Enter button pressed event.
+     * Updates client info after user edit.
      */
     @FXML
     private void handleCommandEntered() {
         String newTextField = textField.getText();
-        System.out.println(attribute.toString());
+//        personAdapter.edit(this.getPersonField(), newTextField);
     }
 
+    /**
+     * Gets the PersonField enum type of attribute from label
+     * @return Enum PersonField value of attribute
+     */
+    private PersonAdapter.PersonField getPersonField() {
+        switch(label.toString()) {
+        case "Name":
+            return PersonAdapter.PersonField.NAME;
+        case "Address":
+            return PersonAdapter.PersonField.ADDRESS;
+        case "Phone":
+            return PersonAdapter.PersonField.PHONE;
+        case "Email":
+            return PersonAdapter.PersonField.EMAIL;
+        default:
+            return null;
+        }
+    }
 }
-
