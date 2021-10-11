@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
@@ -10,8 +9,8 @@
    <tabs>
       <Tab closable="false" text="Client Information">
          <content>
-            <VBox fx:id="clientInfoTab">
-                <ListView fx:id="clientInfoList" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="clientInfoTab" >
+                <VBox fx:id="clientInfoList" VBox.vgrow="ALWAYS" />
             </VBox>
          </content>
       </Tab>
@@ -19,7 +18,7 @@
          <content>
             <VBox fx:id="financialInfoTab">
                <children>
-                  <ListView fx:id="financialInfoList" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="financialInfoList" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </content>
