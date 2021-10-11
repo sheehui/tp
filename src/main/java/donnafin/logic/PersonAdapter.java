@@ -1,5 +1,9 @@
 package donnafin.logic;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import donnafin.model.Model;
 import donnafin.model.person.Address;
 import donnafin.model.person.Attribute;
@@ -7,6 +11,7 @@ import donnafin.model.person.Email;
 import donnafin.model.person.Name;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
+import donnafin.model.tag.Tag;
 import javafx.collections.ObservableList;
 
 public class PersonAdapter {
@@ -21,6 +26,7 @@ public class PersonAdapter {
         PHONE,
         EMAIL,
         ADDRESS,
+        TAGS
     }
 
     /**
@@ -61,7 +67,6 @@ public class PersonAdapter {
         return subject.getAllAttributesList();
     }
 
-    //TODO add edit field for tags.
     private Person editPerson(Person personToEdit, PersonField field, String newValue) {
         switch (field) {
         case NAME:
@@ -72,6 +77,8 @@ public class PersonAdapter {
             return editPersonEmail(personToEdit, newValue);
         case ADDRESS:
             return editPersonAddress(personToEdit, newValue);
+        case TAGS:
+            return editPersonTags(personToEdit, newValue);
         default:
             return personToEdit;
         }
@@ -103,5 +110,15 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 newAddress, personToEdit.getTags());
+    }
+
+    private Person editPersonTags(Person personToEdit, String newValue) {
+        String[] tagStrings = newValue.split(" ");
+        Set<Tag> newTags = Arrays.stream(tagStrings)
+                .map(Tag::new)
+                .collect(Collectors.toSet());
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), newTags);
     }
 }
