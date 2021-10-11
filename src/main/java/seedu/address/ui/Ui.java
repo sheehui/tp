@@ -16,4 +16,6 @@ public interface Ui {
     void beginExit();
 
     void showClientView(PersonAdapter subject);
+
+    void showHome();
 }
