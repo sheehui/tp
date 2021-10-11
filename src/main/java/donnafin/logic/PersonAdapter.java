@@ -19,8 +19,6 @@ public class PersonAdapter {
     private final Model model;
     private Person subject;
 
-
-
     public enum PersonField {
         NAME,
         PHONE,
@@ -64,6 +62,10 @@ public class PersonAdapter {
         }
     }
 
+    /**
+     * Get all attributes from Person.
+     * @return Observable list of attributes
+     */
     public ObservableList<Attribute> getAllAttributesList() {
         return subject.getAllAttributesList();
     }

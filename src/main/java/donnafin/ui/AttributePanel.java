@@ -3,14 +3,12 @@ package donnafin.ui;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
+import donnafin.logic.PersonAdapter;
 import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-
-import donnafin.logic.PersonAdapter;
-
 
 /**
  * An UI component that displays information of a {@code Person}.
