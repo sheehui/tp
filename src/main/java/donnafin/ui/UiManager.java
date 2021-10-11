@@ -77,6 +77,10 @@ public class UiManager implements Ui {
         mainWindow.switchTab(clientView);
     }
 
+    public void showHome() {
+        mainWindow.switchToHome();
+    }
+
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
