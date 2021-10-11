@@ -1,10 +1,6 @@
 package donnafin.ui;
 
-import java.util.stream.Collectors;
-
 import donnafin.logic.PersonAdapter;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
