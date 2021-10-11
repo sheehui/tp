@@ -1,17 +1,17 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.stream.Collectors;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.logic.PersonAdapter;
-import seedu.address.model.person.Attribute;
 
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
@@ -20,15 +20,15 @@ public class ClientInfoPanel extends UiPart<Region> {
     @FXML
     private ListView<AttributePanel> clientInfoList;
 
-    @FXML
-    private AttributePanel attributePanelController;
+//        @FXML
+//        private ClientInfoPanel clientInfoPanelController;
+    //
+    //    private final ObjectProperty<PersonAdapter> adapter = new SimpleObjectProperty<>();
 
-    private final ObjectProperty<PersonAdapter> adapter = new SimpleObjectProperty<>();
-
-    public void initialize() {
-        adapter.set(personAdapter);
-        attributePanelController.personAdapterProperty().bind(adapter);
-    }
+    //    public void initialize() {
+    //        adapter.set(personAdapter);
+    //        attributePanelController.personAdapterProperty().bind(adapter);
+    //    }
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -36,7 +36,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     public ClientInfoPanel(PersonAdapter personAdapter) {
         super(FXML);
         this.personAdapter = personAdapter;
-        initialize();
+        setAttributePersonAdapter();
         // Make all the attributes into FXML AttributePanel
         ObservableList<AttributePanel> attributePanelObservableList =
                 personAdapter.getAllAttributesList().stream()
@@ -45,6 +45,25 @@ public class ClientInfoPanel extends UiPart<Region> {
         clientInfoList.setItems(attributePanelObservableList);
         clientInfoList.setCellFactory(listView -> new AttributeListViewCell());
     }
+
+    /**
+     * Set PersonAdapter in Attribute panel.
+     */
+    private void setAttributePersonAdapter() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AttributePanel.fxml"));
+            Parent root = (Parent) loader.load();
+            AttributePanel attributePanelController = loader.getController();
+            attributePanelController.setPersonAdapter(personAdapter);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+//    public PersonAdapter getPersonAdapter() {
+//        return personAdapter;
+//    }
 
     class AttributeListViewCell extends ListCell<AttributePanel> {
         @Override

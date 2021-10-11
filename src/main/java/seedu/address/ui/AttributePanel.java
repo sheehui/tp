@@ -1,14 +1,15 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.Objects;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
+import seedu.address.logic.InvalidFieldException;
 import seedu.address.logic.PersonAdapter;
 import seedu.address.model.person.Attribute;
 
@@ -19,9 +20,10 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private static final String FXML = "AttributePanel.fxml";
 
-    private final String packagedExtraField = "seedu.address.model.person.";
+    private final String packagedExtraField = "donnafin.model.person.";
 
-    private final ObjectProperty<PersonAdapter> personAdapter = new SimpleObjectProperty<>();
+    private PersonAdapter personAdapter;
+    //    private final ObjectProperty<PersonAdapter> personAdapter = new SimpleObjectProperty<>();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,9 +41,9 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private Attribute attribute;
 
-    public AttributePanel() {
-        super(FXML);
-    };
+    //    public AttributePanel() {
+    //        super(FXML);
+    //    };
 
     /**
      * Constructor for Attribute panel
@@ -50,14 +52,27 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     public AttributePanel(Attribute attribute) {
         super(FXML);
         this.attribute = attribute;
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientInfoPanel.fxml"));
+//            Parent root = (Parent) loader.load();
+//            System.out.println(loader.getClass());
+//            ClientInfoPanel clientInfoPanelController = loader.getController();
+//            personAdapter = clientInfoPanelController.getPersonAdapter();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
         String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
         textField.setText(attribute.toString());
     }
 
-    public ObjectProperty<PersonAdapter> personAdapterProperty() {
-        return personAdapter;
+    public void setPersonAdapter(PersonAdapter personAdapter) {
+        this.personAdapter = personAdapter;
     }
+
+    //    public ObjectProperty<PersonAdapter> personAdapterProperty() {
+    //        return personAdapter;
+    //    }
 
     @Override
     public boolean equals(Object o) {
@@ -100,8 +115,15 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        String newTextField = textField.getText();
-//        personAdapter.edit(this.getPersonField(), newTextField);
+        try {
+            String newTextField = textField.getText();
+            System.out.println(newTextField);
+            System.out.println(this.getPersonField());
+            personAdapter.edit(this.getPersonField(), newTextField);
+            System.out.println(personAdapter.toString());
+        } catch (InvalidFieldException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

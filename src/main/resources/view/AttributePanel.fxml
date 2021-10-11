@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:controller="seedu.address.ui.AttributePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="55.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1">
    <children>
