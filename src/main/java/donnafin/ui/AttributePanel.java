@@ -1,7 +1,9 @@
 package donnafin.ui;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
 
+import donnafin.logic.PersonAdapter;
 import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,6 +16,8 @@ import javafx.scene.layout.Region;
 public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private static final String FXML = "AttributePanel.fxml";
+
+    private final String packagedExtraField = "donnafin.model.person.";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,15 +35,16 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private Attribute attribute;
 
-    private String packagedExtraField = "donnafin.model.person.";
+    private BiConsumer<PersonAdapter.PersonField, String> editor;
 
     /**
      * Constructor for Attribute panel
      * @param attribute
      */
-    public AttributePanel(Attribute attribute) {
+    public AttributePanel(Attribute attribute, BiConsumer<PersonAdapter.PersonField, String> editor) {
         super(FXML);
         this.attribute = attribute;
+        this.editor = editor;
         String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
         textField.setText(attribute.toString());
@@ -82,12 +87,31 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     /**
      * Handles the Enter button pressed event.
+     * Updates client info after user edit.
      */
     @FXML
     private void handleCommandEntered() {
         String newTextField = textField.getText();
-        System.out.println(attribute.toString());
+        System.out.println(getPersonField());
+        editor.accept(getPersonField(), newTextField);
     }
 
+    /**
+     * Gets the PersonField enum type of attribute from label
+     * @return Enum PersonField value of attribute
+     */
+    private PersonAdapter.PersonField getPersonField() {
+        switch(label.getText()) {
+        case "Name":
+            return PersonAdapter.PersonField.NAME;
+        case "Address":
+            return PersonAdapter.PersonField.ADDRESS;
+        case "Phone":
+            return PersonAdapter.PersonField.PHONE;
+        case "Email":
+            return PersonAdapter.PersonField.EMAIL;
+        default:
+            return null;
+        }
+    }
 }
-
