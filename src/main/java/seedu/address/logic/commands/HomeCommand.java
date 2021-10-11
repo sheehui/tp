@@ -13,9 +13,7 @@ import seedu.address.ui.Ui;
 public class HomeCommand extends Command {
 
     public static final String COMMAND_WORD = "home";
-
     public static final String MESSAGE_SUCCESS = "Currently viewing home";
-
 
     @Override
     public CommandResult execute(Model model) {
