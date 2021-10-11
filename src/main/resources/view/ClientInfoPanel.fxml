@@ -8,14 +8,14 @@
 
 <TabPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
-      <Tab closable="false" text="ClientInfo">
+      <Tab closable="false" text="Client info">
          <content>
             <VBox fx:id="clientInfoTab">
                 <ListView fx:id="clientInfoList" VBox.vgrow="ALWAYS" />
             </VBox>
          </content>
       </Tab>
-      <Tab closable="false" text="FinancialInfo">
+      <Tab closable="false" text="Financial info">
          <content>
             <VBox fx:id="financialInfoTab">
                <children>
