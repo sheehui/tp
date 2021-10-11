@@ -147,7 +147,7 @@ public class MainWindow extends UiPart<Stage> {
     public void setHandleEsc() {
         viewWrapper.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                fillInnerParts();
+                switchToHome();
             }
         });
     }
