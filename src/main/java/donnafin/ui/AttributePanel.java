@@ -1,19 +1,15 @@
 package donnafin.ui;
 
-import java.io.IOException;
 import java.util.Objects;
+import java.util.function.BiConsumer;
 
 import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
-import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
-import donnafin.model.person.Attribute;
 
 
 /**
@@ -24,9 +20,6 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     private static final String FXML = "AttributePanel.fxml";
 
     private final String packagedExtraField = "donnafin.model.person.";
-
-    private PersonAdapter personAdapter;
-    //    private final ObjectProperty<PersonAdapter> personAdapter = new SimpleObjectProperty<>();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -44,34 +37,20 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private Attribute attribute;
 
+    private BiConsumer<PersonAdapter.PersonField, String> editor;
+
     /**
      * Constructor for Attribute panel
      * @param attribute
      */
-    public AttributePanel(Attribute attribute) {
+    public AttributePanel(Attribute attribute, BiConsumer<PersonAdapter.PersonField, String> editor) {
         super(FXML);
         this.attribute = attribute;
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientInfoPanel.fxml"));
-//            Parent root = (Parent) loader.load();
-//            System.out.println(loader.getClass());
-//            ClientInfoPanel clientInfoPanelController = loader.getController();
-//            personAdapter = clientInfoPanelController.getPersonAdapter();
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
+        this.editor = editor;
         String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
         label.setText(attributeName);
         textField.setText(attribute.toString());
     }
-
-    public void setPersonAdapter(PersonAdapter personAdapter) {
-        this.personAdapter = personAdapter;
-    }
-
-    //    public ObjectProperty<PersonAdapter> personAdapterProperty() {
-    //        return personAdapter;
-    //    }
 
     @Override
     public boolean equals(Object o) {
@@ -114,15 +93,9 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        try {
-            String newTextField = textField.getText();
-            System.out.println(newTextField);
-            System.out.println(this.getPersonField());
-            personAdapter.edit(this.getPersonField(), newTextField);
-            System.out.println(personAdapter.toString());
-        } catch (InvalidFieldException e) {
-            System.out.println(e.getMessage());
-        }
+        String newTextField = textField.getText();
+        System.out.println(getPersonField());
+        editor.accept(getPersonField(), newTextField);
     }
 
     /**
@@ -130,7 +103,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      * @return Enum PersonField value of attribute
      */
     private PersonAdapter.PersonField getPersonField() {
-        switch(label.toString()) {
+        switch(label.getText()) {
         case "Name":
             return PersonAdapter.PersonField.NAME;
         case "Address":
