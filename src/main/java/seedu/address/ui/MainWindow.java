@@ -6,10 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -52,6 +54,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /**
+     * A wrapper around contents of DonnaFin view. Mainly for the global escape key function
+     * to direct users to home page.
+     */
+    @FXML
+    private VBox viewWrapper;
+
+    /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, UiManager uiManager) {
@@ -65,6 +74,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(uiManager.getGuiSettings());
 
         setAccelerators();
+
+        setHandleEsc();
 
         helpWindow = new HelpWindow();
     }
@@ -128,6 +139,18 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+
+    /**
+     * Repopulate viewFinderPlaceholder with person list.
+     * Redirects users from any part of DonnaFin to home page.
+     */
+    public void setHandleEsc() {
+        viewWrapper.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                switchToHome();
+            }
+        });
+    }
 
     /**
      * Switches the children inside the holder with the tab
