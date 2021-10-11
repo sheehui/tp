@@ -42,9 +42,9 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     private final Attribute attribute;
 
     private BiConsumer<PersonAdapter.PersonField, String> editor;
-    private STATE state;
+    private State state;
 
-    enum STATE {
+    enum State {
         EDIT_MODE,
         VIEW_MODE
     }
@@ -63,26 +63,26 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         fieldLabel.setText(this.field);
         valueLabel.setText(this.value);
         valueTextField.setText(this.value);
-        valueTextField.focusedProperty().addListener(
-                (ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
-        updateView(STATE.VIEW_MODE);
+        valueTextField.focusedProperty().addListener((
+            ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
+        updateView(State.VIEW_MODE);
     }
 
-    private void updateView(STATE intended) {
-        if (intended == STATE.VIEW_MODE) {
+    private void updateView(State intended) {
+        if (intended == State.VIEW_MODE) {
             this.valueTextField.setText(this.value);
             this.valueLabel.setText(this.value);
             this.valueTextField.setOpacity(0);
             this.valueLabel.setOpacity(1);
             this.valueTextField.setEditable(false);
-            this.state = STATE.VIEW_MODE;
-        } else if (intended == STATE.EDIT_MODE) {
+            this.state = State.VIEW_MODE;
+        } else if (intended == State.EDIT_MODE) {
             this.valueTextField.setText(this.value);
             this.valueLabel.setText(this.value);
             this.valueTextField.setOpacity(1);
             this.valueLabel.setOpacity(0);
             this.valueTextField.setEditable(true);
-            this.state = STATE.EDIT_MODE;
+            this.state = State.EDIT_MODE;
         } else {
             assert false : "Attribute Panel in an unexpected state";
         }
@@ -94,12 +94,12 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        if (this.state == STATE.EDIT_MODE) {
+        if (this.state == State.EDIT_MODE) {
             this.value = valueTextField.getText();
             editor.accept(getPersonField(), this.value);
-            updateView(STATE.VIEW_MODE);
-        } else if (this.state == STATE.VIEW_MODE) {
-            updateView(STATE.EDIT_MODE);
+            updateView(State.VIEW_MODE);
+        } else if (this.state == State.VIEW_MODE) {
+            updateView(State.EDIT_MODE);
         } else {
             assert false : "Attribute Panel in an unexpected state";
         }
