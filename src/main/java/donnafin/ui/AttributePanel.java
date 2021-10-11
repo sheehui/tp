@@ -1,12 +1,9 @@
 package donnafin.ui;
 
-import java.util.Objects;
 import java.util.function.BiConsumer;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.model.person.Attribute;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,8 +16,8 @@ import javafx.scene.shape.Rectangle;
 public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private static final String FXML = "AttributePanel.fxml";
-
-    private final String packagedExtraField = "donnafin.model.person.";
+    private String field;
+    private String value;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -60,88 +57,28 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         super(FXML);
         this.attribute = attribute;
         this.editor = editor;
-        String attributeName = attribute.getClass().getSimpleName();
-        String attributeValue = attribute.toString();
-        fieldLabel.setText(attributeName);
-        valueLabel.setText(attributeValue);
-        valueTextField.setText(attributeValue);
-        valueTextField.focusedProperty().addListener(new ChangeListener<Boolean>()
-        {
-            /**
-             * Called when the value of an {@link ObservableValue} changes.
-             * <p>
-             * In general, it is considered bad practice to modify the observed value in
-             * this method.
-             *
-             * @param observable The {@code ObservableValue} which value changed
-             * @param oldValue   The old value
-             * @param newValue
-             */
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                focusOutline.setVisible(newValue);
-            }
-        });
+        this.field = attribute.getClass().getSimpleName();
+        this.value = attribute.toString();
 
-        this.state = STATE.EDIT_MODE;
-        handleCommandEntered();
+        fieldLabel.setText(this.field);
+        valueLabel.setText(this.value);
+        valueTextField.setText(this.value);
+        valueTextField.focusedProperty().addListener(
+                (ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
+        updateView(STATE.VIEW_MODE);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AttributePanel attributePanel = (AttributePanel) o;
-        return Objects.equals(attributePanel, attributePanel)
-                && Objects.equals(fieldLabel, attributePanel.fieldLabel)
-                && Objects.equals(valueTextField, attributePanel.valueTextField)
-                && Objects.equals(valueLabel, attributePanel.valueLabel);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(attribute, fieldLabel, valueTextField);
-    }
-
-    public void setFieldLabel(String text) {
-        fieldLabel.setText(text);
-    }
-
-    public String getFieldLabel() {
-        return this.fieldLabel.getText();
-    }
-
-    public void setValue(String text) {
-        valueTextField.setText(text);
-        valueLabel.setText(text);
-    }
-
-    public String getValue() {
-        return this.valueTextField.getText();
-    }
-
-    /**
-     * Handles the Enter button pressed event.
-     * Updates client info after user edit.
-     */
-    @FXML
-    private void handleCommandEntered() {
-        String newTextField = valueTextField.getText();
-        System.out.println(getPersonField());
-        if (this.state == STATE.EDIT_MODE) {
+    private void updateView(STATE intended) {
+        if (intended == STATE.VIEW_MODE) {
+            this.valueTextField.setText(this.value);
+            this.valueLabel.setText(this.value);
             this.valueTextField.setOpacity(0);
-            this.valueLabel.setText(newTextField);
             this.valueLabel.setOpacity(1);
-//            this.valueTextField.setOpacity(1);
-//            this.valueLabel.setOpacity(0);
             this.valueTextField.setEditable(false);
-            editor.accept(getPersonField(), newTextField);
             this.state = STATE.VIEW_MODE;
-        } else if (this.state == STATE.VIEW_MODE) {
+        } else if (intended == STATE.EDIT_MODE) {
+            this.valueTextField.setText(this.value);
+            this.valueLabel.setText(this.value);
             this.valueTextField.setOpacity(1);
             this.valueLabel.setOpacity(0);
             this.valueTextField.setEditable(true);
@@ -152,11 +89,28 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     }
 
     /**
+     * Handles the Enter button pressed event.
+     * Updates client info after user edit.
+     */
+    @FXML
+    private void handleCommandEntered() {
+        if (this.state == STATE.EDIT_MODE) {
+            this.value = valueTextField.getText();
+            editor.accept(getPersonField(), this.value);
+            updateView(STATE.VIEW_MODE);
+        } else if (this.state == STATE.VIEW_MODE) {
+            updateView(STATE.EDIT_MODE);
+        } else {
+            assert false : "Attribute Panel in an unexpected state";
+        }
+    }
+
+    /**
      * Gets the PersonField enum type of attribute from label
      * @return Enum PersonField value of attribute
      */
     private PersonAdapter.PersonField getPersonField() {
-        switch(fieldLabel.getText()) {
+        switch(this.field) {
         case "Name":
             return PersonAdapter.PersonField.NAME;
         case "Address":
