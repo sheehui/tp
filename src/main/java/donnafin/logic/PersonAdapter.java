@@ -57,6 +57,7 @@ public class PersonAdapter {
             Person curr = this.subject;
             Person newPerson = editPerson(curr, field, newValue);
             this.subject = newPerson;
+            model.setPerson(curr, newPerson);
             return newPerson;
         } catch (IllegalArgumentException e) {
             throw new InvalidFieldException(field);
