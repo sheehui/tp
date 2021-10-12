@@ -61,5 +61,4 @@ public class ClientInfoPanel extends UiPart<Region> {
             }
         };
     }
-
 }

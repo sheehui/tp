@@ -13,7 +13,6 @@ import javafx.scene.shape.Rectangle;
 public class AttributePanel extends UiPart<Region> {
 
     private static final String FXML = "AttributePanel.fxml";
-    private String value;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -37,6 +36,7 @@ public class AttributePanel extends UiPart<Region> {
 
     private final EditHandler editor;
     private State state;
+    private String value;
 
     enum State {
         EDIT_MODE,
@@ -78,16 +78,15 @@ public class AttributePanel extends UiPart<Region> {
     }
 
     private void updateView(State intended) {
+        this.valueTextField.setText(this.value);
+        this.valueLabel.setText(this.value);
+
         if (intended == State.VIEW_MODE) {
-            this.valueTextField.setText(this.value);
-            this.valueLabel.setText(this.value);
             this.valueTextField.setOpacity(0);
             this.valueLabel.setOpacity(1);
             this.valueTextField.setEditable(false);
             this.state = State.VIEW_MODE;
         } else if (intended == State.EDIT_MODE) {
-            this.valueTextField.setText(this.value);
-            this.valueLabel.setText(this.value);
             this.valueTextField.setOpacity(1);
             this.valueLabel.setOpacity(0);
             this.valueTextField.setEditable(true);
