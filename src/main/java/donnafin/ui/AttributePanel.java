@@ -1,10 +1,7 @@
 package donnafin.ui;
 
-import java.util.function.BiConsumer;
-
-import donnafin.logic.PersonAdapter;
-import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -13,11 +10,9 @@ import javafx.scene.shape.Rectangle;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class AttributePanel extends UiPart<Region> implements Attribute {
+public class AttributePanel extends UiPart<Region> {
 
     private static final String FXML = "AttributePanel.fxml";
-    private String field;
-    private String value;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,53 +34,56 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     @FXML
     private Rectangle focusOutline;
 
-    private final Attribute attribute;
-
-    private BiConsumer<PersonAdapter.PersonField, String> editor;
-    private State state;
+    private final EditHandler editor;
+    private State state = State.VIEW_MODE;
+    private String value;
 
     enum State {
         EDIT_MODE,
         VIEW_MODE
     }
 
+    @FunctionalInterface
+    interface EditHandler {
+        /**
+         * EditHandlers will take in the new value and apply it to the given field.
+         * If the edit was successful, it will return null else return the error
+         * message thrown when trying to edit the field in this manner.
+         *
+         * @param newValue the new value to be used in the field.
+         * @return error message thrown by {@code PersonAdapter}.
+         */
+        String applyEdit(String newValue);
+    }
+
+
     /**
      * Constructor for Attribute panel
-     * @param attribute
+     *
+     * @param fieldInString field heading.
+     * @param value initial value of the attribute.
+     * @param editor the callback used to commit changes to model.
      */
-    public AttributePanel(Attribute attribute, BiConsumer<PersonAdapter.PersonField, String> editor) {
+    public AttributePanel(String fieldInString, String value, EditHandler editor) {
         super(FXML);
-        this.attribute = attribute;
         this.editor = editor;
-        this.field = attribute.getClass().getSimpleName();
-        this.value = attribute.toString();
+        this.value = value;
 
-        fieldLabel.setText(this.field);
+        fieldLabel.setText(fieldInString);
         valueLabel.setText(this.value);
         valueTextField.setText(this.value);
         valueTextField.focusedProperty().addListener((
             ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
-        updateView(State.VIEW_MODE);
+        setEditable(false);
     }
 
-    private void updateView(State intended) {
-        if (intended == State.VIEW_MODE) {
-            this.valueTextField.setText(this.value);
-            this.valueLabel.setText(this.value);
-            this.valueTextField.setOpacity(0);
-            this.valueLabel.setOpacity(1);
-            this.valueTextField.setEditable(false);
-            this.state = State.VIEW_MODE;
-        } else if (intended == State.EDIT_MODE) {
-            this.valueTextField.setText(this.value);
-            this.valueLabel.setText(this.value);
-            this.valueTextField.setOpacity(1);
-            this.valueLabel.setOpacity(0);
-            this.valueTextField.setEditable(true);
-            this.state = State.EDIT_MODE;
-        } else {
-            assert false : "Attribute Panel in an unexpected state";
-        }
+    private void setEditable(boolean isToBeEditable) {
+        int textFieldOpacity = isToBeEditable ? 1 : 0;
+        int labelOpacity = isToBeEditable ? 0 : 1;
+
+        this.valueTextField.setOpacity(textFieldOpacity);
+        this.valueLabel.setOpacity(labelOpacity);
+        this.valueTextField.setEditable(isToBeEditable);
     }
 
     /**
@@ -94,33 +92,33 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        if (this.state == State.EDIT_MODE) {
-            this.value = valueTextField.getText();
-            editor.accept(getPersonField(), this.value);
-            updateView(State.VIEW_MODE);
-        } else if (this.state == State.VIEW_MODE) {
-            updateView(State.EDIT_MODE);
-        } else {
+        this.value = valueTextField.getText();
+        this.valueTextField.setText(this.value);
+        this.valueLabel.setText(this.value);
+
+        switch (this.state) {
+        case EDIT_MODE:
+            String errMessage = editor.applyEdit(this.value);
+            if (errMessage != null) {
+                handleError(errMessage);
+            } else {
+                setEditable(false);
+                this.state = State.VIEW_MODE;
+            }
+            break;
+        case VIEW_MODE:
+            setEditable(true);
+            this.state = State.EDIT_MODE;
+            break;
+        default:
             assert false : "Attribute Panel in an unexpected state";
         }
     }
 
-    /**
-     * Gets the PersonField enum type of attribute from label
-     * @return Enum PersonField value of attribute
-     */
-    private PersonAdapter.PersonField getPersonField() {
-        switch(this.field) {
-        case "Name":
-            return PersonAdapter.PersonField.NAME;
-        case "Address":
-            return PersonAdapter.PersonField.ADDRESS;
-        case "Phone":
-            return PersonAdapter.PersonField.PHONE;
-        case "Email":
-            return PersonAdapter.PersonField.EMAIL;
-        default:
-            return null;
-        }
+    private void handleError(String errMessage) {
+        Alert editFailed = new Alert(Alert.AlertType.ERROR);
+        editFailed.setHeaderText("Could not save your edit.");
+        editFailed.setContentText(errMessage);
+        editFailed.show();
     }
 }

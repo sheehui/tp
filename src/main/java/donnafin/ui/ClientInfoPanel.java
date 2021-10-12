@@ -1,16 +1,15 @@
 package donnafin.ui;
 
-import java.util.function.BiConsumer;
-
 import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
+import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
-    private PersonAdapter personAdapter;
+    private final PersonAdapter personAdapter;
 
     @FXML
     private VBox clientInfoList;
@@ -22,15 +21,44 @@ public class ClientInfoPanel extends UiPart<Region> {
         super(FXML);
         this.personAdapter = personAdapter;
 
-        BiConsumer<PersonAdapter.PersonField, String> editor = (x, y) -> {
+        personAdapter.getAllAttributesList().stream()
+                .map(attr -> createAttributePanel(attr).getRoot())
+                .forEach(y -> clientInfoList.getChildren().add(y));
+    }
+
+    private AttributePanel createAttributePanel(Attribute attr) {
+        String fieldInString = attr.getClass().getSimpleName();
+        return new AttributePanel(
+                fieldInString,
+                attr.toString(),
+                createEditHandler(getPersonField(fieldInString))
+        );
+    }
+
+    /** Gets the PersonField enum type of attribute from label */
+    private PersonAdapter.PersonField getPersonField(String fieldInString) {
+        switch(fieldInString) {
+        case "Name":
+            return PersonAdapter.PersonField.NAME;
+        case "Address":
+            return PersonAdapter.PersonField.ADDRESS;
+        case "Phone":
+            return PersonAdapter.PersonField.PHONE;
+        case "Email":
+            return PersonAdapter.PersonField.EMAIL;
+        default:
+            throw new IllegalArgumentException("Unexpected Person Field used");
+        }
+    }
+
+    private AttributePanel.EditHandler createEditHandler(PersonAdapter.PersonField field) {
+        return newValue -> {
             try {
-                personAdapter.edit(x, y);
+                this.personAdapter.edit(field, newValue);
+                return null;
             } catch (InvalidFieldException e) {
-                e.printStackTrace();
+                return e.getMessage();
             }
         };
-        personAdapter.getAllAttributesList().stream()
-                .map(x -> new AttributePanel(x, editor).getRoot())
-                .forEach(y -> clientInfoList.getChildren().add(y));
     }
 }
