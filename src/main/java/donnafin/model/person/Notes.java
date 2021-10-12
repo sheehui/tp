@@ -6,7 +6,7 @@ package donnafin.model.person;
  */
 public class Notes implements Attribute {
 
-    public String notes;
+    private String notes;
 
     /**
      * Constructs a note.
@@ -14,6 +14,10 @@ public class Notes implements Attribute {
      */
     public Notes(String note) {
         this.notes = note;
+    }
+
+    public String getNotes() {
+        return notes;
     }
 
     @Override
