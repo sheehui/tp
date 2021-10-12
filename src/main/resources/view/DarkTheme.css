@@ -34,7 +34,7 @@
 }
 
 .tab-pane {
-    -fx-tab-min-width: 220px;
+    -fx-tab-min-width: 219px;
     -fx-alignment: CENTER;
 }
 
