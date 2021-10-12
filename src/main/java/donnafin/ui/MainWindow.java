@@ -51,8 +51,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     /**
      * A wrapper around contents of DonnaFin view. Mainly for the global escape key function
