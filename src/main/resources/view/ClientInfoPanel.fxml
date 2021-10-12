@@ -4,12 +4,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<TabPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxWidth="1.7976931348623157E308" prefWidth="800.0" tabMaxWidth="140.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
       <Tab closable="false" text="Client Information">
          <content>
-            <VBox fx:id="clientInfoTab" >
+            <VBox fx:id="clientInfoTab">
                 <VBox fx:id="clientInfoList" VBox.vgrow="ALWAYS" />
             </VBox>
          </content>

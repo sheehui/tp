@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Rectangle;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -32,7 +32,7 @@ public class AttributePanel extends UiPart<Region> {
     private Label valueLabel;
 
     @FXML
-    private Rectangle focusOutline;
+    private AnchorPane anchorPane;
 
     private final EditHandler editor;
     private State state = State.VIEW_MODE;
@@ -72,9 +72,17 @@ public class AttributePanel extends UiPart<Region> {
         fieldLabel.setText(fieldInString);
         valueLabel.setText(this.value);
         valueTextField.setText(this.value);
-        valueTextField.focusedProperty().addListener((
-            ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
         setEditable(false);
+        valueTextField.focusedProperty().addListener((
+            ignoreObservable, ignoreOldValue, newValue) -> setHighlight(newValue));
+    }
+
+    private void setHighlight(boolean isOnFocus) {
+        if (isOnFocus) {
+            anchorPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7)");
+        } else {
+            anchorPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0)");
+        }
     }
 
     private void setEditable(boolean isToBeEditable) {

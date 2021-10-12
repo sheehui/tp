@@ -157,6 +157,11 @@
     -fx-text-fill: black !important;
 }
 
+.attribute-panel {
+    -fx-border-color: #a9a9a9;
+    -fx-border-width: 0 0 2 0;
+}
+
 .status-bar .label {
     -fx-font-family: "Open Sans Light";
     -fx-text-fill: white;
