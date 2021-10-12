@@ -1,10 +1,7 @@
 package donnafin.ui;
 
-import java.util.function.BiConsumer;
-
-import donnafin.logic.PersonAdapter;
-import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -16,7 +13,6 @@ import javafx.scene.shape.Rectangle;
 public class AttributePanel extends UiPart<Region> {
 
     private static final String FXML = "AttributePanel.fxml";
-    private final String field;
     private String value;
 
     /**
@@ -39,7 +35,7 @@ public class AttributePanel extends UiPart<Region> {
     @FXML
     private Rectangle focusOutline;
 
-    private final BiConsumer<PersonAdapter.PersonField, String> editor;
+    private final EditHandler editor;
     private State state;
 
     enum State {
@@ -47,19 +43,33 @@ public class AttributePanel extends UiPart<Region> {
         VIEW_MODE
     }
 
+    @FunctionalInterface
+    interface EditHandler {
+        /**
+         * EditHandlers will take in the new value and apply it to the given field.
+         * If the edit was successful, it will return null else return the error
+         * message thrown when trying to edit the field in this manner.
+         *
+         * @param newValue the new value to be used in the field.
+         * @return error message thrown by {@code PersonAdapter}.
+         */
+        String applyEdit(String newValue);
+    }
+
+
     /**
      * Constructor for Attribute panel
      *
-     * @param attribute used to identify values and field name.
+     * @param fieldInString field heading.
+     * @param value initial value of the attribute.
      * @param editor the callback used to commit changes to model.
      */
-    public AttributePanel(Attribute attribute, BiConsumer<PersonAdapter.PersonField, String> editor) {
+    public AttributePanel(String fieldInString, String value, EditHandler editor) {
         super(FXML);
         this.editor = editor;
-        this.field = attribute.getClass().getSimpleName();
-        this.value = attribute.toString();
+        this.value = value;
 
-        fieldLabel.setText(this.field);
+        fieldLabel.setText(fieldInString);
         valueLabel.setText(this.value);
         valueTextField.setText(this.value);
         valueTextField.focusedProperty().addListener((
@@ -93,33 +103,28 @@ public class AttributePanel extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        if (this.state == State.EDIT_MODE) {
+        switch (this.state) {
+        case EDIT_MODE:
             this.value = valueTextField.getText();
-            editor.accept(getPersonField(), this.value);
-            updateView(State.VIEW_MODE);
-        } else if (this.state == State.VIEW_MODE) {
+            String errMessage = editor.applyEdit(this.value);
+            if (errMessage != null) {
+                handleError(errMessage);
+            } else {
+                updateView(State.VIEW_MODE);
+            }
+            break;
+        case VIEW_MODE:
             updateView(State.EDIT_MODE);
-        } else {
+            break;
+        default:
             assert false : "Attribute Panel in an unexpected state";
         }
     }
 
-    /**
-     * Gets the PersonField enum type of attribute from label
-     * @return Enum PersonField value of attribute
-     */
-    private PersonAdapter.PersonField getPersonField() {
-        switch(this.field) {
-        case "Name":
-            return PersonAdapter.PersonField.NAME;
-        case "Address":
-            return PersonAdapter.PersonField.ADDRESS;
-        case "Phone":
-            return PersonAdapter.PersonField.PHONE;
-        case "Email":
-            return PersonAdapter.PersonField.EMAIL;
-        default:
-            return null;
-        }
+    private void handleError(String errMessage) {
+        Alert editFailed = new Alert(Alert.AlertType.ERROR);
+        editFailed.setHeaderText("Could not save your edit.");
+        editFailed.setContentText(errMessage);
+        editFailed.show();
     }
 }
