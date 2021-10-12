@@ -35,7 +35,7 @@ public class AttributePanel extends UiPart<Region> {
     private Rectangle focusOutline;
 
     private final EditHandler editor;
-    private State state;
+    private State state = State.VIEW_MODE;
     private String value;
 
     enum State {
@@ -74,26 +74,16 @@ public class AttributePanel extends UiPart<Region> {
         valueTextField.setText(this.value);
         valueTextField.focusedProperty().addListener((
             ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
-        updateView(State.VIEW_MODE);
+        setEditable(false);
     }
 
-    private void updateView(State intended) {
-        this.valueTextField.setText(this.value);
-        this.valueLabel.setText(this.value);
+    private void setEditable(boolean isToBeEditable) {
+        int textFieldOpacity = isToBeEditable ? 1 : 0;
+        int labelOpacity = isToBeEditable ? 0 : 1;
 
-        if (intended == State.VIEW_MODE) {
-            this.valueTextField.setOpacity(0);
-            this.valueLabel.setOpacity(1);
-            this.valueTextField.setEditable(false);
-            this.state = State.VIEW_MODE;
-        } else if (intended == State.EDIT_MODE) {
-            this.valueTextField.setOpacity(1);
-            this.valueLabel.setOpacity(0);
-            this.valueTextField.setEditable(true);
-            this.state = State.EDIT_MODE;
-        } else {
-            assert false : "Attribute Panel in an unexpected state";
-        }
+        this.valueTextField.setOpacity(textFieldOpacity);
+        this.valueLabel.setOpacity(labelOpacity);
+        this.valueTextField.setEditable(isToBeEditable);
     }
 
     /**
@@ -102,18 +92,23 @@ public class AttributePanel extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        this.value = valueTextField.getText();
+        this.valueTextField.setText(this.value);
+        this.valueLabel.setText(this.value);
+
         switch (this.state) {
         case EDIT_MODE:
-            this.value = valueTextField.getText();
             String errMessage = editor.applyEdit(this.value);
             if (errMessage != null) {
                 handleError(errMessage);
             } else {
-                updateView(State.VIEW_MODE);
+                setEditable(false);
+                this.state = State.VIEW_MODE;
             }
             break;
         case VIEW_MODE:
-            updateView(State.EDIT_MODE);
+            setEditable(true);
+            this.state = State.EDIT_MODE;
             break;
         default:
             assert false : "Attribute Panel in an unexpected state";
