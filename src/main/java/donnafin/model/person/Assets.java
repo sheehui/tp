@@ -9,7 +9,7 @@ public class Assets implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert assets constraint here";
     public static final String VALIDATION_REGEX = "\\s\\S*";
-    public final String value;
+    public final String assetName;
 
     /**
      * Constructs a {@code Phone}.
@@ -18,7 +18,7 @@ public class Assets implements Attribute {
      */
     public Assets(String assets) {
         requireNonNull(assets);
-        value = assets;
+        assetName = assets;
     }
 
     /**
@@ -30,18 +30,18 @@ public class Assets implements Attribute {
 
     @Override
     public String toString() {
-        return value;
+        return assetName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof donnafin.model.person.Phone // instanceof handles nulls
-                && value.equals(((donnafin.model.person.Phone) other).value)); // state check
+                && assetName.equals(((donnafin.model.person.Phone) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return assetName.hashCode();
     }
 }

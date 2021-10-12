@@ -61,6 +61,10 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        policies = new HashSet<>(personToCopy.getPolicies());
+        liabilities = personToCopy.getLiabilities();
+        commission = personToCopy.getCommision();
+        assetsSet = new HashSet<>(personToCopy.getAssetsSet());
     }
 
     /**
@@ -103,8 +107,44 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Liabilities of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLiabilities(String liabilitiy) {
+        this.liabilities = new Liabilities(liabilitiy);
+        return this;
+    }
+
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicies(String ... policies) {
+        this.policies = SampleDataUtil.getPolicies(policies);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withAssets(String ... assets) {
+        this.assetsSet = SampleDataUtil.getAssets(assets);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Commission of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCommision(String commision){
+        this.commission = new Commission(commision);
+        return this;
+    }
+
+
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags,
+                policies, liabilities, commission, assetsSet);
     }
 
 }

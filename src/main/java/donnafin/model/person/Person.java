@@ -68,7 +68,7 @@ public class Person {
 
     public Liabilities getLiabilities() { return  liabilities; }
 
-    public Commission getcommission() { return  commission; }
+    public Commission getCommision() { return  commission; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

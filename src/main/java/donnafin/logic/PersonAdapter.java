@@ -109,7 +109,7 @@ public class PersonAdapter {
                 newName, personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
                 personToEdit.getPolicies(), personToEdit.getLiabilities(),
-                personToEdit.getcommission(), personToEdit.getAssetsSet());
+                personToEdit.getCommision(), personToEdit.getAssetsSet());
     }
 
     private Person editPersonPhone(Person personToEdit, String newValue) {
@@ -118,7 +118,7 @@ public class PersonAdapter {
                 personToEdit.getName(), newPhone, personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
                 personToEdit.getPolicies(), personToEdit.getLiabilities(),
-                personToEdit.getcommission(), personToEdit.getAssetsSet());
+                personToEdit.getCommision(), personToEdit.getAssetsSet());
     }
 
     private Person editPersonEmail(Person personToEdit, String newValue) {
@@ -127,7 +127,7 @@ public class PersonAdapter {
                 personToEdit.getName(), personToEdit.getPhone(), newEmail,
                 personToEdit.getAddress(), personToEdit.getTags(),
                 personToEdit.getPolicies(), personToEdit.getLiabilities(),
-                personToEdit.getcommission(), personToEdit.getAssetsSet());
+                personToEdit.getCommision(), personToEdit.getAssetsSet());
     }
 
     private Person editPersonAddress(Person personToEdit, String newValue) {
@@ -135,7 +135,7 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 newAddress, personToEdit.getTags(), personToEdit.getPolicies(),
-                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getLiabilities(), personToEdit.getCommision(),
                 personToEdit.getAssetsSet());
     }
 
@@ -147,7 +147,7 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), newTags, personToEdit.getPolicies(),
-                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getLiabilities(), personToEdit.getCommision(),
                 personToEdit.getAssetsSet());
     }
 
@@ -159,7 +159,7 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), newPolicies,
-                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getLiabilities(), personToEdit.getCommision(),
                 personToEdit.getAssetsSet());
     }
 
@@ -169,7 +169,7 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getPolicies(),
-                liability, personToEdit.getcommission(),
+                liability, personToEdit.getCommision(),
                 personToEdit.getAssetsSet());
     }
     private Person editPersonCommission(Person personToEdit, String newValue) {
@@ -189,7 +189,7 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getPolicies(),
-                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getLiabilities(), personToEdit.getCommision(),
                 newAssets);
     }
 }

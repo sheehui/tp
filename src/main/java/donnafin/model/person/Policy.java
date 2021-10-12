@@ -9,7 +9,7 @@ public class Policy implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
     public static final String VALIDATION_REGEX = "\\s\\S*";
-    public final String value;
+    public final String policyName;
 
     /**
      * Constructs a {@code Phone}.
@@ -18,7 +18,7 @@ public class Policy implements Attribute {
      */
     public Policy(String policyName) {
         requireNonNull(policyName);
-        value = policyName;
+        this.policyName = policyName;
     }
 
     /**
@@ -30,18 +30,18 @@ public class Policy implements Attribute {
 
     @Override
     public String toString() {
-        return value;
+        return policyName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof donnafin.model.person.Phone // instanceof handles nulls
-                && value.equals(((donnafin.model.person.Phone) other).value)); // state check
+                && policyName.equals(((donnafin.model.person.Phone) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return policyName.hashCode();
     }
 }
