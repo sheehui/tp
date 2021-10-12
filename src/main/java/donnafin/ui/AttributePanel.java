@@ -13,10 +13,10 @@ import javafx.scene.shape.Rectangle;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class AttributePanel extends UiPart<Region> implements Attribute {
+public class AttributePanel extends UiPart<Region> {
 
     private static final String FXML = "AttributePanel.fxml";
-    private String field;
+    private final String field;
     private String value;
 
     /**
@@ -39,9 +39,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
     @FXML
     private Rectangle focusOutline;
 
-    private final Attribute attribute;
-
-    private BiConsumer<PersonAdapter.PersonField, String> editor;
+    private final BiConsumer<PersonAdapter.PersonField, String> editor;
     private State state;
 
     enum State {
@@ -51,11 +49,12 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
 
     /**
      * Constructor for Attribute panel
-     * @param attribute
+     *
+     * @param attribute used to identify values and field name.
+     * @param editor the callback used to commit changes to model.
      */
     public AttributePanel(Attribute attribute, BiConsumer<PersonAdapter.PersonField, String> editor) {
         super(FXML);
-        this.attribute = attribute;
         this.editor = editor;
         this.field = attribute.getClass().getSimpleName();
         this.value = attribute.toString();
