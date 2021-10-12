@@ -52,7 +52,7 @@ public class PersonAdapterTest {
 
     @Test
     public void getAllAttributesList_returnsCorrectOutput() {
-        assertEquals(ALICE.getAllAttributesList(), personAdapter.getAllAttributesList());
+        assertEquals(ALICE.getPersonalAttributesList(), personAdapter.getAllAttributesList());
     }
 
     @Test

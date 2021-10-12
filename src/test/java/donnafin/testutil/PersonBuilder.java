@@ -4,10 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import donnafin.model.person.Address;
+import donnafin.model.person.Assets;
+import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liabilities;
 import donnafin.model.person.Name;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
 import donnafin.model.util.SampleDataUtil;
 
@@ -20,12 +24,18 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LIABILIES = "INSERT LIABILITY HERE";
+    public static final String DEFAULT_COMMISION = "INSERT COMMISSION HERE";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Policy> policies;
+    private Commission commission;
+    private Liabilities liabilities;
+    private Set<Assets> assetsSet;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +46,10 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        policies = new HashSet<>();
+        commission = new Commission(DEFAULT_COMMISION);
+        liabilities = new Liabilities(DEFAULT_LIABILIES);
+        assetsSet = new HashSet<>();
     }
 
     /**

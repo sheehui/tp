@@ -6,11 +6,15 @@ import java.util.stream.Collectors;
 
 import donnafin.model.Model;
 import donnafin.model.person.Address;
+import donnafin.model.person.Assets;
 import donnafin.model.person.Attribute;
+import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liabilities;
 import donnafin.model.person.Name;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
 import javafx.collections.ObservableList;
 
@@ -24,7 +28,11 @@ public class PersonAdapter {
         PHONE,
         EMAIL,
         ADDRESS,
-        TAGS
+        TAGS,
+        POLICY,
+        LIABILITIES,
+        COMMISSION,
+        ASSETS
     }
 
     /**
@@ -67,7 +75,7 @@ public class PersonAdapter {
      * @return Observable list of attributes
      */
     public ObservableList<Attribute> getAllAttributesList() {
-        return subject.getAllAttributesList();
+        return subject.getPersonalAttributesList();
     }
 
     private Person editPerson(Person personToEdit, PersonField field, String newValue) {
@@ -82,6 +90,14 @@ public class PersonAdapter {
             return editPersonAddress(personToEdit, newValue);
         case TAGS:
             return editPersonTags(personToEdit, newValue);
+        case POLICY:
+            return editPersonPolicies(personToEdit, newValue);
+        case LIABILITIES:
+            return editPersonLiabilities(personToEdit, newValue);
+        case COMMISSION:
+            return editPersonCommission(personToEdit, newValue);
+        case ASSETS:
+            return editPersonAssets(personToEdit, newValue);
         default:
             return personToEdit;
         }
@@ -91,28 +107,36 @@ public class PersonAdapter {
         Name newName = new Name(newValue);
         return new Person(
                 newName, personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getPolicies(), personToEdit.getLiabilities(),
+                personToEdit.getcommission(), personToEdit.getAssetsSet());
     }
 
     private Person editPersonPhone(Person personToEdit, String newValue) {
         Phone newPhone = new Phone(newValue);
         return new Person(
                 personToEdit.getName(), newPhone, personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getPolicies(), personToEdit.getLiabilities(),
+                personToEdit.getcommission(), personToEdit.getAssetsSet());
     }
 
     private Person editPersonEmail(Person personToEdit, String newValue) {
         Email newEmail = new Email(newValue);
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), newEmail,
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getPolicies(), personToEdit.getLiabilities(),
+                personToEdit.getcommission(), personToEdit.getAssetsSet());
     }
 
     private Person editPersonAddress(Person personToEdit, String newValue) {
         Address newAddress = new Address(newValue);
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                newAddress, personToEdit.getTags());
+                newAddress, personToEdit.getTags(), personToEdit.getPolicies(),
+                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getAssetsSet());
     }
 
     private Person editPersonTags(Person personToEdit, String newValue) {
@@ -122,6 +146,50 @@ public class PersonAdapter {
                 .collect(Collectors.toSet());
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), newTags);
+                personToEdit.getAddress(), newTags, personToEdit.getPolicies(),
+                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getAssetsSet());
+    }
+
+    private Person editPersonPolicies(Person personToEdit, String newValue) {
+        String[] policiesString = newValue.split(" ");
+        Set<Policy> newPolicies = Arrays.stream(policiesString)
+                .map(Policy::new)
+                .collect(Collectors.toSet());
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), newPolicies,
+                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                personToEdit.getAssetsSet());
+    }
+
+
+    private Person editPersonLiabilities(Person personToEdit, String newValue) {
+        Liabilities liability = new Liabilities(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getPolicies(),
+                liability, personToEdit.getcommission(),
+                personToEdit.getAssetsSet());
+    }
+    private Person editPersonCommission(Person personToEdit, String newValue) {
+        Commission commission = new Commission(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getPolicies(),
+                personToEdit.getLiabilities(), commission,
+                personToEdit.getAssetsSet());
+    }
+
+    private Person editPersonAssets(Person personToEdit, String newValue) {
+        String[] policiesString = newValue.split(" ");
+        Set<Assets> newAssets = Arrays.stream(policiesString)
+                .map(Assets::new)
+                .collect(Collectors.toSet());
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getPolicies(),
+                personToEdit.getLiabilities(), personToEdit.getcommission(),
+                newAssets);
     }
 }
