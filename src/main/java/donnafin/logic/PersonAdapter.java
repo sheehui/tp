@@ -88,28 +88,28 @@ public class PersonAdapter {
         Name newName = new Name(newValue);
         return new Person(
                 newName, personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonPhone(Person personToEdit, String newValue) {
         Phone newPhone = new Phone(newValue);
         return new Person(
                 personToEdit.getName(), newPhone, personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonEmail(Person personToEdit, String newValue) {
         Email newEmail = new Email(newValue);
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), newEmail,
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonAddress(Person personToEdit, String newValue) {
         Address newAddress = new Address(newValue);
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                newAddress, personToEdit.getTags());
+                newAddress, personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonTags(Person personToEdit, String newValue) {
@@ -119,6 +119,6 @@ public class PersonAdapter {
                 .collect(Collectors.toSet());
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), newTags);
+                personToEdit.getAddress(), newTags, personToEdit.getNotes());
     }
 }

@@ -13,6 +13,7 @@ import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Email;
 import donnafin.model.person.Name;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.tag.Tag;
@@ -103,7 +104,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Notes modelNotes = new Notes("");
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNotes);
     }
 
 }

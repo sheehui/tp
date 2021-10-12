@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
 public class ClientInfoPanel extends UiPart<Region> {
@@ -16,6 +18,9 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     @FXML
     private ListView<AttributePanel> clientInfoList;
+
+    @FXML
+    private TextArea notesTextArea;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
