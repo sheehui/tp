@@ -1,6 +1,5 @@
 package donnafin.ui;
 
-import java.util.Objects;
 import java.util.function.BiConsumer;
 
 import donnafin.logic.PersonAdapter;
@@ -9,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Rectangle;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -16,8 +16,8 @@ import javafx.scene.layout.Region;
 public class AttributePanel extends UiPart<Region> implements Attribute {
 
     private static final String FXML = "AttributePanel.fxml";
-
-    private final String packagedExtraField = "donnafin.model.person.";
+    private String field;
+    private String value;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,14 +28,26 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
 
     @FXML
-    private Label label;
+    private Label fieldLabel;
 
     @FXML
-    private TextField textField;
+    private TextField valueTextField;
 
-    private Attribute attribute;
+    @FXML
+    private Label valueLabel;
+
+    @FXML
+    private Rectangle focusOutline;
+
+    private final Attribute attribute;
 
     private BiConsumer<PersonAdapter.PersonField, String> editor;
+    private State state;
+
+    enum State {
+        EDIT_MODE,
+        VIEW_MODE
+    }
 
     /**
      * Constructor for Attribute panel
@@ -45,44 +57,35 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
         super(FXML);
         this.attribute = attribute;
         this.editor = editor;
-        String attributeName = attribute.getClass().getName().replace(packagedExtraField, "");
-        label.setText(attributeName);
-        textField.setText(attribute.toString());
+        this.field = attribute.getClass().getSimpleName();
+        this.value = attribute.toString();
+
+        fieldLabel.setText(this.field);
+        valueLabel.setText(this.value);
+        valueTextField.setText(this.value);
+        valueTextField.focusedProperty().addListener((
+            ignoreObservable, ignoreOldValue, newValue) -> focusOutline.setVisible(newValue));
+        updateView(State.VIEW_MODE);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    private void updateView(State intended) {
+        if (intended == State.VIEW_MODE) {
+            this.valueTextField.setText(this.value);
+            this.valueLabel.setText(this.value);
+            this.valueTextField.setOpacity(0);
+            this.valueLabel.setOpacity(1);
+            this.valueTextField.setEditable(false);
+            this.state = State.VIEW_MODE;
+        } else if (intended == State.EDIT_MODE) {
+            this.valueTextField.setText(this.value);
+            this.valueLabel.setText(this.value);
+            this.valueTextField.setOpacity(1);
+            this.valueLabel.setOpacity(0);
+            this.valueTextField.setEditable(true);
+            this.state = State.EDIT_MODE;
+        } else {
+            assert false : "Attribute Panel in an unexpected state";
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AttributePanel attributePanel = (AttributePanel) o;
-        return Objects.equals(attributePanel, attributePanel)
-                && Objects.equals(label, attributePanel.label)
-                && Objects.equals(textField, attributePanel.textField);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(attribute, label, textField);
-    }
-
-    public void setLabel(String text) {
-        label.setText(text);
-    }
-
-    public String getLabel() {
-        return this.label.getText();
-    }
-
-    public void setValue(String text) {
-        textField.setText(text);
-    }
-
-    public String getValue() {
-        return this.textField.getText();
     }
 
     /**
@@ -91,9 +94,15 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      */
     @FXML
     private void handleCommandEntered() {
-        String newTextField = textField.getText();
-        System.out.println(getPersonField());
-        editor.accept(getPersonField(), newTextField);
+        if (this.state == State.EDIT_MODE) {
+            this.value = valueTextField.getText();
+            editor.accept(getPersonField(), this.value);
+            updateView(State.VIEW_MODE);
+        } else if (this.state == State.VIEW_MODE) {
+            updateView(State.EDIT_MODE);
+        } else {
+            assert false : "Attribute Panel in an unexpected state";
+        }
     }
 
     /**
@@ -101,7 +110,7 @@ public class AttributePanel extends UiPart<Region> implements Attribute {
      * @return Enum PersonField value of attribute
      */
     private PersonAdapter.PersonField getPersonField() {
-        switch(label.getText()) {
+        switch(this.field) {
         case "Name":
             return PersonAdapter.PersonField.NAME;
         case "Address":
