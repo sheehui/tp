@@ -81,7 +81,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
         liabilities = source.getLiabilities().value;
-        commission = source.getCommision().value;
+        commission = source.getCommission().value;
         assets.addAll(source.getAssetsSet().stream()
                 .map(JsonAdaptedAssets::new)
                 .collect(Collectors.toList()));

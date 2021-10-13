@@ -1,14 +1,14 @@
 package donnafin.logic.parser;
 
 import static donnafin.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_ASSETS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITIES;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
-import static donnafin.logic.parser.CliSyntax.PREFIX_TAG;
 import static donnafin.logic.parser.CliSyntax.PREFIX_POLICY;
-import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITIES;
-import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
-import static donnafin.logic.parser.CliSyntax.PREFIX_ASSETS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;

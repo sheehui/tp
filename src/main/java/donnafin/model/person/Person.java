@@ -66,9 +66,13 @@ public class Person {
         return address;
     }
 
-    public Liabilities getLiabilities() { return  liabilities; }
+    public Liabilities getLiabilities() {
+        return liabilities;
+    }
 
-    public Commission getCommision() { return  commission; }
+    public Commission getCommission() {
+        return commission;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -78,9 +82,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Set<Policy> getPolicies() { return Collections.unmodifiableSet(policies); }
+    public Set<Policy> getPolicies() {
+        return Collections.unmodifiableSet(policies);
+    }
 
-    public Set<Assets> getAssetsSet() { return Collections.unmodifiableSet(assetsSet); }
+    public Set<Assets> getAssetsSet() {
+        return Collections.unmodifiableSet(assetsSet);
+    }
 
     /**
      * Returns true if both persons have the same name.

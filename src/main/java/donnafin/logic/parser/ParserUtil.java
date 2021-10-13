@@ -11,13 +11,12 @@ import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Assets;
+import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liabilities;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.person.Assets;
-import donnafin.model.person.Liabilities;
-import donnafin.model.person.Commission;
 import donnafin.model.tag.Tag;
 
 /**
