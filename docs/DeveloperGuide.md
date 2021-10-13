@@ -272,11 +272,11 @@ Use case ends.
   * 1b1. DonnaFin does not display any contact.\
          Use Case ends.
 
-**UC04: Editing the details of a contact**
+**UC04: Viewing the details of a contact**
 
 **MSS**
-1. User requests to edit a contact using the right syntax.
-2. DonnaFin announces that the contact has been successfully updated and displays the new details.
+1. User requests to view a contact using the right syntax.
+2. DonnaFin displays details on the client.
 
 **Extensions**
 * 1a. The user types the command using the wrong syntax.
@@ -285,6 +285,12 @@ Use case ends.
 * 1b. The given index is invalid.
     * 1b1. DonnaFin shows an error message.\
       Use Case resumes at step 1.
+* 2a. The user selects a particular attribute of the client and edits it (valid input).
+    * 2a1. Save the changes and display details again.\
+      Use case resumes at step 2.
+* 2b. The user selects a particular attribute of the client and edits it (invalid input).
+    * 2b1. DonnaFin displays error and does not save.\
+      Use case resumes at step 2.
 
 **UC05: Getting help**
 
