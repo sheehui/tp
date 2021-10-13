@@ -3,9 +3,13 @@ package donnafin.logic;
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static donnafin.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static donnafin.logic.commands.CommandTestUtil.ASSETS_DESC_AMY;
+import static donnafin.logic.commands.CommandTestUtil.COMMISSION_DESC_AMY;
 import static donnafin.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static donnafin.logic.commands.CommandTestUtil.LIABILITIES_DESC_AMY;
 import static donnafin.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static donnafin.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static donnafin.logic.commands.CommandTestUtil.POLICY_DESC_AMY;
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -83,7 +87,8 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + ADDRESS_DESC_AMY + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
+                + COMMISSION_DESC_AMY + ASSETS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), storage);
         expectedModel.addPerson(expectedPerson);

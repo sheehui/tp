@@ -63,7 +63,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         policies = new HashSet<>(personToCopy.getPolicies());
         liabilities = personToCopy.getLiabilities();
-        commission = personToCopy.getCommision();
+        commission = personToCopy.getCommission();
         assetsSet = new HashSet<>(personToCopy.getAssetsSet());
     }
 
@@ -108,10 +108,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Liabilities of the {@code Person} that we are building.
+     * Sets the {@code liabilities} of the {@code Person} that we are building.
      */
-    public PersonBuilder withLiabilities(String liabilitiy) {
-        this.liabilities = new Liabilities(liabilitiy);
+    public PersonBuilder withLiabilities(String liability) {
+        this.liabilities = new Liabilities(liability);
         return this;
     }
 
@@ -125,7 +125,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code assets} into a {@code Set<assets>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withAssets(String ... assets) {
         this.assetsSet = SampleDataUtil.getAssets(assets);
@@ -133,15 +133,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Commission of the {@code Person} that we are building.
+     * Sets the {@code Commission} of the {@code Person} that we are building.
      */
-    public PersonBuilder withCommision(String commision){
+    public PersonBuilder withCommision(String commision) {
         this.commission = new Commission(commision);
         return this;
     }
 
 
-
+    /**
+     * Creates the person name Amy with the appropriate fields
+     * @return
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags,
                 policies, liabilities, commission, assetsSet);
