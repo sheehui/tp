@@ -12,8 +12,8 @@ public class Notes implements Attribute {
      * Constructs a note.
      * @param note the note associated with the person.
      */
-    public Notes(String note) {
-        this.notes = note;
+    public Notes(String notes) {
+        this.notes = notes;
     }
 
     public String getNotes() {
