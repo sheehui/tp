@@ -21,6 +21,7 @@ import donnafin.model.UserPrefs;
 import donnafin.model.person.Address;
 import donnafin.model.person.Email;
 import donnafin.model.person.Name;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.tag.Tag;
@@ -163,5 +164,18 @@ public class PersonAdapterTest {
         personAdapter.edit(PersonAdapter.PersonField.TAGS, "friends");
         assertEquals(ALICE, personAdapter.getSubject());
 
+    }
+
+    @Test
+    public void editPersonNotes_changesSubject() throws InvalidFieldException {
+        personAdapter.edit(PersonAdapter.PersonField.NOTES, "Loves cai fan & teh ping");
+        Notes modifiedNotes = new Notes("Loves cai fan & teh ping");
+
+        assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
+                ALICE.getAddress(), ALICE.getTags(), modifiedNotes), personAdapter.getSubject());
+        assertNotEquals(ALICE, personAdapter.getSubject());
+
+        personAdapter.edit(PersonAdapter.PersonField.NOTES, "Loves cai fan");
+        assertEquals(ALICE, personAdapter.getSubject());
     }
 }
