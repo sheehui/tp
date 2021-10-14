@@ -35,7 +35,6 @@ import static donnafin.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static donnafin.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static donnafin.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static donnafin.testutil.TypicalPersons.AMY;
-import static donnafin.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,42 +52,42 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + POLICY_DESC_AMY
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + POLICY_DESC_AMY
                 + LIABILITIES_DESC_AMY + COMMISSION_DESC_AMY + ASSETS_DESC_AMY,
                 new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
                 + COMMISSION_DESC_AMY + ASSETS_DESC_AMY,
                 new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
                 + COMMISSION_DESC_AMY + ASSETS_DESC_AMY,
                 new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
                 + COMMISSION_DESC_AMY + ASSETS_DESC_AMY,
                 new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
                 + COMMISSION_DESC_AMY + ASSETS_DESC_AMY,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(AMY).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + POLICY_DESC_AMY + LIABILITIES_DESC_AMY
                 + COMMISSION_DESC_AMY + ASSETS_DESC_AMY, new AddCommand(expectedPersonMultipleTags));
     }
