@@ -8,8 +8,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
-
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
     private final PersonAdapter personAdapter;
@@ -40,7 +38,8 @@ public class ClientInfoPanel extends UiPart<Region> {
                 .map(attr -> createAttributePanel(attr).getRoot())
                 .forEach(y -> clientInfoList.getChildren().add(y));
 
-        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(PolicyTestTable.tableConfig, PolicyTestTable.example);
+        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(
+                PolicyTestTable.getTableConfig(), PolicyTestTable.getExampleList());
         policiesContainer.getChildren().add(policyTable.getContainer());
     }
 

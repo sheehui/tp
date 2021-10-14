@@ -2,8 +2,6 @@ package donnafin.ui;
 
 import donnafin.model.person.Attribute;
 
-import java.util.List;
-
 public class PolicyTest implements Attribute {
     final String amt;
     final String name;

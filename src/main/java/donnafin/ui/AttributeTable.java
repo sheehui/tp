@@ -1,5 +1,9 @@
 package donnafin.ui;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,19 +14,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 public class AttributeTable<T> extends UiPart<Region> {
 
-    static private final String FXML = "AttributeTable.fxml";
+    private static final String FXML = "AttributeTable.fxml";
 
     /**
      * ColumnConfig is a data class representing the values required to make a
      * column in the {@code AttributeTable}.
      */
-    static protected class ColumnConfig {
+    protected static class ColumnConfig {
         final String heading;
         final String propertyName;
         final int minWidth;
@@ -55,7 +55,7 @@ public class AttributeTable<T> extends UiPart<Region> {
         String applyOn(Collection<? extends R> collection);
     }
 
-    static protected class TableConfig<R> {
+    protected static class TableConfig<R> {
         final String tableTitle;
         final List<ColumnConfig> columnConfigs;
         final AggregatorLabelCreator<? super R> aggregatorLabelCreator;
@@ -82,6 +82,14 @@ public class AttributeTable<T> extends UiPart<Region> {
     private final TableView<T> table;
     private final ObservableList<T> data;
 
+    /**
+     * Creates a custom made table for a collection of attributes.
+     * Creates a VBox that contains a table heading, a line that shows an
+     * aggregation of the collection, followed by a table of the collection.
+     *
+     * @param tableConfig configurations for setting up this component
+     * @param collection the collection of attributes
+     */
     public AttributeTable(TableConfig<? super T> tableConfig, Collection<? extends T> collection) {
         super(FXML);
         table = new TableView<>();
