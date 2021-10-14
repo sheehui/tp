@@ -9,6 +9,7 @@ import donnafin.model.person.Address;
 import donnafin.model.person.Attribute;
 import donnafin.model.person.Email;
 import donnafin.model.person.Name;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.tag.Tag;
@@ -24,7 +25,8 @@ public class PersonAdapter {
         PHONE,
         EMAIL,
         ADDRESS,
-        TAGS
+        TAGS,
+        NOTES
     }
 
     /**
@@ -82,6 +84,8 @@ public class PersonAdapter {
             return editPersonAddress(personToEdit, newValue);
         case TAGS:
             return editPersonTags(personToEdit, newValue);
+        case NOTES:
+            return editPersonNotes(personToEdit, newValue);
         default:
             return personToEdit;
         }
@@ -123,5 +127,12 @@ public class PersonAdapter {
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), newTags, personToEdit.getNotes());
+    }
+
+    private Person editPersonNotes(Person personToEdit, String newValue) {
+        Notes newNotes = new Notes(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), newNotes);
     }
 }

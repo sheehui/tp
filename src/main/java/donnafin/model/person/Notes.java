@@ -6,7 +6,7 @@ package donnafin.model.person;
  */
 public class Notes implements Attribute {
 
-    private String notes;
+    public final String  notes;
 
     /**
      * Constructs a note.
