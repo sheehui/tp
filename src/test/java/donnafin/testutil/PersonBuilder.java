@@ -24,8 +24,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_LIABILIES = "INSERT LIABILITY HERE";
-    public static final String DEFAULT_COMMISION = "INSERT COMMISSION HERE";
+    public static final String DEFAULT_LIABILITIES = "INSERT LIABILITY HERE";
+    public static final String DEFAULT_COMMISSION = "INSERT COMMISSION HERE";
 
     private Name name;
     private Phone phone;
@@ -47,8 +47,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policies = new HashSet<>();
-        commission = new Commission(DEFAULT_COMMISION);
-        liabilities = new Liabilities(DEFAULT_LIABILIES);
+        commission = new Commission(DEFAULT_COMMISSION);
+        liabilities = new Liabilities(DEFAULT_LIABILITIES);
         assetsSet = new HashSet<>();
     }
 
@@ -135,8 +135,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Commission} of the {@code Person} that we are building.
      */
-    public PersonBuilder withCommision(String commision) {
-        this.commission = new Commission(commision);
+    public PersonBuilder withCommission(String commission) {
+        this.commission = new Commission(commission);
         return this;
     }
 

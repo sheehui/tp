@@ -28,6 +28,19 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(CliSyntax.PREFIX_TAG + s.tagName + " ")
         );
+
+        //Financial info
+        person.getPolicies().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.policyName + " ")
+        );
+        sb.append(CliSyntax.PREFIX_LIABILITIES + person.getLiabilities().value + " ");
+        sb.append(CliSyntax.PREFIX_COMMISSION + person.getCommission().value + " ");
+        person.getTags().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.tagName + " ")
+        );
+        person.getAssetsSet().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.assetName + " ")
+        );
         return sb.toString();
     }
 

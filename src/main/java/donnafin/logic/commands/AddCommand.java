@@ -40,12 +40,12 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
-            + PREFIX_POLICY + "AIA INSURANCE FIRE POLICY"
-            + PREFIX_POLICY + "GREAT EASTERN LOSE MONEY POLICY"
-            + PREFIX_LIABILITIES + "TESLA"
-            + PREFIX_COMMISSION + "5%"
-            + PREFIX_ASSETS + "HDB"
-            + PREFIX_ASSETS + "GOLD";
+            + PREFIX_POLICY + "INSERT POLICY HERE"
+            + PREFIX_POLICY + "INSERT POLICY TWO HERE"
+            + PREFIX_LIABILITIES + "INSERT LIABILITY HERE"
+            + PREFIX_COMMISSION + "INSERT COMMISSION HERE"
+            + PREFIX_ASSETS + "INSERT FIRST ASSET HERE"
+            + PREFIX_ASSETS + "INSERT SECOND ASSET HERE";
 
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
