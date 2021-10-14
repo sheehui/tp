@@ -7,14 +7,14 @@ title: Bharath's Project Portfolio Page
 
 DonnaFin.io is a desktop address book application used by financial advisors to keep track of their client information and related tasks.
 This is a Java program with about 10 kloc with a JavaFX GUI.
-The '.io' in our name is a reflection of our belief that you deserve a faster workflow for input and output. 
+The '.io' in our name is a reflection of our belief that you deserve a faster workflow for input and output.
 If you can type fast, you can use our CLI-like commands to manage and view your notes, upcoming meetings and todo lists much faster than your typical customer relationship manager apps.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
     * What it does:
-    * Justification: 
+    * Justification:
     * Highlights:
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
@@ -37,7 +37,7 @@ Given below are my contributions to the project.
 
 
 [^layeredArchi]: [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
-    
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=bharathcs&tabRepo=AY2122S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
     * Conduct the minimal repo-wide checks for non-code changes (EOF, EOL, illegal characters) [#37](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/37)
     * Update Github CI / CD to support feature / branch workflow [#35](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/35)
   * Provided constructive feedback to PRs
-    * Improving code quality [#69](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/69), [#57](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/57) 
+    * Improving code quality [#69](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/69), [#57](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/57)
     * Minor changes for CheckStyle & CI [#63](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/63)
 
 
@@ -59,10 +59,10 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
       * Update commands [#27](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/27), [#42](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/42/)
-      
+
     * Developer Guide:
       * Storage - Logic link updates: Sequence diagrams, Class Diagrams, [#21](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/21)
-       
+
 
 * **Community**:
   * Explaining why I think Java's Stream implementation makes using multiple Scanners very bug-prone ([#78](https://github.com/nus-cs2103-AY2122S1/forum/issues/78#issuecomment-908386678))

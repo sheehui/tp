@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/Bluntsord)]
 [[portfolio](team/bluntsord.md)]
 
-* Role: Developer, Architect, 
+* Role: Developer, Architect,
 * Responsibilities: UI layer and commons, Architecture
 
 ### Donny Suriyanto

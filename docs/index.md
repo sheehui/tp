@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DonnaFin.io 
+title: DonnaFin.io
 ---
 
 ![CI Status](https://github.com/AY2122S1-CS2103T-W16-1/tp/actions/workflows/runAllChecks.yml/badge.svg)

@@ -181,14 +181,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 **Value proposition**: manage customers faster than a typical mouse/GUI driven app
 
-The product provides financial advisors with a clean, easy to use interface to prepare 
-them for meetings and maintain good relationships with their clients. On a per user basis 
-it keeps track and displays customer’s financial details, their personal details, and 
-presents upcoming events and todo lists. In the main page, it collates tasks and events 
+The product provides financial advisors with a clean, easy to use interface to prepare
+them for meetings and maintain good relationships with their clients. On a per user basis
+it keeps track and displays customer’s financial details, their personal details, and
+presents upcoming events and todo lists. In the main page, it collates tasks and events
 for easy access.
 
-The product will not help them with work relations with other Financial Advisors as the 
-product’s scope only covers the personal use of the product. It does not link with any 
+The product will not help them with work relations with other Financial Advisors as the
+product’s scope only covers the personal use of the product. It does not link with any
 financial calculators, financial databases or cover policy / assets / market information.
 
 
@@ -240,7 +240,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The user types the command using the wrong syntax.
   * 1a1. DonnaFin shows an error message.\
-         Use Case resumes from step 1. 
+         Use Case resumes from step 1.
 
 **UC02: Deleting a contact from DonnaFin**
 
@@ -297,7 +297,7 @@ Use case ends.
 **MSS**
 1. User requests for help to get assistance on commands.
 2. DonnaFin displays a window with the user guide for the DonnaFin application.
- 
+
 **UC06: List**
 
 **MSS**
@@ -309,7 +309,7 @@ Use case ends.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A novice with no coding background should be able to use the address book. 
+4.  A novice with no coding background should be able to use the address book.
 5.  The system should respond within 100 milliseconds.
 6.  The size of the application should be no more than 100 MB.
 7.  All data should be stored locally.
