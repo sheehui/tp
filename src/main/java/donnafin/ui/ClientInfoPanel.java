@@ -8,12 +8,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
     private final PersonAdapter personAdapter;
 
     @FXML
     private VBox clientInfoList;
+
+    @FXML
+    private VBox policiesContainer;
+
+    @FXML
+    private VBox assetsContainer;
+
+    @FXML
+    private VBox liabilitiesContainer;
 
     @FXML
     private TextArea notesTextArea;
@@ -28,6 +39,9 @@ public class ClientInfoPanel extends UiPart<Region> {
         personAdapter.getAllAttributesList().stream()
                 .map(attr -> createAttributePanel(attr).getRoot())
                 .forEach(y -> clientInfoList.getChildren().add(y));
+
+        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(PolicyTestTable.tableConfig, PolicyTestTable.example);
+        policiesContainer.getChildren().add(policyTable.getContainer());
     }
 
     private AttributePanel createAttributePanel(Attribute attr) {
