@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 
 <TabPane maxWidth="1.7976931348623157E308" prefWidth="800.0" tabMaxWidth="140.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
@@ -28,3 +29,4 @@
       </Tab>
    </tabs>
 </TabPane>
+

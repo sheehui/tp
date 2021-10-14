@@ -9,6 +9,7 @@ import donnafin.model.person.Address;
 import donnafin.model.person.Attribute;
 import donnafin.model.person.Email;
 import donnafin.model.person.Name;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.tag.Tag;
@@ -24,7 +25,8 @@ public class PersonAdapter {
         PHONE,
         EMAIL,
         ADDRESS,
-        TAGS
+        TAGS,
+        NOTES
     }
 
     /**
@@ -82,6 +84,8 @@ public class PersonAdapter {
             return editPersonAddress(personToEdit, newValue);
         case TAGS:
             return editPersonTags(personToEdit, newValue);
+        case NOTES:
+            return editPersonNotes(personToEdit, newValue);
         default:
             return personToEdit;
         }
@@ -91,28 +95,28 @@ public class PersonAdapter {
         Name newName = new Name(newValue);
         return new Person(
                 newName, personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonPhone(Person personToEdit, String newValue) {
         Phone newPhone = new Phone(newValue);
         return new Person(
                 personToEdit.getName(), newPhone, personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonEmail(Person personToEdit, String newValue) {
         Email newEmail = new Email(newValue);
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), newEmail,
-                personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonAddress(Person personToEdit, String newValue) {
         Address newAddress = new Address(newValue);
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                newAddress, personToEdit.getTags());
+                newAddress, personToEdit.getTags(), personToEdit.getNotes());
     }
 
     private Person editPersonTags(Person personToEdit, String newValue) {
@@ -122,6 +126,13 @@ public class PersonAdapter {
                 .collect(Collectors.toSet());
         return new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), newTags);
+                personToEdit.getAddress(), newTags, personToEdit.getNotes());
+    }
+
+    private Person editPersonNotes(Person personToEdit, String newValue) {
+        Notes newNotes = new Notes(newValue);
+        return new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), newNotes);
     }
 }

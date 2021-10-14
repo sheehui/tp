@@ -4,6 +4,7 @@ import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
 import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
@@ -13,6 +14,9 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     @FXML
     private VBox clientInfoList;
+
+    @FXML
+    private TextArea notesTextArea;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.

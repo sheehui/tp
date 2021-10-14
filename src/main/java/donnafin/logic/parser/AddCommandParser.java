@@ -15,6 +15,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Email;
 import donnafin.model.person.Name;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.tag.Tag;
@@ -43,8 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Notes notes = new Notes("");
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, tagList, notes);
 
         return new AddCommand(person);
     }
