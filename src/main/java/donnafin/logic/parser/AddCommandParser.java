@@ -59,7 +59,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Assets> assetsSet = ParserUtil.parseAssets(argMultimap.getAllValues(PREFIX_ASSETS));
         Notes notes = new Notes("");
 
-        Person person = new Person(name, phone, email, address, tagList, notes, policySet, liabilities, commission, assetsSet);
+        Person person = new Person(
+                name, phone, email, address, tagList, notes, policySet, liabilities, commission, assetsSet);
 
         return new AddCommand(person);
     }

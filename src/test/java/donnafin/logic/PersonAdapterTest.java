@@ -2,7 +2,6 @@ package donnafin.logic;
 
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.ALICE;
-import static donnafin.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 

@@ -42,7 +42,6 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withNotes("Hates chicken rice")
             .withPolicies("INSERT POLICY HERE")
             .withLiabilities("INSERT LIABILITIES HERE")
             .withCommission("INSERT COMMISSION HERE")
@@ -100,7 +99,6 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withNotes("Amy's bakeries are nice")
             .withPolicies(VALID_POLICIES_ONE).withLiabilities(VALID_LIABILITY_AMY)
             .withCommission(VALID_COMMISSION_AMY).withAssets(VALID_ASSET_ONE).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)

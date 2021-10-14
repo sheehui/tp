@@ -113,7 +113,7 @@ public class PersonAdapter {
                 newName, personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
                 personToEdit.getNotes(), personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),  personToEdit.getCommission(),
+                personToEdit.getLiabilities(), personToEdit.getCommission(),
                 personToEdit.getAssetsSet());
     }
 
@@ -123,7 +123,7 @@ public class PersonAdapter {
                 personToEdit.getName(), newPhone, personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getNotes(),
                 personToEdit.getPolicies(), personToEdit.getLiabilities(),
-                personToEdit.getCommission(), personToEdit.getAssetsSet());
+                personToEdit.getCommission(), personToEdit.getAssetsSet()
         );
     }
 
