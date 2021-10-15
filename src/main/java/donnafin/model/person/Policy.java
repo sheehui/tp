@@ -12,7 +12,7 @@ public class Policy implements Attribute {
     public final String policyName;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Policy}.
      *
      * @param policyName A valid policy number.
      */

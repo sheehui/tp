@@ -10,10 +10,10 @@ import donnafin.commons.core.index.Index;
 import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
-import donnafin.model.person.Assets;
+import donnafin.model.person.Asset;
 import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
-import donnafin.model.person.Liabilities;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
@@ -159,25 +159,25 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Assets parseAsset(String asset) throws ParseException {
+    public static Asset parseAsset(String asset) throws ParseException {
         requireNonNull(asset);
         String trimmedAsset = asset.trim();
-        if (!Assets.isValidAsset(trimmedAsset)) {
-            throw new ParseException(Assets.MESSAGE_CONSTRAINTS);
+        if (!Asset.isValidAsset(trimmedAsset)) {
+            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
         }
-        return new Assets(trimmedAsset);
+        return new Asset(trimmedAsset);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Assets> parseAssets(Collection<String> assets) throws ParseException {
+    public static Set<Asset> parseAssets(Collection<String> assets) throws ParseException {
         requireNonNull(assets);
-        final Set<Assets> assetsSet = new HashSet<>();
+        final Set<Asset> assetSet = new HashSet<>();
         for (String assetName : assets) {
-            assetsSet.add(parseAsset(assetName));
+            assetSet.add(parseAsset(assetName));
         }
-        return assetsSet;
+        return assetSet;
     }
 
 
@@ -187,13 +187,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Liabilities parseLiabilities(String liability) throws ParseException {
+    public static Liability parseLiability(String liability) throws ParseException {
         requireNonNull(liability);
         String trimmedLiability = liability.trim();
-        if (!Liabilities.isValidLiability(trimmedLiability)) {
-            throw new ParseException(Liabilities.MESSAGE_CONSTRAINTS);
+        if (!Liability.isValidLiability(trimmedLiability)) {
+            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
         }
-        return new Liabilities(trimmedLiability);
+        return new Liability(trimmedLiability);
     }
 
     /**
@@ -205,7 +205,7 @@ public class ParserUtil {
     public static Commission parseCommission(String commission) throws ParseException {
         requireNonNull(commission);
         String trimmedCommission = commission.trim();
-        if (!Liabilities.isValidLiability(trimmedCommission)) {
+        if (!Liability.isValidLiability(trimmedCommission)) {
             throw new ParseException(Commission.MESSAGE_CONSTRAINTS);
         }
         return new Commission(trimmedCommission);

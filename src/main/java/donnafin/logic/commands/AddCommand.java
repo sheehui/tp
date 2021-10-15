@@ -1,10 +1,10 @@
 package donnafin.logic.commands;
 
 import static donnafin.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static donnafin.logic.parser.CliSyntax.PREFIX_ASSETS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_ASSET;
 import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITIES;
+import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITY;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_POLICY;
@@ -30,9 +30,9 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_POLICY + "POLICY]...\n"
-            + PREFIX_LIABILITIES + "LIABILITIES "
+            + PREFIX_LIABILITY + "LIABILITIES "
             + PREFIX_COMMISSION + "COMMISSION "
-            + "[" + PREFIX_ASSETS + "ASSETS]...\n"
+            + "[" + PREFIX_ASSET + "ASSETS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -42,10 +42,10 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney"
             + PREFIX_POLICY + "INSERT POLICY HERE"
             + PREFIX_POLICY + "INSERT POLICY TWO HERE"
-            + PREFIX_LIABILITIES + "INSERT LIABILITY HERE"
+            + PREFIX_LIABILITY + "INSERT LIABILITY HERE"
             + PREFIX_COMMISSION + "INSERT COMMISSION HERE"
-            + PREFIX_ASSETS + "INSERT FIRST ASSET HERE"
-            + PREFIX_ASSETS + "INSERT SECOND ASSET HERE";
+            + PREFIX_ASSET + "INSERT FIRST ASSET HERE"
+            + PREFIX_ASSET + "INSERT SECOND ASSET HERE";
 
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";

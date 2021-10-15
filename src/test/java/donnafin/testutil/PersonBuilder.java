@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import donnafin.model.person.Address;
-import donnafin.model.person.Assets;
+import donnafin.model.person.Asset;
 import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
-import donnafin.model.person.Liabilities;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
@@ -37,8 +37,8 @@ public class PersonBuilder {
     private Notes notes;
     private Set<Policy> policies;
     private Commission commission;
-    private Liabilities liabilities;
-    private Set<Assets> assetsSet;
+    private Liability liabilities;
+    private Set<Asset> assetSet;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -51,8 +51,8 @@ public class PersonBuilder {
         tags = new HashSet<>();
         policies = new HashSet<>();
         commission = new Commission(DEFAULT_COMMISSION);
-        liabilities = new Liabilities(DEFAULT_LIABILITIES);
-        assetsSet = new HashSet<>();
+        liabilities = new Liability(DEFAULT_LIABILITIES);
+        assetSet = new HashSet<>();
         notes = new Notes(DEFAULT_NOTES);
     }
 
@@ -67,9 +67,9 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         notes = personToCopy.getNotes();
         policies = new HashSet<>(personToCopy.getPolicies());
-        liabilities = personToCopy.getLiabilities();
+        liabilities = personToCopy.getLiability();
         commission = personToCopy.getCommission();
-        assetsSet = new HashSet<>(personToCopy.getAssetsSet());
+        assetSet = new HashSet<>(personToCopy.getAssetSet());
     }
 
     /**
@@ -121,8 +121,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code liabilities} of the {@code Person} that we are building.
      */
-    public PersonBuilder withLiabilities(String liability) {
-        this.liabilities = new Liabilities(liability);
+    public PersonBuilder withLiability(String liability) {
+        this.liabilities = new Liability(liability);
         return this;
     }
 
@@ -138,7 +138,7 @@ public class PersonBuilder {
      * Parses the {@code assets} into a {@code Set<assets>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withAssets(String ... assets) {
-        this.assetsSet = SampleDataUtil.getAssets(assets);
+        this.assetSet = SampleDataUtil.getAssets(assets);
         return this;
     }
 
@@ -156,7 +156,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, address, tags,
-                notes, policies, liabilities, commission, assetsSet);
+                notes, policies, liabilities, commission, assetSet);
     }
 
 }

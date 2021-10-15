@@ -29,16 +29,16 @@ public class Person {
 
     // Fin info fields
     private final Set<Policy> policies = new HashSet<>();
-    private final Liabilities liabilities;
+    private final Liability liability;
     private final Commission commission;
-    private final Set<Assets> assetsSet = new HashSet<>();
+    private final Set<Asset> assetSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Notes notes,
-                  Set<Policy> policy, Liabilities liabilities,
-                  Commission commission, Set<Assets> assetsSet) {
+                  Set<Policy> policy, Liability liability,
+                  Commission commission, Set<Asset> assetSet) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -47,9 +47,9 @@ public class Person {
         this.tags.addAll(tags);
         this.notes = notes;
         this.policies.addAll(policy);
-        this.liabilities = liabilities;
+        this.liability = liability;
         this.commission = commission;
-        this.assetsSet.addAll(assetsSet);
+        this.assetSet.addAll(assetSet);
     }
 
     public Name getName() {
@@ -72,8 +72,8 @@ public class Person {
         return notes;
     }
 
-    public Liabilities getLiabilities() {
-        return liabilities;
+    public Liability getLiability() {
+        return liability;
     }
 
     public Commission getCommission() {
@@ -92,8 +92,8 @@ public class Person {
         return Collections.unmodifiableSet(policies);
     }
 
-    public Set<Assets> getAssetsSet() {
-        return Collections.unmodifiableSet(assetsSet);
+    public Set<Asset> getAssetSet() {
+        return Collections.unmodifiableSet(assetSet);
     }
 
     /**
@@ -170,7 +170,7 @@ public class Person {
 
     public ObservableList<Attribute> getFinancialAttributeList() {
         ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
-        attributeObservableList.add(liabilities);
+        attributeObservableList.add(liability);
         attributeObservableList.add(commission);
         return attributeObservableList;
     }

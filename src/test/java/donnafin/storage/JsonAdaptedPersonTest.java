@@ -37,10 +37,10 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedPolicy> VALID_POLICY = BENSON.getPolicies().stream()
             .map(JsonAdaptedPolicy::new)
             .collect(Collectors.toList());
-    private static final String VALID_LIABILITIES = BENSON.getLiabilities().toString();
+    private static final String VALID_LIABILITIES = BENSON.getLiability().toString();
     private static final String VALID_COMMISSION = BENSON.getCommission().toString();
-    private static final List<JsonAdaptedAssets> VALID_ASSETS = BENSON.getAssetsSet().stream()
-            .map(JsonAdaptedAssets::new)
+    private static final List<JsonAdaptedAsset> VALID_ASSETS = BENSON.getAssetSet().stream()
+            .map(JsonAdaptedAsset::new)
             .collect(Collectors.toList());
 
     @Test

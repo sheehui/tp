@@ -1,10 +1,10 @@
 package donnafin.logic.commands;
 
 import static donnafin.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static donnafin.logic.parser.CliSyntax.PREFIX_ASSETS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_ASSET;
 import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITIES;
+import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITY;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_POLICY;
@@ -64,12 +64,12 @@ public class CommandTestUtil {
     //FinancialInfo
     public static final String POLICY_DESC_AMY = " " + PREFIX_POLICY + VALID_POLICIES_ONE;
     public static final String POLICY_DESC_BOB = " " + PREFIX_POLICY + VALID_POLICIES_TWO;
-    public static final String LIABILITIES_DESC_AMY = " " + PREFIX_LIABILITIES + VALID_LIABILITY_AMY;
-    public static final String LIABILITIES_DESC_BOB = " " + PREFIX_LIABILITIES + VALID_LIABILITY_BOB;
+    public static final String LIABILITY_DESC_AMY = " " + PREFIX_LIABILITY + VALID_LIABILITY_AMY;
+    public static final String LIABILITY_DESC_BOB = " " + PREFIX_LIABILITY + VALID_LIABILITY_BOB;
     public static final String COMMISSION_DESC_AMY = " " + PREFIX_COMMISSION + VALID_COMMISSION_AMY;
     public static final String COMMISSION_DESC_BOB = " " + PREFIX_COMMISSION + VALID_COMMISSION_BOB;
-    public static final String ASSETS_DESC_AMY = " " + PREFIX_ASSETS + VALID_ASSET_ONE;
-    public static final String ASSETS_DESC_BOB = " " + PREFIX_ASSETS + VALID_ASSET_TWO;
+    public static final String ASSETS_DESC_AMY = " " + PREFIX_ASSET + VALID_ASSET_ONE;
+    public static final String ASSETS_DESC_BOB = " " + PREFIX_ASSET + VALID_ASSET_TWO;
 
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names

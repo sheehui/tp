@@ -5,24 +5,24 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Person's assets in DonnaFin.
  */
-public class Assets implements Attribute {
+public class Asset implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Insert assets constraint here";
+    public static final String MESSAGE_CONSTRAINTS = "Insert asset constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]+";
     public final String assetName;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Asset}.
      *
-     * @param assets A valid liability number.
+     * @param asset A valid asset name.
      */
-    public Assets(String assets) {
-        requireNonNull(assets);
-        assetName = assets;
+    public Asset(String asset) {
+        requireNonNull(asset);
+        assetName = asset;
     }
 
     /**
-     * Returns true if a given string is a valid policy name
+     * Returns true if a given string is a valid asset name
      */
     public static boolean isValidAsset(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -35,7 +35,7 @@ public class TypicalPersons {
             .withTags("friends")
             .withNotes("Loves cai fan")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
@@ -43,42 +43,42 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withNotes("Loves CS2103T")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
             .withNotes("Tells lame jokes")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withNotes("Vim god")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withNotes("Moustachio")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withNotes("Curious")
             .withPolicies("INSERT POLICY HERE")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
 
@@ -86,25 +86,25 @@ public class TypicalPersons {
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").withPolicies("INSERT POLICY HERE")
             .withNotes("To bee or not to bee")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withPolicies("INSERT POLICY HERE")
             .withNotes("Sir stop sir")
-            .withLiabilities("INSERT LIABILITIES HERE")
+            .withLiability("INSERT LIABILITY HERE")
             .withCommission("INSERT COMMISSION HERE")
             .withAssets("INSERT ASSET HERE").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withPolicies(VALID_POLICIES_ONE).withLiabilities(VALID_LIABILITY_AMY)
+            .withPolicies(VALID_POLICIES_ONE).withLiability(VALID_LIABILITY_AMY)
             .withCommission(VALID_COMMISSION_AMY).withAssets(VALID_ASSET_ONE).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withNotes("Enjoys architecture")
-            .withPolicies(VALID_POLICIES_ONE).withLiabilities(VALID_LIABILITY_BOB)
+            .withPolicies(VALID_POLICIES_ONE).withLiability(VALID_LIABILITY_BOB)
             .withCommission(VALID_COMMISSION_BOB).withAssets(VALID_ASSET_ONE).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

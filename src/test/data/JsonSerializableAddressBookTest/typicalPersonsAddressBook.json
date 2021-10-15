@@ -8,7 +8,7 @@
     "tagged" : [ "friends" ],
     "notes" : "Loves cai fan",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -19,7 +19,7 @@
     "tagged" : [ "owesMoney", "friends" ],
     "notes" : "",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -30,7 +30,7 @@
     "tagged" : [ ],
     "notes" : "Loves CS2103T",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -41,7 +41,7 @@
     "tagged" : [ "friends" ],
     "notes" : "Tells lame jokes",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -52,7 +52,7 @@
     "tagged" : [ ],
     "notes" : "Vim god",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -63,7 +63,7 @@
     "tagged" : [ ],
     "notes" : "Moustachio",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -74,7 +74,7 @@
     "tagged" : [ ],
     "notes" : "Curious",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   } ]

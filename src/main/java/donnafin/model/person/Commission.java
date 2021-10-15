@@ -12,7 +12,7 @@ public class Commission implements Attribute {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Commission}.
      *
      * @param commissionAmt A valid commission number.
      */
@@ -22,7 +22,7 @@ public class Commission implements Attribute {
     }
 
     /**
-     * Returns true if a given string is a valid Commision name.
+     * Returns true if a given string is a valid commission name.
      */
     public static boolean isValidCommissionName(String test) {
         return test.matches(VALIDATION_REGEX);

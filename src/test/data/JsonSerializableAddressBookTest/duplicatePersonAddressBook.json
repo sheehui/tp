@@ -6,7 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   }, {
@@ -15,7 +15,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "policies" : [ "INSERT POLICY HERE" ],
-    "liabilities" : "INSERT LIABILITIES HERE",
+    "liability" : "INSERT LIABILITY HERE",
     "commission" : "INSERT COMMISSION HERE",
     "assets" : [ "INSERT ASSETS HERE" ]
   } ]

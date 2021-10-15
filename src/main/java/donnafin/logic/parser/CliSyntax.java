@@ -12,9 +12,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_POLICY = new Prefix("po/");
-    public static final Prefix PREFIX_LIABILITIES = new Prefix("l/");
+    public static final Prefix PREFIX_LIABILITY = new Prefix("l/");
     public static final Prefix PREFIX_COMMISSION = new Prefix("c/");
-    public static final Prefix PREFIX_ASSETS = new Prefix("as/");
+    public static final Prefix PREFIX_ASSET = new Prefix("as/");
 
 
 }

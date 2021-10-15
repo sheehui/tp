@@ -5,24 +5,24 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Person's liability in DonnaFin.
  */
-public class Liabilities implements Attribute {
+public class Liability implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
-    public static final String VALIDATION_REGEX = "[\\s\\S]+";
+    public static final String VALIDATION_REGEX = "[\\s\\S]*";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Liability}.
      *
-     * @param liability A valid commision number.
+     * @param liability A valid liability name.
      */
-    public Liabilities(String liability) {
+    public Liability(String liability) {
         requireNonNull(liability);
         value = liability;
     }
 
     /**
-     * Returns true if a given string is a valid policy name
+     * Returns true if a given string is a valid liability name
      */
     public static boolean isValidLiability(String test) {
         return test.matches(VALIDATION_REGEX);
