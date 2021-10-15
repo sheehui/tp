@@ -51,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        notes = personToCopy.getNotes();
     }
 
     /**
@@ -90,6 +91,12 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /** Sets the {@code Notes} of the {@code Person} that we are building. */
+    public PersonBuilder withNotes(String notes) {
+        this.notes = new Notes(notes);
         return this;
     }
 
