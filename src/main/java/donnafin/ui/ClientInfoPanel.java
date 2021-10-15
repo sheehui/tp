@@ -102,7 +102,6 @@ public class ClientInfoPanel extends UiPart<Region> {
      */
     public void changeTabToPolicy() {
         refresh();
-
     }
 
     /**
@@ -118,6 +117,4 @@ public class ClientInfoPanel extends UiPart<Region> {
     public void changeTabToLiabilities() {
         refresh();
     }
-
-
 }
