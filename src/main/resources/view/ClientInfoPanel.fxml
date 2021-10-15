@@ -4,17 +4,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #138685;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="193.0" style="-fx-background-color: #004153;">
+      <AnchorPane prefHeight="400.0" prefWidth="193.0">
+         <children>
          <children>
             <VBox layoutX="32.0" layoutY="41.0" prefHeight="318.0" prefWidth="130.0" spacing="10.0">
                <children>
-                  <Button fx:id="personalInformation" onAction="#changeTabToPersonal" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #f10c45; -fx-border-color: transparent; -fx-border-radius: 30; -fx-background-radius: 30;" text="Personal " textFill="#010503" />
-                  <Button fx:id="policyInformation" onAction="#changeTabToPolicy" layoutX="10.0" layoutY="10.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #f10c45; -fx-border-color: transparent; -fx-border-radius: 30; -fx-background-radius: 30;" text="Policies" textFill="#010503" />
-                  <Button fx:id="assets" layoutX="10.0" onAction="#changeTabToAssets" layoutY="75.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #f10c45; -fx-border-color: transparent; -fx-border-radius: 30; -fx-background-radius: 30;" text="Assets" textFill="#010503" />
-                  <Button fx:id="liabilities" layoutX="10.0" onAction="#changeTabToLiabilities" layoutY="140.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #f10c45; -fx-border-color: transparent; -fx-border-radius: 30; -fx-background-radius: 30;" text="Liabilities" textFill="#010503" />
-                  <Button fx:id="notes" layoutX="10.0" layoutY="205.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #f10c45; -fx-border-color: transparent; -fx-border-radius: 30; -fx-background-radius: 30;" text="Notes" textFill="#010503" />
+                  <Button fx:id="personalInformation" onAction="#changeTabToPersonal" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" text="Personal " textFill="#010503" />
+                  <Button fx:id="policyInformation" onAction="#changeTabToPolicy" layoutX="10.0" layoutY="10.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" text="Policies" textFill="#010503" />
+                  <Button fx:id="assets" layoutX="10.0" onAction="#changeTabToAssets" layoutY="75.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" text="Assets" textFill="#010503" />
+                  <Button fx:id="liabilities" layoutX="10.0" onAction="#changeTabToLiabilities" layoutY="140.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" text="Liabilities" textFill="#010503" />
+                  <Button fx:id="notes" layoutX="10.0" layoutY="205.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" text="Notes" textFill="#010503" />
                </children>
             </VBox>
          </children>
