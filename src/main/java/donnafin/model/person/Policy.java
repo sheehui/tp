@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 public class Policy implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
-    public static final String VALIDATION_REGEX = "[\\s\\S]+";
+    public static final String VALIDATION_REGEX = "[\\s\\S]*";
     public final String policyName;
 
     /**

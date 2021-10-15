@@ -1,13 +1,9 @@
 package donnafin.logic.commands;
 
 import static donnafin.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static donnafin.logic.parser.CliSyntax.PREFIX_ASSET;
-import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static donnafin.logic.parser.CliSyntax.PREFIX_LIABILITY;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
-import static donnafin.logic.parser.CliSyntax.PREFIX_POLICY;
 import static donnafin.logic.parser.CliSyntax.PREFIX_TAG;
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,17 +56,6 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    //FinancialInfo
-    public static final String POLICY_DESC_AMY = " " + PREFIX_POLICY + VALID_POLICIES_ONE;
-    public static final String POLICY_DESC_BOB = " " + PREFIX_POLICY + VALID_POLICIES_TWO;
-    public static final String LIABILITY_DESC_AMY = " " + PREFIX_LIABILITY + VALID_LIABILITY_AMY;
-    public static final String LIABILITY_DESC_BOB = " " + PREFIX_LIABILITY + VALID_LIABILITY_BOB;
-    public static final String COMMISSION_DESC_AMY = " " + PREFIX_COMMISSION + VALID_COMMISSION_AMY;
-    public static final String COMMISSION_DESC_BOB = " " + PREFIX_COMMISSION + VALID_COMMISSION_BOB;
-    public static final String ASSETS_DESC_AMY = " " + PREFIX_ASSET + VALID_ASSET_ONE;
-    public static final String ASSETS_DESC_BOB = " " + PREFIX_ASSET + VALID_ASSET_TWO;
-
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
