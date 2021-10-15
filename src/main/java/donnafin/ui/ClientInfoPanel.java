@@ -4,6 +4,7 @@ import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
 import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -11,6 +12,21 @@ import javafx.scene.layout.VBox;
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
     private final PersonAdapter personAdapter;
+
+    @FXML
+    private Button personalInformation;
+
+    @FXML
+    private Button policyInformation;
+
+    @FXML
+    private Button assets;
+
+    @FXML
+    private Button liabilities;
+
+    @FXML
+    private Button notes;
 
     @FXML
     private VBox clientInfoList;
@@ -65,4 +81,43 @@ public class ClientInfoPanel extends UiPart<Region> {
             }
         };
     }
+
+    private void refresh() {
+        clientInfoList.getChildren().clear();
+    }
+
+
+    /**
+     * Updates the VBox content to the Client's personal Details
+     */
+    public void changeTabToPersonal() {
+        refresh();
+        personAdapter.getAllAttributesList().stream()
+                .map(attr -> createAttributePanel(attr).getRoot())
+                .forEach(y -> clientInfoList.getChildren().add(y));
+    }
+
+    /**
+     * Updates the VBox content to the Client's policy Details
+     */
+    public void changeTabToPolicy() {
+        refresh();
+
+    }
+
+    /**
+     * Updates the VBox content to the Client's Asset Details
+     */
+    public void changeTabToAssets() {
+        refresh();
+    }
+
+    /**
+     * Updates the VBox content to the Client's Liabilities Details
+     */
+    public void changeTabToLiabilities() {
+        refresh();
+    }
+
+
 }
