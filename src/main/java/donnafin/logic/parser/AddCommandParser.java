@@ -6,6 +6,7 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -13,11 +14,15 @@ import donnafin.commons.core.Messages;
 import donnafin.logic.commands.AddCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
+import donnafin.model.person.Asset;
+import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
 
 /**
@@ -33,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-
+        // Should check that all are present accept for the non required fields, policy and assets
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -44,9 +49,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Policy> policySet = new HashSet<>();
+        Liability liability = new Liability("");
+        Commission commission = new Commission("");
+        Set<Asset> assetSet = new HashSet<>();
         Notes notes = new Notes("");
 
-        Person person = new Person(name, phone, email, address, tagList, notes);
+        Person person = new Person(
+                name, phone, email, address, tagList, notes, policySet, liability, commission, assetSet);
 
         return new AddCommand(person);
     }
