@@ -27,10 +27,18 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Notes notes;
 
+    // Fin info fields
+    private final Set<Policy> policies = new HashSet<>();
+    private final Liability liability;
+    private final Commission commission;
+    private final Set<Asset> assetSet = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Notes notes) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Notes notes,
+                  Set<Policy> policy, Liability liability,
+                  Commission commission, Set<Asset> assetSet) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -38,6 +46,10 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.notes = notes;
+        this.policies.addAll(policy);
+        this.liability = liability;
+        this.commission = commission;
+        this.assetSet.addAll(assetSet);
     }
 
     public Name getName() {
@@ -60,12 +72,28 @@ public class Person {
         return notes;
     }
 
+    public Liability getLiability() {
+        return liability;
+    }
+
+    public Commission getCommission() {
+        return commission;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Set<Policy> getPolicies() {
+        return Collections.unmodifiableSet(policies);
+    }
+
+    public Set<Asset> getAssetSet() {
+        return Collections.unmodifiableSet(assetSet);
     }
 
     /**
@@ -131,12 +159,19 @@ public class Person {
         return builder.toString();
     }
 
-    public ObservableList<Attribute> getAllAttributesList() {
+    public ObservableList<Attribute> getPersonalAttributesList() {
         ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
         attributeObservableList.add(name);
         attributeObservableList.add(phone);
         attributeObservableList.add(email);
         attributeObservableList.add(address);
+        return attributeObservableList;
+    }
+
+    public ObservableList<Attribute> getFinancialAttributeList() {
+        ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
+        attributeObservableList.add(liability);
+        attributeObservableList.add(commission);
         return attributeObservableList;
     }
 }

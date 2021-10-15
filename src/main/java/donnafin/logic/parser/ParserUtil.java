@@ -10,9 +10,13 @@ import donnafin.commons.core.index.Index;
 import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
+import donnafin.model.person.Asset;
+import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
 
 /**
@@ -121,4 +125,90 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String Policy} into a {@code Policy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Policy} is invalid.
+     */
+    public static Policy parsePolicy(String policy) throws ParseException {
+        requireNonNull(policy);
+        String trimmedPolicy = policy.trim();
+        if (!Policy.isValidPolicyName(trimmedPolicy)) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
+        }
+        return new Policy(trimmedPolicy);
+    }
+
+    /**
+     * Parses {@code Collection<String> policy} into a {@code Set<Policy>}.
+     */
+    public static Set<Policy> parsePolicies(Collection<String> policies) throws ParseException {
+        requireNonNull(policies);
+        final Set<Policy> policySet = new HashSet<>();
+        for (String policyName : policies) {
+            policySet.add(parsePolicy(policyName));
+        }
+        return policySet;
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Asset parseAsset(String asset) throws ParseException {
+        requireNonNull(asset);
+        String trimmedAsset = asset.trim();
+        if (!Asset.isValidAsset(trimmedAsset)) {
+            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
+        }
+        return new Asset(trimmedAsset);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Asset> parseAssets(Collection<String> assets) throws ParseException {
+        requireNonNull(assets);
+        final Set<Asset> assetSet = new HashSet<>();
+        for (String assetName : assets) {
+            assetSet.add(parseAsset(assetName));
+        }
+        return assetSet;
+    }
+
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Liability parseLiability(String liability) throws ParseException {
+        requireNonNull(liability);
+        String trimmedLiability = liability.trim();
+        if (!Liability.isValidLiability(trimmedLiability)) {
+            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
+        }
+        return new Liability(trimmedLiability);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Commission parseCommission(String commission) throws ParseException {
+        requireNonNull(commission);
+        String trimmedCommission = commission.trim();
+        if (!Liability.isValidLiability(trimmedCommission)) {
+            throw new ParseException(Commission.MESSAGE_CONSTRAINTS);
+        }
+        return new Commission(trimmedCommission);
+    }
+
 }

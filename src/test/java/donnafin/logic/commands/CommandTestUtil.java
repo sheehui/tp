@@ -36,6 +36,16 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_LIABILITY_AMY = "liability";
+    public static final String VALID_LIABILITY_BOB = "liability";
+    public static final String VALID_COMMISSION_AMY = "commision";
+    public static final String VALID_COMMISSION_BOB = "commission";
+    public static final String VALID_POLICIES_ONE = "policy one";
+    public static final String VALID_POLICIES_TWO = "policy two";
+    public static final String VALID_ASSET_ONE = "asset one";
+    public static final String VALID_ASSET_TWO = "asset two";
+
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -77,7 +87,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

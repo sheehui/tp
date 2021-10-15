@@ -60,7 +60,8 @@ public class UiManagerTest {
     @Test
     public void testExecuteSuccessNoUiAction() throws CommandException, ParseException {
         String listCommand = "list";
-        String addCommand = "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01";
+        String addCommand = "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01"
+                + " l/INSERT LIABILITY HERE c/INSERT COMMISSION HERE";
         String deleteCommand = "delete 1";
         String clearCommand = "clear";
 

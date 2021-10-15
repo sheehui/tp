@@ -16,6 +16,9 @@ public class ClientInfoPanel extends UiPart<Region> {
     private VBox clientInfoList;
 
     @FXML
+    private VBox financialInfoTab;
+
+    @FXML
     private TextArea notesTextArea;
 
     /**
@@ -35,12 +38,12 @@ public class ClientInfoPanel extends UiPart<Region> {
         return new AttributePanel(
                 fieldInString,
                 attr.toString(),
-                createEditHandler(getPersonField(fieldInString))
+                createEditHandler(getPersonPersonalField(fieldInString))
         );
     }
 
     /** Gets the PersonField enum type of attribute from label */
-    private PersonAdapter.PersonField getPersonField(String fieldInString) {
+    private PersonAdapter.PersonField getPersonPersonalField(String fieldInString) {
         switch(fieldInString) {
         case "Name":
             return PersonAdapter.PersonField.NAME;

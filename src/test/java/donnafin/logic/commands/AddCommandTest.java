@@ -75,6 +75,7 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
+
     /**
      * A default model stub that have all of the methods failing.
      */

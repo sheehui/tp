@@ -28,6 +28,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(CliSyntax.PREFIX_TAG + s.tagName + " ")
         );
+
         return sb.toString();
     }
 

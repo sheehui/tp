@@ -53,7 +53,7 @@ public class PersonAdapterTest {
 
     @Test
     public void getAllAttributesList_returnsCorrectOutput() {
-        assertEquals(ALICE.getAllAttributesList(), personAdapter.getAllAttributesList());
+        assertEquals(ALICE.getPersonalAttributesList(), personAdapter.getAllAttributesList());
     }
 
     @Test
@@ -61,7 +61,9 @@ public class PersonAdapterTest {
         personAdapter.edit(PersonAdapter.PersonField.NAME, "Peter");
 
         assertEquals(new Person(new Name("Peter"), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes()), personAdapter.getSubject());
+                ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                ALICE.getLiability(), ALICE.getCommission(), ALICE.getAssetSet()),
+                personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(PersonAdapter.PersonField.NAME, "Alice Pauline");
@@ -82,7 +84,10 @@ public class PersonAdapterTest {
         personAdapter.edit(PersonAdapter.PersonField.PHONE, "90538978");
 
         assertEquals(new Person(ALICE.getName(), new Phone("90538978"),
-                ALICE.getEmail(), ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes()), personAdapter.getSubject());
+                ALICE.getEmail(), ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(),
+                ALICE.getPolicies(), ALICE.getLiability(),
+                ALICE.getCommission(), ALICE.getAssetSet()),
+                personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(PersonAdapter.PersonField.PHONE, ALICE.getPhone().toString());
@@ -107,7 +112,9 @@ public class PersonAdapterTest {
         personAdapter.edit(PersonAdapter.PersonField.EMAIL, "alice29@email.com");
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), new Email("alice29@email.com"),
-                ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes()), personAdapter.getSubject());
+                ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                ALICE.getLiability(), ALICE.getCommission(), ALICE.getAssetSet()),
+                personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(PersonAdapter.PersonField.EMAIL, ALICE.getEmail().toString());
@@ -134,7 +141,9 @@ public class PersonAdapterTest {
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
                 new Address("28 College Ave E, #B1-01, Singapore 138598"),
-                ALICE.getTags(), ALICE.getNotes()), personAdapter.getSubject());
+                ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(), ALICE.getLiability(),
+                ALICE.getCommission(), ALICE.getAssetSet()),
+                personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(PersonAdapter.PersonField.ADDRESS, ALICE.getAddress().toString());
@@ -158,7 +167,9 @@ public class PersonAdapterTest {
         Set<Tag> modifiedTags = new HashSet<>(Arrays.asList(new Tag("friends"), new Tag("colleagues")));
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), modifiedTags, ALICE.getNotes()), personAdapter.getSubject());
+                ALICE.getAddress(), modifiedTags, ALICE.getNotes(), ALICE.getPolicies(),
+                ALICE.getLiability(), ALICE.getCommission(), ALICE.getAssetSet()),
+                personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(PersonAdapter.PersonField.TAGS, "friends");
@@ -172,7 +183,9 @@ public class PersonAdapterTest {
         Notes modifiedNotes = new Notes("Loves cai fan & teh ping");
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), ALICE.getTags(), modifiedNotes), personAdapter.getSubject());
+                ALICE.getAddress(), ALICE.getTags(), modifiedNotes, ALICE.getPolicies(),
+                        ALICE.getLiability(), ALICE.getCommission(), ALICE.getAssetSet()),
+                personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(PersonAdapter.PersonField.NOTES, "Loves cai fan");
