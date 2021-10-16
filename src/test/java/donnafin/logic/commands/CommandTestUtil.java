@@ -22,6 +22,7 @@ import donnafin.model.UserPrefs;
 import donnafin.model.person.NameContainsKeywordsPredicate;
 import donnafin.model.person.Person;
 import donnafin.testutil.DummyUiForCommands;
+import donnafin.testutil.PersonBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -97,7 +98,9 @@ public class CommandTestUtil {
      */
     public static void assertCommandAction(Command command, UiActionType type) {
         try {
-            CommandResult result = command.execute(new ModelManager(new AddressBook(), new UserPrefs(), null));
+            ModelManager modelManager = new ModelManager(new AddressBook(), new UserPrefs(), null);
+            modelManager.addPerson(new PersonBuilder().build());
+            CommandResult result = command.execute(modelManager);
             DummyUiForCommands dummyUi = new DummyUiForCommands();
             result.getUiAction().accept(dummyUi);
             assertTrue(dummyUi.isValid(type));
