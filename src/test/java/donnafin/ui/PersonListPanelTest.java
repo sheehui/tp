@@ -24,6 +24,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<Person> TYPICAL_PERSONS =
             FXCollections.observableList(getTypicalPersons());
@@ -93,3 +96,5 @@ public class PersonListPanelTest extends GuiUnitTest {
                 PersonListPanelHandle.PERSON_LIST_VIEW_ID));
     }
 }
+
+//@@author

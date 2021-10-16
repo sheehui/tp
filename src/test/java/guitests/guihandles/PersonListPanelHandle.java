@@ -8,6 +8,9 @@ import donnafin.model.person.Person;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
  */
@@ -153,3 +156,5 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
         return getRootNode().getItems().size();
     }
 }
+
+//@@author

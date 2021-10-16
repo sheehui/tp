@@ -8,6 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * Provides a handle to a person card in the person list panel.
  */
@@ -89,3 +92,5 @@ public class PersonCardHandle extends NodeHandle<Node> {
                 .collect(Collectors.toList()));
     }
 }
+
+//@@author

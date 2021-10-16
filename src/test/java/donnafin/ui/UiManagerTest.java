@@ -27,6 +27,9 @@ import donnafin.storage.StorageManager;
 import donnafin.testutil.Assert;
 import javafx.collections.ObservableList;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class UiManagerTest {
 
     @TempDir
@@ -234,3 +237,5 @@ public class UiManagerTest {
     }
 
 }
+
+//@@author

@@ -13,6 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 import donnafin.MainApp;
 import javafx.fxml.FXML;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class UiPartTest {
 
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";
@@ -108,3 +111,5 @@ public class UiPartTest {
     }
 
 }
+
+//@@author

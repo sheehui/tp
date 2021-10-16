@@ -9,6 +9,9 @@ import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.HelpWindowHandle;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class HelpWindowTest extends GuiUnitTest {
 
     private HelpWindow helpWindow;
@@ -37,3 +40,5 @@ public class HelpWindowTest extends GuiUnitTest {
         assertFalse(helpWindow.isShowing());
     }
 }
+
+//@@author

@@ -13,6 +13,9 @@ import donnafin.logic.commands.exceptions.CommandException;
 import guitests.guihandles.CommandBoxHandle;
 import javafx.scene.input.KeyCode;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class CommandBoxTest extends GuiUnitTest {
 
     private static final String COMMAND_THAT_SUCCEEDS = ListCommand.COMMAND_WORD;
@@ -93,3 +96,5 @@ public class CommandBoxTest extends GuiUnitTest {
         assertEquals(defaultStyleOfCommandBox, commandBoxHandle.getStyleClass());
     }
 }
+
+//@@author

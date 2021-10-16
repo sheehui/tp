@@ -2,6 +2,9 @@ package donnafin.ui;
 
 import javafx.beans.DefaultProperty;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * A test object which can be constructed via an FXML file.
  * Unlike other JavaFX classes, this class can be constructed without the JavaFX toolkit being initialized.
@@ -33,3 +36,5 @@ public class TestFxmlObject {
     }
 
 }
+
+//@@author

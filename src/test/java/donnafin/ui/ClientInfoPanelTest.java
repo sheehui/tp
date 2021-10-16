@@ -7,6 +7,9 @@ import donnafin.logic.PersonAdapter;
 import donnafin.testutil.PersonBuilder;
 import guitests.guihandles.ClientInfoPanelHandle;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class ClientInfoPanelTest extends GuiUnitTest {
 
     private ClientInfoPanel clientInfoPanel;
@@ -28,3 +31,5 @@ public class ClientInfoPanelTest extends GuiUnitTest {
         // confirm that it can display.
     }
 }
+
+//@@author

@@ -8,6 +8,9 @@ import donnafin.ui.UiPart;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * Provides an isolated stage to test an individual {@code UiPart}.
  */
@@ -27,3 +30,5 @@ public class UiPartExtension extends StageExtension {
         }
     }
 }
+
+//@@author

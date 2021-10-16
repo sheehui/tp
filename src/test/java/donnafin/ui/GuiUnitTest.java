@@ -9,6 +9,9 @@ import guitests.GuiRobot;
 import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * A GUI unit test class for AddressBook.
  */
@@ -38,3 +41,5 @@ public abstract class GuiUnitTest {
         return node.orElseThrow(NodeNotFoundException::new);
     }
 }
+
+//@@author

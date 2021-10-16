@@ -8,6 +8,9 @@ import org.testfx.api.FxRobot;
 import guitests.guihandles.exceptions.StageNotFoundException;
 import javafx.stage.Stage;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * Robot used to simulate user actions on the GUI.
  * Extends {@link FxRobot} by adding some customized functionality and workarounds.
@@ -129,3 +132,5 @@ public class GuiRobot extends FxRobot {
         System.setProperty("java.awt.headless", "true");
     }
 }
+
+//@@author
