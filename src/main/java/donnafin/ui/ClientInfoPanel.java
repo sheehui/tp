@@ -29,10 +29,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     private Button notes;
 
     @FXML
-    private VBox clientInfoList;
-
-    @FXML
-    private VBox financialInfoTab;
+    private VBox container;
 
     @FXML
     private TextArea notesTextArea;
@@ -43,10 +40,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     public ClientInfoPanel(PersonAdapter personAdapter) {
         super(FXML);
         this.personAdapter = personAdapter;
-
-        personAdapter.getAllAttributesList().stream()
-                .map(attr -> createAttributePanel(attr).getRoot())
-                .forEach(y -> clientInfoList.getChildren().add(y));
+        changeTabToPersonal();
     }
 
     private AttributePanel createAttributePanel(Attribute attr) {
@@ -85,11 +79,6 @@ public class ClientInfoPanel extends UiPart<Region> {
         };
     }
 
-    private void refresh() {
-        clientInfoList.getChildren().clear();
-    }
-
-
     /**
      * Updates the VBox content to the Client's personal Details
      */
@@ -97,7 +86,7 @@ public class ClientInfoPanel extends UiPart<Region> {
         refresh();
         personAdapter.getAllAttributesList().stream()
                 .map(attr -> createAttributePanel(attr).getRoot())
-                .forEach(y -> clientInfoList.getChildren().add(y));
+                .forEach(y -> container.getChildren().add(y));
     }
 
     /**
@@ -105,6 +94,9 @@ public class ClientInfoPanel extends UiPart<Region> {
      */
     public void changeTabToPolicy() {
         refresh();
+        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(
+                PolicyTestTable.getTableConfig(), PolicyTestTable.getExampleList());
+        container.getChildren().add(policyTable.getContainer());
     }
 
     /**
@@ -127,4 +119,9 @@ public class ClientInfoPanel extends UiPart<Region> {
     public void changeTabToNotes() {
         refresh();
     }
+
+    private void refresh() {
+        container.getChildren().clear();
+    }
+
 }

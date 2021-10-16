@@ -19,6 +19,6 @@
             </VBox>
          </children>
       </AnchorPane>
-      <VBox fx:id="clientInfoList" layoutX="193.0" prefHeight="400.0" prefWidth="408.0" />
+      <VBox fx:id="container" layoutX="193.0" prefHeight="400.0" prefWidth="408.0" />
    </children>
 </AnchorPane>
