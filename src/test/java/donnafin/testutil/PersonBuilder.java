@@ -4,11 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import donnafin.model.person.Address;
+import donnafin.model.person.Asset;
+import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
 import donnafin.model.util.SampleDataUtil;
 
@@ -22,6 +26,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOTES = "";
+    public static final String DEFAULT_LIABILITIES = "INSERT LIABILITY HERE";
+    public static final String DEFAULT_COMMISSION = "INSERT COMMISSION HERE";
 
     private Name name;
     private Phone phone;
@@ -29,6 +35,10 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Notes notes;
+    private Set<Policy> policies;
+    private Commission commission;
+    private Liability liabilities;
+    private Set<Asset> assetSet;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +49,10 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        policies = new HashSet<>();
+        commission = new Commission(DEFAULT_COMMISSION);
+        liabilities = new Liability(DEFAULT_LIABILITIES);
+        assetSet = new HashSet<>();
         notes = new Notes(DEFAULT_NOTES);
     }
 
@@ -52,6 +66,10 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         notes = personToCopy.getNotes();
+        policies = new HashSet<>(personToCopy.getPolicies());
+        liabilities = personToCopy.getLiability();
+        commission = personToCopy.getCommission();
+        assetSet = new HashSet<>(personToCopy.getAssetSet());
     }
 
     /**
@@ -100,8 +118,45 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code liabilities} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLiability(String liability) {
+        this.liabilities = new Liability(liability);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicies(String ... policies) {
+        this.policies = SampleDataUtil.getPolicies(policies);
+        return this;
+    }
+
+    /**
+     * Parses the {@code assets} into a {@code Set<assets>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withAssets(String ... assets) {
+        this.assetSet = SampleDataUtil.getAssets(assets);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Commission} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCommission(String commission) {
+        this.commission = new Commission(commission);
+        return this;
+    }
+
+    /**
+     * Creates the person name Amy with the appropriate fields
+     * @return
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, notes);
+        return new Person(name, phone, email, address, tags,
+                notes, policies, liabilities, commission, assetSet);
     }
 
 }

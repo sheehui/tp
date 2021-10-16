@@ -1,56 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxWidth="1.7976931348623157E308" prefWidth="800.0" tabMaxWidth="140.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <tabs>
-      <Tab closable="false" text="Client Information">
-         <content>
-            <VBox fx:id="clientInfoTab">
-                <VBox fx:id="clientInfoList" VBox.vgrow="ALWAYS" />
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="193.0">
+         <children>
+            <VBox layoutX="32.0" layoutY="41.0" prefHeight="318.0" prefWidth="130.0" spacing="10.0">
+               <children>
+                  <Button fx:id="personalInformation" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#changeTabToPersonal" prefHeight="55.0" prefWidth="100.0" text="Personal " textFill="#010503" />
+                  <Button fx:id="policies" layoutX="10.0" layoutY="10.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#changeTabToPolicy" prefHeight="55.0" prefWidth="100.0" text="Policies" textFill="#010503" />
+                  <Button fx:id="assets" layoutX="10.0" layoutY="75.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#changeTabToAssets" prefHeight="55.0" prefWidth="100.0" text="Assets" textFill="#010503" />
+                  <Button fx:id="liabilities" layoutX="10.0" layoutY="140.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#changeTabToLiabilities" prefHeight="55.0" prefWidth="100.0" text="Liabilities" textFill="#010503" />
+                  <Button fx:id="notes" layoutX="10.0" layoutY="205.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#changeTabToNotes" prefHeight="55.0" prefWidth="100.0" text="Notes" textFill="#010503" />
+               </children>
             </VBox>
-         </content>
-      </Tab>
-      <Tab closable="false" text="Policy">
-         <content>
-         </content>
-         <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <VBox fx:id="policiesContainer" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab closable="false" text="Assets">
-         <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <VBox fx:id="assetsContainer" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab closable="false" text="Liabilities">
-         <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <VBox fx:id="liabilitiesContainer" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab closable="false" text="Notes">
-         <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-   </tabs>
-</TabPane>
+         </children>
+      </AnchorPane>
+      <VBox fx:id="container" layoutX="193.0" prefHeight="400.0" prefWidth="408.0" />
+   </children>
+</AnchorPane>

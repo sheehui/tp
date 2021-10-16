@@ -4,6 +4,7 @@ import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
 import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -13,16 +14,22 @@ public class ClientInfoPanel extends UiPart<Region> {
     private final PersonAdapter personAdapter;
 
     @FXML
-    private VBox clientInfoList;
+    private Button personalInformation;
 
     @FXML
-    private VBox policiesContainer;
+    private Button policies;
 
     @FXML
-    private VBox assetsContainer;
+    private Button assets;
 
     @FXML
-    private VBox liabilitiesContainer;
+    private Button liabilities;
+
+    @FXML
+    private Button notes;
+
+    @FXML
+    private VBox container;
 
     @FXML
     private TextArea notesTextArea;
@@ -33,14 +40,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     public ClientInfoPanel(PersonAdapter personAdapter) {
         super(FXML);
         this.personAdapter = personAdapter;
-
-        personAdapter.getAllAttributesList().stream()
-                .map(attr -> createAttributePanel(attr).getRoot())
-                .forEach(y -> clientInfoList.getChildren().add(y));
-
-        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(
-                PolicyTestTable.getTableConfig(), PolicyTestTable.getExampleList());
-        policiesContainer.getChildren().add(policyTable.getContainer());
+        changeTabToPersonal();
     }
 
     private AttributePanel createAttributePanel(Attribute attr) {
@@ -48,12 +48,12 @@ public class ClientInfoPanel extends UiPart<Region> {
         return new AttributePanel(
                 fieldInString,
                 attr.toString(),
-                createEditHandler(getPersonField(fieldInString))
+                createEditHandler(getPersonPersonalField(fieldInString))
         );
     }
 
     /** Gets the PersonField enum type of attribute from label */
-    private PersonAdapter.PersonField getPersonField(String fieldInString) {
+    private PersonAdapter.PersonField getPersonPersonalField(String fieldInString) {
         switch(fieldInString) {
         case "Name":
             return PersonAdapter.PersonField.NAME;
@@ -78,4 +78,50 @@ public class ClientInfoPanel extends UiPart<Region> {
             }
         };
     }
+
+    /**
+     * Updates the VBox content to the Client's personal Details
+     */
+    public void changeTabToPersonal() {
+        refresh();
+        personAdapter.getAllAttributesList().stream()
+                .map(attr -> createAttributePanel(attr).getRoot())
+                .forEach(y -> container.getChildren().add(y));
+    }
+
+    /**
+     * Updates the VBox content to the Client's policy Details
+     */
+    public void changeTabToPolicy() {
+        refresh();
+        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(
+                PolicyTestTable.getTableConfig(), PolicyTestTable.getExampleList());
+        container.getChildren().add(policyTable.getContainer());
+    }
+
+    /**
+     * Updates the VBox content to the Client's Asset Details
+     */
+    public void changeTabToAssets() {
+        refresh();
+    }
+
+    /**
+     * Updates the VBox content to the Client's Liabilities Details
+     */
+    public void changeTabToLiabilities() {
+        refresh();
+    }
+
+    /**
+     * Updates the VBox content to the Client's Notes Details
+     */
+    public void changeTabToNotes() {
+        refresh();
+    }
+
+    private void refresh() {
+        container.getChildren().clear();
+    }
+
 }

@@ -10,7 +10,7 @@ public class Notes implements Attribute {
 
     /**
      * Constructs a note.
-     * @param note the note associated with the person.
+     * @param notes the note associated with the person.
      */
     public Notes(String notes) {
         this.notes = notes;
