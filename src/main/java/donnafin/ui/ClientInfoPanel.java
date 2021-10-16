@@ -17,7 +17,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     private Button personalInformation;
 
     @FXML
-    private Button policyInformation;
+    private Button policies;
 
     @FXML
     private Button assets;
@@ -118,6 +118,13 @@ public class ClientInfoPanel extends UiPart<Region> {
      * Updates the VBox content to the Client's Liabilities Details
      */
     public void changeTabToLiabilities() {
+        refresh();
+    }
+
+    /**
+     * Updates the VBox content to the Client's Notes Details
+     */
+    public void changeTabToNotes() {
         refresh();
     }
 }
