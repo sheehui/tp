@@ -68,8 +68,8 @@ public class UiManagerTest {
         List<String> commandList = Arrays.asList(listCommand, addCommand, deleteCommand, clearCommand);
 
         for (String command: commandList) {
-            CommandResult logicCommandResult = null;
-            CommandResult uiManagerCommandResult = null;
+            CommandResult logicCommandResult;
+            CommandResult uiManagerCommandResult;
 
             if (command.equals(addCommand)) {
                 // We cant add the same person twice, so we delete the person first and add

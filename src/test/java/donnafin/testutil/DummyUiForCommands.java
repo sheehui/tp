@@ -6,33 +6,47 @@ import donnafin.ui.Ui;
 import javafx.stage.Stage;
 
 public class DummyUiForCommands implements Ui {
-    int countHelp = 0;
-    int countHome = 0;
-    int countExit = 0;
-    int countView = 0;
+    private int countHelp = 0;
+    private int countHome = 0;
+    private int countExit = 0;
+    private int countView = 0;
 
     @Override
     public void start(Stage primaryStage) {}
 
     @Override
-    public void showHelp() { countHelp++; }
+    public void showHelp() {
+        countHelp++;
+    }
 
     @Override
-    public void beginExit() { countExit++; }
+    public void beginExit() {
+        countExit++;
+    }
 
     @Override
-    public void showClientView(PersonAdapter subject) { countView++; }
+    public void showClientView(PersonAdapter subject) {
+        countView++;
+    }
 
     @Override
-    public void showHome() { countHome++; }
+    public void showHome() {
+        countHome++;
+    }
 
-    public boolean isValid(int countHome, int countExit, int countHelp, int countView) {
+    private boolean isValid(int countHome, int countExit, int countHelp, int countView) {
         return countHome == this.countHome && countExit == this.countExit
             && countHelp == this.countHelp && countView == this.countView;
     }
 
-    public boolean isValid(CommandTestUtil.UiActionType type) {
-        switch (type) {
+    /**
+     * Check if a {@code Ui} instance would appear to have undergone a given action.
+     *
+     * @param expectedType Ui action that should be demanded
+     * @return whether the expected function was returned.
+     */
+    public boolean isValid(CommandTestUtil.UiActionType expectedType) {
+        switch (expectedType) {
         case SHOW_HOME:
             return isValid(1, 0, 0, 0);
         case SHOW_EXIT:

@@ -13,7 +13,7 @@ public class MainWindowHandle extends StageHandle {
     /**
      * Constructor for the handle.
      *
-     * @param stage
+     * @param stage JavaFX Stage used.
      */
     public MainWindowHandle(Stage stage) {
         super(stage);

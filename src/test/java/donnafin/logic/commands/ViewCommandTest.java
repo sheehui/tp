@@ -1,25 +1,24 @@
 package donnafin.logic.commands;
 
+import static donnafin.logic.commands.CommandTestUtil.assertCommandAction;
+import static donnafin.logic.commands.CommandTestUtil.assertCommandFailure;
+import static donnafin.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import donnafin.commons.core.Messages;
 import donnafin.commons.core.index.Index;
-import donnafin.logic.PersonAdapter;
 import donnafin.model.AddressBook;
 import donnafin.model.Model;
 import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Person;
 import donnafin.testutil.PersonBuilder;
-import donnafin.ui.Ui;
-import org.junit.jupiter.api.Test;
-
-import static donnafin.logic.commands.CommandTestUtil.assertCommandAction;
-import static donnafin.logic.commands.CommandTestUtil.assertCommandFailure;
-import static donnafin.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static donnafin.logic.commands.HomeCommand.MESSAGE_SUCCESS;
 
 public class ViewCommandTest {
 
     @Test
-    public void execute_view_success_and_no_side_effect() {
+    public void execute_view_success() {
         final Model model = new ModelManager(new AddressBook(), new UserPrefs(), null);
         final Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), null);
         Person person = new PersonBuilder().build();
@@ -35,6 +34,6 @@ public class ViewCommandTest {
     @Test
     public void execute_view_failure() {
         final Model model = new ModelManager(new AddressBook(), new UserPrefs(), null);
-        assertCommandFailure(new ViewCommand(Index.fromOneBased(1)), model, ViewCommand.VIEW_COMMAND_ERROR);
+        assertCommandFailure(new ViewCommand(Index.fromOneBased(1)), model, Messages.MESSAGE_INVALID_PERSON_INDEX);
     }
 }

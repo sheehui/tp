@@ -118,7 +118,7 @@ public class GuiRobot extends FxRobot {
     /**
      * Represents an error which occurs when a timeout occurs when waiting for an event.
      */
-    private class EventTimeoutException extends RuntimeException {
+    private static class EventTimeoutException extends RuntimeException {
     }
 
     private static void setHeadlessModeToTrue() {

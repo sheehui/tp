@@ -49,7 +49,7 @@ public class CommandTestUtil {
 
     public static final String VALID_LIABILITY_AMY = "liability";
     public static final String VALID_LIABILITY_BOB = "liability";
-    public static final String VALID_COMMISSION_AMY = "commision";
+    public static final String VALID_COMMISSION_AMY = "commission";
     public static final String VALID_COMMISSION_BOB = "commission";
     public static final String VALID_POLICIES_ONE = "policy one";
     public static final String VALID_POLICIES_TWO = "policy two";
@@ -94,6 +94,16 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
      * Executes the given {@code command}, confirms that Ui is called in the manner expected.
      */
     public static void assertCommandAction(Command command, UiActionType type) {
@@ -107,16 +117,6 @@ public class CommandTestUtil {
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
-    }
-
-    /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
-     */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**

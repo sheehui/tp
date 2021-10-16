@@ -152,7 +152,7 @@ public class PersonBuilder {
 
     /**
      * Creates the person name Amy with the appropriate fields
-     * @return
+     * @return a fully constructed Person object.
      */
     public Person build() {
         return new Person(name, phone, email, address, tags,
