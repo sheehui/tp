@@ -22,6 +22,10 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+clean.doFirst {
+    delete "${rootDir}/data/"
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
