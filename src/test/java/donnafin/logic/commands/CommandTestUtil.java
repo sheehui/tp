@@ -17,13 +17,23 @@ import donnafin.commons.core.index.Index;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.AddressBook;
 import donnafin.model.Model;
+import donnafin.model.ModelManager;
+import donnafin.model.UserPrefs;
 import donnafin.model.person.NameContainsKeywordsPredicate;
 import donnafin.model.person.Person;
+import donnafin.testutil.DummyUiForCommands;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public enum UiActionType {
+        SHOW_HOME,
+        SHOW_HELP,
+        SHOW_EXIT,
+        SHOW_VIEW
+    }
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -77,6 +87,20 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that Ui is called in the manner expected.
+     */
+    public static void assertCommandAction(Command command, UiActionType type) {
+        try {
+            CommandResult result = command.execute(new ModelManager(new AddressBook(), new UserPrefs(), null));
+            DummyUiForCommands dummyUi = new DummyUiForCommands();
+            result.getUiAction().accept(dummyUi);
+            assertTrue(dummyUi.isValid(type));
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
