@@ -25,7 +25,7 @@ class JsonAdaptedAsset {
      * Converts a given {@code Asset} into this class for Jackson use.
      */
     public JsonAdaptedAsset(Asset source) {
-        assetsName = source.assetName;
+        assetsName = source.name;
     }
 
     @JsonValue
