@@ -4,7 +4,7 @@ package donnafin.model.person;
  * Represents notes that are associated with the person in the address book.
  *
  */
-public class Notes implements Attribute {
+public class Notes extends Attribute {
 
     public final String notes;
 

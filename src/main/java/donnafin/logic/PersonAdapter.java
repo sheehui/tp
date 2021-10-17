@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 public class PersonAdapter {
 
     private static final String SET_DELIMITER = "<>";
-    private static final String ATTRIBUTE_DELIMITER = "^]";
     private final Model model;
     private Person subject;
 
@@ -199,7 +198,7 @@ public class PersonAdapter {
     }
 
     private Policy stringToPolicy(String policyString) {
-        String[] details = policyString.split(ATTRIBUTE_DELIMITER);
+        String[] details = policyString.split(Attribute.DELIMITER);
         return new Policy(details[0], details[1], details[2], details[3], details[4]);
     }
 
@@ -222,7 +221,7 @@ public class PersonAdapter {
     }
 
     private Liability stringToLiability(String liabilityString) {
-        String[] details = liabilityString.split(ATTRIBUTE_DELIMITER);
+        String[] details = liabilityString.split(Attribute.DELIMITER);
         return new Liability(details[0], details[1], details[2], details[3]);
     }
 
@@ -245,7 +244,7 @@ public class PersonAdapter {
     }
 
     private Asset stringToAsset(String assetString) {
-        String[] details = assetString.split(ATTRIBUTE_DELIMITER);
+        String[] details = assetString.split(Attribute.DELIMITER);
         return new Asset(details[0], details[1], details[2], details[3]);
     }
 

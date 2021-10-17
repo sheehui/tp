@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Person's commission in DonnaFin.
  */
-public class Commission implements Attribute {
+public class Commission extends Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert commission constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
