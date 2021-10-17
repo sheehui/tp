@@ -13,14 +13,12 @@ import donnafin.ui.Ui;
 public class HomeCommand extends Command {
 
     public static final String COMMAND_WORD = "home";
-    public static final String MESSAGE_SUCCESS = "Currently viewing home";
+    public static final String MESSAGE_SUCCESS = "Currently viewing home.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Consumer<Ui> uiAction = ui -> {
-            ui.showHome();
-        };
+        Consumer<Ui> uiAction = Ui::showHome;
         return new CommandResult(MESSAGE_SUCCESS, uiAction);
     }
 }

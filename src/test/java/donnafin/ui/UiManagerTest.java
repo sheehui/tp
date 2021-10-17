@@ -27,6 +27,9 @@ import donnafin.storage.StorageManager;
 import donnafin.testutil.Assert;
 import javafx.collections.ObservableList;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class UiManagerTest {
 
     @TempDir
@@ -68,8 +71,8 @@ public class UiManagerTest {
         List<String> commandList = Arrays.asList(listCommand, addCommand, deleteCommand, clearCommand);
 
         for (String command: commandList) {
-            CommandResult logicCommandResult = null;
-            CommandResult uiManagerCommandResult = null;
+            CommandResult logicCommandResult;
+            CommandResult uiManagerCommandResult;
 
             if (command.equals(addCommand)) {
                 // We cant add the same person twice, so we delete the person first and add
@@ -234,3 +237,5 @@ public class UiManagerTest {
     }
 
 }
+
+//@@author

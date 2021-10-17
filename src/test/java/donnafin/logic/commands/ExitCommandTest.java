@@ -12,8 +12,8 @@ import donnafin.model.UserPrefs;
 import donnafin.ui.Ui;
 
 public class ExitCommandTest {
-    private Model model = new ModelManager(new AddressBook(), new UserPrefs(), null);
-    private Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), null);
+    private final Model model = new ModelManager(new AddressBook(), new UserPrefs(), null);
+    private final Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), null);
 
     @Test
     public void execute_exit_success() {

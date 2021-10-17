@@ -5,6 +5,9 @@ import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testfx.api.FxToolkit;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 /**
  * Properly sets up and tears down a JavaFx stage for our testing purposes.
  */
@@ -19,3 +22,5 @@ public class StageExtension implements BeforeEachCallback, AfterEachCallback {
         FxToolkit.cleanupStages();
     }
 }
+
+//@@author

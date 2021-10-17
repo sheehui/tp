@@ -7,8 +7,7 @@ import static donnafin.testutil.TypicalPersons.ELLE;
 import static donnafin.testutil.TypicalPersons.FIONA;
 import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +23,8 @@ import donnafin.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
 
     @Test
     public void equals() {
@@ -38,20 +37,20 @@ public class FindCommandTest {
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertNotEquals(1, findFirstCommand);
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertNotEquals(null, findFirstCommand);
 
         // different person -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test

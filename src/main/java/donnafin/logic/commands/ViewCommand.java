@@ -23,11 +23,6 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewing Person: %1$s";
 
-    public static final String VIEW_COMMAND_ERROR =
-            "Index inputted is invalid!";
-
-    public static final String MESSAGE_ARGUMENT = "Index: %1$d";
-
     private final Index index;
 
     /**
@@ -45,7 +40,7 @@ public class ViewCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INDEX);
         }
         Person person = lastShownList.get(index.getZeroBased());
         PersonAdapter personToView = new PersonAdapter(model, person);

@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class AppParametersTest {
 
     private final ParametersStub parametersStub = new ParametersStub();
@@ -38,7 +41,7 @@ public class AppParametersTest {
     }
 
     private static class ParametersStub extends Application.Parameters {
-        private Map<String, String> namedParameters = new HashMap<>();
+        private final Map<String, String> namedParameters = new HashMap<>();
 
         @Override
         public List<String> getRaw() {
@@ -56,3 +59,5 @@ public class AppParametersTest {
         }
     }
 }
+
+//@@author

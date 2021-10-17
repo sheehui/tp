@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
+
 public class ResultDisplayTest extends GuiUnitTest {
 
     private ResultDisplay resultDisplay;
@@ -33,3 +36,5 @@ public class ResultDisplayTest extends GuiUnitTest {
         assertEquals("Dummy feedback to user", resultDisplayHandle.getText());
     }
 }
+
+//@@author

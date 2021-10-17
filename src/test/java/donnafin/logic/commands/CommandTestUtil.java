@@ -17,13 +17,24 @@ import donnafin.commons.core.index.Index;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.AddressBook;
 import donnafin.model.Model;
+import donnafin.model.ModelManager;
+import donnafin.model.UserPrefs;
 import donnafin.model.person.NameContainsKeywordsPredicate;
 import donnafin.model.person.Person;
+import donnafin.testutil.DummyUiForCommands;
+import donnafin.testutil.PersonBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public enum UiActionType {
+        SHOW_HOME,
+        SHOW_HELP,
+        SHOW_EXIT,
+        SHOW_VIEW
+    }
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -38,7 +49,7 @@ public class CommandTestUtil {
 
     public static final String VALID_LIABILITY_AMY = "liability";
     public static final String VALID_LIABILITY_BOB = "liability";
-    public static final String VALID_COMMISSION_AMY = "commision";
+    public static final String VALID_COMMISSION_AMY = "commission";
     public static final String VALID_COMMISSION_BOB = "commission";
     public static final String VALID_POLICIES_ONE = "policy one";
     public static final String VALID_POLICIES_TWO = "policy two";
@@ -90,6 +101,22 @@ public class CommandTestUtil {
                                             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that Ui is called in the manner expected.
+     */
+    public static void assertCommandAction(Command command, UiActionType type) {
+        try {
+            ModelManager modelManager = new ModelManager(new AddressBook(), new UserPrefs(), null);
+            modelManager.addPerson(new PersonBuilder().build());
+            CommandResult result = command.execute(modelManager);
+            DummyUiForCommands dummyUi = new DummyUiForCommands();
+            result.getUiAction().accept(dummyUi);
+            assertTrue(dummyUi.isValid(type));
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 
     /**
