@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import donnafin.commons.core.Messages;
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.Model;
@@ -45,9 +45,7 @@ public class ViewCommand extends Command {
         Person person = lastShownList.get(index.getZeroBased());
         PersonAdapter personToView = new PersonAdapter(model, person);
         String feedbackToUser = String.format(MESSAGE_VIEW_PERSON_SUCCESS, person.getName());
-        return new CommandResult(feedbackToUser, ui -> {
-            ui.showClientView(personToView);
-        });
+        return new CommandResult(feedbackToUser, ui -> ui.showClientView(personToView));
     }
 
     @Override

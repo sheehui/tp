@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;

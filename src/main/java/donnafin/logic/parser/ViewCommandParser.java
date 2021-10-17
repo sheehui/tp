@@ -1,7 +1,7 @@
 package donnafin.logic.parser;
 
 import donnafin.commons.core.Messages;
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 

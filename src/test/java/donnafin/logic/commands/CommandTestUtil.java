@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.AddressBook;
 import donnafin.model.Model;
