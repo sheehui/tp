@@ -1,5 +1,6 @@
 package donnafin.model.person;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
@@ -7,7 +8,7 @@ import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Person's liability in DonnaFin.
  */
-public class Liability implements Attribute {
+public class Liability extends Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
@@ -30,6 +31,19 @@ public class Liability implements Attribute {
         this.type = type;
         this.value = value;
         this.remarks = remarks;
+    }
+
+    /**
+     * Constructs a {@code Liability} with an array input.
+     *
+     * @param details Array containing all fields of new Liability.
+     */
+    public Liability(String[] details) {
+        Arrays.stream(details).map(Objects::requireNonNull);
+        this.name = details[0];
+        this.type = details[1];
+        this.value = details[2];
+        this.remarks = details[3];
     }
 
     /**

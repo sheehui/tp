@@ -1,6 +1,5 @@
 package donnafin.model.person;
 
-import java.util.List;
 import java.util.Objects;
 
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,7 +7,7 @@ import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Person's policy in DonnaFin.
  */
-public class Policy implements Attribute {
+public class Policy extends Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
@@ -34,6 +33,19 @@ public class Policy implements Attribute {
         this.totalValueInsured = totalValueInsured;
         this.yearlyPremiums = yearlyPremiums;
         this.commission = commission;
+    }
+
+    /**
+     * Constructs a {@code Policy} with an array input.
+     *
+     * @param details Array containing all fields of new Policy.
+     */
+    public Policy(String[] details) {
+        this.name = details[0];
+        this.insurer = details[1];
+        this.totalValueInsured = details[2];
+        this.yearlyPremiums = details[3];
+        this.commission = details[4];
     }
 
     /**
