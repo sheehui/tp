@@ -199,6 +199,11 @@ public class PersonAdapter {
 
     private Policy stringToPolicy(String policyString) {
         String[] details = policyString.split(Attribute.DELIMITER);
+        //@parserteam do error handling for this
+        //        if (details != 5) {
+        //            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
+        //        }
+
         return new Policy(details[0], details[1], details[2], details[3], details[4]);
     }
 
@@ -222,6 +227,11 @@ public class PersonAdapter {
 
     private Liability stringToLiability(String liabilityString) {
         String[] details = liabilityString.split(Attribute.DELIMITER);
+        //@parserteam do error handling for this
+        //        if (details != 4) {
+        //            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
+        //        }
+
         return new Liability(details[0], details[1], details[2], details[3]);
     }
 
@@ -245,6 +255,11 @@ public class PersonAdapter {
 
     private Asset stringToAsset(String assetString) {
         String[] details = assetString.split(Attribute.DELIMITER);
+        //@parserteam do error handling for this
+        //        if (details != 4) {
+        //            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
+        //        }
+
         return new Asset(details[0], details[1], details[2], details[3]);
     }
 
