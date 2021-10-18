@@ -6,12 +6,16 @@ import donnafin.model.person.Attribute;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class ClientInfoPanel extends UiPart<Region> {
     private static final String FXML = "ClientInfoPanel.fxml";
     private final PersonAdapter personAdapter;
+
+    @FXML
+    private AnchorPane root;
 
     @FXML
     private Button personalInformation;
@@ -29,7 +33,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     private Button notes;
 
     @FXML
-    private VBox container;
+    private VBox attributeDisplayContainer;
 
     @FXML
     private TextArea notesTextArea;
@@ -86,7 +90,7 @@ public class ClientInfoPanel extends UiPart<Region> {
         refresh();
         personAdapter.getAllAttributesList().stream()
                 .map(attr -> createAttributePanel(attr).getRoot())
-                .forEach(y -> container.getChildren().add(y));
+                .forEach(y -> attributeDisplayContainer.getChildren().add(y));
     }
 
     /**
@@ -94,9 +98,6 @@ public class ClientInfoPanel extends UiPart<Region> {
      */
     public void changeTabToPolicy() {
         refresh();
-        AttributeTable<PolicyTest> policyTable = new AttributeTable<>(
-                PolicyTestTable.getTableConfig(), PolicyTestTable.getExampleList());
-        container.getChildren().add(policyTable.getContainer());
     }
 
     /**
@@ -121,7 +122,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     }
 
     private void refresh() {
-        container.getChildren().clear();
+        attributeDisplayContainer.getChildren().clear();
     }
 
 }

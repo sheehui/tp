@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="193.0">
          <children>
@@ -19,6 +19,6 @@
             </VBox>
          </children>
       </AnchorPane>
-      <VBox fx:id="container" layoutX="193.0" prefHeight="400.0" prefWidth="408.0" />
+      <VBox fx:id="attributeDisplayContainer" layoutX="193.0" prefHeight="400.0" prefWidth="408.0" />
    </children>
 </AnchorPane>

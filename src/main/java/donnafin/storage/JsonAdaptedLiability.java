@@ -29,10 +29,10 @@ public class JsonAdaptedLiability {
      * Converts a given {@code Liability} into this class for Jackson use.
      */
     public JsonAdaptedLiability(Liability source) {
-        liabilityName = source.name;
-        liabilityType = source.type;
-        liabilityValue = source.value.toString();
-        liabilityRemarks = source.remarks;
+        liabilityName = source.getName();
+        liabilityType = source.getType();
+        liabilityValue = source.getValue().toString();
+        liabilityRemarks = source.getRemarks();
     }
 
     @JsonProperty("name")
