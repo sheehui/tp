@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 public class PersonAdapter {
 
     private static final String SET_DELIMITER = "<>";
-    private static final String ATTRIBUTE_DELIMITER = "^]";
+    private static final String ATTRIBUTE_DELIMITER = ";;;";
     private final Model model;
     private Person subject;
 

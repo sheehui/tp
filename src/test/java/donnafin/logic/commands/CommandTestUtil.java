@@ -47,11 +47,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_LIABILITY_AMY = "property debt^]debt^]$500000^]downgrade imminent";
-    public static final String VALID_LIABILITY_BOB = "company debt^]debt^]$100000^]downgrade imminent";
-    public static final String VALID_POLICIES_ONE = "Diamond^]AIA^]$100000^]cake^]10%";
+    public static final String VALID_LIABILITY_AMY = "property debt;;;debt;;;$500000;;;downgrade imminent";
+    public static final String VALID_LIABILITY_BOB = "company debt;;;debt;;;$100000;;;downgrade imminent";
+    public static final String VALID_POLICIES_ONE = "Diamond;;;AIA;;;$100000;;;cake;;;10%";
     public static final String VALID_POLICIES_TWO = "policy two";
-    public static final String VALID_ASSET_ONE = "bitcoin^]crypto^]$10000000^]mad stonks";
+    public static final String VALID_ASSET_ONE = "bitcoin;;;crypto;;;$10000000;;;mad stonks";
     public static final String VALID_ASSET_TWO = "asset two";
 
 
