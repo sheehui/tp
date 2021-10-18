@@ -15,6 +15,15 @@ public class MoneyTest {
     }
 
     @Test
+    public void checkMoneyOutput() {
+        assertEquals(" $ 1.00", new Money(100).toString());
+        assertEquals(" $ 3.00", new Money(300).toString());
+        assertEquals("-$ 1.00", new Money(-100).toString());
+        assertEquals(" $ 1.20", new Money(120).toString());
+        assertEquals(" $ 1.23", new Money(123).toString());
+    }
+
+    @Test
     public void testFullCentsString() {
         assertEquals(" $ 1.23", new Money(123).toString());
         assertEquals("-$ 1.23", new Money(-123).toString());

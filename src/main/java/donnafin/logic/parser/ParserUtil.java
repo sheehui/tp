@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import donnafin.commons.core.types.Index;
+import donnafin.commons.core.types.Money;
 import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
@@ -224,4 +225,27 @@ public class ParserUtil {
         return liabilitySet;
     }
 
+    /**
+     * Parses a {@code String money} into a {@code Money}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String money} is invalid.
+     */
+    public static Money parseMoney(String money) throws ParseException {
+        requireNonNull(money);
+        String trimmedCommission = money.trim();
+
+        // Handling Default currency $XYZ or $XYZ.AB
+        final String regexDollarCents = "^-?\\s*\\$\\s*\\d+(\\.\\d{2})?$";
+        final String dollarCentsPrefix = "$";
+        final int dollarCentsToSmallUnit = 100;
+
+        if (trimmedCommission.matches(regexDollarCents)) {
+            String decimalString = trimmedCommission.replace(dollarCentsPrefix, "").replace(" ", "");
+            double value = Double.parseDouble(decimalString);
+            return new Money((int) (value * dollarCentsToSmallUnit));
+        } else {
+            throw new ParseException("Input string does not match any monetary value format.");
+        }
+    }
 }

@@ -49,7 +49,9 @@ public class Money {
         String biggerUnitValue = "" + absVal / divisor;
         String sign = absVal == value ? " " : "-";
 
-        int numDigitsSmallerValue = (int) Math.floor(Math.log10(absVal % divisor)) + 1;
+        int numDigitsSmallerValue = absVal % divisor != 0
+                ? (int) Math.floor(Math.log10(absVal % divisor)) + 1
+                : 1;
         String smallerUnitValue = "0".repeat(Math.max(0, fractionDigits - numDigitsSmallerValue));
         smallerUnitValue += absVal % divisor;
 
