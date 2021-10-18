@@ -9,6 +9,7 @@ import donnafin.commons.core.Messages;
 import donnafin.commons.core.index.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
+import donnafin.logic.parser.ClientParser;
 import donnafin.model.Model;
 import donnafin.model.person.Person;
 
@@ -45,8 +46,10 @@ public class ViewCommand extends Command {
         Person person = lastShownList.get(index.getZeroBased());
         PersonAdapter personToView = new PersonAdapter(model, person);
         String feedbackToUser = String.format(MESSAGE_VIEW_PERSON_SUCCESS, person.getName());
-        return new CommandResult(feedbackToUser, ui -> {
-            ui.showClientView(personToView);
+        return new CommandResult(
+                feedbackToUser,
+                ui -> { ui.showClientView(personToView);},
+                logic -> {logic.setStrategyParser(new ClientParser());
         });
     }
 

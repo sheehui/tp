@@ -2,6 +2,7 @@ package donnafin.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import donnafin.commons.core.GuiSettings;
@@ -41,6 +42,13 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = context.executeStrategyParseCommand(commandText);
         commandResult = command.execute(model);
+
+        //Implement any changes logic that needs to happen
+        Consumer<Logic> logicAction = commandResult.getLogicAction();
+        assert !logicAction.equals(null) : "commandResult.uiAction was set as null";
+        if (!logicAction.equals(null)) {
+            logicAction.accept(this);
+        }
 
         try {
             model.saveAddressBook();
