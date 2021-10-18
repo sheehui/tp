@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 public class PersonAdapter {
 
     private static final String SET_DELIMITER = "<>";
+    private static final String ATTRIBUTE_DELIMITER = "^]";
     private final Model model;
     private Person subject;
 
@@ -198,13 +199,13 @@ public class PersonAdapter {
     }
 
     private Policy stringToPolicy(String policyString) {
-        String[] details = policyString.split(Attribute.DELIMITER);
+        String[] details = policyString.split(ATTRIBUTE_DELIMITER);
         //@parserteam do error handling for this
         //        if (details != 5) {
         //            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
         //        }
 
-        return new Policy(details[0], details[1], details[2], details[3], details[4]);
+        return new Policy(details);
     }
 
     private Person editPersonPolicies(Person personToEdit, String newValue) {
@@ -226,17 +227,17 @@ public class PersonAdapter {
     }
 
     private Liability stringToLiability(String liabilityString) {
-        String[] details = liabilityString.split(Attribute.DELIMITER);
+        String[] details = liabilityString.split(ATTRIBUTE_DELIMITER);
         //@parserteam do error handling for this
         //        if (details != 4) {
         //            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
         //        }
 
-        return new Liability(details[0], details[1], details[2], details[3]);
+        return new Liability(details);
     }
 
     private Person editPersonLiabilities(Person personToEdit, String newValue) {
-        String[] liabilitiesStrings = newValue.split(SET_DELIMITER);
+        String[] liabilitiesStrings = newValue.split(ATTRIBUTE_DELIMITER);
         Set<Liability> newLiabilities = Arrays.stream(liabilitiesStrings)
                 .map(this::stringToLiability)
                 .collect(Collectors.toSet());
@@ -254,13 +255,13 @@ public class PersonAdapter {
     }
 
     private Asset stringToAsset(String assetString) {
-        String[] details = assetString.split(Attribute.DELIMITER);
+        String[] details = assetString.split(ATTRIBUTE_DELIMITER);
         //@parserteam do error handling for this
         //        if (details != 4) {
         //            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
         //        }
 
-        return new Asset(details[0], details[1], details[2], details[3]);
+        return new Asset(details);
     }
 
     private Person editPersonAssets(Person personToEdit, String newValue) {

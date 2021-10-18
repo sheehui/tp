@@ -7,7 +7,7 @@ import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Person's policy in DonnaFin.
  */
-public class Policy extends Attribute {
+public class Policy implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";

@@ -13,7 +13,6 @@ import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
-import donnafin.model.person.Attribute;
 import donnafin.model.person.Email;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
@@ -27,6 +26,7 @@ import donnafin.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String ATTRIBUTE_DELIMITER = "^]";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -135,7 +135,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code policy} is invalid.
      */
     public static Policy parsePolicy(String policy) throws ParseException {
-        String[] details = policy.split(Attribute.DELIMITER);
+        String[] details = policy.split(ATTRIBUTE_DELIMITER);
         Arrays.stream(details).map(Objects::requireNonNull);
 
         String trimmedPolicy = policy.trim();
@@ -167,7 +167,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code asset} is invalid.
      */
     public static Asset parseAsset(String asset) throws ParseException {
-        String[] details = asset.split(Attribute.DELIMITER);
+        String[] details = asset.split(ATTRIBUTE_DELIMITER);
         Arrays.stream(details).map(Objects::requireNonNull);
 
         String trimmedAsset = asset.trim();
@@ -199,7 +199,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code liability} is invalid.
      */
     public static Liability parseLiability(String liability) throws ParseException {
-        String[] details = liability.split(Attribute.DELIMITER);
+        String[] details = liability.split(ATTRIBUTE_DELIMITER);
         Arrays.stream(details).map(Objects::requireNonNull);
 
         String trimmedLiability = liability.trim();

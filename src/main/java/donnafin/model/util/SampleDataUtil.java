@@ -24,6 +24,8 @@ import donnafin.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    private static final String ATTRIBUTE_DELIMITER = "^]";
+
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -93,7 +95,7 @@ public class SampleDataUtil {
      */
     public static Set<Policy> getPolicies(String... strings) {
         return Arrays.stream(strings)
-                .map(x -> new Policy(x.split(Attribute.DELIMITER)))
+                .map(x -> new Policy(x.split(ATTRIBUTE_DELIMITER)))
                 .collect(Collectors.toSet());
     }
 
@@ -102,7 +104,7 @@ public class SampleDataUtil {
      */
     public static Set<Asset> getAssets(String... strings) {
         return Arrays.stream(strings)
-                .map(x -> new Asset(x.split(Attribute.DELIMITER)))
+                .map(x -> new Asset(x.split(ATTRIBUTE_DELIMITER)))
                 .collect(Collectors.toSet());
     }
 
@@ -111,7 +113,7 @@ public class SampleDataUtil {
      */
     public static Set<Liability> getLiabilities(String... strings) {
         return Arrays.stream(strings)
-                .map(x -> new Liability(x.split(Attribute.DELIMITER)))
+                .map(x -> new Liability(x.split(ATTRIBUTE_DELIMITER)))
                 .collect(Collectors.toSet());
     }
 }

@@ -12,13 +12,23 @@ import donnafin.model.person.Policy;
 class JsonAdaptedPolicy {
 
     private final String policyName;
+    private final String policyInsurer;
+    public final String policyTotalValueInsured;
+    public final String policyYearlyPremiums;
+    public final String policyCommission;
+
 
     /**
      * Constructs a {@code JsonAdaptedPolicy} with the given {@code policyName}.
      */
     @JsonCreator
-    public JsonAdaptedPolicy(String policyName) {
+    public JsonAdaptedPolicy(String policyName, String policyInsurer, String policyTotalValueInsured,
+                             String policyYearlyPremiums, String policyCommission) {
         this.policyName = policyName;
+        this.policyCommission = policyCommission;
+        this.policyInsurer = policyInsurer;
+        this.policyYearlyPremiums = policyYearlyPremiums;
+        this.policyTotalValueInsured = policyTotalValueInsured;
     }
 
     /**
@@ -26,11 +36,35 @@ class JsonAdaptedPolicy {
      */
     public JsonAdaptedPolicy(Policy source) {
         policyName = source.name;
+        policyInsurer = source.insurer;
+        policyYearlyPremiums = source.yearlyPremiums;
+        policyTotalValueInsured = source.totalValueInsured;
+        policyCommission = source.commission;
     }
 
     @JsonValue
     public String getPolicyName() {
         return policyName;
+    }
+
+    @JsonValue
+    public String getPolicyCommission() {
+        return policyCommission;
+    }
+
+    @JsonValue
+    public String getPolicyInsurer() {
+        return policyInsurer;
+    }
+
+    @JsonValue
+    public String getPolicyTotalValueInsured() {
+        return policyTotalValueInsured;
+    }
+
+    @JsonValue
+    public String getPolicyYearlyPremiums() {
+        return policyYearlyPremiums;
     }
 
     /**
@@ -42,6 +76,6 @@ class JsonAdaptedPolicy {
         if (!Policy.isValidPolicy(policyName)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
         }
-        return new Policy(policyName);
+        return new Policy(policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
     }
 }

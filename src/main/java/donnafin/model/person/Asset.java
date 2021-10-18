@@ -8,7 +8,7 @@ import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Person's assets in DonnaFin.
  */
-public class Asset extends Attribute {
+public class Asset implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert asset constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";

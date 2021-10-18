@@ -8,7 +8,7 @@ import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Person's liability in DonnaFin.
  */
-public class Liability extends Attribute {
+public class Liability implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
