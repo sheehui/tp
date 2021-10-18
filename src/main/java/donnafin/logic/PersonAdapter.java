@@ -1,9 +1,12 @@
 package donnafin.logic;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import donnafin.logic.parser.ParserUtil;
+import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
@@ -65,7 +68,7 @@ public class PersonAdapter {
             Person newPerson = editPerson(curr, field, newValue);
             this.subject = newPerson;
             model.setPerson(curr, newPerson);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | ParseException e) {
             throw new InvalidFieldException(field);
         }
     }
@@ -78,7 +81,7 @@ public class PersonAdapter {
         return subject.getPersonalAttributesList();
     }
 
-    private Person editPerson(Person personToEdit, PersonField field, String newValue) {
+    private Person editPerson(Person personToEdit, PersonField field, String newValue) throws ParseException {
         switch (field) {
         case NAME:
             return editPersonName(personToEdit, newValue);
@@ -198,28 +201,13 @@ public class PersonAdapter {
                 personToEdit.getAssets());
     }
 
-
-    /**
-     * Converts String representative of a policy to {@code Policy}.
-     *
-     * @param policyString String representative of a policy.
-     * @return A Policy
-     */
-    private Policy stringToPolicy(String policyString) {
-        String[] details = policyString.split(ATTRIBUTE_DELIMITER);
-        //@parserteam do error handling for this
-        //        if (details != 5) {
-        //            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
-        //        }
-
-        return new Policy(details);
-    }
-
-    private Person editPersonPolicies(Person personToEdit, String newValue) {
+    private Person editPersonPolicies(Person personToEdit, String newValue) throws ParseException {
         String[] policiesStrings = newValue.split(SET_DELIMITER);
-        Set<Policy> newPolicies = Arrays.stream(policiesStrings)
-                .map(this::stringToPolicy)
-                .collect(Collectors.toSet());
+        Set<Policy> newPolicies = new HashSet<>();
+        for (String policiesString : policiesStrings) {
+            Policy policy = ParserUtil.parsePolicy(policiesString);
+            newPolicies.add(policy);
+        }
 
         return new Person(
                 personToEdit.getName(),
@@ -233,27 +221,13 @@ public class PersonAdapter {
                 personToEdit.getAssets());
     }
 
-    /**
-     * Converts String representative of a liability to a {@code Liability}.
-     *
-     * @param liabilityString String representative of liability.
-     * @return A Liability.
-     */
-    private Liability stringToLiability(String liabilityString) {
-        String[] details = liabilityString.split(ATTRIBUTE_DELIMITER);
-        //@parserteam do error handling for this
-        //        if (details != 4) {
-        //            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
-        //        }
-
-        return new Liability(details);
-    }
-
-    private Person editPersonLiabilities(Person personToEdit, String newValue) {
+    private Person editPersonLiabilities(Person personToEdit, String newValue) throws ParseException {
         String[] liabilitiesStrings = newValue.split(ATTRIBUTE_DELIMITER);
-        Set<Liability> newLiabilities = Arrays.stream(liabilitiesStrings)
-                .map(this::stringToLiability)
-                .collect(Collectors.toSet());
+        Set<Liability> newLiabilities = new HashSet<>();
+        for (String liabilitiesString : liabilitiesStrings) {
+            Liability liability = ParserUtil.parseLiability(liabilitiesString);
+            newLiabilities.add(liability);
+        }
 
         return new Person(
                 personToEdit.getName(),
@@ -267,27 +241,13 @@ public class PersonAdapter {
                 personToEdit.getAssets());
     }
 
-    /**
-     * Converts String representative of an asset to a {@code Asset}.
-     *
-     * @param assetString String representative of an asset.
-     * @return An Asset.
-     */
-    private Asset stringToAsset(String assetString) {
-        String[] details = assetString.split(ATTRIBUTE_DELIMITER);
-        //@parserteam do error handling for this
-        //        if (details != 4) {
-        //            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
-        //        }
-
-        return new Asset(details);
-    }
-
-    private Person editPersonAssets(Person personToEdit, String newValue) {
+    private Person editPersonAssets(Person personToEdit, String newValue) throws ParseException {
         String[] assetsStrings = newValue.split(SET_DELIMITER);
-        Set<Asset> newAssets = Arrays.stream(assetsStrings)
-                .map(this::stringToAsset)
-                .collect(Collectors.toSet());
+        Set<Asset> newAssets = new HashSet<>();
+        for (String assetsString : assetsStrings) {
+            Asset asset = ParserUtil.parseAsset(assetsString);
+            newAssets.add(asset);
+        }
 
         return new Person(
                 personToEdit.getName(),

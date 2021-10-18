@@ -2,10 +2,8 @@ package donnafin.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import donnafin.commons.core.types.Index;
@@ -137,14 +135,15 @@ public class ParserUtil {
      */
     public static Policy parsePolicy(String policy) throws ParseException {
         String[] details = policy.split(ATTRIBUTE_DELIMITER);
-        Arrays.stream(details).map(Objects::requireNonNull);
 
-        String trimmedPolicy = policy.trim();
-        if (!Policy.isValidPolicy(trimmedPolicy) || details.length != 5) {
+        if (details.length != 5) {
             throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
         }
-
-        return new Policy(details);
+        try {
+            return new Policy(details[0], details[1], details[2], details[3], details[4]);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -169,13 +168,15 @@ public class ParserUtil {
      */
     public static Asset parseAsset(String asset) throws ParseException {
         String[] details = asset.split(ATTRIBUTE_DELIMITER);
-        Arrays.stream(details).map(Objects::requireNonNull);
 
-        String trimmedAsset = asset.trim();
-        if (!Asset.isValidAsset(trimmedAsset) || details.length != 4) {
+        if (details.length != 4) {
             throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
         }
-        return new Asset(details);
+        try {
+            return new Asset(details[0], details[1], details[2], details[3]);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -184,7 +185,6 @@ public class ParserUtil {
     public static Set<Asset> parseAssets(Collection<String> assets) throws ParseException {
         requireNonNull(assets);
         final Set<Asset> assetSet = new HashSet<>();
-
         for (String assetName : assets) {
             assetSet.add(parseAsset(assetName));
         }
@@ -201,14 +201,15 @@ public class ParserUtil {
      */
     public static Liability parseLiability(String liability) throws ParseException {
         String[] details = liability.split(ATTRIBUTE_DELIMITER);
-        Arrays.stream(details).map(Objects::requireNonNull);
 
-        String trimmedLiability = liability.trim();
-        if (!Liability.isValidLiability(trimmedLiability) || details.length != 4) {
+        if (details.length != 4) {
+            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            return new Liability(details[0], details[1], details[2], details[3]);
+        } catch (IllegalArgumentException e) {
             throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
         }
-
-        return new Liability(details);
     }
 
     /**
