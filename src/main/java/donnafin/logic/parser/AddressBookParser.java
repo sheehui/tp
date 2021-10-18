@@ -50,25 +50,50 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        HelpCommand.MESSAGE_USAGE));
+            } else {
+                return new ClearCommand();
+            }
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        HelpCommand.MESSAGE_USAGE));
+            } else {
+                return new ListCommand();
+            }
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        HelpCommand.MESSAGE_USAGE));
+            } else {
+                return new ExitCommand();
+            }
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        HelpCommand.MESSAGE_USAGE));
+            } else {
+                return new HelpCommand();
+            }
 
         case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        HelpCommand.MESSAGE_USAGE));
+            } else {
+                return new HomeCommand();
+            }
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
