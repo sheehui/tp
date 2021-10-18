@@ -11,9 +11,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import donnafin.model.person.Address;
-import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
-import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Person;

@@ -1,8 +1,8 @@
 package donnafin.model.person;
 
-import java.util.Objects;
-
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents a Person's policy in DonnaFin.
@@ -57,13 +57,13 @@ public class Policy implements Attribute {
 
     @Override
     public String toString() {
-        return "Policy{" +
-                "name='" + name + '\'' +
-                ", insurer='" + insurer + '\'' +
-                ", totalValueInsured='" + totalValueInsured + '\'' +
-                ", yearlyPremiums='" + yearlyPremiums + '\'' +
-                ", commission='" + commission + '\'' +
-                '}';
+        return "Policy{"
+                + "name='" + name + '\''
+                + ", insurer='" + insurer + '\''
+                + ", totalValueInsured='" + totalValueInsured + '\''
+                + ", yearlyPremiums='" + yearlyPremiums + '\''
+                + ", commission='" + commission + '\''
+                + '}';
     }
 
     @Override

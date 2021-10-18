@@ -2,7 +2,6 @@ package donnafin.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Asset;

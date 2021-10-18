@@ -2,7 +2,6 @@ package donnafin.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Policy;
@@ -12,11 +11,11 @@ import donnafin.model.person.Policy;
  */
 class JsonAdaptedPolicy {
 
-    private final String policyName;
-    private final String policyInsurer;
     public final String policyTotalValueInsured;
     public final String policyYearlyPremiums;
     public final String policyCommission;
+    private final String policyName;
+    private final String policyInsurer;
 
 
     /**

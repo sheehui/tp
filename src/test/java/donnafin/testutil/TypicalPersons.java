@@ -5,7 +5,6 @@ import static donnafin.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_ASSET_ONE;
 import static donnafin.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static donnafin.logic.commands.CommandTestUtil.VALID_LIABILITY_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_LIABILITY_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -28,7 +27,7 @@ import donnafin.model.person.Person;
 public class TypicalPersons {
 
 
-    private static final String policiesInput = String.join(
+    public static final String POLICIES_INPUT = String.join(
             ";;;",
             "XYZ Policy Name",
             "Insurer A",
@@ -36,14 +35,14 @@ public class TypicalPersons {
             "$1",
             "$0.50"
     );
-    private static final String liabilitiesInput = String.join(
+    public static final String LIABILITIES_INPUT = String.join(
             ";;;",
             "Home Mortgage",
             "Bank B",
             "$30",
             "5% per annum"
     );
-    private static final String assetsInput = String.join(
+    public static final String ASSETS_INPUT = String.join(
             ";;;",
             "XYZ Asset Name",
             "Crypto",
@@ -56,58 +55,58 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withNotes("Loves cai fan")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withNotes("Loves CS2103T")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
             .withNotes("Tells lame jokes")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withNotes("Vim god")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withNotes("Moustachio")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withNotes("Curious")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").withNotes("To bee or not to bee")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withNotes("Sir stop sir")
-            .withPolicies(policiesInput)
-            .withLiability(liabilitiesInput)
-            .withAssets(assetsInput).build();
+            .withPolicies(POLICIES_INPUT)
+            .withLiability(LIABILITIES_INPUT)
+            .withAssets(ASSETS_INPUT).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

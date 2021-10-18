@@ -1,9 +1,9 @@
 package donnafin.model.person;
 
+import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Arrays;
 import java.util.Objects;
-
-import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person's liability in DonnaFin.
@@ -55,12 +55,12 @@ public class Liability implements Attribute {
 
     @Override
     public String toString() {
-        return "Liability{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                ", remarks='" + remarks + '\'' +
-                '}';
+        return "Liability{"
+                + "name='" + name + '\''
+                + ", type='" + type + '\''
+                + ", value='" + value + '\''
+                + ", remarks='" + remarks + '\''
+                + '}';
     }
 
     @Override

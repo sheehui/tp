@@ -1,9 +1,9 @@
 package donnafin.model.person;
 
+import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Arrays;
 import java.util.Objects;
-
-import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person's assets in DonnaFin.
@@ -55,12 +55,12 @@ public class Asset implements Attribute {
 
     @Override
     public String toString() {
-        return "Asset{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                ", remarks='" + remarks + '\'' +
-                '}';
+        return "Asset{"
+                + "name='" + name + '\''
+                + ", type='" + type + '\''
+                + ", value='" + value + '\''
+                + ", remarks='" + remarks + '\''
+                + '}';
     }
 
     @Override

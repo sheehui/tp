@@ -15,7 +15,6 @@ import donnafin.logic.commands.AddCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
-import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
