@@ -109,6 +109,23 @@ public class Person {
      */
     @Override
     public boolean equals(Object other) {
+        return equals(other, true)
+                && ((Person) other).getLiabilities().equals(getLiabilities())
+                && ((Person) other).getPolicies().equals(getPolicies())
+                && ((Person) other).getAssets().equals(getAssets());
+    }
+
+    /**
+     *
+     * @param other
+     * @param ignoreCompoundAttributes
+     * @return
+     */
+    public boolean equals(Object other, boolean ignoreCompoundAttributes) {
+        if (!ignoreCompoundAttributes) {
+            return equals(other);
+        }
+
         if (other == this) {
             return true;
         }
@@ -123,10 +140,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getNotes().equals(getNotes())
-                && otherPerson.getLiabilities().equals(getLiabilities())
-                && otherPerson.getPolicies().equals(getPolicies())
-                && otherPerson.getAssets().equals(getAssets());
+                && otherPerson.getNotes().equals(getNotes());
     }
 
     @Override

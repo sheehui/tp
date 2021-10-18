@@ -1,6 +1,7 @@
 package donnafin.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import donnafin.commons.exceptions.IllegalValueException;
@@ -20,7 +21,8 @@ class JsonAdaptedAsset {
      * Constructs a {@code JsonAdaptedAsset} with the given {@code assetName}.
      */
     @JsonCreator
-    public JsonAdaptedAsset(String assetName, String assetType, String assetValue, String assetRemarks) {
+    public JsonAdaptedAsset(@JsonProperty("name") String assetName, @JsonProperty("type") String assetType,
+                            @JsonProperty("value") String assetValue, @JsonProperty("remarks") String assetRemarks) {
         this.assetName = assetName;
         this.assetRemarks = assetRemarks;
         this.assetType = assetType;

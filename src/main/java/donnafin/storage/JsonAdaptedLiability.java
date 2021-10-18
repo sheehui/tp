@@ -1,6 +1,7 @@
 package donnafin.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Liability;
@@ -15,8 +16,9 @@ public class JsonAdaptedLiability {
      * Constructs a {@code JsonAdaptedLiability} with the given {@code liabilityName}.
      */
     @JsonCreator
-    public JsonAdaptedLiability(String liabilityName, String liabilityType, String liabilityValue,
-                                String liabilityRemarks) {
+    public JsonAdaptedLiability(@JsonProperty("name") String liabilityName, @JsonProperty("type") String liabilityType,
+                                @JsonProperty("value") String liabilityValue,
+                                @JsonProperty("remarks") String liabilityRemarks) {
         this.liabilityName = liabilityName;
         this.liabilityRemarks = liabilityRemarks;
         this.liabilityValue = liabilityValue;
