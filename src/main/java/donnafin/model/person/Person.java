@@ -116,10 +116,12 @@ public class Person {
     }
 
     /**
+     * Checks if two {@code Person} are the same during {@code AddCommand} by checking the common attributes
+     * and ignoring the composite financial attributes, which are not present.
      *
-     * @param other
-     * @param ignoreCompoundAttributes
-     * @return
+     * @param other Object being comapred.
+     * @param ignoreCompoundAttributes Boolean value to determine if financial attributes should be compared.
+     * @return Boolean representative if both objects are equal.
      */
     public boolean equals(Object other, boolean ignoreCompoundAttributes) {
         if (!ignoreCompoundAttributes) {

@@ -198,6 +198,13 @@ public class PersonAdapter {
                 personToEdit.getAssets());
     }
 
+
+    /**
+     * Converts String representative of a policy to {@code Policy}.
+     *
+     * @param policyString String representative of a policy.
+     * @return A Policy
+     */
     private Policy stringToPolicy(String policyString) {
         String[] details = policyString.split(ATTRIBUTE_DELIMITER);
         //@parserteam do error handling for this
@@ -226,6 +233,12 @@ public class PersonAdapter {
                 personToEdit.getAssets());
     }
 
+    /**
+     * Converts String representative of a liability to a {@code Liability}.
+     *
+     * @param liabilityString String representative of liability.
+     * @return A Liability.
+     */
     private Liability stringToLiability(String liabilityString) {
         String[] details = liabilityString.split(ATTRIBUTE_DELIMITER);
         //@parserteam do error handling for this
@@ -254,6 +267,12 @@ public class PersonAdapter {
                 personToEdit.getAssets());
     }
 
+    /**
+     * Converts String representative of an asset to a {@code Asset}.
+     *
+     * @param assetString String representative of an asset.
+     * @return An Asset.
+     */
     private Asset stringToAsset(String assetString) {
         String[] details = assetString.split(ATTRIBUTE_DELIMITER);
         //@parserteam do error handling for this
