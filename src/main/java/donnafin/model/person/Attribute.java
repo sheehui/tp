@@ -5,8 +5,8 @@ package donnafin.model.person;
  */
 public interface Attribute {
 
-    public String toString();
-    public boolean equals(Object other);
-    public int hashCode();
+    String toString();
+    boolean equals(Object other);
+    int hashCode();
 
 }

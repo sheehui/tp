@@ -1,7 +1,7 @@
 package donnafin.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Policy;
@@ -11,26 +11,62 @@ import donnafin.model.person.Policy;
  */
 class JsonAdaptedPolicy {
 
+    public final String policyTotalValueInsured;
+    public final String policyYearlyPremiums;
+    public final String policyCommission;
     private final String policyName;
+    private final String policyInsurer;
+
 
     /**
      * Constructs a {@code JsonAdaptedPolicy} with the given {@code policyName}.
      */
     @JsonCreator
-    public JsonAdaptedPolicy(String policyName) {
+    public JsonAdaptedPolicy(@JsonProperty("name") String policyName, @JsonProperty("insurer") String policyInsurer,
+                             @JsonProperty("totalValueInsured")String policyTotalValueInsured,
+                             @JsonProperty("yearlyPremiums") String policyYearlyPremiums,
+                             @JsonProperty("commission") String policyCommission) {
         this.policyName = policyName;
+        this.policyCommission = policyCommission;
+        this.policyInsurer = policyInsurer;
+        this.policyYearlyPremiums = policyYearlyPremiums;
+        this.policyTotalValueInsured = policyTotalValueInsured;
     }
 
     /**
      * Converts a given {@code Policy} into this class for Jackson use.
      */
     public JsonAdaptedPolicy(Policy source) {
-        policyName = source.policyName;
+        policyName = source.name;
+        policyInsurer = source.insurer;
+        policyYearlyPremiums = source.yearlyPremiums;
+        policyTotalValueInsured = source.totalValueInsured;
+        policyCommission = source.commission;
     }
 
-    @JsonValue
+    @JsonProperty("name")
     public String getPolicyName() {
         return policyName;
+    }
+
+    @JsonProperty("commission")
+    public String getPolicyCommission() {
+        return policyCommission;
+    }
+
+    @JsonProperty("insurer")
+    public String getPolicyInsurer() {
+        return policyInsurer;
+    }
+
+    @JsonProperty("totalValueInsured")
+    public String getPolicyTotalValueInsured() {
+        return policyTotalValueInsured;
+    }
+
+    @JsonProperty("yearlyPremiums")
+    public String getPolicyYearlyPremiums() {
+        return policyYearlyPremiums;
     }
 
     /**
@@ -39,9 +75,9 @@ class JsonAdaptedPolicy {
      * @throws IllegalValueException if there were any data constraints violated in the adapted policy.
      */
     public Policy toModelType() throws IllegalValueException {
-        if (!Policy.isValidPolicyName(policyName)) {
+        if (!Policy.isValidPolicy(policyName)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
         }
-        return new Policy(policyName);
+        return new Policy(policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
     }
 }

@@ -27,29 +27,26 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Notes notes;
 
-    // Fin info fields
+    // Financial Information fields
     private final Set<Policy> policies = new HashSet<>();
-    private final Liability liability;
-    private final Commission commission;
-    private final Set<Asset> assetSet = new HashSet<>();
+    private final Set<Liability> liabilities = new HashSet<>();
+    private final Set<Asset> assets = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Notes notes,
-                  Set<Policy> policy, Liability liability,
-                  Commission commission, Set<Asset> assetSet) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  Set<Policy> policies, Set<Liability> liabilities, Set<Asset> assets) {
+        requireAllNonNull(name, phone, email, address, tags, notes, policies, liabilities, assets);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.notes = notes;
-        this.policies.addAll(policy);
-        this.liability = liability;
-        this.commission = commission;
-        this.assetSet.addAll(assetSet);
+        this.policies.addAll(policies);
+        this.liabilities.addAll(liabilities);
+        this.assets.addAll(assets);
     }
 
     public Name getName() {
@@ -72,17 +69,10 @@ public class Person {
         return notes;
     }
 
-    public Liability getLiability() {
-        return liability;
-    }
-
-    public Commission getCommission() {
-        return commission;
-    }
-
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     * Valid for tags, policies, assets and liabilities.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -92,8 +82,12 @@ public class Person {
         return Collections.unmodifiableSet(policies);
     }
 
-    public Set<Asset> getAssetSet() {
-        return Collections.unmodifiableSet(assetSet);
+    public Set<Asset> getAssets() {
+        return Collections.unmodifiableSet(assets);
+    }
+
+    public Set<Liability> getLiabilities() {
+        return Collections.unmodifiableSet(liabilities);
     }
 
     /**
@@ -115,6 +109,25 @@ public class Person {
      */
     @Override
     public boolean equals(Object other) {
+        return equals(other, true)
+                && ((Person) other).getLiabilities().equals(getLiabilities())
+                && ((Person) other).getPolicies().equals(getPolicies())
+                && ((Person) other).getAssets().equals(getAssets());
+    }
+
+    /**
+     * Checks if two {@code Person} are the same during {@code AddCommand} by checking the common attributes
+     * and ignoring the composite financial attributes, which are not present.
+     *
+     * @param other Object being comapred.
+     * @param ignoreCompoundAttributes Boolean value to determine if financial attributes should be compared.
+     * @return Boolean representative if both objects are equal.
+     */
+    public boolean equals(Object other, boolean ignoreCompoundAttributes) {
+        if (!ignoreCompoundAttributes) {
+            return equals(other);
+        }
+
         if (other == this) {
             return true;
         }
@@ -156,6 +169,25 @@ public class Person {
         }
 
         builder.append("; Notes: ").append(getNotes());
+
+        Set<Policy> policies = getPolicies();
+        if (!policies.isEmpty()) {
+            builder.append("; Policies: ");
+            policies.forEach(builder::append);
+        }
+
+        Set<Liability> liabilities = getLiabilities();
+        if (!liabilities.isEmpty()) {
+            builder.append("; Liabilities: ");
+            liabilities.forEach(builder::append);
+        }
+
+        Set<Asset> assets = getAssets();
+        if (!assets.isEmpty()) {
+            builder.append("; Assets: ");
+            assets.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
@@ -170,8 +202,9 @@ public class Person {
 
     public ObservableList<Attribute> getFinancialAttributeList() {
         ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
-        attributeObservableList.add(liability);
-        attributeObservableList.add(commission);
+        attributeObservableList.addAll(policies);
+        attributeObservableList.addAll(liabilities);
+        attributeObservableList.addAll(assets);
         return attributeObservableList;
     }
 }

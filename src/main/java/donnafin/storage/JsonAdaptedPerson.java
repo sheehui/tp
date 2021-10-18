@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
-import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
@@ -34,11 +33,10 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String notes;
-    private final String liability;
-    private final String commission;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
     private final List<JsonAdaptedAsset> assets = new ArrayList<>();
+    private final List<JsonAdaptedLiability> liabilities = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,8 +47,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("notes") String notes,
             @JsonProperty("policies") List<JsonAdaptedPolicy> policies,
-            @JsonProperty("liability") String liability,
-            @JsonProperty("commission") String commission,
+            @JsonProperty("liabilities") List<JsonAdaptedLiability> liabilities,
             @JsonProperty("assets") List<JsonAdaptedAsset> assets) {
         this.name = name;
         this.phone = phone;
@@ -63,10 +60,11 @@ class JsonAdaptedPerson {
         if (policies != null) {
             this.policies.addAll(policies);
         }
-        this.liability = liability;
-        this.commission = commission;
         if (assets != null) {
             this.assets.addAll(assets);
+        }
+        if (liabilities != null) {
+            this.liabilities.addAll(liabilities);
         }
     }
 
@@ -85,10 +83,11 @@ class JsonAdaptedPerson {
         policies.addAll(source.getPolicies().stream()
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
-        liability = source.getLiability().value;
-        commission = source.getCommission().value;
-        assets.addAll(source.getAssetSet().stream()
+        assets.addAll(source.getAssets().stream()
                 .map(JsonAdaptedAsset::new)
+                .collect(Collectors.toList()));
+        liabilities.addAll(source.getLiabilities().stream()
+                .map(JsonAdaptedLiability::new)
                 .collect(Collectors.toList()));
     }
 
@@ -101,6 +100,7 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         final List<Policy> personPolicies = new ArrayList<>();
         final List<Asset> personAssets = new ArrayList<>();
+        final List<Liability> personLiabilities = new ArrayList<>();
 
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -111,6 +111,9 @@ class JsonAdaptedPerson {
         }
         for (JsonAdaptedAsset asset : assets) {
             personAssets.add(asset.toModelType());
+        }
+        for (JsonAdaptedLiability liability : liabilities) {
+            personLiabilities.add(liability.toModelType());
         }
 
 
@@ -146,30 +149,13 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (liability == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Liability.class.getSimpleName()));
-        }
-        if (!Liability.isValidLiability(liability)) {
-            throw new IllegalValueException(Liability.MESSAGE_CONSTRAINTS);
-        }
-        final Liability modelLiability = new Liability(liability);
-
-        if (commission == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Commission.class.getSimpleName()));
-        }
-        if (!Commission.isValidCommissionName(commission)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Commission modelCommission = new Commission(commission);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Notes modelNotes = new Notes(notes);
-        final Set<Policy> modelPolicy = new HashSet<>(personPolicies);
+        final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
         final Set<Asset> modelAssets = new HashSet<>(personAssets);
+        final Set<Liability> modelLiabilities = new HashSet<>(personLiabilities);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNotes,
-                modelPolicy, modelLiability, modelCommission, modelAssets);
+                modelPolicies, modelLiabilities, modelAssets);
     }
 
 }

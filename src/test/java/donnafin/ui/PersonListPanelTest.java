@@ -11,9 +11,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import donnafin.model.person.Address;
-import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
-import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
@@ -76,8 +74,7 @@ public class PersonListPanelTest extends GuiUnitTest {
             Email email = new Email("a@aa");
             Address address = new Address("a");
             Person person = new Person(name, phone, email, address, Collections.emptySet(), new Notes(""),
-                    Collections.emptySet(), new Liability(""), new Commission(""),
-                    Collections.emptySet());
+                    Collections.emptySet(), Collections.emptySet(), Collections.emptySet());
             backingList.add(person);
         }
         return backingList;
