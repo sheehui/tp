@@ -39,24 +39,24 @@ class JsonAdaptedAsset {
         assetRemarks = source.remarks;
     }
 
-    @JsonValue
+    @JsonProperty("name")
     public String getAssetName() {
         return assetName;
     }
 
-    @JsonValue
-    public String getAssetRemarks() {
-        return assetRemarks;
-    }
-
-    @JsonValue
+    @JsonProperty("type")
     public String getAssetType() {
         return assetType;
     }
 
-    @JsonValue
+    @JsonProperty("value")
     public String getAssetValue() {
         return assetValue;
+    }
+
+    @JsonProperty("remarks")
+    public String getAssetRemarks() {
+        return assetRemarks;
     }
 
     /**

@@ -35,22 +35,22 @@ public class JsonAdaptedLiability {
         liabilityRemarks = source.remarks;
     }
 
-    @JsonValue
+    @JsonProperty("name")
     public String getLiabilityName() {
         return liabilityName;
     }
 
-    @JsonValue
+    @JsonProperty("type")
     public String getLiabilityType() {
         return liabilityType;
     }
 
-    @JsonValue
+    @JsonProperty("value")
     public String getLiabilityValue() {
         return liabilityValue;
     }
 
-    @JsonValue
+    @JsonProperty("remarks")
     public String getLiabilityRemarks() {
         return liabilityRemarks;
     }

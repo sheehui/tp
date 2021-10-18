@@ -45,27 +45,27 @@ class JsonAdaptedPolicy {
         policyCommission = source.commission;
     }
 
-    @JsonValue
+    @JsonProperty("name")
     public String getPolicyName() {
         return policyName;
     }
 
-    @JsonValue
+    @JsonProperty("commission")
     public String getPolicyCommission() {
         return policyCommission;
     }
 
-    @JsonValue
+    @JsonProperty("insurer")
     public String getPolicyInsurer() {
         return policyInsurer;
     }
 
-    @JsonValue
+    @JsonProperty("totalValueInsured")
     public String getPolicyTotalValueInsured() {
         return policyTotalValueInsured;
     }
 
-    @JsonValue
+    @JsonProperty("yearlyPremiums")
     public String getPolicyYearlyPremiums() {
         return policyYearlyPremiums;
     }
