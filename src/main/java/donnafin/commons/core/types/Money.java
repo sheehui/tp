@@ -55,7 +55,7 @@ public class Money {
         String smallerUnitValue = "0".repeat(Math.max(0, fractionDigits - numDigitsSmallerValue));
         smallerUnitValue += absVal % divisor;
 
-        return String.format("%s%s %s.%s", sign, currency.getSymbol(), biggerUnitValue, smallerUnitValue);
+        return String.format("%s%s %s.%s", sign, "$", biggerUnitValue, smallerUnitValue);
     }
 
     @Override
