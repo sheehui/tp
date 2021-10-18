@@ -19,7 +19,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class AddressBookParser implements StrategyParser {
 
     /**
      * Used for initial separation of command word and args.
