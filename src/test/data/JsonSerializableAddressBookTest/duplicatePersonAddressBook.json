@@ -5,18 +5,60 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   } ]
 }

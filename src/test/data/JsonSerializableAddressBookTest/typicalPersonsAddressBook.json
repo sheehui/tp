@@ -7,10 +7,31 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "notes" : "Loves cai fan",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -18,10 +39,31 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "notes" : "",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -29,10 +71,31 @@
     "address" : "wall street",
     "tagged" : [ ],
     "notes" : "Loves CS2103T",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -40,10 +103,31 @@
     "address" : "10th street",
     "tagged" : [ "friends" ],
     "notes" : "Tells lame jokes",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -51,10 +135,31 @@
     "address" : "michegan ave",
     "tagged" : [ ],
     "notes" : "Vim god",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -62,10 +167,31 @@
     "address" : "little tokyo",
     "tagged" : [ ],
     "notes" : "Moustachio",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -73,9 +199,30 @@
     "address" : "4th street",
     "tagged" : [ ],
     "notes" : "Curious",
-    "policies" : [ "INSERT POLICY HERE" ],
-    "liability" : "INSERT LIABILITY HERE",
-    "commission" : "INSERT COMMISSION HERE",
-    "assets" : [ "INSERT ASSETS HERE" ]
+      "policies": [
+        {
+          "name": "XYZ Policy Name",
+          "insurer": "Insurer A",
+          "totalValueInsured": "$3",
+          "yearlyPremiums": "$1",
+          "commission": "$0.50"
+        }
+      ],
+      "liabilities": [
+        {
+          "name": "Home Mortgage",
+          "type": "Bank B",
+          "value": "$30",
+          "remarks": ""
+        }
+      ],
+      "assets": [
+        {
+          "name": "XYZ Asset Name",
+          "type": "Crypto",
+          "value": "$3000",
+          "remarks": "HODL"
+        }
+      ]
   } ]
 }
