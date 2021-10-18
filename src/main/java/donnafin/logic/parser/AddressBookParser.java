@@ -68,7 +68,9 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
+            if (arguments.equals("")) {
+                return new HomeCommand();
+            }
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
