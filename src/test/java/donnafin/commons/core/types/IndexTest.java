@@ -1,4 +1,4 @@
-package donnafin.commons.core.index;
+package donnafin.commons.core.types;
 
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

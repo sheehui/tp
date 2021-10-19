@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import donnafin.commons.core.types.Money;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Email;
@@ -192,5 +193,75 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseMoney_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoney(null));
+    }
+
+    @Test
+    public void parseMoney_validWithDollarSign() throws ParseException {
+        assertEquals(new Money(100), ParserUtil.parseMoney("$1"));
+        assertEquals(new Money(100000), ParserUtil.parseMoney("$1000"));
+    }
+
+    @Test
+    public void parseMoney_validWithDollarSignCents() throws ParseException {
+        assertEquals(new Money(105), ParserUtil.parseMoney("$1.05"));
+    }
+
+    @Test
+    public void parseMoney_invalidWithoutDollarSign() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.05"));
+    }
+
+    @Test
+    public void parseMoney_validWithWhiteSpace() throws ParseException {
+        // trailing whitespace
+        assertEquals(new Money(100), ParserUtil.parseMoney("  $1  "));
+        assertEquals(new Money(105), ParserUtil.parseMoney("  $1.05  "));
+
+        // whitespace after dollar sign
+        assertEquals(new Money(100), ParserUtil.parseMoney("  $  1"));
+        assertEquals(new Money(105), ParserUtil.parseMoney("  $    1.05"));
+    }
+
+    @Test
+    public void parseMoney_validWithNegative() throws ParseException {
+        // trailing whitespace
+        assertEquals(new Money(-100), ParserUtil.parseMoney("-$1"));
+        assertEquals(new Money(-105), ParserUtil.parseMoney("-$1.05"));
+
+        // whitespace after dollar sign
+        assertEquals(new Money(-100), ParserUtil.parseMoney("-$1"));
+        assertEquals(new Money(-105), ParserUtil.parseMoney("-$1.05"));
+    }
+
+    @Test
+    public void parseMoney_validWithNegativeAndWhiteSpace() throws ParseException {
+        // trailing whitespace
+        assertEquals(new Money(-100), ParserUtil.parseMoney(" - $1  "));
+        assertEquals(new Money(-105), ParserUtil.parseMoney(" - $1.05  "));
+
+        // whitespace after dollar sign
+        assertEquals(new Money(-100), ParserUtil.parseMoney("  -  $  1"));
+        assertEquals(new Money(-105), ParserUtil.parseMoney(" -  $    1.05"));
+    }
+
+    @Test
+    public void parseMoney_invalidFormats() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.00$"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.0.0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney(".50"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("abc $2.50"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$2.50 abc"));
+    }
+
+    @Test
+    public void parseMoney_invalidWithWrongPrecision() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.000"));
     }
 }

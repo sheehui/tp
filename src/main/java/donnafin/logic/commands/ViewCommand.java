@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import donnafin.commons.core.Messages;
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.ClientParser;

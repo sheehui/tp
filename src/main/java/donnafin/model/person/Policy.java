@@ -4,6 +4,10 @@ import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import donnafin.commons.core.types.Money;
+import donnafin.logic.parser.ParserUtil;
+import donnafin.logic.parser.exceptions.ParseException;
+
 /**
  * Represents a Person's policy in DonnaFin.
  */
@@ -13,9 +17,9 @@ public class Policy implements Attribute {
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
     public final String name;
     public final String insurer;
-    public final String totalValueInsured;
-    public final String yearlyPremiums;
-    public final String commission;
+    public final Money totalValueInsured;
+    public final Money yearlyPremiums;
+    public final Money commission;
 
     /**
      * Constructs a {@code Policy}.
@@ -30,29 +34,13 @@ public class Policy implements Attribute {
         requireAllNonNull(name, insurer, totalValueInsured, yearlyPremiums, commission);
         this.name = name;
         this.insurer = insurer;
-        this.totalValueInsured = totalValueInsured;
-        this.yearlyPremiums = yearlyPremiums;
-        this.commission = commission;
-    }
-
-    /**
-     * Constructs a {@code Policy} with an array input.
-     *
-     * @param details Array containing all fields of new Policy.
-     */
-    public Policy(String[] details) {
-        this.name = details[0];
-        this.insurer = details[1];
-        this.totalValueInsured = details[2];
-        this.yearlyPremiums = details[3];
-        this.commission = details[4];
-    }
-
-    /**
-     * Returns true if a given string is a valid policy name
-     */
-    public static boolean isValidPolicy(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            this.totalValueInsured = ParserUtil.parseMoney(totalValueInsured);
+            this.yearlyPremiums = ParserUtil.parseMoney(yearlyPremiums);
+            this.commission = ParserUtil.parseMoney(commission);
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
+        }
     }
 
     @Override

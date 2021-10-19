@@ -7,7 +7,7 @@ import static donnafin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import donnafin.commons.core.Messages;
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.model.AddressBook;
 import donnafin.model.Model;
 import donnafin.model.ModelManager;
