@@ -57,9 +57,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserClear_throwsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWord_addressBookParserClearThrowsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parserContext.executeParserStrategyCommand("clear client"));
+            -> parserContext.executeParserStrategyCommand("clear client"));
     }
 
     @Test
@@ -75,9 +75,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserExit_throwsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWord_addressBookParserExitThrowsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parserContext.executeParserStrategyCommand("exit client"));
+            -> parserContext.executeParserStrategyCommand("exit client"));
     }
 
     @Test
@@ -94,9 +94,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserHelp_throwsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWord_addressBookParserHelpThrowsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parserContext.executeParserStrategyCommand("help client"));
+            -> parserContext.executeParserStrategyCommand("help client"));
     }
 
     @Test
@@ -105,9 +105,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserList_throwsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWord_addressBookParserListThrowsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parserContext.executeParserStrategyCommand("list client info"));
+            -> parserContext.executeParserStrategyCommand("list client info"));
     }
 
     @Test

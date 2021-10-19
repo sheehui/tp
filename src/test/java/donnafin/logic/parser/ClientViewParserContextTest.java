@@ -45,9 +45,9 @@ public class ClientViewParserContextTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_clientParserExit_throwsParseException() {
+    public void parseCommand_multipleWords_clientParserExitThrowsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> clientViewParser.parseCommand("exit 2"));
+            -> clientViewParser.parseCommand("exit 2"));
     }
 
     @Test
@@ -56,9 +56,9 @@ public class ClientViewParserContextTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_clientParserHelp_throwsParseException() {
+    public void parseCommand_multipleWords_clientParserHelpThrowsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> clientViewParser.parseCommand("help us"));
+            -> clientViewParser.parseCommand("help us"));
     }
 
     @Test
@@ -67,9 +67,9 @@ public class ClientViewParserContextTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_clientParserHome_throwsParseException() {
+    public void parseCommand_multipleWords_clientParserHomeThrowsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> clientViewParser.parseCommand("home sweet home"));
+            -> clientViewParser.parseCommand("home sweet home"));
     }
 
     @Test

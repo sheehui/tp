@@ -23,7 +23,7 @@ public class ClientViewParserTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_exit_throwsParseException() {
+    public void parseCommand_multipleWordsExit_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () -> parser.parseCommand("exit client"));
     }
 
@@ -33,7 +33,7 @@ public class ClientViewParserTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_help_throwsParseException() {
+    public void parseCommand_multipleWordsHelp_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () -> parser.parseCommand("help client"));
     }
 
@@ -43,9 +43,9 @@ public class ClientViewParserTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_home_throwsParseException() {
+    public void parseCommand_multipleWordsHome_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parser.parseCommand("home improvement works"));
+            -> parser.parseCommand("home improvement works"));
     }
 
     @Test
