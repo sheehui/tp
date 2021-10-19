@@ -31,7 +31,7 @@ public class JsonAdaptedLiability {
     public JsonAdaptedLiability(Liability source) {
         liabilityName = source.name;
         liabilityType = source.type;
-        liabilityValue = source.value;
+        liabilityValue = source.value.toString();
         liabilityRemarks = source.remarks;
     }
 
@@ -61,9 +61,6 @@ public class JsonAdaptedLiability {
      * @throws IllegalValueException if there were any data constraints violated in the adapted liability.
      */
     public Liability toModelType() throws IllegalValueException {
-        if (!Liability.isValidLiability(liabilityName)) {
-            throw new IllegalValueException(Liability.MESSAGE_CONSTRAINTS);
-        }
         return new Liability(liabilityName, liabilityType, liabilityValue, liabilityRemarks);
     }
 }

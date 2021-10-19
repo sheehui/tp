@@ -39,9 +39,9 @@ class JsonAdaptedPolicy {
     public JsonAdaptedPolicy(Policy source) {
         policyName = source.name;
         policyInsurer = source.insurer;
-        policyYearlyPremiums = source.yearlyPremiums;
-        policyTotalValueInsured = source.totalValueInsured;
-        policyCommission = source.commission;
+        policyYearlyPremiums = source.yearlyPremiums.toString();
+        policyTotalValueInsured = source.totalValueInsured.toString();
+        policyCommission = source.commission.toString();
     }
 
     @JsonProperty("name")
@@ -75,9 +75,6 @@ class JsonAdaptedPolicy {
      * @throws IllegalValueException if there were any data constraints violated in the adapted policy.
      */
     public Policy toModelType() throws IllegalValueException {
-        if (!Policy.isValidPolicy(policyName)) {
-            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
-        }
         return new Policy(policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
     }
 }

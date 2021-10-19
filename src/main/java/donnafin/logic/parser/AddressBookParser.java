@@ -11,7 +11,6 @@ import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
-import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -19,7 +18,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser implements StrategyParser {
+public class AddressBookParser implements ParserStrategy {
 
     /**
      * Used for initial separation of command word and args.
@@ -66,9 +65,6 @@ public class AddressBookParser implements StrategyParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

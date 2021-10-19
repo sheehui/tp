@@ -1,15 +1,16 @@
 package donnafin.logic.parser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import donnafin.commons.core.Messages;
 import donnafin.logic.commands.Command;
+import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class ClientParser implements StrategyParser {
+public class ClientViewParser implements ParserStrategy {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -23,9 +24,15 @@ public class ClientParser implements StrategyParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
 
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

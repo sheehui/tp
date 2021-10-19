@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import donnafin.logic.Logic;
 import donnafin.ui.Ui;
 
 /**
@@ -16,12 +17,22 @@ public class CommandResult {
 
     private final Consumer<Ui> uiAction;
 
+    private final Consumer<Logic> logicAction;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, Consumer<Ui> uiAction, Consumer<Logic> logicAction) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.uiAction = uiAction;
+        this.logicAction = logicAction;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, Consumer<Ui> uiAction) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.uiAction = uiAction;
+        this(feedbackToUser, uiAction, logic -> {/* do nothing */});
     }
 
     /**
@@ -62,5 +73,9 @@ public class CommandResult {
 
     public Consumer<Ui> getUiAction() {
         return uiAction;
+    }
+
+    public Consumer<Logic> getLogicAction() {
+        return logicAction;
     }
 }

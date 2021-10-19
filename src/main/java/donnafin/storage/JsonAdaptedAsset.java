@@ -33,7 +33,7 @@ class JsonAdaptedAsset {
      */
     public JsonAdaptedAsset(Asset source) {
         assetName = source.name;
-        assetValue = source.value;
+        assetValue = source.value.toString();
         assetType = source.type;
         assetRemarks = source.remarks;
     }
@@ -64,9 +64,6 @@ class JsonAdaptedAsset {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assets.
      */
     public Asset toModelType() throws IllegalValueException {
-        if (!Asset.isValidAsset(assetName)) {
-            throw new IllegalValueException(Asset.MESSAGE_CONSTRAINTS);
-        }
         return new Asset(assetName, assetType, assetValue, assetRemarks);
     }
 

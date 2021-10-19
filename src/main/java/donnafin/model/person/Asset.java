@@ -2,8 +2,11 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
 import java.util.Objects;
+
+import donnafin.commons.core.types.Money;
+import donnafin.logic.parser.ParserUtil;
+import donnafin.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's assets in DonnaFin.
@@ -14,7 +17,7 @@ public class Asset implements Attribute {
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
     public final String name;
     public final String type;
-    public final String value;
+    public final Money value;
     public final String remarks;
 
     /**
@@ -29,28 +32,12 @@ public class Asset implements Attribute {
         requireAllNonNull(name, type, value, remarks);
         this.name = name;
         this.type = type;
-        this.value = value;
+        try {
+            this.value = ParserUtil.parseMoney(value);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
+        }
         this.remarks = remarks;
-    }
-
-    /**
-     * Constructs a {@code Asset} with an array input.
-     *
-     * @param details Array containing all fields of new Asset.
-     */
-    public Asset(String[] details) {
-        Arrays.stream(details).map(Objects::requireNonNull);
-        this.name = details[0];
-        this.type = details[1];
-        this.value = details[2];
-        this.remarks = details[3];
-    }
-
-    /**
-     * Returns true if a given string is a valid asset name
-     */
-    public static boolean isValidAsset(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
