@@ -1,4 +1,4 @@
-package donnafin.commons.core.index;
+package donnafin.commons.core.types;
 
 /**
  * Represents a zero-based or one-based index.

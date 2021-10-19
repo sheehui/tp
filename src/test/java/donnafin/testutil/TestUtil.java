@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.model.Model;
 import donnafin.model.person.Person;
 
