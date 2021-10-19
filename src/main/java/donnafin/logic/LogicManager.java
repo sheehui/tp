@@ -87,7 +87,7 @@ public class LogicManager implements Logic {
     /*
     Function to change the strategyParser in parserContext
      */
-    public void setStrategyParser(ParserStrategy strategyParser) {
+    public void setParserStrategy(ParserStrategy strategyParser) {
         parserContext.setCurrentParserStrategy(strategyParser);
     }
 }
