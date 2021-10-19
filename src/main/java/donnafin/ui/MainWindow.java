@@ -132,21 +132,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    /*
-     * Repopulate viewFinderPlaceholder with person list.
-     * Redirects users from any part of DonnaFin to home page.
-     */
-    /*
-    public void setHandleEsc() {
-        viewWrapper.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                switchToHome();
-                resultDisplayPlaceholder.getChildren().clear();
-            }
-        });
-    }
-    */
-
     /**
      * Switches the children inside the holder with the tab
      * @param holder container for tab

@@ -14,10 +14,10 @@ import donnafin.logic.parser.exceptions.ParseException;
 public class Liability implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
-    public final String name;
-    public final String type;
-    public final Money value;
-    public final String remarks;
+    private final String name;
+    private final String type;
+    private final Money value;
+    private final String remarks;
 
     /**
      * Constructs a {@code Liability}.
@@ -42,10 +42,10 @@ public class Liability implements Attribute {
     @Override
     public String toString() {
         return "Liability{"
-                + "name='" + name + '\''
-                + ", type='" + type + '\''
-                + ", value='" + value + '\''
-                + ", remarks='" + remarks + '\''
+                + "name='" + getName() + '\''
+                + ", type='" + getType() + '\''
+                + ", value='" + getValue() + '\''
+                + ", remarks='" + getRemarks() + '\''
                 + '}';
     }
 
@@ -60,15 +60,34 @@ public class Liability implements Attribute {
         }
 
         Liability liability = (Liability) o;
-        return name.equals(liability.name)
-                && type.equals(liability.type)
-                && value.equals(liability.value)
-                && remarks.equals(liability.remarks);
+        return getName().equals(liability.getName())
+                && getType().equals(liability.getType())
+                && getValue().equals(liability.getValue())
+                && getRemarks().equals(liability.getRemarks());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, value, remarks);
+        return Objects.hash(getName(), getType(), getValue(), getRemarks());
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Money getValue() {
+        return value;
+    }
+
+    public String getValueToString() {
+        return value.toString();
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
 }

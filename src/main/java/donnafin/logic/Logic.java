@@ -50,6 +50,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-
     void setStrategyParser(ParserStrategy strategyParser);
 }
