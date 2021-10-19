@@ -12,7 +12,7 @@ import donnafin.logic.commands.CommandResult;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.AddressBookParser;
 import donnafin.logic.parser.Context;
-import donnafin.logic.parser.StrategyParser;
+import donnafin.logic.parser.ParserStrategy;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.ReadOnlyAddressBook;
@@ -40,7 +40,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = context.executeStrategyParseCommand(commandText);
+        Command command = context.executeParserStrategyCommand(commandText);
         commandResult = command.execute(model);
 
         //Implement any changes logic that needs to happen
@@ -87,7 +87,7 @@ public class LogicManager implements Logic {
     /*
     Function to change the strategyParser in context
      */
-    public void setStrategyParser(StrategyParser strategyParser) {
-        context.setCurrentStrategyParser(strategyParser);
+    public void setStrategyParser(ParserStrategy strategyParser) {
+        context.setCurrentParserStrategy(strategyParser);
     }
 }

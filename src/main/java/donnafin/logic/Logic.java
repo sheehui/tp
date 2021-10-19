@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import donnafin.commons.core.GuiSettings;
 import donnafin.logic.commands.CommandResult;
 import donnafin.logic.commands.exceptions.CommandException;
-import donnafin.logic.parser.StrategyParser;
+import donnafin.logic.parser.ParserStrategy;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.ReadOnlyAddressBook;
@@ -51,5 +51,5 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
 
-    void setStrategyParser(StrategyParser strategyParser);
+    void setStrategyParser(ParserStrategy strategyParser);
 }

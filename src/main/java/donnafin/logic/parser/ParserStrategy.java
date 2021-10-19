@@ -6,7 +6,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 /*
 Interface to declare all strategic parser needs to have parseCommand command
  */
-public interface StrategyParser {
+public interface ParserStrategy {
 
     public Command parseCommand(String userInput) throws ParseException;
 }
