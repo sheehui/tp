@@ -15,6 +15,7 @@ import donnafin.logic.commands.CommandResult;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Person;
+import donnafin.ui.state.UiState;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -35,6 +36,7 @@ public class UiManager implements Ui {
 
     private final Logic logic;
     private MainWindow mainWindow;
+    private UiState uiState;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -75,10 +77,12 @@ public class UiManager implements Ui {
     public void showClientView(PersonAdapter subject) {
         UiPart<Region> clientView = new ClientInfoPanel(subject);
         mainWindow.switchTab(clientView);
+        uiState.setStateClientInfoPanel();
     }
 
     public void showHome() {
         mainWindow.switchToHome();
+//        uiState.setStatePersonListPanel();
     }
 
     private Image getImage(String imagePath) {
