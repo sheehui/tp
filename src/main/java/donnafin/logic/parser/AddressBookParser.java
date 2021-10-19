@@ -67,9 +67,6 @@ public class AddressBookParser implements StrategyParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
-
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
