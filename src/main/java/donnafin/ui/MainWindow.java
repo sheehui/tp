@@ -1,10 +1,12 @@
 package donnafin.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import donnafin.commons.core.GuiSettings;
 import donnafin.commons.core.LogsCenter;
 import donnafin.logic.Logic;
+import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.CommandResult;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -133,26 +135,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Switches the children inside the holder with the tab
-     * @param holder container for tab
-     * @param tab specified tab to be swapped in
+     * Switches the children inside of viewFinder with home.
      */
-    public void switchTab(StackPane holder, UiPart<Region> tab) {
-        logger.info("Switching tab");
-        holder.getChildren().clear();
-        holder.getChildren().add(tab.getRoot());
+    public void switchToHome() {
+        switchTab(this.viewFinderPlaceholder, personListPanel);
+        clientInfoPanel = null;
     }
 
-    /**
-     * Switches the children isnide of viewFinder with the specified tab
-     * @param tab specified tab to be swapped in
-     */
-    public void switchTab(UiPart<Region> tab) {
+    private void switchTab(UiPart<Region> tab) {
         switchTab(this.viewFinderPlaceholder, tab);
     }
 
-    public void switchToHome() {
-        switchTab(this.viewFinderPlaceholder, personListPanel);
+    private void switchTab(StackPane holder, UiPart<Region> tab) {
+        logger.info("Switching tab");
+        holder.getChildren().clear();
+        holder.getChildren().add(tab.getRoot());
     }
 
     /**
@@ -215,6 +212,35 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    public void showClientView(PersonAdapter subject) {
+        clientInfoPanel = new ClientInfoPanel(subject, this::executeCommand);
+        switchTab(clientInfoPanel);
+    }
+
+    public void switchClientViewTab(Ui.ClientViewTab tab) {
+        Objects.requireNonNull(clientInfoPanel);
+        switch (tab) {
+        case PersonalInformation:
+            clientInfoPanel.changeTabToPersonal();
+            break;
+        case Policies:
+            clientInfoPanel.changeTabToPolicies();
+            break;
+        case Assets:
+            clientInfoPanel.changeTabToAssets();
+            break;
+        case Liabilities:
+            clientInfoPanel.changeTabToLiabilities();
+            break;
+        case Notes:
+            clientInfoPanel.changeTabToNotes();
+            break;
+        default:
+            // TODO: @parser team pls
+            throw new RuntimeException("Switched to a fake tab");
         }
     }
 }

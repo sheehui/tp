@@ -18,6 +18,8 @@ import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
+import donnafin.ui.Ui;
+import donnafin.ui.Ui.ClientViewTab;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -247,6 +249,34 @@ public class ParserUtil {
             return new Money((int) (value * dollarCentsToSmallUnit));
         } else {
             throw new ParseException("Input string does not match any monetary value format.");
+        }
+    }
+
+    public static ClientViewTab parseTab(String arguments) throws ParseException {
+        switch (arguments.trim().toUpperCase()) {
+        case "PERSONAL":
+            // fallthrough
+        case "PERSONAL INFORMATION":
+            return ClientViewTab.PersonalInformation;
+        case "POLICY":
+            // fallthrough
+        case "POLICIES":
+            return ClientViewTab.Policies;
+        case "ASSET":
+            // fallthrough
+        case "ASSETS":
+            return ClientViewTab.Assets;
+        case "LIABILITY":
+            // fallthrough
+        case "LIABILITIES":
+            return ClientViewTab.Liabilities;
+        case "NOTE":
+            // fallthrough
+        case "NOTES":
+            return ClientViewTab.Notes;
+        default:
+            System.out.println("\n\n" + arguments);
+            throw new ParseException("Input string does not match any tab");
         }
     }
 }

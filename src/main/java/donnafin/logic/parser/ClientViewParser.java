@@ -8,6 +8,7 @@ import donnafin.logic.commands.Command;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
+import donnafin.logic.commands.SwitchTabCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
 public class ClientViewParser implements ParserStrategy {
@@ -33,6 +34,9 @@ public class ClientViewParser implements ParserStrategy {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case SwitchTabCommand.COMMAND_WORD:
+            return new SwitchTabCommand(ParserUtil.parseTab(arguments));
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

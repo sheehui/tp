@@ -30,6 +30,9 @@ public class DummyUiForCommands implements Ui {
     }
 
     @Override
+    public void switchClientViewTab(ClientViewTab tab) {}
+
+    @Override
     public void showHome() {
         countHome++;
     }
