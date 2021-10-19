@@ -49,46 +49,30 @@ public class AddressBookParser implements ParserStrategy {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            if (!arguments.equals("")) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        HelpCommand.MESSAGE_USAGE));
-            } else {
-                return new ClearCommand();
-            }
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            if (!arguments.equals("")) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        HelpCommand.MESSAGE_USAGE));
-            } else {
-                return new ListCommand();
-            }
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
-            if (!arguments.equals("")) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        HelpCommand.MESSAGE_USAGE));
-            } else {
-                return new ExitCommand();
-            }
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new ExitCommand();
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            if (!arguments.equals("")) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        HelpCommand.MESSAGE_USAGE));
-            } else {
-                return new HelpCommand();
-            }
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new HelpCommand();
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private Command throwsInvalidInputMsg() throws ParseException {
+        throw new ParseException(Messages.MESSAGE_USE_HELP_COMMAND);
     }
 
 }
