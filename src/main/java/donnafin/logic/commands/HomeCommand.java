@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 import donnafin.logic.Logic;
 import donnafin.logic.parser.AddressBookParser;
-import donnafin.logic.parser.ClientParser;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
 

@@ -1,15 +1,16 @@
 package donnafin.logic.parser;
 
-import donnafin.logic.commands.ExitCommand;
-import donnafin.logic.commands.HelpCommand;
-import donnafin.logic.commands.HomeCommand;
-import donnafin.logic.parser.exceptions.ParseException;
-import org.junit.jupiter.api.Test;
-
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import donnafin.logic.commands.ExitCommand;
+import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
+import donnafin.logic.parser.exceptions.ParseException;
 
 public class ClientParserTest {
 
@@ -36,7 +37,7 @@ public class ClientParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+            -> parser.parseCommand(""));
     }
 
     @Test

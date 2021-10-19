@@ -47,10 +47,13 @@ public class ViewCommand extends Command {
         PersonAdapter personToView = new PersonAdapter(model, person);
         String feedbackToUser = String.format(MESSAGE_VIEW_PERSON_SUCCESS, person.getName());
         return new CommandResult(
-                feedbackToUser,
-                ui -> { ui.showClientView(personToView);},
-                logic -> {logic.setStrategyParser(new ClientParser());
-        });
+            feedbackToUser,
+            ui -> {
+                ui.showClientView(personToView);
+            },
+            logic -> {
+                logic.setStrategyParser(new ClientParser());
+            });
     }
 
     @Override
