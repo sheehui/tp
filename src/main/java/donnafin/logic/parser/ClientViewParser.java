@@ -10,7 +10,7 @@ import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
-public class ClientParser implements ParserStrategy {
+public class ClientViewParser implements ParserStrategy {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 

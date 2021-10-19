@@ -12,9 +12,9 @@ import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
-public class ClientParserTest {
+public class ClientViewParserTest {
 
-    private final ClientParser parser = new ClientParser();
+    private final ClientViewParser parser = new ClientViewParser();
 
     @Test
     public void parseCommand_exit() throws Exception {

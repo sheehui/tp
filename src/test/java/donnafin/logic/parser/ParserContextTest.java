@@ -7,54 +7,54 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
-Used to test the other functions of Context.For test regarding a specific ParserStrategy,
-refer to ContextClientParserTest or ContextAddressBookParserTest
+Used to test the other functions of ParserContext.For test regarding a specific ParserStrategy,
+refer to ClientViewParserContextTest or AddressBookParserContextTest
  */
-public class ContextTest {
+public class ParserContextTest {
 
     private final AddressBookParser addressBookParser = new AddressBookParser();
-    private final ClientParser clientParser = new ClientParser();
-    private Context context = new Context(addressBookParser);
+    private final ClientViewParser clientViewParser = new ClientViewParser();
+    private ParserContext parserContext = new ParserContext(addressBookParser);
 
     @BeforeEach
     public void reset() {
-        context = new Context(addressBookParser);
+        parserContext = new ParserContext(addressBookParser);
     }
 
     @Test
     public void test_constructor() {
-        ParserStrategy currentParserStrategy = context.getCurrentStrategyParser();
+        ParserStrategy currentParserStrategy = parserContext.getCurrentParserStrategy();
         assertTrue(strategyIsAddressBookParser());
     }
 
     @Test
     public void test_setCurrentParserStrategy() {
-        context.setCurrentParserStrategy(clientParser);
+        parserContext.setCurrentParserStrategy(clientViewParser);
         assertTrue(strategyIsClientParser());
         assertFalse(strategyIsAddressBookParser());
 
-        context.setCurrentParserStrategy(addressBookParser);
+        parserContext.setCurrentParserStrategy(addressBookParser);
         assertTrue(strategyIsAddressBookParser());
         assertFalse(this::strategyIsClientParser);
 
         //Test if set currentParserStrategyTwice to addressbook has any errors
-        context.setCurrentParserStrategy(addressBookParser);
+        parserContext.setCurrentParserStrategy(addressBookParser);
         assertTrue(strategyIsAddressBookParser());
         assertFalse(this::strategyIsClientParser);
 
         //Test if setting currentParserStrategyTwice has any errors
-        context.setCurrentParserStrategy(clientParser);
-        context.setCurrentParserStrategy(clientParser);
+        parserContext.setCurrentParserStrategy(clientViewParser);
+        parserContext.setCurrentParserStrategy(clientViewParser);
         assertTrue(strategyIsClientParser());
         assertFalse(strategyIsAddressBookParser());
 
     }
 
     private boolean strategyIsClientParser() {
-        return context.getCurrentStrategyParser().equals(clientParser);
+        return parserContext.getCurrentParserStrategy().equals(clientViewParser);
     }
 
     private boolean strategyIsAddressBookParser() {
-        return context.getCurrentStrategyParser().equals(addressBookParser);
+        return parserContext.getCurrentParserStrategy().equals(addressBookParser);
     }
 }

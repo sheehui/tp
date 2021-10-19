@@ -24,36 +24,36 @@ import donnafin.testutil.PersonBuilder;
 import donnafin.testutil.PersonUtil;
 
 /**
-This class will act as the test class for context when context's ParserStrategy is ClientParser
+This class will act as the test class for parserContext when parserContext's ParserStrategy is ClientViewParser
 It should fail the test for AddressBookParser.
  */
-public class ContextClientParserTest {
+public class ClientViewParserContextTest {
 
-    private ClientParser clientParser = new ClientParser();
-    private Context context = new Context(clientParser);
+    private ClientViewParser clientViewParser = new ClientViewParser();
+    private ParserContext parserContext = new ParserContext(clientViewParser);
 
     @BeforeEach
     public void reset() {
         assertTrue(strategyIsClientParser());
-        context = new Context(clientParser);
+        parserContext = new ParserContext(clientViewParser);
     }
 
     @Test
     public void parseCommand_clientParserExit() throws Exception {
-        assertTrue(context.executeParserStrategyCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(context.executeParserStrategyCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
     public void executeParserStrategyCommand_clientParserHelp() throws Exception {
-        assertTrue(context.executeParserStrategyCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(context.executeParserStrategyCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void executeParserStrategyCommand_clientParserHome() throws Exception {
-        assertTrue(context.executeParserStrategyCommand(HomeCommand.COMMAND_WORD) instanceof HomeCommand);
-        assertTrue(context.executeParserStrategyCommand(
+        assertTrue(parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD) instanceof HomeCommand);
+        assertTrue(parserContext.executeParserStrategyCommand(
                 HomeCommand.COMMAND_WORD + " 3") instanceof HomeCommand);
     }
 
@@ -62,14 +62,14 @@ public class ContextClientParserTest {
         assertThrows(ParseException.class,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 HelpCommand.MESSAGE_USAGE), ()
-                -> context.executeParserStrategyCommand(""));
+                -> parserContext.executeParserStrategyCommand(""));
     }
 
     @Test
     public void executeParserStrategyCommand_clientParserUnknownCommand_throwsParseException() {
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand("unknownCommand"));
+                -> parserContext.executeParserStrategyCommand("unknownCommand"));
     }
 
     //From here on out we should check that AddressBookParser command fails
@@ -78,7 +78,7 @@ public class ContextClientParserTest {
         Person person = new PersonBuilder().build();
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(PersonUtil.getAddCommand(person)));
+                -> parserContext.executeParserStrategyCommand(PersonUtil.getAddCommand(person)));
     }
 
 
@@ -86,20 +86,20 @@ public class ContextClientParserTest {
     public void executeParserStrategyCommand_addressBookParserClear() throws Exception {
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(ClearCommand.COMMAND_WORD));
+                -> parserContext.executeParserStrategyCommand(ClearCommand.COMMAND_WORD));
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(ClearCommand.COMMAND_WORD + "3"));
+                -> parserContext.executeParserStrategyCommand(ClearCommand.COMMAND_WORD + "3"));
     }
 
     @Test
     public void executeParserStrategyCommand_addressBookParserDelete() throws Exception {
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(DeleteCommand.COMMAND_WORD));
+                -> parserContext.executeParserStrategyCommand(DeleteCommand.COMMAND_WORD));
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(DeleteCommand.COMMAND_WORD + "3"));
+                -> parserContext.executeParserStrategyCommand(DeleteCommand.COMMAND_WORD + "3"));
     }
 
     @Test
@@ -108,17 +108,17 @@ public class ContextClientParserTest {
         String userInput = FindCommand.COMMAND_WORD + " " + String.join(" ", keywords);
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(userInput));
+                -> parserContext.executeParserStrategyCommand(userInput));
     }
 
     @Test
     public void executeParserStrategyCommand_addressBookParserList() throws Exception {
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
-                -> context.executeParserStrategyCommand(ListCommand.COMMAND_WORD));
+                -> parserContext.executeParserStrategyCommand(ListCommand.COMMAND_WORD));
     }
 
     private boolean strategyIsClientParser() {
-        return context.getCurrentStrategyParser().equals(clientParser);
+        return parserContext.getCurrentParserStrategy().equals(clientViewParser);
     }
 }

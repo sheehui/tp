@@ -9,16 +9,16 @@ import donnafin.logic.commands.Command;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.UiManager;
 
-public class Context {
+public class ParserContext {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private ParserStrategy currentStrategyParser;
+    private ParserStrategy currentParserStrategy;
 
     /**
     Constructor for context
      */
-    public Context(ParserStrategy parser) {
+    public ParserContext(ParserStrategy parser) {
         logger.info("Init context");
-        this.currentStrategyParser = parser;
+        this.currentParserStrategy = parser;
     }
 
     /**
@@ -27,18 +27,18 @@ public class Context {
     public void setCurrentParserStrategy(ParserStrategy parserStrategy) {
         requireNonNull(parserStrategy);
         logger.info("Setting ParserStrategy");
-        this.currentStrategyParser = parserStrategy;
+        this.currentParserStrategy = parserStrategy;
     }
 
     /**
     Executes the currentParserStrategy parse command
      */
     public Command executeParserStrategyCommand(String userInput) throws ParseException {
-        logger.info("Context executing strategyParserCommand");
-        return currentStrategyParser.parseCommand(userInput);
+        logger.info("ParserContext executing strategyParserCommand");
+        return currentParserStrategy.parseCommand(userInput);
     }
 
-    public ParserStrategy getCurrentStrategyParser() {
-        return this.currentStrategyParser;
+    public ParserStrategy getCurrentParserStrategy() {
+        return this.currentParserStrategy;
     }
 }
