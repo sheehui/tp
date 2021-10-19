@@ -15,7 +15,6 @@ import donnafin.logic.commands.AddCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
-import donnafin.model.person.Commission;
 import donnafin.model.person.Email;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
@@ -50,13 +49,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Policy> policySet = new HashSet<>();
-        Liability liability = new Liability("");
-        Commission commission = new Commission("");
+        Set<Liability> liabilitySet = new HashSet<>();
         Set<Asset> assetSet = new HashSet<>();
         Notes notes = new Notes("");
 
         Person person = new Person(
-                name, phone, email, address, tagList, notes, policySet, liability, commission, assetSet);
+                name, phone, email, address, tagList, notes, policySet, liabilitySet, assetSet);
 
         return new AddCommand(person);
     }
