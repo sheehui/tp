@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -74,8 +73,6 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        setHandleEsc();
-
         helpWindow = new HelpWindow();
     }
 
@@ -133,20 +130,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-
-    /**
-     * Repopulate viewFinderPlaceholder with person list.
-     * Redirects users from any part of DonnaFin to home page.
-     */
-    public void setHandleEsc() {
-        viewWrapper.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                switchToHome();
-                resultDisplayPlaceholder.getChildren().clear();
-            }
-        });
     }
 
     /**
