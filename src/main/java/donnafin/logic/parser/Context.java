@@ -28,4 +28,8 @@ public class Context {
         logger.info("Context executing strategyParserCommand");
         return currentStrategyParser.parseCommand(userInput);
     }
+
+    public ParserStrategy getCurrentStrategyParser() {
+        return this.currentStrategyParser;
+    }
 }
