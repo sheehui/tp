@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Consumer;
 
+import donnafin.logic.Logic;
+import donnafin.logic.parser.AddressBookParser;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
 
@@ -19,6 +21,9 @@ public class HomeCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Consumer<Ui> uiAction = Ui::showHome;
-        return new CommandResult(MESSAGE_SUCCESS, uiAction);
+        Consumer<Logic> logicAction = logic -> {
+            logic.setStrategyParser(new AddressBookParser());
+        };
+        return new CommandResult(MESSAGE_SUCCESS, uiAction, logicAction);
     }
 }

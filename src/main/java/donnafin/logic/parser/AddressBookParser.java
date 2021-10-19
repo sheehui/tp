@@ -11,7 +11,6 @@ import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
-import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -19,7 +18,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class AddressBookParser implements ParserStrategy {
 
     /**
      * Used for initial separation of command word and args.
@@ -85,14 +84,6 @@ public class AddressBookParser {
                         HelpCommand.MESSAGE_USAGE));
             } else {
                 return new HelpCommand();
-            }
-
-        case HomeCommand.COMMAND_WORD:
-            if (!arguments.equals("")) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        HelpCommand.MESSAGE_USAGE));
-            } else {
-                return new HomeCommand();
             }
 
         default:

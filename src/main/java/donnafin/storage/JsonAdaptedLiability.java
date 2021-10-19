@@ -29,10 +29,10 @@ public class JsonAdaptedLiability {
      * Converts a given {@code Liability} into this class for Jackson use.
      */
     public JsonAdaptedLiability(Liability source) {
-        liabilityName = source.name;
-        liabilityType = source.type;
-        liabilityValue = source.value;
-        liabilityRemarks = source.remarks;
+        liabilityName = source.getName();
+        liabilityType = source.getType();
+        liabilityValue = source.getValue().toString();
+        liabilityRemarks = source.getRemarks();
     }
 
     @JsonProperty("name")
@@ -61,9 +61,6 @@ public class JsonAdaptedLiability {
      * @throws IllegalValueException if there were any data constraints violated in the adapted liability.
      */
     public Liability toModelType() throws IllegalValueException {
-        if (!Liability.isValidLiability(liabilityName)) {
-            throw new IllegalValueException(Liability.MESSAGE_CONSTRAINTS);
-        }
         return new Liability(liabilityName, liabilityType, liabilityValue, liabilityRemarks);
     }
 }

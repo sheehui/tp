@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import donnafin.commons.core.Messages;
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 import donnafin.model.Model;
 import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;

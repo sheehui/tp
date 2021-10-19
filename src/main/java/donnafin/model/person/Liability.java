@@ -2,8 +2,11 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
 import java.util.Objects;
+
+import donnafin.commons.core.types.Money;
+import donnafin.logic.parser.ParserUtil;
+import donnafin.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's liability in DonnaFin.
@@ -11,11 +14,10 @@ import java.util.Objects;
 public class Liability implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
-    public static final String VALIDATION_REGEX = "[\\s\\S]*";
-    public final String name;
-    public final String type;
-    public final String value;
-    public final String remarks;
+    private final String name;
+    private final String type;
+    private final Money value;
+    private final String remarks;
 
     /**
      * Constructs a {@code Liability}.
@@ -29,37 +31,21 @@ public class Liability implements Attribute {
         requireAllNonNull(name, type, value, remarks);
         this.name = name;
         this.type = type;
-        this.value = value;
+        try {
+            this.value = ParserUtil.parseMoney(value);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
+        }
         this.remarks = remarks;
-    }
-
-    /**
-     * Constructs a {@code Liability} with an array input.
-     *
-     * @param details Array containing all fields of new Liability.
-     */
-    public Liability(String[] details) {
-        Arrays.stream(details).map(Objects::requireNonNull);
-        this.name = details[0];
-        this.type = details[1];
-        this.value = details[2];
-        this.remarks = details[3];
-    }
-
-    /**
-     * Returns true if a given string is a valid liability name
-     */
-    public static boolean isValidLiability(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
         return "Liability{"
-                + "name='" + name + '\''
-                + ", type='" + type + '\''
-                + ", value='" + value + '\''
-                + ", remarks='" + remarks + '\''
+                + "name='" + getName() + '\''
+                + ", type='" + getType() + '\''
+                + ", value='" + getValue() + '\''
+                + ", remarks='" + getRemarks() + '\''
                 + '}';
     }
 
@@ -74,15 +60,34 @@ public class Liability implements Attribute {
         }
 
         Liability liability = (Liability) o;
-        return name.equals(liability.name)
-                && type.equals(liability.type)
-                && value.equals(liability.value)
-                && remarks.equals(liability.remarks);
+        return getName().equals(liability.getName())
+                && getType().equals(liability.getType())
+                && getValue().equals(liability.getValue())
+                && getRemarks().equals(liability.getRemarks());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, value, remarks);
+        return Objects.hash(getName(), getType(), getValue(), getRemarks());
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Money getValue() {
+        return value;
+    }
+
+    public String getValueToString() {
+        return value.toString();
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
 }

@@ -1,6 +1,6 @@
 package donnafin.testutil;
 
-import donnafin.commons.core.index.Index;
+import donnafin.commons.core.types.Index;
 
 /**
  * A utility class containing a list of {@code Index} objects to be used in tests.

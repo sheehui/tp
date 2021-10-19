@@ -32,10 +32,10 @@ class JsonAdaptedAsset {
      * Converts a given {@code Asset} into this class for Jackson use.
      */
     public JsonAdaptedAsset(Asset source) {
-        assetName = source.name;
-        assetValue = source.value;
-        assetType = source.type;
-        assetRemarks = source.remarks;
+        assetName = source.getName();
+        assetValue = source.getValue().toString();
+        assetType = source.getType();
+        assetRemarks = source.getRemarks();
     }
 
     @JsonProperty("name")
@@ -64,9 +64,6 @@ class JsonAdaptedAsset {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assets.
      */
     public Asset toModelType() throws IllegalValueException {
-        if (!Asset.isValidAsset(assetName)) {
-            throw new IllegalValueException(Asset.MESSAGE_CONSTRAINTS);
-        }
         return new Asset(assetName, assetType, assetValue, assetRemarks);
     }
 

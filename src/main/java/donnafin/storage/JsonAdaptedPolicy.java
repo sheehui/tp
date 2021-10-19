@@ -37,11 +37,11 @@ class JsonAdaptedPolicy {
      * Converts a given {@code Policy} into this class for Jackson use.
      */
     public JsonAdaptedPolicy(Policy source) {
-        policyName = source.name;
-        policyInsurer = source.insurer;
-        policyYearlyPremiums = source.yearlyPremiums;
-        policyTotalValueInsured = source.totalValueInsured;
-        policyCommission = source.commission;
+        policyName = source.getName();
+        policyInsurer = source.getInsurer();
+        policyYearlyPremiums = source.getYearlyPremiums().toString();
+        policyTotalValueInsured = source.getTotalValueInsured().toString();
+        policyCommission = source.getCommission().toString();
     }
 
     @JsonProperty("name")
@@ -75,9 +75,6 @@ class JsonAdaptedPolicy {
      * @throws IllegalValueException if there were any data constraints violated in the adapted policy.
      */
     public Policy toModelType() throws IllegalValueException {
-        if (!Policy.isValidPolicy(policyName)) {
-            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
-        }
         return new Policy(policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
     }
 }

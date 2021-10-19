@@ -79,7 +79,9 @@ public class AttributeTable<T> extends UiPart<Region> {
     @FXML
     private Label aggregatorLabel;
 
-    private final TableView<T> table;
+    @FXML
+    private TableView<T> table;
+
     private final ObservableList<T> data;
 
     /**
@@ -92,7 +94,7 @@ public class AttributeTable<T> extends UiPart<Region> {
      */
     public AttributeTable(TableConfig<? super T> tableConfig, Collection<? extends T> collection) {
         super(FXML);
-        table = new TableView<>();
+        table.getColumns().clear();
         table.setEditable(true);
 
         this.title.setText(tableConfig.tableTitle);
@@ -110,8 +112,6 @@ public class AttributeTable<T> extends UiPart<Region> {
         data = FXCollections.observableArrayList(collection);
         table.getColumns().addAll(columns);
         table.setItems(data);
-
-        container.getChildren().add(table);
     }
 
     public VBox getContainer() {
