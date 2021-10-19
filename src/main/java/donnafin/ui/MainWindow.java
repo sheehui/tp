@@ -215,11 +215,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /** Show Client View */
     public void showClientView(PersonAdapter subject) {
         clientInfoPanel = new ClientInfoPanel(subject, this::executeCommand);
         switchTab(clientInfoPanel);
     }
 
+    /** Switch tab in Client View */
     public void switchClientViewTab(Ui.ClientViewTab tab) {
         Objects.requireNonNull(clientInfoPanel);
         switch (tab) {

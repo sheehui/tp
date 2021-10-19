@@ -1,15 +1,15 @@
 package donnafin.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Consumer;
+
 import donnafin.logic.Logic;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.ClientViewParser;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
 import donnafin.ui.Ui.ClientViewTab;
-
-import java.util.function.Consumer;
-
-import static java.util.Objects.requireNonNull;
 
 public class SwitchTabCommand extends Command {
 

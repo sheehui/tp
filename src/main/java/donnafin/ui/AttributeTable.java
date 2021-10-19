@@ -60,6 +60,7 @@ public class AttributeTable<T> extends UiPart<Region> {
         final List<ColumnConfig> columnConfigs;
         final AggregatorLabelCreator<? super R> aggregatorLabelCreator;
 
+        /** Create Table Config for setting up {@code AttributeTable} */
         public TableConfig(
                 String tableTitle,
                 List<ColumnConfig> columnConfigs,

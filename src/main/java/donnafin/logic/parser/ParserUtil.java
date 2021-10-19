@@ -18,7 +18,6 @@ import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
-import donnafin.ui.Ui;
 import donnafin.ui.Ui.ClientViewTab;
 
 /**
@@ -252,6 +251,10 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parse a string that is expected to describe a tab in {@code ClientView} into
+     * the {@code Ui.ClientViewTab} enum.
+     */
     public static ClientViewTab parseTab(String arguments) throws ParseException {
         switch (arguments.trim().toUpperCase()) {
         case "PERSONAL":
