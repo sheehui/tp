@@ -40,7 +40,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = parserContext.executeParserStrategyCommand(commandText.toLowerCase());
+        Command command = parserContext.executeParserStrategyCommand(commandText);
         commandResult = command.execute(model);
 
         //Implement any changes logic that needs to happen

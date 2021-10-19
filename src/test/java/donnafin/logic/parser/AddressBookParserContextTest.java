@@ -2,6 +2,7 @@ package donnafin.logic.parser;
 
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,8 +54,12 @@ public class AddressBookParserContextTest {
     @Test
     public void executeParserStrategyCommand_addressBookParserClear() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(
-            parserContext.executeParserStrategyCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void executeParserStrategyCommand_multiWord_addressBookParserClear_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+                -> parserContext.executeParserStrategyCommand("clear client"));
     }
 
     @Test
@@ -67,7 +72,12 @@ public class AddressBookParserContextTest {
     @Test
     public void executeParserStrategyCommand_addressBookParserExit() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void executeParserStrategyCommand_multiWord_addressBookParserExit_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+                -> parserContext.executeParserStrategyCommand("exit client"));
     }
 
     @Test
@@ -81,13 +91,23 @@ public class AddressBookParserContextTest {
     @Test
     public void executeParserStrategyCommand_addressBookParserHelp() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void executeParserStrategyCommand_multiWord_addressBookParserHelp_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+                -> parserContext.executeParserStrategyCommand("help client"));
     }
 
     @Test
     public void executeParserStrategyCommand_addressBookParserList() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parserContext.executeParserStrategyCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void executeParserStrategyCommand_multiWord_addressBookParserList_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+                -> parserContext.executeParserStrategyCommand("list client info"));
     }
 
     @Test
