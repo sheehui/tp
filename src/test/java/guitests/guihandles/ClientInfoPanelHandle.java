@@ -4,7 +4,12 @@ import javafx.scene.Node;
 
 public class ClientInfoPanelHandle extends NodeHandle<Node> {
 
-    public static final String CLIENT_INFO_PANEL_ID = "#container";
+    public static final String CLIENT_INFO_PANEL_ID = "#root";
+    public static final String PERSONAL_INFORMATION_BUTTON_ID = "#personalInformation";
+    public static final String POLICIES_BUTTON_ID = "#policies";
+    public static final String ASSETS_BUTTON_ID = "#assets";
+    public static final String LIABILITIES_BUTTON_ID = "#liabilities";
+    public static final String NOTES_BUTTON_ID = "#notes";
     // the above means that it will actually pick out a child component, the vbox containing attribute list
     // instead of the real ClientInfoPanel. Required for GUI Test to have a target.
 

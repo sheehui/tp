@@ -32,10 +32,10 @@ class JsonAdaptedAsset {
      * Converts a given {@code Asset} into this class for Jackson use.
      */
     public JsonAdaptedAsset(Asset source) {
-        assetName = source.name;
-        assetValue = source.value.toString();
-        assetType = source.type;
-        assetRemarks = source.remarks;
+        assetName = source.getName();
+        assetValue = source.getValue().toString();
+        assetType = source.getType();
+        assetRemarks = source.getRemarks();
     }
 
     @JsonProperty("name")

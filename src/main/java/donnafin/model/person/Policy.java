@@ -15,11 +15,11 @@ public class Policy implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
-    public final String name;
-    public final String insurer;
-    public final Money totalValueInsured;
-    public final Money yearlyPremiums;
-    public final Money commission;
+    private final String name;
+    private final String insurer;
+    private final Money totalValueInsured;
+    private final Money yearlyPremiums;
+    private final Money commission;
 
     /**
      * Constructs a {@code Policy}.
@@ -46,11 +46,11 @@ public class Policy implements Attribute {
     @Override
     public String toString() {
         return "Policy{"
-                + "name='" + name + '\''
-                + ", insurer='" + insurer + '\''
-                + ", totalValueInsured='" + totalValueInsured + '\''
-                + ", yearlyPremiums='" + yearlyPremiums + '\''
-                + ", commission='" + commission + '\''
+                + "name='" + getName() + '\''
+                + ", insurer='" + getInsurer() + '\''
+                + ", totalValueInsured='" + getTotalValueInsured() + '\''
+                + ", yearlyPremiums='" + getYearlyPremiums() + '\''
+                + ", commission='" + getCommission() + '\''
                 + '}';
     }
 
@@ -65,15 +65,47 @@ public class Policy implements Attribute {
         }
 
         Policy policy = (Policy) o;
-        return name.equals(policy.name)
-                && insurer.equals(policy.insurer)
-                && totalValueInsured.equals(policy.totalValueInsured)
-                && yearlyPremiums.equals(policy.yearlyPremiums)
-                && commission.equals(policy.commission);
+        return getName().equals(policy.getName())
+                && getInsurer().equals(policy.getInsurer())
+                && getTotalValueInsured().equals(policy.getTotalValueInsured())
+                && getYearlyPremiums().equals(policy.getYearlyPremiums())
+                && getCommission().equals(policy.getCommission());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, insurer, totalValueInsured, yearlyPremiums, commission);
+        return Objects.hash(getName(), getInsurer(), getTotalValueInsured(), getYearlyPremiums(), getCommission());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getInsurer() {
+        return insurer;
+    }
+
+    public Money getTotalValueInsured() {
+        return totalValueInsured;
+    }
+
+    public Money getYearlyPremiums() {
+        return yearlyPremiums;
+    }
+
+    public Money getCommission() {
+        return commission;
+    }
+
+    public String getCommissionToString() {
+        return commission.toString();
+    }
+
+    public String getTotalValueInsuredToString() {
+        return totalValueInsured.toString();
+    }
+
+    public String getYearlyPremiumsToString() {
+        return yearlyPremiums.toString();
     }
 }
