@@ -17,7 +17,7 @@ public class ClientInfoPanelTest extends GuiUnitTest {
 
     @BeforeEach
     public void setUp() {
-        clientInfoPanel = new ClientInfoPanel(new PersonAdapter(null, new PersonBuilder().build()));
+        clientInfoPanel = new ClientInfoPanel(new PersonAdapter(null, new PersonBuilder().build()), null);
         uiPartExtension.setUiPart(clientInfoPanel);
 
         clientInfoPanelHandle = new ClientInfoPanelHandle(

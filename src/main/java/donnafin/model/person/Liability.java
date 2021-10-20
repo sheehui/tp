@@ -2,11 +2,13 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import donnafin.commons.core.types.Money;
 import donnafin.logic.parser.ParserUtil;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.ui.AttributeTable;
 
 /**
  * Represents a Person's liability in DonnaFin.
@@ -14,6 +16,27 @@ import donnafin.logic.parser.exceptions.ParseException;
 public class Liability implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
+    public static final AttributeTable.TableConfig<Liability> TABLE_CONFIG = new AttributeTable.TableConfig<>(
+        "Liabilities",
+        List.of(
+                new AttributeTable.ColumnConfig("Liability Name", "name", 300),
+                new AttributeTable.ColumnConfig("Type", "type", 100),
+                new AttributeTable.ColumnConfig("Value", "valueToString", 100),
+                new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
+        ),
+        liabilityCol -> {
+            Money acc = new Money(0);
+            try {
+                for (Liability liability : liabilityCol) {
+                    Money commission = liability.getValue();
+                    acc = Money.add(acc, commission);
+                }
+            } catch (Money.MoneyException e) {
+                return "-";
+            }
+            return acc.toString();
+        }
+    );
     private final String name;
     private final String type;
     private final Money value;

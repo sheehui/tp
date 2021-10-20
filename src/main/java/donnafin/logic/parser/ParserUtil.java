@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import donnafin.commons.core.types.Index;
@@ -18,6 +19,7 @@ import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
+import donnafin.ui.Ui.ClientViewTab;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -247,6 +249,49 @@ public class ParserUtil {
             return new Money((int) (value * dollarCentsToSmallUnit));
         } else {
             throw new ParseException("Input string does not match any monetary value format.");
+        }
+    }
+
+    /**
+     * Parse a string that is expected to describe a tab in {@code ClientView} into
+     * the {@code Ui.ClientViewTab} enum.
+     */
+    public static ClientViewTab parseTab(String tabName) throws ParseException {
+        Objects.requireNonNull(tabName);
+        tabName = tabName.trim().toUpperCase();
+        switch (tabName) {
+        case "C":
+            // fallthrough
+        case "CONTACT":
+            // fallthrough
+        case "CONTACTS":
+            return ClientViewTab.Contact;
+        case "P":
+            // fallthrough
+        case "POLICY":
+            // fallthrough
+        case "POLICIES":
+            return ClientViewTab.Policies;
+        case "A":
+            // fallthrough
+        case "ASSET":
+            // fallthrough
+        case "ASSETS":
+            return ClientViewTab.Assets;
+        case "L":
+            // fallthrough
+        case "LIABILITY":
+            // fallthrough
+        case "LIABILITIES":
+            return ClientViewTab.Liabilities;
+        case "N":
+            // fallthrough
+        case "NOTE":
+            // fallthrough
+        case "NOTES":
+            return ClientViewTab.Notes;
+        default:
+            throw new ParseException(String.format("Input command is invalid: '%s' does not match any tab", tabName));
         }
     }
 }

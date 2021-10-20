@@ -33,7 +33,12 @@ public class CommandTestUtil {
         SHOW_HOME,
         SHOW_HELP,
         SHOW_EXIT,
-        SHOW_VIEW
+        SHOW_VIEW,
+        SWITCH_TAB_CONTACT,
+        SWITCH_TAB_POLICIES,
+        SWITCH_TAB_ASSETS,
+        SWITCH_TAB_LIABILITIES,
+        SWITCH_TAB_NOTES
     }
 
     public static final String VALID_NAME_AMY = "Amy Bee";

@@ -8,6 +8,14 @@ import javafx.stage.Stage;
  */
 public interface Ui {
 
+    enum ClientViewTab {
+        Contact,
+        Policies,
+        Assets,
+        Liabilities,
+        Notes
+    }
+
     /** Starts the UI (and the App).  */
     void start(Stage primaryStage);
 
@@ -16,6 +24,8 @@ public interface Ui {
     void beginExit();
 
     void showClientView(PersonAdapter subject);
+
+    void switchClientViewTab(ClientViewTab tab);
 
     void showHome();
 }
