@@ -102,27 +102,27 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     /** Gets the {@code CommandExecutor} to carry out switching to contact command */
     public void makeSwitchTabContactCommand() throws CommandException, ParseException {
-        commandExecutor.execute("switch contact");
+        commandExecutor.execute("tab contact");
     };
 
     /** Gets the {@code CommandExecutor} to carry out switching to policies command */
     public void makeSwitchTabPoliciesCommand() throws CommandException, ParseException {
-        commandExecutor.execute("switch policies");
+        commandExecutor.execute("tab policies");
     };
 
     /** Gets the {@code CommandExecutor} to carry out switching to assets command */
     public void makeSwitchTabAssetsCommand() throws CommandException, ParseException {
-        commandExecutor.execute("switch assets");
+        commandExecutor.execute("tab assets");
     };
 
     /** Gets the {@code CommandExecutor} to carry out switching to notes command */
     public void makeSwitchTabNotesCommand() throws CommandException, ParseException {
-        commandExecutor.execute("switch notes");
+        commandExecutor.execute("tab notes");
     };
 
     /** Gets the {@code CommandExecutor} to carry out switching to liabilities command */
     public void makeSwitchTabLiabilitiesCommand() throws CommandException, ParseException {
-        commandExecutor.execute("switch liabilities");
+        commandExecutor.execute("tab liabilities");
     };
 
     protected void changeTabToPolicies() {

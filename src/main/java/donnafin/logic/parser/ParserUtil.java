@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import donnafin.commons.core.types.Index;
@@ -255,8 +256,10 @@ public class ParserUtil {
      * Parse a string that is expected to describe a tab in {@code ClientView} into
      * the {@code Ui.ClientViewTab} enum.
      */
-    public static ClientViewTab parseTab(String arguments) throws ParseException {
-        switch (arguments.trim().toUpperCase()) {
+    public static ClientViewTab parseTab(String tabName) throws ParseException {
+        Objects.requireNonNull(tabName);
+        tabName = tabName.trim().toUpperCase();
+        switch (tabName) {
         case "C":
             // fallthrough
         case "CONTACT":
@@ -288,8 +291,7 @@ public class ParserUtil {
         case "NOTES":
             return ClientViewTab.Notes;
         default:
-            System.out.println("\n\n" + arguments);
-            throw new ParseException("Input string does not match any tab");
+            throw new ParseException(String.format("Input command is invalid: '%s' does not match any tab", tabName));
         }
     }
 }

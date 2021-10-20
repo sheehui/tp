@@ -13,7 +13,7 @@ import donnafin.ui.Ui.ClientViewTab;
 
 public class SwitchTabCommand extends Command {
 
-    public static final String COMMAND_WORD = "switch";
+    public static final String COMMAND_WORD = "tab";
     private static final String MESSAGE_SUCCESS = "Switched tab";
 
     private final ClientViewTab tab;
@@ -32,9 +32,7 @@ public class SwitchTabCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Consumer<Ui> uiAction = ui -> {
-            ui.switchClientViewTab(tab);
-        };
+        Consumer<Ui> uiAction = ui -> ui.switchClientViewTab(tab);
         Consumer<Logic> logicAction = logic -> {
             logic.setParserStrategy(new ClientViewParser());
             // TODO: when we have exactly which parser (WHICH TAB)
