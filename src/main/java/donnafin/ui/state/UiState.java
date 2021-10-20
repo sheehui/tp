@@ -14,10 +14,10 @@ public class UiState {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private enum ViewFinderState {
         PERSONLISTPANEL,
-        PERSONALINFORMATIONTAB,
-        FINANCIALINFORMATIONTAB,
-        LIABILITIESTAB,
+        CONTACTTAB,
         POLICIESTAB,
+        ASSETSTAB,
+        LIABILITIESTAB,
         NOTESTAB,
     }
 
@@ -38,12 +38,12 @@ public class UiState {
 
     public void setStatePersonalInformationTab() {
         logger.info("Set Ui state to personal information");
-        this.state = ViewFinderState.PERSONALINFORMATIONTAB;
+        this.state = ViewFinderState.CONTACTTAB;
     }
 
     public void setStateFinancialInformationTab() {
         logger.info("Set Ui state to financial information");
-        this.state = ViewFinderState.FINANCIALINFORMATIONTAB;
+        this.state = ViewFinderState.ASSETSTAB;
     }
     public void setStateLiabilitiesTab() {
         logger.info("Set Ui state to liabilities");
