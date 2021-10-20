@@ -1,39 +1,24 @@
 package donnafin.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static donnafin.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_TAG;
-import static donnafin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.function.Consumer;
 
-import donnafin.commons.core.types.Index;
 import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.commands.Command;
-import donnafin.logic.commands.CommandResult;
-import donnafin.commons.core.Messages;
-import donnafin.commons.util.CollectionUtil;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.Model;
 import donnafin.model.person.Address;
-import donnafin.model.person.Asset;
 import donnafin.model.person.Email;
-import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
-import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
-import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -65,7 +50,7 @@ public class EditCommand extends Command {
 
     /**
      * @param personAdapter of the person in the filtered person list to edit
-     * @param name new name to be edited.
+     * @param name new name for the contact.
      */
     public EditCommand(PersonAdapter personAdapter, Name name) {
         requireNonNull(personAdapter);
@@ -76,12 +61,16 @@ public class EditCommand extends Command {
         this.consumerPA = x -> {
             try {
                 personAdapter.edit(personField, name.toString());
-            } catch (InvalidFieldException e){
+            } catch (InvalidFieldException e) {
                 e.printStackTrace();
             }
         };
     }
 
+    /**
+     * @param personAdapter of the person in the filtered person list to edit
+     * @param phone new phone number for the contact.
+     */
     public EditCommand(PersonAdapter personAdapter, Phone phone) {
         requireNonNull(personAdapter);
         requireNonNull(phone);
@@ -91,12 +80,16 @@ public class EditCommand extends Command {
         this.consumerPA = x -> {
             try {
                 personAdapter.edit(personField, phone.toString());
-            } catch (InvalidFieldException e){
+            } catch (InvalidFieldException e) {
                 e.printStackTrace();
             }
         };
     }
 
+    /**
+     * @param personAdapter of the person in the filtered person list to edit
+     * @param email new email for the contact.
+     */
     public EditCommand(PersonAdapter personAdapter, Email email) {
         requireNonNull(personAdapter);
         requireNonNull(email);
@@ -106,12 +99,16 @@ public class EditCommand extends Command {
         this.consumerPA = x -> {
             try {
                 personAdapter.edit(personField, email.toString());
-            } catch (InvalidFieldException e){
+            } catch (InvalidFieldException e) {
                 e.printStackTrace();
             }
         };
     }
 
+    /**
+     * @param personAdapter of the person in the filtered person list to edit
+     * @param address new address for the contact.
+     */
     public EditCommand(PersonAdapter personAdapter, Address address) {
         requireNonNull(personAdapter);
         requireNonNull(address);
@@ -121,12 +118,16 @@ public class EditCommand extends Command {
         this.consumerPA = x -> {
             try {
                 personAdapter.edit(personField, address.toString());
-            } catch (InvalidFieldException e){
+            } catch (InvalidFieldException e) {
                 e.printStackTrace();
             }
         };
     }
 
+    /**
+     * @param personAdapter of the person in the filtered person list to edit
+     * @param notes new notes for the contact.
+     */
     public EditCommand(PersonAdapter personAdapter, Notes notes) {
         requireNonNull(personAdapter);
         requireNonNull(notes);
@@ -136,7 +137,7 @@ public class EditCommand extends Command {
         this.consumerPA = x -> {
             try {
                 personAdapter.edit(personField, notes.toString());
-            } catch (InvalidFieldException e){
+            } catch (InvalidFieldException e) {
                 e.printStackTrace();
             }
         };
