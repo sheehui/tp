@@ -18,22 +18,23 @@ public class ClientViewParser implements ParserStrategy {
     @Override
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new HelpCommand();
 
         case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new HomeCommand();
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new ExitCommand();
 
         case SwitchTabCommand.COMMAND_WORD:
             return new SwitchTabCommand(ParserUtil.parseTab(arguments));
@@ -41,5 +42,9 @@ public class ClientViewParser implements ParserStrategy {
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private Command throwsInvalidInputMsg() throws ParseException {
+        throw new ParseException(Messages.MESSAGE_USE_HELP_COMMAND);
     }
 }
