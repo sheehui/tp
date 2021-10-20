@@ -14,7 +14,11 @@ public class UiState {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private enum ViewFinderState {
         PERSONLISTPANEL,
-        CLIENTINFOPANEL
+        PERSONALINFORMATIONTAB,
+        FINANCIALINFORMATIONTAB,
+        LIABILITIESTAB,
+        POLICIESTAB,
+        NOTESTAB,
     }
 
     private ViewFinderState state;
@@ -32,9 +36,28 @@ public class UiState {
         this.state = ViewFinderState.PERSONLISTPANEL;
     }
 
-    public void setStateClientInfoPanel() {
-        logger.info("Set Ui state to client");
-        this.state = ViewFinderState.CLIENTINFOPANEL;
+    public void setStatePersonalInformationTab() {
+        logger.info("Set Ui state to personal information");
+        this.state = ViewFinderState.PERSONALINFORMATIONTAB;
+    }
+
+    public void setStateFinancialInformationTab() {
+        logger.info("Set Ui state to financial information");
+        this.state = ViewFinderState.FINANCIALINFORMATIONTAB;
+    }
+    public void setStateLiabilitiesTab() {
+        logger.info("Set Ui state to liabilities");
+        this.state = ViewFinderState.LIABILITIESTAB;
+    }
+
+    public void setStatePoliciesTab() {
+        logger.info("Set Ui state to policies");
+        this.state = ViewFinderState.POLICIESTAB;
+    }
+
+    public void setStateNotesTab() {
+        logger.info("Set Ui state to notes");
+        this.state = ViewFinderState.NOTESTAB;
     }
 
     public ViewFinderState getState() {

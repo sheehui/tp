@@ -44,6 +44,7 @@ public class UiManager implements Ui {
     public UiManager(Logic logic) {
         super();
         this.logic = logic;
+        this.uiState = new UiState();
     }
 
     @Override
@@ -77,15 +78,17 @@ public class UiManager implements Ui {
     public void showClientView(PersonAdapter subject) {
         UiPart<Region> clientView = new ClientInfoPanel(subject);
         mainWindow.switchTab(clientView);
-        //uiState.setStateClientInfoPanel();
+        uiState.setStatePersonalInformationTab();
     }
+
+
 
     /**
      * Changes the mainwindow to personlist panel, aka "Home"
      */
     public void showHome() {
         mainWindow.switchToHome();
-        //uiState.setStatePersonListPanel();
+        uiState.setStatePersonListPanel();
     }
 
     private Image getImage(String imagePath) {
