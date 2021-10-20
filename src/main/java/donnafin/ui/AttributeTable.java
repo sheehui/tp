@@ -104,6 +104,7 @@ public class AttributeTable<T> extends UiPart<Region> {
         for (ColumnConfig columnConfig : tableConfig.columnConfigs) {
             TableColumn<T, String> col = new TableColumn<>(columnConfig.heading);
             col.setMinWidth(columnConfig.minWidth);
+            col.setMaxWidth(600);
             col.setCellValueFactory(new PropertyValueFactory<>(columnConfig.propertyName));
             columns.add(col);
         }
@@ -112,6 +113,9 @@ public class AttributeTable<T> extends UiPart<Region> {
 
         data = FXCollections.observableArrayList(collection);
         table.getColumns().addAll(columns);
+        table.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
+        System.out.println(columns.size());
+        System.out.println(table.getColumns().size());
         table.setItems(data);
     }
 

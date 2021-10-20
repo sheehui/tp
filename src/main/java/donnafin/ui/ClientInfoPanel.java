@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
@@ -145,11 +146,11 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     protected void changeTabToLiabilities() {
         refresh();
-        attributeDisplayContainer.getChildren().add(
-                new AttributeTable<>(
-                        Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()
-                ).getRoot()
+        AttributeTable<?> at = new AttributeTable<>(
+                Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()
         );
+        attributeDisplayContainer.getChildren().add(at.getRoot());
+        VBox.setVgrow(at.getRoot(), Priority.ALWAYS);
     }
 
     protected void changeTabToNotes() {
