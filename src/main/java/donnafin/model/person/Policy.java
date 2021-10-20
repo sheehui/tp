@@ -36,7 +36,7 @@ public class Policy implements Attribute {
             } catch (Money.MoneyException e) {
                 return "-";
             }
-            return acc.toString();
+            return "Total Policy Commissions: " + acc;
         }
     );
     private final String name;
