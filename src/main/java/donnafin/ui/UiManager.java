@@ -169,6 +169,10 @@ public class UiManager implements Ui {
         return this.mainWindow;
     }
 
+    public UiState getUiState() {
+        return uiState;
+    }
+
     /**
      * Passes the string to logic to execute. Gets the command result back from logic, along with any
      * uiConsumer. If there is one, apply it to the ui
