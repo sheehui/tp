@@ -22,7 +22,7 @@ public class AttributeTable<T> extends UiPart<Region> {
      * ColumnConfig is a data class representing the values required to make a
      * column in the {@code AttributeTable}.
      */
-    protected static class ColumnConfig {
+    public static class ColumnConfig {
         final String heading;
         final String propertyName;
         final int minWidth;
@@ -55,12 +55,13 @@ public class AttributeTable<T> extends UiPart<Region> {
         String applyOn(Collection<? extends R> collection);
     }
 
-    protected static class TableConfig<R> {
+    public static class TableConfig<R> {
         final String tableTitle;
         final List<ColumnConfig> columnConfigs;
         final AggregatorLabelCreator<? super R> aggregatorLabelCreator;
 
-        TableConfig(
+        /** Create Table Config for setting up {@code AttributeTable} */
+        public TableConfig(
                 String tableTitle,
                 List<ColumnConfig> columnConfigs,
                 AggregatorLabelCreator<? super R> aggregatorLabelCreator) {

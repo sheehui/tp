@@ -77,8 +77,8 @@ public class PersonAdapter {
      * Get all attributes from Person.
      * @return Observable list of attributes
      */
-    public ObservableList<Attribute> getAllAttributesList() {
-        return subject.getPersonalAttributesList();
+    public ObservableList<Attribute> getContactAttributesList() {
+        return subject.getContactAttributesList();
     }
 
     private Person editPerson(Person personToEdit, PersonField field, String newValue) throws ParseException {

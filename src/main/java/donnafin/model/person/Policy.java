@@ -2,11 +2,13 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import donnafin.commons.core.types.Money;
 import donnafin.logic.parser.ParserUtil;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.ui.AttributeTable;
 
 /**
  * Represents a Person's policy in DonnaFin.
@@ -15,6 +17,28 @@ public class Policy implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
     public static final String VALIDATION_REGEX = "[\\s\\S]*";
+    public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
+        "Policies",
+        List.of(
+                    new AttributeTable.ColumnConfig("Policy Name", "name", 300),
+                    new AttributeTable.ColumnConfig("Insurer", "insurer", 100),
+                    new AttributeTable.ColumnConfig("Insured Value", "totalValueInsuredToString", 100),
+                    new AttributeTable.ColumnConfig("Yearly Premium", "yearlyPremiumsToString", 100),
+                    new AttributeTable.ColumnConfig("Commission", "commissionToString", 100)
+            ),
+        policyCol -> {
+            Money acc = new Money(0);
+            try {
+                for (Policy policy : policyCol) {
+                    Money commission = policy.getCommission();
+                    acc = Money.add(acc, commission);
+                }
+            } catch (Money.MoneyException e) {
+                return "-";
+            }
+            return acc.toString();
+        }
+    );
     private final String name;
     private final String insurer;
     private final Money totalValueInsured;

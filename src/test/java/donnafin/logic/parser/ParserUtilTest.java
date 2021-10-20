@@ -20,6 +20,7 @@ import donnafin.model.person.Email;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.tag.Tag;
+import donnafin.ui.Ui;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -263,5 +264,69 @@ public class ParserUtilTest {
     public void parseMoney_invalidWithWrongPrecision() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.0"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.000"));
+    }
+
+    @Test
+    public void parseTab_withUpperLowerOrTitleCase_success() throws ParseException {
+        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("contact"));
+        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("policies"));
+        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("assets"));
+        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("liabilities"));
+        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("notes"));
+
+        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("CONTACT"));
+        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("POLICIES"));
+        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("ASSETS"));
+        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("LIABILITIES"));
+        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("NOTES"));
+
+        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("Contact"));
+        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("Policies"));
+        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("Assets"));
+        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("Liabilities"));
+        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("Notes"));
+    }
+
+
+    @Test
+    public void parseTab_unexpectedPluralSingular_success() throws ParseException {
+        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("Contacts"));
+        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("Policy"));
+        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("Asset"));
+        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("Liability"));
+        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("Note"));
+    }
+
+
+    @Test
+    public void parseTab_withInitialsOnly_success() throws ParseException {
+        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("c"));
+        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("p"));
+        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("a"));
+        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("l"));
+        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("n"));
+
+        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("C"));
+        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("P"));
+        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("A"));
+        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("L"));
+        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("N"));
+    }
+
+    @Test
+    public void parseTab_badSpellingOrInvalidTab_throwsParseErr() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("x"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("j"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("k"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("abcdef"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("coontact"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("orsets"));
+    }
+
+    @Test
+    public void parseTab_multipleTabs_throwError() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("contact policy"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab("c p"));
     }
 }

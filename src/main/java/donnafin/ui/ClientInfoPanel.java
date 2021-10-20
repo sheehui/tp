@@ -1,16 +1,15 @@
 package donnafin.ui;
 
-import java.util.List;
-
-import donnafin.commons.core.types.Money;
 import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.PersonAdapter.PersonField;
+import donnafin.logic.commands.exceptions.CommandException;
+import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Attribute;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Policy;
-import donnafin.ui.AttributeTable.ColumnConfig;
-import donnafin.ui.AttributeTable.TableConfig;
+import donnafin.ui.CommandBox.CommandExecutor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -19,79 +18,16 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class ClientInfoPanel extends UiPart<Region> {
-    private static final String FXML = "ClientInfoPanel.fxml";
-    private static final TableConfig<Policy> policyTableConfig = new TableConfig<>(
-        "Policies",
-        List.of(
-                    new ColumnConfig("Policy Name", "name", 300),
-                    new ColumnConfig("Insurer", "insurer", 100),
-                    new ColumnConfig("Insured Value", "totalValueInsuredToString", 100),
-                    new ColumnConfig("Yearly Premium", "yearlyPremiumsToString", 100),
-                    new ColumnConfig("Commission", "commissionToString", 100)
-            ),
-        policyCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Policy policy : policyCol) {
-                    Money commission = policy.getCommission();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return acc.toString();
-        }
-    );
-    private static final TableConfig<Asset> assetTableConfig = new TableConfig<>(
-        "Assets",
-        List.of(
-                new ColumnConfig("Asset Name", "name", 300),
-                new ColumnConfig("Type", "type", 100),
-                new ColumnConfig("Value", "valueToString", 100),
-                new ColumnConfig("Remarks", "remarks", 100)
-        ),
-        assetCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Asset asset : assetCol) {
-                    Money commission = asset.getValue();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return acc.toString();
-        }
-    );
-    private static final TableConfig<Liability> liabilityTableConfig = new TableConfig<>(
-        "Liabilities",
-        List.of(
-                new ColumnConfig("Liability Name", "name", 300),
-                new ColumnConfig("Type", "type", 100),
-                new ColumnConfig("Value", "valueToString", 100),
-                new ColumnConfig("Remarks", "remarks", 100)
-        ),
-        liabilityCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Liability liability : liabilityCol) {
-                    Money commission = liability.getValue();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return acc.toString();
-        }
-    );
 
+    private static final String FXML = "ClientInfoPanel.fxml";
     private final PersonAdapter personAdapter;
+    private final CommandExecutor commandExecutor;
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private Button personalInformation;
+    private Button contact;
 
     @FXML
     private Button policies;
@@ -108,16 +44,14 @@ public class ClientInfoPanel extends UiPart<Region> {
     @FXML
     private VBox attributeDisplayContainer;
 
-    @FXML
-    private TextArea notesTextArea;
-
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ClientInfoPanel(PersonAdapter personAdapter) {
+    public ClientInfoPanel(PersonAdapter personAdapter, CommandExecutor commandExecutor) {
         super(FXML);
         this.personAdapter = personAdapter;
-        changeTabToPersonal();
+        this.commandExecutor = commandExecutor;
+        changeTabToContact();
     }
 
     private AttributePanel createAttributePanel(Attribute attr) {
@@ -125,27 +59,27 @@ public class ClientInfoPanel extends UiPart<Region> {
         return new AttributePanel(
                 fieldInString,
                 attr.toString(),
-                createEditHandler(getPersonPersonalField(fieldInString))
+                createEditHandler(getPersonContactField(fieldInString))
         );
     }
 
     /** Gets the PersonField enum type of attribute from label */
-    private PersonAdapter.PersonField getPersonPersonalField(String fieldInString) {
+    private PersonField getPersonContactField(String fieldInString) {
         switch(fieldInString) {
         case "Name":
-            return PersonAdapter.PersonField.NAME;
+            return PersonField.NAME;
         case "Address":
-            return PersonAdapter.PersonField.ADDRESS;
+            return PersonField.ADDRESS;
         case "Phone":
-            return PersonAdapter.PersonField.PHONE;
+            return PersonField.PHONE;
         case "Email":
-            return PersonAdapter.PersonField.EMAIL;
+            return PersonField.EMAIL;
         default:
             throw new IllegalArgumentException("Unexpected Person Field used");
         }
     }
 
-    private AttributePanel.EditHandler createEditHandler(PersonAdapter.PersonField field) {
+    private AttributePanel.EditHandler createEditHandler(PersonField field) {
         return newValue -> {
             try {
                 this.personAdapter.edit(field, newValue);
@@ -157,56 +91,82 @@ public class ClientInfoPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the VBox content to the Client's personal Details
+     * Updates the VBox content to the Client's contact Details
      */
-    public void changeTabToPersonal() {
+    public void changeTabToContact() {
         refresh();
-        personAdapter.getAllAttributesList().stream()
+        personAdapter.getContactAttributesList().stream()
                 .map(attr -> createAttributePanel(attr).getRoot())
                 .forEach(y -> attributeDisplayContainer.getChildren().add(y));
     }
 
-    /**
-     * Updates the VBox content to the Client's policy Details
-     */
-    public void changeTabToPolicy() {
+    /** Gets the {@code CommandExecutor} to carry out switching to contact command */
+    public void makeSwitchTabContactCommand() throws CommandException, ParseException {
+        commandExecutor.execute("tab contact");
+    };
+
+    /** Gets the {@code CommandExecutor} to carry out switching to policies command */
+    public void makeSwitchTabPoliciesCommand() throws CommandException, ParseException {
+        commandExecutor.execute("tab policies");
+    };
+
+    /** Gets the {@code CommandExecutor} to carry out switching to assets command */
+    public void makeSwitchTabAssetsCommand() throws CommandException, ParseException {
+        commandExecutor.execute("tab assets");
+    };
+
+    /** Gets the {@code CommandExecutor} to carry out switching to notes command */
+    public void makeSwitchTabNotesCommand() throws CommandException, ParseException {
+        commandExecutor.execute("tab notes");
+    };
+
+    /** Gets the {@code CommandExecutor} to carry out switching to liabilities command */
+    public void makeSwitchTabLiabilitiesCommand() throws CommandException, ParseException {
+        commandExecutor.execute("tab liabilities");
+    };
+
+    protected void changeTabToPolicies() {
         refresh();
         attributeDisplayContainer.getChildren().add(
-                new AttributeTable<Policy>(
-                        policyTableConfig, personAdapter.getSubject().getPolicies()
+                new AttributeTable<>(
+                        Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()
                 ).getRoot()
         );
     }
 
-    /**
-     * Updates the VBox content to the Client's Asset Details
-     */
-    public void changeTabToAssets() {
+    protected void changeTabToAssets() {
         refresh();
         attributeDisplayContainer.getChildren().add(
-                new AttributeTable<Asset>(
-                        assetTableConfig, personAdapter.getSubject().getAssets()
+                new AttributeTable<>(
+                        Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()
                 ).getRoot()
         );
     }
 
-    /**
-     * Updates the VBox content to the Client's Liabilities Details
-     */
-    public void changeTabToLiabilities() {
+    protected void changeTabToLiabilities() {
         refresh();
         attributeDisplayContainer.getChildren().add(
-                new AttributeTable<Liability>(
-                        liabilityTableConfig, personAdapter.getSubject().getLiabilities()
+                new AttributeTable<>(
+                        Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()
                 ).getRoot()
         );
     }
 
-    /**
-     * Updates the VBox content to the Client's Notes Details
-     */
-    public void changeTabToNotes() {
+    protected void changeTabToNotes() {
         refresh();
+        TextArea notesField = new TextArea();
+        notesField.setText(personAdapter.getSubject().getNotes().getNotes());
+        notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
+            // TODO: Replace this whole listener with just calling an edit command.
+            // Any errors should be raised in the command box, after execution of the
+            // edit notes logic in Command (See how the buttons on press are handled).
+            try {
+                personAdapter.edit(PersonField.NOTES, newNotes);
+            } catch (InvalidFieldException e) {
+                assert false : "Editing Notes failed ACCEPT-ALL validation";
+            }
+        });
+        attributeDisplayContainer.getChildren().add(notesField);
     }
 
     private void refresh() {

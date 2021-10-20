@@ -22,7 +22,7 @@ public class HomeCommand extends Command {
         requireNonNull(model);
         Consumer<Ui> uiAction = Ui::showHome;
         Consumer<Logic> logicAction = logic -> {
-            logic.setStrategyParser(new AddressBookParser());
+            logic.setParserStrategy(new AddressBookParser());
         };
         return new CommandResult(MESSAGE_SUCCESS, uiAction, logicAction);
     }

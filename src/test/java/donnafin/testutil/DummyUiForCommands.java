@@ -1,5 +1,8 @@
 package donnafin.testutil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.CommandTestUtil;
 import donnafin.ui.Ui;
@@ -10,6 +13,7 @@ public class DummyUiForCommands implements Ui {
     private int countHome = 0;
     private int countExit = 0;
     private int countView = 0;
+    private final List<ClientViewTab> tabSwitches = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) {}
@@ -30,13 +34,20 @@ public class DummyUiForCommands implements Ui {
     }
 
     @Override
+    public void switchClientViewTab(ClientViewTab tab) {
+        tabSwitches.add(tab);
+    }
+
+    @Override
     public void showHome() {
         countHome++;
     }
 
-    private boolean isValid(int countHome, int countExit, int countHelp, int countView) {
-        return countHome == this.countHome && countExit == this.countExit
-            && countHelp == this.countHelp && countView == this.countView;
+    private boolean isValid(
+            int countHome, int countExit, int countHelp,
+            int countView, List<ClientViewTab> tabSwitches) {
+        return countHome == this.countHome && countExit == this.countExit && countHelp == this.countHelp
+                && countView == this.countView && tabSwitches.equals(this.tabSwitches);
     }
 
     /**
@@ -48,13 +59,23 @@ public class DummyUiForCommands implements Ui {
     public boolean isValid(CommandTestUtil.UiActionType expectedType) {
         switch (expectedType) {
         case SHOW_HOME:
-            return isValid(1, 0, 0, 0);
+            return isValid(1, 0, 0, 0, List.of());
         case SHOW_EXIT:
-            return isValid(0, 1, 0, 0);
+            return isValid(0, 1, 0, 0, List.of());
         case SHOW_HELP:
-            return isValid(0, 0, 1, 0);
+            return isValid(0, 0, 1, 0, List.of());
         case SHOW_VIEW:
-            return isValid(0, 0, 0, 1);
+            return isValid(0, 0, 0, 1, List.of());
+        case SWITCH_TAB_CONTACT:
+            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Contact));
+        case SWITCH_TAB_POLICIES:
+            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Policies));
+        case SWITCH_TAB_ASSETS:
+            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Assets));
+        case SWITCH_TAB_LIABILITIES:
+            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Liabilities));
+        case SWITCH_TAB_NOTES:
+            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Notes));
         default:
             assert false : "No such Ui Action Type";
             return false;

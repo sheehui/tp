@@ -52,7 +52,7 @@ public class ViewCommand extends Command {
                 ui.showClientView(personToView);
             },
             logic -> {
-                logic.setStrategyParser(new ClientViewParser());
+                logic.setParserStrategy(new ClientViewParser());
             });
     }
 
