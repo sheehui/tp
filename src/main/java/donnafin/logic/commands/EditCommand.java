@@ -65,53 +65,8 @@ public class EditCommand extends Command {
 
     /**
      * @param personAdapter of the person in the filtered person list to edit
-     * @param liability new liability to be edited.
+     * @param name new name to be edited.
      */
-    public EditCommand(PersonAdapter personAdapter, Liability liability) {
-        requireNonNull(personAdapter);
-        requireNonNull(liability);
-
-        this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.LIABILITIES;
-        this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, liability.toString());
-            } catch (InvalidFieldException e){
-                e.printStackTrace();
-            }
-        };
-    }
-
-    public EditCommand(PersonAdapter personAdapter, Policy policy) {
-        requireNonNull(personAdapter);
-        requireNonNull(policy);
-
-        this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.POLICIES;
-        this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, policy.toString());
-            } catch (InvalidFieldException e){
-                e.printStackTrace();
-            }
-        };
-    }
-
-    public EditCommand(PersonAdapter personAdapter, Asset asset) {
-        requireNonNull(personAdapter);
-        requireNonNull(asset);
-
-        this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.ASSETS;
-        this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, asset.toString());
-            } catch (InvalidFieldException e){
-                e.printStackTrace();
-            }
-        };
-    }
-
     public EditCommand(PersonAdapter personAdapter, Name name) {
         requireNonNull(personAdapter);
         requireNonNull(name);
@@ -166,21 +121,6 @@ public class EditCommand extends Command {
         this.consumerPA = x -> {
             try {
                 personAdapter.edit(personField, address.toString());
-            } catch (InvalidFieldException e){
-                e.printStackTrace();
-            }
-        };
-    }
-
-    public EditCommand(PersonAdapter personAdapter, Tag tags) {
-        requireNonNull(personAdapter);
-        requireNonNull(tags);
-
-        this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.TAGS;
-        this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, tags.toString());
             } catch (InvalidFieldException e){
                 e.printStackTrace();
             }
