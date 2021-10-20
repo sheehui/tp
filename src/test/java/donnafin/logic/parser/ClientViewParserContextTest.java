@@ -2,6 +2,7 @@ package donnafin.logic.parser;
 
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -41,20 +42,34 @@ public class ClientViewParserContextTest {
     @Test
     public void parseCommand_clientParserExit() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_multipleWords_clientParserExitThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+            -> clientViewParser.parseCommand("exit 2"));
     }
 
     @Test
     public void executeParserStrategyCommand_clientParserHelp() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_multipleWords_clientParserHelpThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+            -> clientViewParser.parseCommand("help us"));
     }
 
     @Test
     public void executeParserStrategyCommand_clientParserHome() throws Exception {
         assertTrue(parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD) instanceof HomeCommand);
-        assertTrue(parserContext.executeParserStrategyCommand(
-                HomeCommand.COMMAND_WORD + " 3") instanceof HomeCommand);
+    }
+
+    @Test
+    public void parseCommand_multipleWords_clientParserHomeThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+            -> clientViewParser.parseCommand("home sweet home"));
     }
 
     @Test

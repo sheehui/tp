@@ -2,6 +2,7 @@ package donnafin.logic.parser;
 
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,19 +20,32 @@ public class ClientViewParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_multipleWordsExit_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () -> parser.parseCommand("exit client"));
     }
 
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_multipleWordsHelp_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () -> parser.parseCommand("help client"));
     }
 
     @Test
     public void parseCommand_home() throws Exception {
         assertTrue(parser.parseCommand(HomeCommand.COMMAND_WORD) instanceof HomeCommand);
-        assertTrue(parser.parseCommand(HomeCommand.COMMAND_WORD + " 3") instanceof HomeCommand);
+    }
+
+    @Test
+    public void parseCommand_multipleWordsHome_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
+            -> parser.parseCommand("home improvement works"));
     }
 
     @Test
