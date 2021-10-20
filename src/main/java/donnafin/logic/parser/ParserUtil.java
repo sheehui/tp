@@ -257,22 +257,32 @@ public class ParserUtil {
      */
     public static ClientViewTab parseTab(String arguments) throws ParseException {
         switch (arguments.trim().toUpperCase()) {
-        case "PERSONAL":
+        case "C":
             // fallthrough
-        case "PERSONAL INFORMATION":
-            return ClientViewTab.PersonalInformation;
+        case "CONTACT":
+            // fallthrough
+        case "CONTACTS":
+            return ClientViewTab.Contact;
+        case "P":
+            // fallthrough
         case "POLICY":
             // fallthrough
         case "POLICIES":
             return ClientViewTab.Policies;
+        case "A":
+            // fallthrough
         case "ASSET":
             // fallthrough
         case "ASSETS":
             return ClientViewTab.Assets;
+        case "L":
+            // fallthrough
         case "LIABILITY":
             // fallthrough
         case "LIABILITIES":
             return ClientViewTab.Liabilities;
+        case "N":
+            // fallthrough
         case "NOTE":
             // fallthrough
         case "NOTES":

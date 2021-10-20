@@ -225,8 +225,8 @@ public class MainWindow extends UiPart<Stage> {
     public void switchClientViewTab(Ui.ClientViewTab tab) {
         Objects.requireNonNull(clientInfoPanel);
         switch (tab) {
-        case PersonalInformation:
-            clientInfoPanel.changeTabToPersonal();
+        case Contact:
+            clientInfoPanel.changeTabToContact();
             break;
         case Policies:
             clientInfoPanel.changeTabToPolicies();

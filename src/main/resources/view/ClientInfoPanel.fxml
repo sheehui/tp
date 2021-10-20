@@ -10,7 +10,7 @@
          <children>
             <VBox layoutX="32.0" layoutY="41.0" prefHeight="318.0" prefWidth="130.0" spacing="10.0">
                <children>
-                  <Button fx:id="personalInformation" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#makeSwitchTabPersonalInfoCommand" prefHeight="55.0" prefWidth="100.0" text="Personal " textFill="#010503" />
+                  <Button fx:id="contact" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#makeSwitchTabContactCommand" prefHeight="55.0" prefWidth="100.0" text="Contact" textFill="#010503" />
                   <Button fx:id="policies" layoutX="10.0" layoutY="10.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#makeSwitchTabPoliciesCommand" prefHeight="55.0" prefWidth="100.0" text="Policies" textFill="#010503" />
                   <Button fx:id="assets" layoutX="10.0" layoutY="75.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#makeSwitchTabAssetsCommand" prefHeight="55.0" prefWidth="100.0" text="Assets" textFill="#010503" />
                   <Button fx:id="liabilities" layoutX="10.0" layoutY="140.0" maxHeight="300.0" maxWidth="300.0" mnemonicParsing="false" onAction="#makeSwitchTabLiabilitiesCommand" prefHeight="55.0" prefWidth="100.0" text="Liabilities" textFill="#010503" />

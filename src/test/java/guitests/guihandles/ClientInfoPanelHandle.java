@@ -5,7 +5,7 @@ import javafx.scene.Node;
 public class ClientInfoPanelHandle extends NodeHandle<Node> {
 
     public static final String CLIENT_INFO_PANEL_ID = "#root";
-    public static final String PERSONAL_INFORMATION_BUTTON_ID = "#personalInformation";
+    public static final String CONTACT_BUTTON_ID = "#contact";
     public static final String POLICIES_BUTTON_ID = "#policies";
     public static final String ASSETS_BUTTON_ID = "#assets";
     public static final String LIABILITIES_BUTTON_ID = "#liabilities";

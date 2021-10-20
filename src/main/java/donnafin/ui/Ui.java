@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public interface Ui {
 
     enum ClientViewTab {
-        PersonalInformation,
+        Contact,
         Policies,
         Assets,
         Liabilities,

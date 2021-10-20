@@ -100,7 +100,7 @@ public class PersonTest {
         attributeObservableList.add(ALICE.getPhone());
         attributeObservableList.add(ALICE.getEmail());
         attributeObservableList.add(ALICE.getAddress());
-        assertEquals(attributeObservableList, ALICE.getPersonalAttributesList());
+        assertEquals(attributeObservableList, ALICE.getContactAttributesList());
     }
 
 }

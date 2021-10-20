@@ -191,7 +191,7 @@ public class Person {
         return builder.toString();
     }
 
-    public ObservableList<Attribute> getPersonalAttributesList() {
+    public ObservableList<Attribute> getContactAttributesList() {
         ObservableList<Attribute> attributeObservableList = FXCollections.observableArrayList();
         attributeObservableList.add(name);
         attributeObservableList.add(phone);

@@ -27,7 +27,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     private AnchorPane root;
 
     @FXML
-    private Button personalInformation;
+    private Button contact;
 
     @FXML
     private Button policies;
@@ -54,7 +54,7 @@ public class ClientInfoPanel extends UiPart<Region> {
         super(FXML);
         this.personAdapter = personAdapter;
         this.commandExecutor = commandExecutor;
-        changeTabToPersonal();
+        changeTabToContact();
     }
 
     private AttributePanel createAttributePanel(Attribute attr) {
@@ -62,12 +62,12 @@ public class ClientInfoPanel extends UiPart<Region> {
         return new AttributePanel(
                 fieldInString,
                 attr.toString(),
-                createEditHandler(getPersonPersonalField(fieldInString))
+                createEditHandler(getPersonContactField(fieldInString))
         );
     }
 
     /** Gets the PersonField enum type of attribute from label */
-    private PersonField getPersonPersonalField(String fieldInString) {
+    private PersonField getPersonContactField(String fieldInString) {
         switch(fieldInString) {
         case "Name":
             return PersonField.NAME;
@@ -94,18 +94,18 @@ public class ClientInfoPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the VBox content to the Client's personal Details
+     * Updates the VBox content to the Client's contact Details
      */
-    public void changeTabToPersonal() {
+    public void changeTabToContact() {
         refresh();
-        personAdapter.getAllAttributesList().stream()
+        personAdapter.getContactAttributesList().stream()
                 .map(attr -> createAttributePanel(attr).getRoot())
                 .forEach(y -> attributeDisplayContainer.getChildren().add(y));
     }
 
-    /** Gets the {@code CommandExecutor} to carry out switching to personal command */
-    public void makeSwitchTabPersonalInfoCommand() throws CommandException, ParseException {
-        commandExecutor.execute("switch personal information");
+    /** Gets the {@code CommandExecutor} to carry out switching to contact command */
+    public void makeSwitchTabContactCommand() throws CommandException, ParseException {
+        commandExecutor.execute("switch contact");
     };
 
     /** Gets the {@code CommandExecutor} to carry out switching to policies command */
