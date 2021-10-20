@@ -44,9 +44,6 @@ public class ClientInfoPanel extends UiPart<Region> {
     @FXML
     private VBox attributeDisplayContainer;
 
-    @FXML
-    private TextArea notesTextArea;
-
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -157,6 +154,19 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     protected void changeTabToNotes() {
         refresh();
+        TextArea notesField = new TextArea();
+        notesField.setText(personAdapter.getSubject().getNotes().getNotes());
+        notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
+            // TODO: Replace this whole listener with just calling an edit command.
+            // Any errors should be raised in the command box, after execution of the
+            // edit notes logic in Command (See how the buttons on press are handled).
+            try {
+                personAdapter.edit(PersonField.NOTES, newNotes);
+            } catch (InvalidFieldException e) {
+                assert false : "Editing Notes failed ACCEPT-ALL validation";
+            }
+        });
+        attributeDisplayContainer.getChildren().add(notesField);
     }
 
     private void refresh() {
