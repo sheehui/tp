@@ -35,7 +35,7 @@ public class Asset implements Attribute {
             } catch (Money.MoneyException e) {
                 return "-";
             }
-            return acc.toString();
+            return "Total Asset Value: " + acc;
         }
     );
     private final String name;
