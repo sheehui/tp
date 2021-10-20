@@ -1,19 +1,16 @@
 package donnafin.commons.core.types;
 
-import java.util.Currency;
 import java.util.Objects;
 
 import donnafin.commons.exceptions.IllegalValueException;
 
 public class Money {
-    public static final String MONEY_MISMATCH_CURRENCY =
-            "Arithmetic on different currencies is not supported.";
     public static final String MONEY_ARITHMETIC_OVERFLOW =
             "Unable to calculate due to Integer limitations.";
-    private static final Currency DEFAULT_CURRENCY = Currency.getInstance("SGD");
+    private static final String CURRENCY_SYMBOL = "$";
+    private static final int CURRENCY_EXPONENT = 2;
 
     private final int value;
-    private final Currency currency;
 
     /**
      * Create a Money object with value and currency as specified.
@@ -21,19 +18,7 @@ public class Money {
      * @param valueInSmallestUnit integer value of the currency in its smallest unit (e.g. cent)
      */
     public Money(int valueInSmallestUnit) {
-        this(valueInSmallestUnit, Money.DEFAULT_CURRENCY);
-    }
-
-    /**
-     * Create a Money object with value and currency as specified.
-     *
-     * @param valueInSmallestUnit integer value of the currency in its smallest unit (e.g. cent)
-     * @param currency the currency being used (SGD if omitted).
-     */
-    public Money(int valueInSmallestUnit, Currency currency) {
-        Objects.requireNonNull(currency);
         this.value = valueInSmallestUnit;
-        this.currency = currency;
     }
 
     public int getValue() {
@@ -42,9 +27,8 @@ public class Money {
 
     @Override
     public String toString() {
-        int fractionDigits = this.currency.getDefaultFractionDigits();
         int absVal = Math.abs(value);
-        int divisor = (int) Math.pow(10, fractionDigits);
+        int divisor = (int) Math.pow(10, CURRENCY_EXPONENT);
 
         String biggerUnitValue = "" + absVal / divisor;
         String sign = absVal == value ? " " : "-";
@@ -52,10 +36,10 @@ public class Money {
         int numDigitsSmallerValue = absVal % divisor != 0
                 ? (int) Math.floor(Math.log10(absVal % divisor)) + 1
                 : 1;
-        String smallerUnitValue = "0".repeat(Math.max(0, fractionDigits - numDigitsSmallerValue));
+        String smallerUnitValue = "0".repeat(Math.max(0, CURRENCY_EXPONENT - numDigitsSmallerValue));
         smallerUnitValue += absVal % divisor;
 
-        return String.format("%s%s %s.%s", sign, "$", biggerUnitValue, smallerUnitValue);
+        return String.format("%s%s %s.%s", sign, CURRENCY_SYMBOL, biggerUnitValue, smallerUnitValue);
     }
 
     @Override
@@ -66,13 +50,13 @@ public class Money {
         if (!(o instanceof Money)) {
             return false;
         }
-        Money money = (Money) o;
-        return value == money.value && currency.equals(money.currency);
+        Money other = (Money) o;
+        return value == other.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, currency);
+        return Objects.hash(value);
     }
 
     /**
@@ -83,9 +67,6 @@ public class Money {
      *                        results in an ArithmeticError (Integer overflow).
      */
     public static Money add(Money a, Money b) throws MoneyException {
-        if (!(a.currency.equals(b.currency))) {
-            throw new MoneyException(Money.MONEY_MISMATCH_CURRENCY);
-        }
         try {
             return new Money(Math.addExact(a.value, b.value));
         } catch (ArithmeticException e) {
@@ -101,9 +82,6 @@ public class Money {
      *                        results in an ArithmeticError (Integer overflow).
      */
     public static Money subtract(Money a, Money b) throws MoneyException {
-        if (!(a.currency.equals(b.currency))) {
-            throw new MoneyException(Money.MONEY_MISMATCH_CURRENCY);
-        }
         try {
             return new Money(Math.subtractExact(a.value, b.value));
         } catch (ArithmeticException e) {
