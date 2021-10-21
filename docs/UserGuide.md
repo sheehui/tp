@@ -132,10 +132,9 @@ Format: view INDEX
 Examples:
 * `view 1`
 * This will open a new view mode, where the clients data is present in field-value pairs as such:
-* ![Client View Mockup](./images/ClientViewMockUp.png)
-* Fields can be selected (selection shown with white focus area), and you can cycle through fields with a up/down arrows, or tab/shift-tab or mouse clicks.
-* Hit enter to edit the field
-* Hit escape to leave the client view and return to the main view
+* ![Client View Mockup](./images/ClientViewNew.png)
+* The information related to the client is separated to different tabs.
+* Each tab contains information closely related to the title of the tab.
 
 #### Locating Clients by Name: `find`
 
@@ -170,6 +169,37 @@ fields.
 #### Tab
 
 #### Home
+
+#### Switching tabs : `tab`
+
+Allows user to view a different tab.
+
+Format: `tab KEYWORD`
+
+Keywords available:
+
+`Contact` tab: `c` or `contact` or `contacts`
+
+`Policies` tab: `p` or `policy` or `policies`
+
+`Assets` tab: `a` or `asset` or `assets`
+
+`Liabilities` tab: `l` or `liability` or `liabilities`
+
+`Notes` tab: `n` or `note` or `notes`
+
+Examples:
+
+* `tab c`: Switches the current tab to the `Contact` tab.
+* `tab notes`: Switches the current tab to the `Notes` tab.
+* `tab liability`: Switches the current tab to the `Liabilities` tab.
+
+
+#### Returning to Home view: `home`
+
+Allows the user to return to the home view.
+
+Format: `home`
 
 ### Saving the data
 

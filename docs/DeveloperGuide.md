@@ -171,7 +171,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 **Target user profile**:
 
 * Financial Advisor
-* Has a need to manage a significant number of contacts
+* Has a need to manage a significant number of clients
   * Keep track of their financial and personal information
 * Prefer desktop apps over other types
 * Tech-savvy, comfortable with keyboard shortcuts (CLI apps)
@@ -216,7 +216,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user with many clients in the address book | have a overview page that lists all todos / meetings coming up | Can be organised and easily see all tasks across all of my clients |
 | `* * *`  | user with many clients in the address book | quickly jump to the client when clicking on an upcoming todo/meeting | Easily see accompanying details (financial / personal) when working on a specific task |
 | `* *`    | user                                       | be able to create special dates that have notifications for reminders|set reminders for special occasions |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | user                                       | hide private client details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | user                                       | view free time slots that take into account all existing meetings | easily pick out a new meeting slot based on free times. |
 | `*`      | user with many clients in the address book | sort clients by name           | locate a client easily                                                 |
 | `*`      | frequent user with many clients            | get a notification when a meeting / todo deadline is X days away | be reminded of upcoming tasks / meetings. |
@@ -229,25 +229,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `DonnaFin` application and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Adding a contact to DonnaFin**
+
+**UC01: Adding a client to DonnaFin** \
+State: Home view
 
 **MSS**
 
-1.  User chooses to add contact along with the relevant details
-2.  DonnaFin announces that the contact has been successfully added.\
+1.  User requests to add client along with the relevant details.
+2.  DonnaFin announces that the client has been successfully added.\
     Use Case ends.
 
 **Extensions**
 * 1a. The user types the command using the wrong syntax.
-  * 1a1. DonnaFin shows an error message.\
+  * 1a1. DonnaFin shows an error message and displays the correct format for the user to use and a correct example.\
          Use Case resumes from step 1.
 
-**UC02: Deleting a contact from DonnaFin**
+**UC02: Deleting a client from DonnaFin** \
+State: Home view
 
 **MSS**
 
-1. User requests to delete a contact from DonnaFin using the right syntax.
-2. DonnaFin announces that the contact has been successfully deleted.\
+1. User requests to delete a client from DonnaFin using the right syntax.
+2. DonnaFin announces that the client has been successfully deleted.\
 Use case ends.
 
 **Extensions**
@@ -255,27 +258,29 @@ Use case ends.
 * 1a. The given index is invalid.
 
     * 1a1. DonnaFin shows an error message.
-
+  
       Use case resumes from step 1.
 
-**UC03: Finding a contact by name**
+**UC03: Finding a client by name** \
+State: Home view
 
 **MSS**
-1. User chooses to find a contact within DonnaFin using the right syntax.
-2. DonnaFin displays the contacts that match the keyword inputted.
+1. User chooses to find a client within DonnaFin using the right syntax.
+2. DonnaFin displays the clients that match the keyword inputted.
 
 **Extensions**
 * 1a. The user types the command using the wrong syntax.
   * 1a1. DonnaFin shows an error message.\
          Use Case resumes at step 1.
-* 1b. The keyword does not match any contacts.
-  * 1b1. DonnaFin does not display any contact.\
+* 1b. The keyword does not match any client.
+  * 1b1. DonnaFin does not display any client.\
          Use Case ends.
 
-**UC04: Viewing the details of a contact**
+**UC04: Viewing the details of a client** \
+State: Home view
 
 **MSS**
-1. User requests to view a contact using the right syntax.
+1. User requests to view a client using the right syntax.
 2. DonnaFin displays details on the client.
 
 **Extensions**
@@ -285,24 +290,59 @@ Use case ends.
 * 1b. The given index is invalid.
     * 1b1. DonnaFin shows an error message.\
       Use Case resumes at step 1.
-* 2a. The user selects a particular attribute of the client and edits it (valid input).
-    * 2a1. Save the changes and display details again.\
-      Use case resumes at step 2.
-* 2b. The user selects a particular attribute of the client and edits it (invalid input).
-    * 2b1. DonnaFin displays error and does not save.\
-      Use case resumes at step 2.
 
-**UC05: Getting help**
+
+**UC05: Getting help** \
+State: Works on both Home and Client view
 
 **MSS**
 1. User requests for help to get assistance on commands.
 2. DonnaFin displays a window with the user guide for the DonnaFin application.
 
-**UC06: List**
+**UC06: Listing all clients** \
+State: Home View
 
 **MSS**
-1. User requests for the list of all the registered contacts.
-2. DonnaFin displays all the contacts that has been registered within DonnaFin.
+1. User requests for the list of all the registered clients.
+2. DonnaFin displays all the clients that has been registered within DonnaFin.
+
+**UC07: Exiting the application** \
+State: Works on both Home and Client view
+
+
+**MSS**
+1. User requests to exit the application.
+2. DonnaFin closes itself.
+
+**UC08: Switching to other tabs** \
+State: Client view
+
+**MSS**
+1. User requests to view another tab within the client view.
+2. DonnaFin switches the current tab to the requested tab.
+
+**Extensions**
+* 1a. The user types the wrong command.
+  * 1a1. DonnaFin shows an error message. \
+         Use case resumes at step 1.
+* 1b. The user types the wrong tab title.
+  * 1b1. DonnaFin shows an error message and tells the user that the tab they request does not match any existing tab. \
+         Use case resumes at step 1.
+
+**UC09: Returning to Home View**
+State: Client view
+
+**MSS**
+
+1. User requests to return to home view.
+2. DonnaFin switches the view back to Home view.
+
+**Extensions**
+
+* 1a. The user types the wrong command.
+  * 1a1. DonnaFin shows an error message. \
+        Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
@@ -320,7 +360,7 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private client detail**: A client detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -339,7 +379,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -357,7 +397,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
