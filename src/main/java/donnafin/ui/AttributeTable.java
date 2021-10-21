@@ -114,8 +114,6 @@ public class AttributeTable<T> extends UiPart<Region> {
         data = FXCollections.observableArrayList(collection);
         table.getColumns().addAll(columns);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        System.out.println(columns.size());
-        System.out.println(table.getColumns().size());
         table.setItems(data);
     }
 
