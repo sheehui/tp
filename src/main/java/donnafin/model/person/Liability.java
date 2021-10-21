@@ -34,7 +34,7 @@ public class Liability implements Attribute {
             } catch (Money.MoneyException e) {
                 return "-";
             }
-            return acc.toString();
+            return "Total Liability Value: " + acc;
         }
     );
     private final String name;

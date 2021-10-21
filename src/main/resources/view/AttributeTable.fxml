@@ -10,7 +10,7 @@
 
 <VBox fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="400.0" prefHeight="500.0" spacing="12.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="title" text="Label">
+      <Label fx:id="title" styleClass="attribute-table-title" text="Label">
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
@@ -18,7 +18,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="aggregatorLabel" text="Label">
+      <Label fx:id="aggregatorLabel" styleClass="attribute-table-agg-text" text="Label">
          <VBox.margin>
             <Insets bottom="12.0" left="12.0" right="12.0" />
          </VBox.margin>
