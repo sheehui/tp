@@ -86,7 +86,7 @@ Format: `exit`
 These commands are exclusive to Main Window, which can also be known as Home, the default 
 window that pops up when DonnaFin is opened.
 
-#### Adding a person: `add`
+#### Adding a Client : `add`
 
 Adds a person to the DonnaFin.
 
@@ -100,7 +100,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Deleting a person : `delete`
+#### Deleting a Client : `delete`
 
 Deletes the specified person from the DonnaFin.
 
@@ -114,7 +114,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the DonnaFin.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-#### Listing all persons : `list`
+#### Listing All Clients : `list`
 
 Shows a list of all persons in the DonnaFin.
 
