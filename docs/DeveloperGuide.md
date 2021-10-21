@@ -272,7 +272,7 @@ State: Home view
 * 1a. The user types the command using the wrong syntax.
   * 1a1. DonnaFin shows an error message.\
          Use Case resumes at step 1.
-* 1b. The keyword does not match any clients.
+* 1b. The keyword does not match any client.
   * 1b1. DonnaFin does not display any client.\
          Use Case ends.
 
