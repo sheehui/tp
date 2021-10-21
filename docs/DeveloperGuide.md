@@ -198,31 +198,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                  | I want to …​               | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new client               | add new clients to my list                                             |
-| `* * *`  | user                                       | delete a client                | remove clients that I no longer have                                   |
-| `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* * *`  | user                                       | edit client's personal info    | access and update client personal information                          |
-| `* * *`  | user                                       | edit client's financial info   | access and update client financial information                         |
-| `* * *`  | user                                       | add meeting entry for clients  | track my client meetings                                               |
-| `* * *`  | user                                       | delete meeting entry of clients| remove meetings that are no longer valid                               |
-| `* * *`  | user                                       | view meeting entries associated with any client | access all meeting info of my clients                 |
-| `* * *`  | user                                       | update existing meeting entries with corrections to timings or meeting notes |keep track of all meetings|
-| `* * *`  | user                                       | hide and show my completed tasks | keep my todo list uncluttered and view uncompleted tasks             |
-| `* * *`  | user                                       | create todo tasks              | add todo tasks                                                         |
-| `* * *`  | user                                       | view todo tasks                | see all my tasks                                                       |
-| `* * *`  | user                                       | update todo tasks              | make changes to upcoming tasks                                         |
-| `* * *`  | user                                       | delete todo tasks              | remove tasks that are no longer needed                                 |
-| `* * *`  | user with many clients in the address book | have a overview page that lists all todos / meetings coming up | Can be organised and easily see all tasks across all of my clients |
-| `* * *`  | user with many clients in the address book | quickly jump to the client when clicking on an upcoming todo/meeting | Easily see accompanying details (financial / personal) when working on a specific task |
-| `* *`    | user                                       | be able to create special dates that have notifications for reminders|set reminders for special occasions |
-| `* *`    | user                                       | hide private client details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | view free time slots that take into account all existing meetings | easily pick out a new meeting slot based on free times. |
-| `*`      | user with many clients in the address book | sort clients by name           | locate a client easily                                                 |
-| `*`      | frequent user with many clients            | get a notification when a meeting / todo deadline is X days away | be reminded of upcoming tasks / meetings. |
-| `*`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
-| `*`      | new user                                   | follow a tutorial when editing a client       | learn how to update clients' personal / finance info    |
-| `*`      | new user                                   | follow a tutorial when creating my first meeting | learn how to CRUD meeting / todo objects             |
+| `HIGH`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `HIGH`  | user                                       | add a new client               | add new clients to my list                                             |
+| `HIGH`  | user                                       | delete a client                | remove clients that I no longer have                                   |
+| `HIGH`  | efficient user                                       | find a client by name          | locate details of clients without having to go through the entire list |
+| `HIGH`  | user                                       | view a client's personal info  | find out the personal information about the client |
+| `HIGH`  | user                                       |  return to home view from client's information | move on to view my other clients instead of the current client that I am viewing |
+| `HIGH`  | new user                                       | clear all clients   | delete all clients and reset all my contacts for the application |
+| `HIGH`  |  user                                      |  edit a client's contact information  |  keep up to date with the clients information for further usage|
+| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased| 
+| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |  
+| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|  
+| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|  
+| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|  
+| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |   
+| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |   
+| `HIGH`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |  
+| `HIGH`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
+| `HIGH`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
+| `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
+| `LOW`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
+| `LOW`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
+| `LOW`      | new user                                   |  follow a tutorial to switch between a client's information information tabs |   learn how to view all information regarding a specific client   |
+| `LOW`      | new user                                   | follow a tutorial when adding policies to a client's list of policies       |  learn how to add policies to the list of policies of a specific client   |
+| `LOW`      | new user                                   | follow a tutorial when deleting policies from a client's list of policies       |  learn how to delete policies from the list of policies of a specific client   |
+| `LOW`      | new user                                   | follow a tutorial when adding assets to a client's list of assets      |   learn how to add assets to the list of assets of a specific client  |
+| `LOW`      | new user                                   | follow a tutorial when adding delete from a client's list of asssets   |   learn how to delete assets from the list of assets of a specific client  |
+| `LOW`      | new user                                   | follow a tutorial when adding liabilities to a client's list of liabilities      |   learn how to add liabilities to the list of liabilities of a specific client  |
+| `LOW`      | new user                                   | follow a tutorial when deleting liabilities from a client's list of liabilities      |   learn how to delete liabilities from the list of liabilities of a specific client  |
+| `low`      | new user                                   | follow a tutorial when jotting down notes for a client |   learn how to jot down quick notes regarding general information of the client |
 
 
 ### Use cases
