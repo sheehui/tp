@@ -9,7 +9,16 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+Code Reuse
+* [SE-EDU: Address Book 3](https://github.com/se-edu/addressbook-level3/) - served as the foundation of this project
+* [SE-EDU: Address Book 4](https://github.com/se-edu/addressbook-level4/) - adapted their automated GUI tests for use here.
+
+Libraries / Framework
+* [JavaFX](https://github.com/openjdk/jfx) - front-end Java framework
+* [ShadowJAR](https://github.com/johnrengelman/shadow) - generating fat JARs
+* [Jackson](https://github.com/FasterXML/jackson) - file parsing framework for `.json`
+* [JUnit](https://junit.org/) - testing framework
+* [TestFX](https://testfx.github.io/TestFX/) - automated GUI testing framework
 
 --------------------------------------------------------------------------------------------------------------------
 
