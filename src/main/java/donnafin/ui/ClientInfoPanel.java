@@ -57,14 +57,10 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     private AttributePanel createAttributePanel(Attribute attr) {
         String fieldInString = attr.getClass().getSimpleName();
-        return new AttributePanel(
-                fieldInString,
-                attr.toString(),
-                createEditHandler(getPersonContactField(fieldInString))
-        );
+        return new AttributePanel(fieldInString, attr.toString());
     }
 
-    /** Gets the PersonField enum type of attribute from label */
+    /** Gets the PersonField enum type of attribute from label *
     private PersonField getPersonContactField(String fieldInString) {
         switch(fieldInString) {
         case "Name":
@@ -80,17 +76,6 @@ public class ClientInfoPanel extends UiPart<Region> {
         }
     }
 
-    private AttributePanel.EditHandler createEditHandler(PersonField field) {
-        return newValue -> {
-            try {
-                this.personAdapter.edit(field, newValue);
-                return null;
-            } catch (InvalidFieldException e) {
-                return e.getMessage();
-            }
-        };
-    }
-
     /**
      * Updates the VBox content to the Client's contact Details
      */
@@ -104,27 +89,27 @@ public class ClientInfoPanel extends UiPart<Region> {
     /** Gets the {@code CommandExecutor} to carry out switching to contact command */
     public void makeSwitchTabContactCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab contact");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to policies command */
     public void makeSwitchTabPoliciesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab policies");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to assets command */
     public void makeSwitchTabAssetsCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab assets");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to notes command */
     public void makeSwitchTabNotesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab notes");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to liabilities command */
     public void makeSwitchTabLiabilitiesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab liabilities");
-    };
+    }
 
     protected void changeTabToPolicies() {
         refresh();

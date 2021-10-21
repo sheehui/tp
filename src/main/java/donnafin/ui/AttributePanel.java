@@ -29,28 +29,13 @@ public class AttributePanel extends UiPart<Region> {
     @FXML
     private AnchorPane anchorPane;
 
-    @FunctionalInterface
-    interface EditHandler {
-        /**
-         * EditHandlers will take in the new value and apply it to the given field.
-         * If the edit was successful, it will return null else return the error
-         * message thrown when trying to edit the field in this manner.
-         *
-         * @param newValue the new value to be used in the field.
-         * @return error message thrown by {@code PersonAdapter}.
-         */
-        String applyEdit(String newValue);
-    }
-
-
     /**
      * Constructor for Attribute panel
      *
      * @param fieldInString field heading.
      * @param value initial value of the attribute.
-     * @param editor the callback used to commit changes to model.
      */
-    public AttributePanel(String fieldInString, String value, EditHandler editor) {
+    public AttributePanel(String fieldInString, String value) {
         super(FXML);
         fieldLabel.setText(fieldInString);
         valueLabel.setText(value);
