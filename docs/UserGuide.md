@@ -64,7 +64,10 @@ DonnaFin.io is a desktop DonnaFin application used by financial advisors to keep
 
 </div>
 
-### Viewing help : `help`
+### Global Commands
+These commands can be accessed from any window of DonnaFin.
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -72,8 +75,18 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Exiting the program : `exit`
 
-### Adding a person: `add`
+Exits the program.
+
+Format: `exit`
+
+### Main Window Commands
+
+These commands are exclusive to Main Window, which can also be known as Home, the default 
+window that pops up when DonnaFin is opened.
+
+#### Adding a person: `add`
 
 Adds a person to the DonnaFin.
 
@@ -87,13 +100,27 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+#### Deleting a person : `delete`
+
+Deletes the specified person from the DonnaFin.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the DonnaFin.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+#### Listing all persons : `list`
 
 Shows a list of all persons in the DonnaFin.
 
 Format: `list`
 
-### **View and edit fields and notes for a person : view**
+#### View Client Information : `view`
 
 Access client information in a 'client view' mode where all data on the client is presented to you. Once in the page, you can see each field in detail and edit existing information.
 
@@ -110,7 +137,7 @@ Examples:
 * Hit enter to edit the field
 * Hit escape to leave the client view and return to the main view
 
-### Locating persons by name: `find`
+#### Locating Clients by Name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -128,31 +155,21 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the DonnaFin.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the DonnaFin.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the DonnaFin.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Client Window Commands
 
-Exits the program.
+These commands are exclusive to client window. They give access and writing privileges for any client information
+fields.
 
-Format: `exit`
+#### Tab
+
+#### Home
 
 ### Saving the data
 
