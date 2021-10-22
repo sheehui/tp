@@ -358,6 +358,23 @@ State: Client view
   * 1a1. DonnaFin shows an error message. \
         Use case resumes at step 1.
 
+**UC10: Editing a client's contact information**
+State: Client view (Contact Tab)
+
+**MSS**
+
+1. User requests to edit client's contact information
+2. Field is edited and client view with the updated field is shown
+
+**Extensions**
+
+* 1a. The user types the wrong command.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+* 1b. The user types in the new field with the unsupported format.
+    * 1b1. Contact is not updated and DonnaFin shows an error message. \
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
