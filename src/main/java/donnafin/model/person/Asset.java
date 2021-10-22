@@ -1,5 +1,6 @@
 package donnafin.model.person;
 
+import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -15,8 +16,8 @@ import donnafin.ui.AttributeTable;
  */
 public class Asset implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Insert asset constraint here";
-    public static final String VALIDATION_REGEX = "[\\s\\S]*";
+    public static final String MESSAGE_CONSTRAINTS = "Asset fields should not start with empty spaces or contain new lines.";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Asset> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Assets",
         List.of(
@@ -53,6 +54,9 @@ public class Asset implements Attribute {
      */
     public Asset(String name, String type, String value, String remarks) {
         requireAllNonNull(name, type, value, remarks);
+        checkArgument(isValidVariable(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidVariable(type), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidVariable(remarks), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.type = type;
         try {
@@ -61,6 +65,13 @@ public class Asset implements Attribute {
             throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
         }
         this.remarks = remarks;
+    }
+
+    /**
+     * Returns true if a given string is a valid policy field.
+     */
+    public static boolean isValidVariable(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
