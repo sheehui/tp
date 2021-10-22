@@ -10,11 +10,12 @@ import donnafin.model.person.Attribute;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Policy;
 import donnafin.ui.CommandBox.CommandExecutor;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
@@ -111,35 +112,26 @@ public class ClientInfoPanel extends UiPart<Region> {
         commandExecutor.execute("tab liabilities");
     }
 
+    private void changeTab(Node node) {
+        Platform.runLater(() -> {
+            refresh();
+            attributeDisplayContainer.getChildren().add(node);
+        });
+    }
+
     protected void changeTabToPolicies() {
-        refresh();
-        attributeDisplayContainer.getChildren().add(
-                new AttributeTable<>(
-                        Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()
-                ).getRoot()
-        );
+        changeTab(new AttributeTable<>(Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()).getRoot());
     }
 
     protected void changeTabToAssets() {
-        refresh();
-        attributeDisplayContainer.getChildren().add(
-                new AttributeTable<>(
-                        Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()
-                ).getRoot()
-        );
+        changeTab(new AttributeTable<>(Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()).getRoot());
     }
 
     protected void changeTabToLiabilities() {
-        refresh();
-        AttributeTable<?> at = new AttributeTable<>(
-                Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()
-        );
-        attributeDisplayContainer.getChildren().add(at.getRoot());
-        VBox.setVgrow(at.getRoot(), Priority.ALWAYS);
+        changeTab(new AttributeTable<>(Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()).getRoot());
     }
 
     protected void changeTabToNotes() {
-        refresh();
         TextArea notesField = new TextArea();
         notesField.setText(personAdapter.getSubject().getNotes().getNotes());
         notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
@@ -152,7 +144,7 @@ public class ClientInfoPanel extends UiPart<Region> {
                 assert false : "Editing Notes failed ACCEPT-ALL validation";
             }
         });
-        attributeDisplayContainer.getChildren().add(notesField);
+        changeTab(notesField);
     }
 
     private void refresh() {
