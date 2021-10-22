@@ -65,6 +65,13 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img alt="Architecture Sequence Diagram" src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+Here is an explanation of what takes place when the user enters the command `delete 1`
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
+* The `Model` component then deletes the `Person` object p from the `addressBook`.
+* The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
+* The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
+
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -357,6 +364,23 @@ State: Client view
 * 1a. The user types the wrong command.
   * 1a1. DonnaFin shows an error message. \
         Use case resumes at step 1.
+
+**UC10: Editing a client's contact information**
+State: Client view (Contact Tab)
+
+**MSS**
+
+1. User requests to edit client's contact information
+2. Field is edited and client view with the updated field is shown
+
+**Extensions**
+
+* 1a. The user types the wrong command.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+* 1b. The user types in the new field with the unsupported format.
+    * 1b1. Contact is not updated and DonnaFin shows an error message. \
+      Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
