@@ -192,7 +192,7 @@ Classes used by multiple components are in the `donnafin.commons` package.
 **Value proposition**: manage customers faster than a typical mouse/GUI driven app
 
 The product provides financial advisors with a clean, easy to use interface to prepare
-them for meetings and maintain good relationships with their clients. On a per-user basis,
+them for meetings and maintain good relationships with their clients. On a per-client basis,
 DonnaFin keeps track and displays client’s financial details, their contact details, and
 any notes about the client. In the main page, it collates all clients for easy access. In the
 client information page, financial details of the specific client selected is neatly segmented into 
