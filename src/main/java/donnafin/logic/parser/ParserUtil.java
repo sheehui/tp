@@ -9,6 +9,7 @@ import java.util.Set;
 
 import donnafin.commons.core.types.Index;
 import donnafin.commons.core.types.Money;
+import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
@@ -209,7 +210,7 @@ public class ParserUtil {
         }
         try {
             return new Liability(details[0], details[1], details[2], details[3]);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalValueException e) {
             throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
         }
     }
