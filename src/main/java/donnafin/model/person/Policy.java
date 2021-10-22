@@ -1,5 +1,6 @@
 package donnafin.model.person;
 
+import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -15,8 +16,9 @@ import donnafin.ui.AttributeTable;
  */
 public class Policy implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Insert policy constraint here";
-    public static final String VALIDATION_REGEX = "[\\s\\S]*";
+    public static final String MESSAGE_CONSTRAINTS = "Policy name and insurer should not contain new lines or "
+            + "start with empty spaces.";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Policies",
         List.of(
@@ -56,6 +58,8 @@ public class Policy implements Attribute {
      */
     public Policy(String name, String insurer, String totalValueInsured, String yearlyPremiums, String commission) {
         requireAllNonNull(name, insurer, totalValueInsured, yearlyPremiums, commission);
+        checkArgument(isValidVariable(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidVariable(insurer), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.insurer = insurer;
         try {
@@ -65,6 +69,13 @@ public class Policy implements Attribute {
         } catch (ParseException pe) {
             throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid policy variable.
+     */
+    public static boolean isValidVariable(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
