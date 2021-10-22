@@ -6,6 +6,7 @@ import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import donnafin.logic.commands.ContactTabParser;
 import org.junit.jupiter.api.Test;
 
 import donnafin.logic.commands.ExitCommand;
@@ -15,7 +16,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 
 public class ClientViewParserTest {
 
-    private final ClientViewParser parser = new ClientViewParser();
+    private final ContactTabParser parser = new ContactTabParser();
 
     @Test
     public void parseCommand_exit() throws Exception {

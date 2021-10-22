@@ -6,7 +6,9 @@ import java.util.function.Consumer;
 
 import donnafin.logic.Logic;
 import donnafin.logic.commands.exceptions.CommandException;
-import donnafin.logic.parser.ClientViewParser;
+import donnafin.logic.parser.AssetsTabParser;
+import donnafin.logic.parser.LiabilitiesTabParser;
+import donnafin.logic.parser.PolicyTabParser;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
 import donnafin.ui.Ui.ClientViewTab;
@@ -34,8 +36,18 @@ public class SwitchTabCommand extends Command {
         requireNonNull(model);
         Consumer<Ui> uiAction = ui -> ui.switchClientViewTab(tab);
         Consumer<Logic> logicAction = logic -> {
-            logic.setParserStrategy(new ClientViewParser());
-            // TODO: when we have exactly which parser (WHICH TAB)
+            switch (tab) {
+            case Contact:
+                logic.setParserStrategy(new ContactTabParser());
+            case Policies:
+                logic.setParserStrategy(new PolicyTabParser());
+            case Liabilities:
+                logic.setParserStrategy(new LiabilitiesTabParser());
+            case Assets:
+                logic.setParserStrategy(new AssetsTabParser());
+            case Notes:
+                logic.setParserStrategy(new NotesTabParser());
+            }
         };
         return new CommandResult(MESSAGE_SUCCESS, uiAction, logicAction);
     }

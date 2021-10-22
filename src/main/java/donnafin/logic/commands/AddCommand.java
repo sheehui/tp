@@ -17,6 +17,9 @@ import donnafin.model.person.Person;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD_POLICY = "add-p";
+    public static final String COMMAND_WORD_LIABILITIES = "add-l";
+    public static final String COMMAND_WORD_ASSETS = "add-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "

@@ -3,6 +3,7 @@ package donnafin.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import donnafin.logic.commands.ContactTabParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ refer to ClientViewParserContextTest or AddressBookParserContextTest
 public class ParserContextTest {
 
     private final AddressBookParser addressBookParser = new AddressBookParser();
-    private final ClientViewParser clientViewParser = new ClientViewParser();
+    private final ContactTabParser contactTabParser = new ContactTabParser();
     private ParserContext parserContext = new ParserContext(addressBookParser);
 
     @BeforeEach
@@ -29,7 +30,7 @@ public class ParserContextTest {
 
     @Test
     public void test_setCurrentParserStrategy() {
-        parserContext.setCurrentParserStrategy(clientViewParser);
+        parserContext.setCurrentParserStrategy(contactTabParser);
         assertTrue(strategyIsClientParser());
         assertFalse(strategyIsAddressBookParser());
 
@@ -43,15 +44,15 @@ public class ParserContextTest {
         assertFalse(this::strategyIsClientParser);
 
         //Test if setting currentParserStrategyTwice has any errors
-        parserContext.setCurrentParserStrategy(clientViewParser);
-        parserContext.setCurrentParserStrategy(clientViewParser);
+        parserContext.setCurrentParserStrategy(contactTabParser);
+        parserContext.setCurrentParserStrategy(contactTabParser);
         assertTrue(strategyIsClientParser());
         assertFalse(strategyIsAddressBookParser());
 
     }
 
     private boolean strategyIsClientParser() {
-        return parserContext.getCurrentParserStrategy().equals(clientViewParser);
+        return parserContext.getCurrentParserStrategy().equals(contactTabParser);
     }
 
     private boolean strategyIsAddressBookParser() {

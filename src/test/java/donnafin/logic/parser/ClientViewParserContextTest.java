@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import donnafin.logic.commands.ContactTabParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,13 +31,13 @@ It should fail the test for AddressBookParser.
  */
 public class ClientViewParserContextTest {
 
-    private ClientViewParser clientViewParser = new ClientViewParser();
-    private ParserContext parserContext = new ParserContext(clientViewParser);
+    private ContactTabParser contactTabParser = new ContactTabParser();
+    private ParserContext parserContext = new ParserContext(contactTabParser);
 
     @BeforeEach
     public void reset() {
         assertTrue(strategyIsClientParser());
-        parserContext = new ParserContext(clientViewParser);
+        parserContext = new ParserContext(contactTabParser);
     }
 
     @Test
@@ -47,7 +48,7 @@ public class ClientViewParserContextTest {
     @Test
     public void parseCommand_multipleWords_clientParserExitThrowsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> clientViewParser.parseCommand("exit 2"));
+            -> contactTabParser.parseCommand("exit 2"));
     }
 
     @Test
@@ -58,7 +59,7 @@ public class ClientViewParserContextTest {
     @Test
     public void parseCommand_multipleWords_clientParserHelpThrowsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> clientViewParser.parseCommand("help us"));
+            -> contactTabParser.parseCommand("help us"));
     }
 
     @Test
@@ -69,7 +70,7 @@ public class ClientViewParserContextTest {
     @Test
     public void parseCommand_multipleWords_clientParserHomeThrowsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> clientViewParser.parseCommand("home sweet home"));
+            -> contactTabParser.parseCommand("home sweet home"));
     }
 
     @Test
@@ -134,6 +135,6 @@ public class ClientViewParserContextTest {
     }
 
     private boolean strategyIsClientParser() {
-        return parserContext.getCurrentParserStrategy().equals(clientViewParser);
+        return parserContext.getCurrentParserStrategy().equals(contactTabParser);
     }
 }

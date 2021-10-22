@@ -11,12 +11,14 @@ import donnafin.logic.commands.Command;
 import donnafin.logic.commands.CommandResult;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.AddressBookParser;
+import donnafin.logic.parser.ClientViewParser;
 import donnafin.logic.parser.ParserContext;
 import donnafin.logic.parser.ParserStrategy;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.ReadOnlyAddressBook;
 import donnafin.model.person.Person;
+import donnafin.ui.Ui;
 import javafx.collections.ObservableList;
 
 /**
@@ -84,7 +86,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    /*
+    /**
     Function to change the strategyParser in parserContext
      */
     public void setParserStrategy(ParserStrategy strategyParser) {

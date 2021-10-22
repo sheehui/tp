@@ -1,6 +1,5 @@
 package donnafin.logic.parser;
 
-import donnafin.commons.core.Messages;
 import donnafin.logic.commands.Command;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.HelpCommand;
@@ -8,7 +7,7 @@ import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.SwitchTabCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
-public class ClientViewParser extends ParserStrategy {
+abstract public class ClientViewParser extends ParserStrategy {
 
     /**
      * Parse the user input given the command word and arguments.
@@ -32,7 +31,9 @@ public class ClientViewParser extends ParserStrategy {
             return new SwitchTabCommand(ParserUtil.parseTab(arguments));
 
         default:
-            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            return tabSpecificHandler(commandWord, arguments);
         }
     }
+
+    abstract protected Command tabSpecificHandler(String commandWord, String arguments) throws ParseException;
 }

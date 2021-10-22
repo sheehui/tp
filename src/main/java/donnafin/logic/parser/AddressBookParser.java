@@ -8,9 +8,12 @@ import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.ui.Ui;
+import donnafin.ui.UiManager;
 
 /**
  * Parses user input.

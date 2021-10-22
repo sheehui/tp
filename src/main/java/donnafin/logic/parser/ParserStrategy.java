@@ -4,8 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import donnafin.commons.core.Messages;
+import donnafin.logic.commands.AddCommand;
 import donnafin.logic.commands.Command;
 import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
 /**
