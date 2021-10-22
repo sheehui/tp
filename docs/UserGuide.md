@@ -166,12 +166,7 @@ Format: `clear`
 These commands are exclusive to client window. They give access and writing privileges for any client information
 fields.
 
-
-#### Home: `home`
-
-Allows user to navigate back to the main window.
-
-#### Switching tabs :
+#### Switching tabs : `tab`
 
 Allows user to navigate to a different tab.
 
