@@ -16,7 +16,8 @@ import donnafin.ui.AttributeTable;
  */
 public class Asset implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Asset fields should not start with empty spaces or contain new lines.";
+    public static final String MESSAGE_CONSTRAINTS = "Asset fields should not start with empty spaces or contain "
+            + "new lines.";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Asset> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Assets",

@@ -16,7 +16,8 @@ import donnafin.ui.AttributeTable;
  */
 public class Policy implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Policy name and insurer should not contain new lines or start with empty spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Policy name and insurer should not contain new lines or "
+            + "start with empty spaces.";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Policies",

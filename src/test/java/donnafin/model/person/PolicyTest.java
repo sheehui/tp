@@ -1,10 +1,11 @@
 package donnafin.model.person;
 
-import donnafin.commons.core.types.Money;
-import org.junit.jupiter.api.Test;
-
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import donnafin.commons.core.types.Money;
 
 public class PolicyTest {
 
@@ -42,12 +43,12 @@ public class PolicyTest {
         String invalidCommission = "one million dollars";
         String emptyCommission = "";
         String missingDollar = "200";
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, invalidCommission));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, emptyCommission));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, missingDollar));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, invalidCommission));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, emptyCommission));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, missingDollar));
     }
 
     @Test
@@ -55,10 +56,10 @@ public class PolicyTest {
         String invalidTotalValueInsured = "one million dollars";
         String emptyTotalValueInsured = "";
         String missingDollar = "2000";
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, invalidTotalValueInsured,
-                VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, emptyTotalValueInsured,
-                VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                invalidTotalValueInsured, VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                emptyTotalValueInsured, VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
         assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, "AIA", missingDollar,
                 VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
     }
@@ -68,22 +69,22 @@ public class PolicyTest {
         String invalidYearlyPremiums = "one million dollars";
         String emptyYearlyPremiums = "";
         String missingDollar = "100";
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                invalidYearlyPremiums, VALID_COMMISSION));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                emptyYearlyPremiums, VALID_COMMISSION));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                missingDollar, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, invalidYearlyPremiums, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, emptyYearlyPremiums, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, missingDollar, VALID_COMMISSION));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "MediPro \n Lux";
         String emptyName = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Policy(invalidName, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(emptyName, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(invalidName, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(emptyName, VALID_INSURER,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
     }
 
 
@@ -91,10 +92,10 @@ public class PolicyTest {
     public void constructor_invalidInsurer_throwsIllegalArgumentException() {
         String invalidInsurer = "AIA \n";
         String emptyInsurer = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, invalidInsurer, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
-        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, emptyInsurer, VALID_TOTAL_VALUE_INSURED,
-                VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, invalidInsurer,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
+        assertThrows(IllegalArgumentException.class, () -> new Policy(VALID_NAME, emptyInsurer,
+                VALID_TOTAL_VALUE_INSURED, VALID_YEARLY_PREMIUMS, VALID_COMMISSION));
     }
 
     @Test

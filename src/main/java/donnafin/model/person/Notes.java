@@ -8,13 +8,13 @@ import static java.util.Objects.requireNonNull;
  */
 public class Notes implements Attribute {
 
-    public final String notes;
-
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].+[^\\s]";
+
+    public final String notes;
 
     /**
      * Constructs a note.

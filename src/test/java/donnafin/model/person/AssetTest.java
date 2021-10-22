@@ -1,10 +1,11 @@
 package donnafin.model.person;
 
-import donnafin.commons.core.types.Money;
-import org.junit.jupiter.api.Test;
-
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import donnafin.commons.core.types.Money;
 
 public class AssetTest {
 
