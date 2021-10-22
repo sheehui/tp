@@ -43,6 +43,7 @@ public class UiManager implements Ui {
     public UiManager(Logic logic) {
         super();
         this.logic = logic;
+        this.uiState = new UiState();
     }
 
     @Override
@@ -75,20 +76,42 @@ public class UiManager implements Ui {
     @Override
     public void showClientView(PersonAdapter subject) {
         mainWindow.showClientView(subject);
-        //uiState.setStateClientInfoPanel();
+        uiState.setStatePersonalInformationTab();
     }
+
 
     @Override
     public void switchClientViewTab(ClientViewTab tab) {
         mainWindow.switchClientViewTab(tab);
+        switch (tab) {
+            case Contact:
+                uiState.setStatePersonalInformationTab();
+                break;
+            case Policies:
+                uiState.setStatePoliciesTab();
+                break;
+            case Assets:
+                uiState.setStateFinancialInformationTab();
+                break;
+            case Liabilities:
+                uiState.setStateLiabilitiesTab();
+                break;
+            case Notes:
+                uiState.setStateNotesTab();
+                break;
+            default:
+                // TODO: @parser team pls
+                throw new RuntimeException("Switched to a fake tab");
+        }
     }
+
 
     /**
      * Changes the mainwindow to personlist panel, aka "Home"
      */
     public void showHome() {
         mainWindow.switchToHome();
-        //uiState.setStatePersonListPanel();
+        uiState.setStatePersonListPanel();
     }
 
     private Image getImage(String imagePath) {
@@ -144,6 +167,10 @@ public class UiManager implements Ui {
 
     public MainWindow getMainWindow() {
         return this.mainWindow;
+    }
+
+    public UiState getUiState() {
+        return uiState;
     }
 
     /**
