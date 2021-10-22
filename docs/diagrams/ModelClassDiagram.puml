@@ -22,7 +22,9 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Policy
+Class Asset
+Class Liability
 
 }
 
@@ -52,11 +54,16 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Policy
+Person *--> "*" Asset
+Person *--> "*" Liability
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Policy
+Policy -[hidden]right-> Asset
+Asset -[hidden]right-> Liability
 
 ModelManager -->"~* filtered" Person
 @enduml

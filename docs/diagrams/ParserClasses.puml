@@ -6,10 +6,12 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 Class "{abstract}\nCommand" as Command
 Class XYZCommand
+Class ParserContext
 
 package "Parser classes"{
+Class "{abstract}\nParserStrategy" as ParserStrategy
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class ABCParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -19,12 +21,13 @@ Class Prefix
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> AddressBookParser
+ParserContext .left.> ParserStrategy
 
-AddressBookParser .down.> XYZCommandParser: creates >
+ABCParser -up-|> ParserStrategy
+ABCParser .down.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
-AddressBookParser ..> Command : returns >
+ABCParser ..> Command : returns >
 XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
