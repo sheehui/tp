@@ -1,11 +1,13 @@
 package donnafin.model.person;
 
+import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
 
 import donnafin.commons.core.types.Money;
+import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.logic.parser.ParserUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.AttributeTable;
@@ -15,7 +17,8 @@ import donnafin.ui.AttributeTable;
  */
 public class Liability implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Insert liability constraint here";
+    public static final String MESSAGE_CONSTRAINTS = "Liability fields should not start with empty spaces or contain new lines.";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Liability> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Liabilities",
         List.of(
@@ -50,16 +53,26 @@ public class Liability implements Attribute {
      * @param value A Liability's worth.
      * @param remarks A remark on Liability.
      */
-    public Liability(String name, String type, String value, String remarks) {
+    public Liability(String name, String type, String value, String remarks) throws IllegalValueException {
         requireAllNonNull(name, type, value, remarks);
+        checkArgument(isValidVariable(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidVariable(type), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidVariable(remarks), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.type = type;
         try {
             this.value = ParserUtil.parseMoney(value);
         } catch (ParseException e) {
-            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
         }
         this.remarks = remarks;
+    }
+
+    /**
+     * Returns true if a given string is a valid policy field.
+     */
+    public static boolean isValidVariable(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
