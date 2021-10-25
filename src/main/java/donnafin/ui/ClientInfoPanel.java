@@ -1,7 +1,6 @@
 package donnafin.ui;
 
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Asset;
@@ -10,7 +9,9 @@ import donnafin.model.person.Liability;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Policy;
 import donnafin.ui.CommandBox.CommandExecutor;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
@@ -56,35 +57,7 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     private AttributePanel createAttributePanel(Attribute attr) {
         String fieldInString = attr.getClass().getSimpleName();
-        return new AttributePanel(
-                fieldInString,
-                attr.toString(),
-                createEditHandler(getPersonContactField(fieldInString))
-        );
-    }
-
-    /** Gets the PersonField enum type of attribute from label */
-    private PersonField getPersonContactField(String fieldInString) {
-        switch(fieldInString) {
-        case "Name":
-            return PersonField.NAME;
-        case "Address":
-            return PersonField.ADDRESS;
-        case "Phone":
-            return PersonField.PHONE;
-        case "Email":
-            return PersonField.EMAIL;
-        default:
-            throw new IllegalArgumentException("Unexpected Person Field used");
-        }
-    }
-
-    private AttributePanel.EditHandler createEditHandler(PersonField field) {
-        return newValue -> {
-            //                this.personAdapter.edit(field, newValue);
-            //TODO: we will be removing the edit handler
-            return null;
-        };
+        return new AttributePanel(fieldInString, attr.toString());
     }
 
     /**
@@ -100,57 +73,48 @@ public class ClientInfoPanel extends UiPart<Region> {
     /** Gets the {@code CommandExecutor} to carry out switching to contact command */
     public void makeSwitchTabContactCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab contact");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to policies command */
     public void makeSwitchTabPoliciesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab policies");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to assets command */
     public void makeSwitchTabAssetsCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab assets");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to notes command */
     public void makeSwitchTabNotesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab notes");
-    };
+    }
 
     /** Gets the {@code CommandExecutor} to carry out switching to liabilities command */
     public void makeSwitchTabLiabilitiesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab liabilities");
-    };
+    }
+
+    private void changeTab(Node node) {
+        Platform.runLater(() -> {
+            refresh();
+            attributeDisplayContainer.getChildren().add(node);
+        });
+    }
 
     protected void changeTabToPolicies() {
-        refresh();
-        attributeDisplayContainer.getChildren().add(
-                new AttributeTable<>(
-                        Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()
-                ).getRoot()
-        );
+        changeTab(new AttributeTable<>(Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()).getRoot());
     }
 
     protected void changeTabToAssets() {
-        refresh();
-        attributeDisplayContainer.getChildren().add(
-                new AttributeTable<>(
-                        Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()
-                ).getRoot()
-        );
+        changeTab(new AttributeTable<>(Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()).getRoot());
     }
 
     protected void changeTabToLiabilities() {
-        refresh();
-        attributeDisplayContainer.getChildren().add(
-                new AttributeTable<>(
-                        Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()
-                ).getRoot()
-        );
+        changeTab(new AttributeTable<>(Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()).getRoot());
     }
 
     protected void changeTabToNotes() {
-        refresh();
         TextArea notesField = new TextArea();
         notesField.setText(personAdapter.getSubject().getNotes().getNotes());
         notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
@@ -159,7 +123,7 @@ public class ClientInfoPanel extends UiPart<Region> {
             // edit notes logic in Command (See how the buttons on press are handled).
             personAdapter.edit(new Notes(newNotes));
         });
-        attributeDisplayContainer.getChildren().add(notesField);
+        changeTab(notesField);
     }
 
     private void refresh() {

@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import donnafin.commons.core.types.Money;
+import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.AppendCommand;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -110,7 +111,12 @@ public class AppendCommandParser implements Parser<AppendCommand> {
             throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
         }
 
-        Liability newLiability = new Liability(name, type, value.toString(), remarks);
+        Liability newLiability = null;
+        try {
+            newLiability = new Liability(name, type, value.toString(), remarks);
+        } catch (IllegalValueException e) {
+            throw new ParseException(e.getMessage());
+        }
         return new AppendCommand(personAdapter, newLiability);
     }
 
