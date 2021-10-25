@@ -268,49 +268,49 @@ public class ParserUtilTest {
 
     @Test
     public void parseTab_withUpperLowerOrTitleCase_success() throws ParseException {
-        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("contact"));
-        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("policies"));
-        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("assets"));
-        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("liabilities"));
-        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("notes"));
+        assertEquals(Ui.ViewFinderState.CONTACT, ParserUtil.parseTab("contact"));
+        assertEquals(Ui.ViewFinderState.POLICIES, ParserUtil.parseTab("policies"));
+        assertEquals(Ui.ViewFinderState.ASSETS, ParserUtil.parseTab("assets"));
+        assertEquals(Ui.ViewFinderState.LIABILITIES, ParserUtil.parseTab("liabilities"));
+        assertEquals(Ui.ViewFinderState.NOTES, ParserUtil.parseTab("notes"));
 
-        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("CONTACT"));
-        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("POLICIES"));
-        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("ASSETS"));
-        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("LIABILITIES"));
-        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("NOTES"));
+        assertEquals(Ui.ViewFinderState.CONTACT, ParserUtil.parseTab("CONTACT"));
+        assertEquals(Ui.ViewFinderState.POLICIES, ParserUtil.parseTab("POLICIES"));
+        assertEquals(Ui.ViewFinderState.ASSETS, ParserUtil.parseTab("ASSETS"));
+        assertEquals(Ui.ViewFinderState.LIABILITIES, ParserUtil.parseTab("LIABILITIES"));
+        assertEquals(Ui.ViewFinderState.NOTES, ParserUtil.parseTab("NOTES"));
 
-        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("Contact"));
-        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("Policies"));
-        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("Assets"));
-        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("Liabilities"));
-        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("Notes"));
+        assertEquals(Ui.ViewFinderState.CONTACT, ParserUtil.parseTab("Contact"));
+        assertEquals(Ui.ViewFinderState.POLICIES, ParserUtil.parseTab("Policies"));
+        assertEquals(Ui.ViewFinderState.ASSETS, ParserUtil.parseTab("Assets"));
+        assertEquals(Ui.ViewFinderState.LIABILITIES, ParserUtil.parseTab("Liabilities"));
+        assertEquals(Ui.ViewFinderState.NOTES, ParserUtil.parseTab("Notes"));
     }
 
 
     @Test
     public void parseTab_unexpectedPluralSingular_success() throws ParseException {
-        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("Contacts"));
-        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("Policy"));
-        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("Asset"));
-        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("Liability"));
-        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("Note"));
+        assertEquals(Ui.ViewFinderState.CONTACT, ParserUtil.parseTab("Contacts"));
+        assertEquals(Ui.ViewFinderState.POLICIES, ParserUtil.parseTab("Policy"));
+        assertEquals(Ui.ViewFinderState.ASSETS, ParserUtil.parseTab("Asset"));
+        assertEquals(Ui.ViewFinderState.LIABILITIES, ParserUtil.parseTab("Liability"));
+        assertEquals(Ui.ViewFinderState.NOTES, ParserUtil.parseTab("Note"));
     }
 
 
     @Test
     public void parseTab_withInitialsOnly_success() throws ParseException {
-        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("c"));
-        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("p"));
-        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("a"));
-        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("l"));
-        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("n"));
+        assertEquals(Ui.ViewFinderState.CONTACT, ParserUtil.parseTab("c"));
+        assertEquals(Ui.ViewFinderState.POLICIES, ParserUtil.parseTab("p"));
+        assertEquals(Ui.ViewFinderState.ASSETS, ParserUtil.parseTab("a"));
+        assertEquals(Ui.ViewFinderState.LIABILITIES, ParserUtil.parseTab("l"));
+        assertEquals(Ui.ViewFinderState.NOTES, ParserUtil.parseTab("n"));
 
-        assertEquals(Ui.ClientViewTab.Contact, ParserUtil.parseTab("C"));
-        assertEquals(Ui.ClientViewTab.Policies, ParserUtil.parseTab("P"));
-        assertEquals(Ui.ClientViewTab.Assets, ParserUtil.parseTab("A"));
-        assertEquals(Ui.ClientViewTab.Liabilities, ParserUtil.parseTab("L"));
-        assertEquals(Ui.ClientViewTab.Notes, ParserUtil.parseTab("N"));
+        assertEquals(Ui.ViewFinderState.CONTACT, ParserUtil.parseTab("C"));
+        assertEquals(Ui.ViewFinderState.POLICIES, ParserUtil.parseTab("P"));
+        assertEquals(Ui.ViewFinderState.ASSETS, ParserUtil.parseTab("A"));
+        assertEquals(Ui.ViewFinderState.LIABILITIES, ParserUtil.parseTab("L"));
+        assertEquals(Ui.ViewFinderState.NOTES, ParserUtil.parseTab("N"));
     }
 
     @Test

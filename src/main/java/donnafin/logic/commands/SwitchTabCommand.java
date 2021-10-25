@@ -5,23 +5,26 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Consumer;
 
 import donnafin.logic.Logic;
+import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.AssetsTabParser;
 import donnafin.logic.parser.LiabilitiesTabParser;
 import donnafin.logic.parser.PolicyTabParser;
+import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
-import donnafin.ui.Ui.ClientViewTab;
 
 public class SwitchTabCommand extends Command {
 
     public static final String COMMAND_WORD = "tab";
     private static final String MESSAGE_SUCCESS = "Switched tab";
+    private static final String MESSAGE_ERROR = "Failed to switch tab";
 
-    private final ClientViewTab tab;
-
-    public SwitchTabCommand(ClientViewTab tab) {
+    private final Ui.ViewFinderState tab;
+    private final PersonAdapter personAdapter;
+    public SwitchTabCommand(Ui.ViewFinderState tab, PersonAdapter personAdapter) {
         this.tab = tab;
+        this.personAdapter = personAdapter;
     }
 
     /**
@@ -34,19 +37,34 @@ public class SwitchTabCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Consumer<Ui> uiAction = ui -> ui.switchClientViewTab(tab);
+        Consumer<Ui> uiAction = ui -> {
+            try {
+                ui.switchClientViewTab(tab);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        };
+
         Consumer<Logic> logicAction = logic -> {
             switch (tab) {
-            case Contact:
-                logic.setParserStrategy(new ContactTabParser());
-            case Policies:
-                logic.setParserStrategy(new PolicyTabParser());
-            case Liabilities:
-                logic.setParserStrategy(new LiabilitiesTabParser());
-            case Assets:
-                logic.setParserStrategy(new AssetsTabParser());
-            case Notes:
-                logic.setParserStrategy(new NotesTabParser());
+            case CONTACT:
+                logic.setParserStrategy(new ContactTabParser(personAdapter));
+                break;
+            case POLICIES:
+                logic.setParserStrategy(new PolicyTabParser(personAdapter));
+                break;
+            case LIABILITIES:
+                logic.setParserStrategy(new LiabilitiesTabParser(personAdapter));
+                break;
+            case ASSETS:
+                logic.setParserStrategy(new AssetsTabParser(personAdapter));
+                break;
+            case NOTES:
+                logic.setParserStrategy(new NotesTabParser(personAdapter));
+                break;
+            default:
+                // Should throw an error and should never reach here
+                logic.setParserStrategy(null);
             }
         };
         return new CommandResult(MESSAGE_SUCCESS, uiAction, logicAction);

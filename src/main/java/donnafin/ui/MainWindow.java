@@ -222,22 +222,22 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /** Switch tab in Client View */
-    public void switchClientViewTab(Ui.ClientViewTab tab) {
+    public void switchClientViewTab(Ui.ViewFinderState tab) {
         Objects.requireNonNull(clientInfoPanel);
         switch (tab) {
-        case Contact:
+        case CONTACT:
             clientInfoPanel.changeTabToContact();
             break;
-        case Policies:
+        case POLICIES:
             clientInfoPanel.changeTabToPolicies();
             break;
-        case Assets:
+        case ASSETS:
             clientInfoPanel.changeTabToAssets();
             break;
-        case Liabilities:
+        case LIABILITIES:
             clientInfoPanel.changeTabToLiabilities();
             break;
-        case Notes:
+        case NOTES:
             clientInfoPanel.changeTabToNotes();
             break;
         default:

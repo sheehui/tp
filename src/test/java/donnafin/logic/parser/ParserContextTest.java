@@ -1,9 +1,16 @@
 package donnafin.logic.parser;
 
+import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
+import static donnafin.testutil.TypicalPersons.getTypicalPersons;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.ContactTabParser;
+import donnafin.model.Model;
+import donnafin.model.ModelManager;
+import donnafin.model.UserPrefs;
+import donnafin.model.person.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +21,15 @@ refer to ClientViewParserContextTest or AddressBookParserContextTest
 public class ParserContextTest {
 
     private final AddressBookParser addressBookParser = new AddressBookParser();
-    private final ContactTabParser contactTabParser = new ContactTabParser();
+    private ContactTabParser contactTabParser;
     private ParserContext parserContext = new ParserContext(addressBookParser);
 
     @BeforeEach
     public void reset() {
+        Person person = getTypicalPersons().get(0);
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+        PersonAdapter personAdapter = new PersonAdapter(model, person);
+        contactTabParser = new ContactTabParser(personAdapter);
         parserContext = new ParserContext(addressBookParser);
     }
 

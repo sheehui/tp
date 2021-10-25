@@ -20,7 +20,8 @@ import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
 import donnafin.model.tag.Tag;
-import donnafin.ui.Ui.ClientViewTab;
+import donnafin.ui.Ui;
+import donnafin.ui.Ui.ViewFinderState;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -249,15 +250,16 @@ public class ParserUtil {
             double value = Double.parseDouble(decimalString);
             return new Money((int) (value * dollarCentsToSmallUnit));
         } else {
-            throw new ParseException("Input string does not match any monetary value format.");
+            throw new ParseException(
+                    String.format("Input string '%s' does not match any monetary value format.", trimmedCommission));
         }
     }
 
     /**
      * Parse a string that is expected to describe a tab in {@code ClientView} into
-     * the {@code Ui.ClientViewTab} enum.
+     * the {@code Ui.ViewFinderState} enum.
      */
-    public static ClientViewTab parseTab(String tabName) throws ParseException {
+    public static ViewFinderState parseTab(String tabName) throws ParseException {
         Objects.requireNonNull(tabName);
         tabName = tabName.trim().toUpperCase();
         switch (tabName) {
@@ -266,31 +268,31 @@ public class ParserUtil {
         case "CONTACT":
             // fallthrough
         case "CONTACTS":
-            return ClientViewTab.Contact;
+            return Ui.ViewFinderState.CONTACT;
         case "P":
             // fallthrough
         case "POLICY":
             // fallthrough
         case "POLICIES":
-            return ClientViewTab.Policies;
+            return ViewFinderState.POLICIES;
         case "A":
             // fallthrough
         case "ASSET":
             // fallthrough
         case "ASSETS":
-            return ClientViewTab.Assets;
+            return ViewFinderState.ASSETS;
         case "L":
             // fallthrough
         case "LIABILITY":
             // fallthrough
         case "LIABILITIES":
-            return ClientViewTab.Liabilities;
+            return ViewFinderState.LIABILITIES;
         case "N":
             // fallthrough
         case "NOTE":
             // fallthrough
         case "NOTES":
-            return ClientViewTab.Notes;
+            return Ui.ViewFinderState.NOTES;
         default:
             throw new ParseException(String.format("Input command is invalid: '%s' does not match any tab", tabName));
         }

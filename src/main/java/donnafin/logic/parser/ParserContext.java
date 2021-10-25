@@ -26,7 +26,7 @@ public class ParserContext {
      */
     public void setCurrentParserStrategy(ParserStrategy parserStrategy) {
         requireNonNull(parserStrategy);
-        logger.info("Setting ParserStrategy");
+        logger.info("Setting ParserStrategy to " + parserStrategy.getClass().getSimpleName());
         this.currentParserStrategy = parserStrategy;
     }
 

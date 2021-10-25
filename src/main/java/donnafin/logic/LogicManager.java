@@ -2,6 +2,7 @@ package donnafin.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.security.InvalidParameterException;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -90,6 +91,7 @@ public class LogicManager implements Logic {
     Function to change the strategyParser in parserContext
      */
     public void setParserStrategy(ParserStrategy strategyParser) {
+        //Defensive programming
         parserContext.setCurrentParserStrategy(strategyParser);
     }
 }

@@ -81,27 +81,26 @@ public class UiManager implements Ui {
 
 
     @Override
-    public void switchClientViewTab(ClientViewTab tab) {
+    public void switchClientViewTab(ViewFinderState tab) throws ParseException {
         mainWindow.switchClientViewTab(tab);
         switch (tab) {
-        case Contact:
+        case CONTACT:
             uiState.setStatePersonalInformationTab();
             break;
-        case Policies:
+        case POLICIES:
             uiState.setStatePoliciesTab();
             break;
-        case Assets:
+        case ASSETS:
             uiState.setStateFinancialInformationTab();
             break;
-        case Liabilities:
+        case LIABILITIES:
             uiState.setStateLiabilitiesTab();
             break;
-        case Notes:
+        case NOTES:
             uiState.setStateNotesTab();
             break;
         default:
-            // TODO: @parser team pls
-            throw new RuntimeException("Switched to a fake tab");
+            throw new ParseException("Switched to a fake tab");
         }
     }
 
@@ -169,8 +168,8 @@ public class UiManager implements Ui {
         return this.mainWindow;
     }
 
-    public UiState getUiState() {
-        return uiState;
+    public ViewFinderState getUiState() {
+        return uiState.getState();
     }
 
     /**
