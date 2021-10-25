@@ -4,7 +4,6 @@ import donnafin.commons.core.Messages;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.parser.ClientViewParser;
 import donnafin.logic.parser.exceptions.ParseException;
-import donnafin.model.person.Notes;
 
 public class NotesTabParser extends ClientViewParser {
 

@@ -3,7 +3,6 @@ package donnafin.ui.state;
 import java.util.logging.Logger;
 
 import donnafin.commons.core.LogsCenter;
-import donnafin.ui.Ui;
 import donnafin.ui.Ui.ViewFinderState;
 import donnafin.ui.UiManager;
 

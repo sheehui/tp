@@ -2,7 +2,6 @@ package donnafin.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.security.InvalidParameterException;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -12,14 +11,12 @@ import donnafin.logic.commands.Command;
 import donnafin.logic.commands.CommandResult;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.AddressBookParser;
-import donnafin.logic.parser.ClientViewParser;
 import donnafin.logic.parser.ParserContext;
 import donnafin.logic.parser.ParserStrategy;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.ReadOnlyAddressBook;
 import donnafin.model.person.Person;
-import donnafin.ui.Ui;
 import javafx.collections.ObservableList;
 
 /**

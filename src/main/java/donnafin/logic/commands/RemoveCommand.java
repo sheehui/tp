@@ -23,9 +23,9 @@ import donnafin.ui.Ui;
 
 public class RemoveCommand extends Command {
 
+    public static final String COMMAND_WORD = "remove";
     public static final String MESSAGE_USAGE = ""; // TODO
     private static final String MESSAGE_SUCCESS = ""; // TODO
-    public static final String COMMAND_WORD = "remove";
     private final PersonAdapter personAdapter;
     private final PersonField field;
     private final Index index;

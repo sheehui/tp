@@ -81,4 +81,9 @@ public class DummyUiForCommands implements Ui {
             return false;
         }
     }
+
+    @Override
+    public ViewFinderState getUiState() {
+        return ViewFinderState.CONTACT;
+    }
 }

@@ -11,7 +11,6 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import donnafin.commons.core.types.Money;
 import donnafin.commons.exceptions.IllegalValueException;

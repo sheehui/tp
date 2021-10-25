@@ -22,6 +22,13 @@ public class SwitchTabCommand extends Command {
 
     private final Ui.ViewFinderState tab;
     private final PersonAdapter personAdapter;
+
+    /**
+     * Constructor for switchTabCommand
+     * @param tab {@tab} which is passed to switch tab command
+     * @param personAdapter {@personAdapeter} which is used to pass personAdapter to other
+     * parsers later
+     */
     public SwitchTabCommand(Ui.ViewFinderState tab, PersonAdapter personAdapter) {
         this.tab = tab;
         this.personAdapter = personAdapter;
@@ -64,7 +71,7 @@ public class SwitchTabCommand extends Command {
                 break;
             default:
                 // Should throw an error and should never reach here
-                logic.setParserStrategy(null);
+                throw new RuntimeException();
             }
         };
         return new CommandResult(MESSAGE_SUCCESS, uiAction, logicAction);

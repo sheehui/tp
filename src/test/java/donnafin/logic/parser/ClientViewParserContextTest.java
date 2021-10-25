@@ -11,15 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
-import donnafin.logic.PersonAdapter;
-import donnafin.logic.commands.ContactTabParser;
-import donnafin.model.Model;
-import donnafin.model.ModelManager;
-import donnafin.model.UserPrefs;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.ClearCommand;
+import donnafin.logic.commands.ContactTabParser;
 import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.FindCommand;
@@ -27,6 +24,9 @@ import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.ListCommand;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.model.Model;
+import donnafin.model.ModelManager;
+import donnafin.model.UserPrefs;
 import donnafin.model.person.Person;
 import donnafin.testutil.PersonBuilder;
 import donnafin.testutil.PersonUtil;
@@ -46,8 +46,8 @@ public class ClientViewParserContextTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
         PersonAdapter personAdapter = new PersonAdapter(model, person);
         contactTabParser = new ContactTabParser(personAdapter);
-        assertTrue(strategyIsClientParser());
         parserContext = new ParserContext(contactTabParser);
+        assertTrue(strategyIsClientParser());
     }
 
     @Test

@@ -8,19 +8,19 @@ import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static donnafin.testutil.TypicalPersons.getTypicalPersons;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import donnafin.logic.PersonAdapter;
-import donnafin.logic.commands.ContactTabParser;
-import donnafin.model.Model;
-import donnafin.model.ModelManager;
-import donnafin.model.UserPrefs;
-import donnafin.model.person.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import donnafin.logic.PersonAdapter;
+import donnafin.logic.commands.ContactTabParser;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.model.Model;
+import donnafin.model.ModelManager;
+import donnafin.model.UserPrefs;
+import donnafin.model.person.Person;
 
 public class ClientViewParserTest {
 
