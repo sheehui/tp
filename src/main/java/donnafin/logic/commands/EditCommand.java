@@ -23,7 +23,7 @@ import donnafin.model.person.Phone;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class    EditCommand extends Command {
+public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -45,88 +45,26 @@ public class    EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final PersonAdapter personAdapter;
-    private final Consumer<PersonAdapter> consumerPA;
+    private final Consumer<PersonAdapter> editor;
 
 
     /**
      * @param personAdapter of the person in the filtered person list to edit
      * @param name new name for the contact.
      */
-    public EditCommand(PersonAdapter personAdapter, Name name) {
+    public EditCommand(PersonAdapter personAdapter, Consumer<PersonAdapter> editor) {
         requireNonNull(personAdapter);
-        requireNonNull(name);
+        requireNonNull(editor);
 
         this.personAdapter = personAdapter;
-        this.consumerPA = x -> {
-            personAdapter.edit(name);
-        };
-    }
-
-    /**
-     * @param personAdapter of the person in the filtered person list to edit
-     * @param phone new phone number for the contact.
-     */
-    public EditCommand(PersonAdapter personAdapter, Phone phone) {
-        requireNonNull(personAdapter);
-        requireNonNull(phone);
-
-        this.personAdapter = personAdapter;
-        this.consumerPA = x -> {
-            personAdapter.edit(phone);
-        };
-    }
-
-    /**
-     * @param personAdapter of the person in the filtered person list to edit
-     * @param email new email for the contact.
-     */
-    public EditCommand(PersonAdapter personAdapter, Email email) {
-        requireNonNull(personAdapter);
-        requireNonNull(email);
-
-        this.personAdapter = personAdapter;
-        this.consumerPA = x -> {
-            personAdapter.edit(email);
-        };
-    }
-
-    /**
-     * @param personAdapter of the person in the filtered person list to edit
-     * @param address new address for the contact.
-     */
-    public EditCommand(PersonAdapter personAdapter, Address address) {
-        requireNonNull(personAdapter);
-        requireNonNull(address);
-
-        this.personAdapter = personAdapter;
-        this.consumerPA = x -> {
-            personAdapter.edit(address);
-        };
-    }
-
-    /**
-     * @param personAdapter of the person in the filtered person list to edit
-     * @param notes new notes for the contact.
-     */
-    public EditCommand(PersonAdapter personAdapter, Notes notes) {
-        requireNonNull(personAdapter);
-        requireNonNull(notes);
-
-        this.personAdapter = personAdapter;
-        this.consumerPA = x -> {
-            personAdapter.edit(notes);
-        };
+        this.editor = editor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        consumerPA.accept(personAdapter);
-
+        editor.accept(personAdapter);
         return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS);
     }
-
-
 }
 
