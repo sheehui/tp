@@ -3,37 +3,38 @@ package donnafin.logic.parser;
 import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.RemoveCommand;
 import donnafin.logic.parser.exceptions.ParseException;
-import donnafin.ui.Ui;
 import donnafin.ui.Ui.ClientViewTab;
-
-import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
-import static donnafin.logic.parser.CliSyntax.PREFIX_INSURED_VALUE;
-import static donnafin.logic.parser.CliSyntax.PREFIX_INSURER;
-import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
-import static donnafin.logic.parser.CliSyntax.PREFIX_REMARKS;
-import static donnafin.logic.parser.CliSyntax.PREFIX_TYPE;
-import static donnafin.logic.parser.CliSyntax.PREFIX_VALUE;
-import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 
 public class RemoveCommandParser {
 
-    final private ClientViewTab currentTab;
+    private final ClientViewTab currentTab;
     private final PersonAdapter personAdapter;
+    private final PersonField field;
 
+    /**
+     * The parser used to parse the input for the remove command.
+     * @param currentTab the current tab that the user is viewing when the command is used.
+     * @param personAdapter the person the user is currently viewing.
+     * @throws ParseException
+     */
     public RemoveCommandParser(ClientViewTab currentTab, PersonAdapter personAdapter) throws ParseException {
         this.currentTab = currentTab;
         this.personAdapter = personAdapter;
         switch (currentTab) {
-            case Policies:
-                break;
-            case Assets:
-                break;
-            case Liabilities:
-                break;
-            default:
-                throw new ParseException("Invalid tab for append.");
+        case Policies:
+            field = PersonField.POLICIES;
+            break;
+        case Assets:
+            field = PersonField.ASSETS;
+            break;
+        case Liabilities:
+            field = PersonField.LIABILITIES;
+            break;
+        default:
+            throw new ParseException("Invalid tab for append.");
         }
     }
 
@@ -45,7 +46,7 @@ public class RemoveCommandParser {
     public RemoveCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new RemoveCommand(index);
+            return new RemoveCommand(personAdapter, field, index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);

@@ -1,17 +1,5 @@
 package donnafin.logic.parser;
 
-import donnafin.commons.core.types.Money;
-import donnafin.logic.PersonAdapter;
-import donnafin.logic.commands.AppendCommand;
-import donnafin.logic.parser.exceptions.ParseException;
-import donnafin.model.person.Asset;
-import donnafin.model.person.Liability;
-import donnafin.model.person.Policy;
-import donnafin.ui.Ui.ClientViewTab;
-
-import java.util.NoSuchElementException;
-import java.util.Objects;
-
 import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static donnafin.logic.parser.CliSyntax.PREFIX_INSURED_VALUE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_INSURER;
@@ -21,12 +9,27 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_TYPE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_VALUE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
+import donnafin.commons.core.types.Money;
+import donnafin.logic.PersonAdapter;
+import donnafin.logic.commands.AppendCommand;
+import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.model.person.Asset;
+import donnafin.model.person.Liability;
+import donnafin.model.person.Policy;
+import donnafin.ui.Ui.ClientViewTab;
+
 public class AppendCommandParser implements Parser<AppendCommand> {
 
-    final private ClientViewTab currentTab;
-    final private Prefix[] prefixes;
+    private final ClientViewTab currentTab;
+    private final Prefix[] prefixes;
     private final PersonAdapter personAdapter;
 
+    /**
+     * Constructor for parser for append command.
+     */
     public AppendCommandParser(ClientViewTab currentTab, PersonAdapter personAdapter) throws ParseException {
         this.currentTab = currentTab;
         this.personAdapter = personAdapter;
@@ -53,7 +56,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
-     * @param userInput
+     * @param args
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override

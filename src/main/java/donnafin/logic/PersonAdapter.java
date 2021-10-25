@@ -1,12 +1,7 @@
 package donnafin.logic;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import donnafin.logic.parser.ParserUtil;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
@@ -18,7 +13,6 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 import javafx.collections.ObservableList;
 
 public class PersonAdapter {
@@ -55,24 +49,6 @@ public class PersonAdapter {
         return this.subject;
     }
 
-//    /**
-//     * Accept parameters to edit the person
-//     *
-//     * @param field    to be edited.
-//     * @param newValue to replace the current value.
-//     * @throws InvalidFieldException if creating a new {@code Person} was not possible with the value.
-//     */
-//    public void edit(PersonField field, String newValue) throws InvalidFieldException {
-//        try {
-//            Person curr = this.subject;
-//            Person newPerson = editPerson(curr, field, newValue);
-//            this.subject = newPerson;
-//            model.setPerson(curr, newPerson);
-//        } catch (IllegalArgumentException | ParseException e) {
-//            throw new InvalidFieldException(field);
-//        }
-//    }
-//
     /**
      * Get all attributes from Person.
      * @return Observable list of attributes
@@ -80,32 +56,11 @@ public class PersonAdapter {
     public ObservableList<Attribute> getContactAttributesList() {
         return subject.getContactAttributesList();
     }
-//
-//    private Person editPerson(Person personToEdit, PersonField field, String newValue) throws ParseException {
-//        switch (field) {
-//        case NAME:
-//            return editPersonName(personToEdit, newValue);
-//        case PHONE:
-//            return editPersonPhone(personToEdit, newValue);
-//        case EMAIL:
-//            return editPersonEmail(personToEdit, newValue);
-//        case ADDRESS:
-//            return editPersonAddress(personToEdit, newValue);
-//        case TAGS:
-//            return editPersonTags(personToEdit, newValue);
-//        case NOTES:
-//            return editPersonNotes(personToEdit, newValue);
-//        case POLICIES:
-//            return editPersonPolicies(personToEdit, newValue);
-//        case LIABILITIES:
-//            return editPersonLiabilities(personToEdit, newValue);
-//        case ASSETS:
-//            return editPersonAssets(personToEdit, newValue);
-//        default:
-//            return personToEdit;
-//        }
-//    }
 
+    /**
+     * Method to edit the client's name.
+     * @param newName new name for the client.
+     */
     public void edit(Name newName) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -123,6 +78,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's phone number.
+     * @param newPhone new phone number for the client.
+     */
     public void edit(Phone newPhone) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -140,6 +99,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's email.
+     * @param newEmail new email for the client.
+     */
     public void edit(Email newEmail) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -157,6 +120,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's address.
+     * @param newAddress new address for the client.
+     */
     public void edit(Address newAddress) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -174,6 +141,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's notes.
+     * @param newNotes new notes for the client.
+     */
     public void edit(Notes newNotes) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -191,6 +162,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's policies.
+     * @param newPolicies new policies for the client.
+     */
     public void editPolicies(Set<Policy> newPolicies) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -208,6 +183,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's liabilities.
+     * @param newLiabilities new liabilities for the client.
+     */
     public void editLiabilities(Set<Liability> newLiabilities) {
         Person curr = this.subject;
         Person personToEdit = new Person(
@@ -225,6 +204,10 @@ public class PersonAdapter {
         model.setPerson(curr, personToEdit);
     }
 
+    /**
+     * Method to edit the client's assets.
+     * @param newAssets new assets for the client.
+     */
     public void editAssets(Set<Asset> newAssets) {
         Person curr = this.subject;
         Person personToEdit = new Person(

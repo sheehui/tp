@@ -1,6 +1,5 @@
 package donnafin.ui;
 
-import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.exceptions.CommandException;

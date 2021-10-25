@@ -9,15 +9,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Consumer;
 
-import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.Model;
-import donnafin.model.person.Address;
-import donnafin.model.person.Email;
-import donnafin.model.person.Name;
-import donnafin.model.person.Notes;
-import donnafin.model.person.Phone;
+
 
 
 /**
