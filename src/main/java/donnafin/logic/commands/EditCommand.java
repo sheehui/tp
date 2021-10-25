@@ -57,13 +57,8 @@ public class    EditCommand extends Command {
         requireNonNull(name);
 
         this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.NAME;
         this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, name.toString());
-            } catch (InvalidFieldException e) {
-                e.printStackTrace();
-            }
+            personAdapter.edit(name);
         };
     }
 
@@ -76,13 +71,8 @@ public class    EditCommand extends Command {
         requireNonNull(phone);
 
         this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.PHONE;
         this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, phone.toString());
-            } catch (InvalidFieldException e) {
-                e.printStackTrace();
-            }
+            personAdapter.edit(phone);
         };
     }
 
@@ -95,13 +85,8 @@ public class    EditCommand extends Command {
         requireNonNull(email);
 
         this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.EMAIL;
         this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, email.toString());
-            } catch (InvalidFieldException e) {
-                e.printStackTrace();
-            }
+            personAdapter.edit(email);
         };
     }
 
@@ -114,13 +99,8 @@ public class    EditCommand extends Command {
         requireNonNull(address);
 
         this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.ADDRESS;
         this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, address.toString());
-            } catch (InvalidFieldException e) {
-                e.printStackTrace();
-            }
+            personAdapter.edit(address);
         };
     }
 
@@ -133,13 +113,8 @@ public class    EditCommand extends Command {
         requireNonNull(notes);
 
         this.personAdapter = personAdapter;
-        PersonAdapter.PersonField personField = PersonAdapter.PersonField.NOTES;
         this.consumerPA = x -> {
-            try {
-                personAdapter.edit(personField, notes.toString());
-            } catch (InvalidFieldException e) {
-                e.printStackTrace();
-            }
+            personAdapter.edit(notes);
         };
     }
 

@@ -58,7 +58,7 @@ public class PersonAdapterTest {
 
     @Test
     public void editPersonName_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(PersonAdapter.PersonField.NAME, "Peter");
+        personAdapter.edit(new Name("Peter"));
 
         assertEquals(new Person(new Name("Peter"), ALICE.getPhone(), ALICE.getEmail(),
                 ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
@@ -66,7 +66,7 @@ public class PersonAdapterTest {
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
-        personAdapter.edit(PersonAdapter.PersonField.NAME, "Alice Pauline");
+        personAdapter.edit(new Name("Alice Pauline"));
         assertEquals(ALICE, personAdapter.getSubject());
     }
 
@@ -74,14 +74,14 @@ public class PersonAdapterTest {
     public void editPersonName_withIncorrectNameFormat_throwsInvalidFieldException() {
         String emptyName = " "; // empty string
         String invalidName = "Alice*"; // contains non-alphanumeric characters
-        assertThrows(InvalidFieldException.class, () -> personAdapter.edit(PersonAdapter.PersonField.NAME, emptyName));
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.NAME, invalidName));
+        assertThrows(IllegalArgumentException.class, () -> personAdapter.edit(new Name(emptyName)));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Name(invalidName)));
     }
 
     @Test
     public void editPersonPhone_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(PersonAdapter.PersonField.PHONE, "90538978");
+        personAdapter.edit(new Phone("90538978"));
 
         assertEquals(new Person(ALICE.getName(), new Phone("90538978"),
                 ALICE.getEmail(), ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(),
@@ -89,7 +89,7 @@ public class PersonAdapterTest {
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
-        personAdapter.edit(PersonAdapter.PersonField.PHONE, ALICE.getPhone().toString());
+        personAdapter.edit(ALICE.getPhone());
         assertEquals(ALICE, personAdapter.getSubject());
     }
 
@@ -98,17 +98,17 @@ public class PersonAdapterTest {
         String emptyPhone = " "; // empty string
         String invalidPhone = "91"; // less than 3 numbers
         String invalidPhoneAlt = "9011p041"; // alphabets within digits
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.PHONE, emptyPhone));
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.PHONE, invalidPhone));
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.PHONE, invalidPhoneAlt));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Phone(emptyPhone)));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Phone(invalidPhone)));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Phone(invalidPhoneAlt)));
     }
 
     @Test
     public void editPersonEmail_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(PersonAdapter.PersonField.EMAIL, "alice29@email.com");
+        personAdapter.edit(new Email("alice29@email.com"));
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), new Email("alice29@email.com"),
                 ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
@@ -116,7 +116,7 @@ public class PersonAdapterTest {
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
-        personAdapter.edit(PersonAdapter.PersonField.EMAIL, ALICE.getEmail().toString());
+        personAdapter.edit(ALICE.getEmail());
         assertEquals(ALICE, personAdapter.getSubject());
     }
 
@@ -126,17 +126,17 @@ public class PersonAdapterTest {
         String missingAtSymbol = "peterjackexample.com"; //missing '@' symbol
         String missingDomainName = "peterjack@"; //missing domain name
 
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.EMAIL, missingLocalPart));
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.EMAIL, missingAtSymbol));
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.EMAIL, missingDomainName));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Email(missingLocalPart)));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Email(missingAtSymbol)));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Email(missingDomainName)));
     }
 
     @Test
     public void editPersonAddress_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(PersonAdapter.PersonField.ADDRESS, "28 College Ave E, #B1-01, Singapore 138598");
+        personAdapter.edit(new Address("28 College Ave E, #B1-01, Singapore 138598"));
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
                 new Address("28 College Ave E, #B1-01, Singapore 138598"),
@@ -144,7 +144,7 @@ public class PersonAdapterTest {
                 ALICE.getAssets()), personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
-        personAdapter.edit(PersonAdapter.PersonField.ADDRESS, ALICE.getAddress().toString());
+        personAdapter.edit(ALICE.getAddress());
         assertEquals(ALICE, personAdapter.getSubject());
     }
 
@@ -153,31 +153,15 @@ public class PersonAdapterTest {
         String emptyAddress = ""; //empty String
         String spacesOnly = " "; //spaces only
 
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.ADDRESS, emptyAddress));
-        assertThrows(InvalidFieldException.class, () ->
-                personAdapter.edit(PersonAdapter.PersonField.ADDRESS, spacesOnly));
-    }
-
-    @Test
-    public void editPersonTags_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(PersonAdapter.PersonField.TAGS, "friends colleagues");
-        Set<Tag> modifiedTags = new HashSet<>(Arrays.asList(new Tag("friends"), new Tag("colleagues")));
-
-        assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), modifiedTags, ALICE.getNotes(), ALICE.getPolicies(),
-                ALICE.getLiabilities(), ALICE.getAssets()),
-                personAdapter.getSubject());
-        assertNotEquals(ALICE, personAdapter.getSubject());
-
-        personAdapter.edit(PersonAdapter.PersonField.TAGS, "friends");
-        assertEquals(ALICE, personAdapter.getSubject());
-
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Address(emptyAddress)));
+        assertThrows(IllegalArgumentException.class, () ->
+                personAdapter.edit(new Address(spacesOnly)));
     }
 
     @Test
     public void editPersonNotes_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(PersonAdapter.PersonField.NOTES, "Loves cai fan & teh ping");
+        personAdapter.edit(new Notes("Loves cai fan & teh ping"));
         Notes modifiedNotes = new Notes("Loves cai fan & teh ping");
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
@@ -186,7 +170,7 @@ public class PersonAdapterTest {
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
-        personAdapter.edit(PersonAdapter.PersonField.NOTES, "Loves cai fan");
+        personAdapter.edit(new Notes("Loves cai fan"));
         assertEquals(ALICE, personAdapter.getSubject());
     }
 }

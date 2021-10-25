@@ -11,6 +11,7 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 
 import static java.util.Objects.requireNonNull;
 
+import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.ParserUtil;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -20,6 +21,10 @@ import donnafin.model.person.Liability;
 import donnafin.model.person.Person;
 import donnafin.model.person.Policy;
 import donnafin.ui.state.UiState;
+
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class AppendCommand extends Command {
 
@@ -38,44 +43,51 @@ public class AppendCommand extends Command {
         + PREFIX_VALUE + "VALUE "
         + PREFIX_REMARKS + "REMARKS ";
 
-    public static final String MESSAGE_SUCCESS = "New policy/asset/liability added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New policy/asset/liability added";
 
-    private final String details;
+    private final Consumer<PersonAdapter> editor;
+    private PersonAdapter personAdapter;
 
-    public AppendCommand(String details) {
-        this.details = details;
+    public AppendCommand(PersonAdapter personAdapter, Policy policy) {
+        this.personAdapter = personAdapter;
+        this.editor = pa -> {
+            Set<Policy> policies = pa.getSubject().getPolicies().stream().collect(Collectors.toSet());
+            policies.add(policy);
+            pa.editPolicies(policies);
+        };
     }
 
+    public AppendCommand(PersonAdapter personAdapter, Liability liability) {
+        this.personAdapter = personAdapter;
+        this.editor = pa -> {
+            Set<Liability> liabilities = pa.getSubject().getLiabilities().stream().collect(Collectors.toSet());
+            liabilities.add(liability);
+            pa.editLiabilities(liabilities);
+        };
+    }
+
+    public AppendCommand(PersonAdapter personAdapter, Asset asset) {
+        this.personAdapter = personAdapter;
+        this.editor = pa -> {
+            Set<Asset> assets = pa.getSubject().getAssets().stream().collect(Collectors.toSet());
+            assets.add(asset);
+            pa.editAssets(assets);
+        };
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        String tab = "placeholder";
+        editor.accept(this.personAdapter);
 
-        switch (tab) {
-        case Policy:
-            //use person adapter to append added policy to current policies
-            break;
-        case Asset:
-            //use person adapter to append added policy to current assets
-            break;
-        case Liability:
-            //use person adapter to append added policy to current liabilities
-            break;
-        default:
-            throw new CommandException("This command cannot be used in this tab");
-        }
-
-
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AppendCommand // instanceof handles nulls
-                && client.equals(((AppendCommand) other).client, true));
+                || (other instanceof AppendCommand); // instanceof handles nulls
+//                && client.equals(((AppendCommand) other).client, true));
     }
 }

@@ -8,6 +8,7 @@ import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Attribute;
 import donnafin.model.person.Liability;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Policy;
 import donnafin.ui.CommandBox.CommandExecutor;
 import javafx.fxml.FXML;
@@ -81,12 +82,9 @@ public class ClientInfoPanel extends UiPart<Region> {
 
     private AttributePanel.EditHandler createEditHandler(PersonField field) {
         return newValue -> {
-            try {
-                this.personAdapter.edit(field, newValue);
-                return null;
-            } catch (InvalidFieldException e) {
-                return e.getMessage();
-            }
+            //                this.personAdapter.edit(field, newValue);
+            //TODO: we will be removing the edit handler
+            return null;
         };
     }
 
@@ -160,11 +158,7 @@ public class ClientInfoPanel extends UiPart<Region> {
             // TODO: Replace this whole listener with just calling an edit command.
             // Any errors should be raised in the command box, after execution of the
             // edit notes logic in Command (See how the buttons on press are handled).
-            try {
-                personAdapter.edit(PersonField.NOTES, newNotes);
-            } catch (InvalidFieldException e) {
-                assert false : "Editing Notes failed ACCEPT-ALL validation";
-            }
+            personAdapter.edit(new Notes(newNotes));
         });
         attributeDisplayContainer.getChildren().add(notesField);
     }
