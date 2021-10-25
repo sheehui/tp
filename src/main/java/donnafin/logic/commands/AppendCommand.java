@@ -10,9 +10,10 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_VALUE;
 import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
@@ -42,7 +43,8 @@ public class AppendCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New policy/asset/liability added";
 
     private final Consumer<PersonAdapter> editor;
-    private PersonAdapter personAdapter;
+    private final PersonAdapter personAdapter;
+    private final Object hashableNewValue;
 
     /**
      * The append command used to add a new policy associated with the client.
@@ -51,8 +53,9 @@ public class AppendCommand extends Command {
      */
     public AppendCommand(PersonAdapter personAdapter, Policy policy) {
         this.personAdapter = personAdapter;
+        this.hashableNewValue = policy;
         this.editor = pa -> {
-            Set<Policy> policies = pa.getSubject().getPolicies().stream().collect(Collectors.toSet());
+            Set<Policy> policies = new HashSet<>(pa.getSubject().getPolicies());
             policies.add(policy);
             pa.editPolicies(policies);
         };
@@ -65,8 +68,9 @@ public class AppendCommand extends Command {
      */
     public AppendCommand(PersonAdapter personAdapter, Liability liability) {
         this.personAdapter = personAdapter;
+        this.hashableNewValue = liability;
         this.editor = pa -> {
-            Set<Liability> liabilities = pa.getSubject().getLiabilities().stream().collect(Collectors.toSet());
+            Set<Liability> liabilities = new HashSet<>(pa.getSubject().getLiabilities());
             liabilities.add(liability);
             pa.editLiabilities(liabilities);
         };
@@ -79,8 +83,9 @@ public class AppendCommand extends Command {
      */
     public AppendCommand(PersonAdapter personAdapter, Asset asset) {
         this.personAdapter = personAdapter;
+        this.hashableNewValue = asset;
         this.editor = pa -> {
-            Set<Asset> assets = pa.getSubject().getAssets().stream().collect(Collectors.toSet());
+            Set<Asset> assets = new HashSet<>(pa.getSubject().getAssets());
             assets.add(asset);
             pa.editAssets(assets);
         };
@@ -89,15 +94,23 @@ public class AppendCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         editor.accept(this.personAdapter);
-
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AppendCommand);
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof AppendCommand)) {
+            return false;
+        }
+        return ((AppendCommand) o).personAdapter.equals(personAdapter)
+                && ((AppendCommand) o).hashableNewValue.hashCode() == this.hashableNewValue.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personAdapter, hashableNewValue);
     }
 }
