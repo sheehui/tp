@@ -16,9 +16,6 @@ import donnafin.model.person.Person;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-    public static final String COMMAND_WORD_POLICY = "delete-p";
-    public static final String COMMAND_WORD_LIABILTIES = "delete-l";
-    public static final String COMMAND_WORD_ASSETS = "delete-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
