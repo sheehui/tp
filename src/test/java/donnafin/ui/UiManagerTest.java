@@ -189,10 +189,7 @@ public class UiManagerTest {
         assertEquals(logicGuiSettingsAfterSet, uiManagerGuiSettingsAfterSet);
     }
 
-    /**
-     * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
+    @Test
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
     }

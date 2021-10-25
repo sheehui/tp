@@ -2,7 +2,9 @@ package donnafin.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,7 +113,10 @@ public class AttributeTable<T> extends UiPart<Region> {
 
         aggregatorLabel.setText(tableConfig.aggregatorLabelCreator.applyOn(collection));
 
-        data = FXCollections.observableArrayList(collection);
+        List<T> sortedCollection = collection.stream()
+                .sorted(Comparator.comparing(Object::toString))
+                .collect(Collectors.toList());
+        data = FXCollections.observableArrayList(sortedCollection);
         table.getColumns().addAll(columns);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.setItems(data);
