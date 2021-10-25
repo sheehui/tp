@@ -65,6 +65,13 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img alt="Architecture Sequence Diagram" src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+Here is an explanation of what takes place when the user enters the command `delete 1`
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
+* The `Model` component then deletes the `Person` object p from the `addressBook`.
+* The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
+* The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
+
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -82,7 +89,7 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `ClientInfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -102,10 +109,11 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550" alt="Logic Class Diagram"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc., 
+to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -119,8 +127,15 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img alt="Parser Classes" src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` abstract class so that they can be treated similarly where possible e.g, during testing.
+* All `ABCParser` classes (e.g., `AddressBookParser`, `ContactTabParser`,...) inherit from the `ParserStrategy` interface so that they can be treated similarly where possible e.g, during testing.
+
+How the `ABCParser` is updated:
+1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view.
+2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present.
+3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
+
 
 There is also another noteworthy Logic class, `PersonAdapter`, that serves as a wrapper for the Model class `Person`.
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
@@ -152,7 +167,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -184,14 +199,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 **Value proposition**: manage customers faster than a typical mouse/GUI driven app
 
 The product provides financial advisors with a clean, easy to use interface to prepare
-them for meetings and maintain good relationships with their clients. On a per user basis
-it keeps track and displays customer’s financial details, their personal details, and
-presents upcoming events and todo lists. In the main page, it collates tasks and events
-for easy access.
+them for meetings and maintain good relationships with their clients. On a per-client basis,
+DonnaFin keeps track and displays client’s financial details, their contact details, and
+any notes about the client. In the main page, it collates all clients for easy access. In the
+client information page, financial details of the specific client selected is neatly segmented into 
+tabs for convenient and quick access.
 
 The product will not help them with work relations with other Financial Advisors as the
 product’s scope only covers the personal use of the product. It does not link with any
-financial calculators, financial databases or cover policy / assets / market information.
+financial calculators, financial databases or cover market information.
 
 
 ### User stories
@@ -228,7 +244,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `LOW`      | new user                                   | follow a tutorial when adding delete from a client's list of asssets   |   learn how to delete assets from the list of assets of a specific client  |
 | `LOW`      | new user                                   | follow a tutorial when adding liabilities to a client's list of liabilities      |   learn how to add liabilities to the list of liabilities of a specific client  |
 | `LOW`      | new user                                   | follow a tutorial when deleting liabilities from a client's list of liabilities      |   learn how to delete liabilities from the list of liabilities of a specific client  |
-| `low`      | new user                                   | follow a tutorial when jotting down notes for a client |   learn how to jot down quick notes regarding general information of the client |
+| `LOW`      | new user                                   | follow a tutorial when jotting down notes for a client |   learn how to jot down quick notes regarding general information of the client |
 
 
 ### Use cases
@@ -348,6 +364,23 @@ State: Client view
 * 1a. The user types the wrong command.
   * 1a1. DonnaFin shows an error message. \
         Use case resumes at step 1.
+
+**UC10: Editing a client's contact information**
+State: Client view (Contact Tab)
+
+**MSS**
+
+1. User requests to edit client's contact information
+2. Field is edited and client view with the updated field is shown
+
+**Extensions**
+
+* 1a. The user types the wrong command.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+* 1b. The user types in the new field with the unsupported format.
+    * 1b1. Contact is not updated and DonnaFin shows an error message. \
+      Use case resumes at step 1.
 
 
 ### Non-Functional Requirements

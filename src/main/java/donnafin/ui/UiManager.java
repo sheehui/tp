@@ -84,24 +84,24 @@ public class UiManager implements Ui {
     public void switchClientViewTab(ClientViewTab tab) {
         mainWindow.switchClientViewTab(tab);
         switch (tab) {
-            case Contact:
-                uiState.setStatePersonalInformationTab();
-                break;
-            case Policies:
-                uiState.setStatePoliciesTab();
-                break;
-            case Assets:
-                uiState.setStateFinancialInformationTab();
-                break;
-            case Liabilities:
-                uiState.setStateLiabilitiesTab();
-                break;
-            case Notes:
-                uiState.setStateNotesTab();
-                break;
-            default:
-                // TODO: @parser team pls
-                throw new RuntimeException("Switched to a fake tab");
+        case Contact:
+            uiState.setStatePersonalInformationTab();
+            break;
+        case Policies:
+            uiState.setStatePoliciesTab();
+            break;
+        case Assets:
+            uiState.setStateFinancialInformationTab();
+            break;
+        case Liabilities:
+            uiState.setStateLiabilitiesTab();
+            break;
+        case Notes:
+            uiState.setStateNotesTab();
+            break;
+        default:
+            // TODO: @parser team pls
+            throw new RuntimeException("Switched to a fake tab");
         }
     }
 

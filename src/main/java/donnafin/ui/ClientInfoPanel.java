@@ -1,13 +1,12 @@
 package donnafin.ui;
 
-import donnafin.logic.InvalidFieldException;
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Attribute;
 import donnafin.model.person.Liability;
+import donnafin.model.person.Notes;
 import donnafin.model.person.Policy;
 import donnafin.ui.CommandBox.CommandExecutor;
 import javafx.application.Platform;
@@ -59,22 +58,6 @@ public class ClientInfoPanel extends UiPart<Region> {
     private AttributePanel createAttributePanel(Attribute attr) {
         String fieldInString = attr.getClass().getSimpleName();
         return new AttributePanel(fieldInString, attr.toString());
-    }
-
-    /** Gets the PersonField enum type of attribute from label *
-    private PersonField getPersonContactField(String fieldInString) {
-        switch(fieldInString) {
-        case "Name":
-            return PersonField.NAME;
-        case "Address":
-            return PersonField.ADDRESS;
-        case "Phone":
-            return PersonField.PHONE;
-        case "Email":
-            return PersonField.EMAIL;
-        default:
-            throw new IllegalArgumentException("Unexpected Person Field used");
-        }
     }
 
     /**
@@ -138,11 +121,7 @@ public class ClientInfoPanel extends UiPart<Region> {
             // TODO: Replace this whole listener with just calling an edit command.
             // Any errors should be raised in the command box, after execution of the
             // edit notes logic in Command (See how the buttons on press are handled).
-            try {
-                personAdapter.edit(PersonField.NOTES, newNotes);
-            } catch (InvalidFieldException e) {
-                assert false : "Editing Notes failed ACCEPT-ALL validation";
-            }
+            personAdapter.edit(new Notes(newNotes));
         });
         changeTab(notesField);
     }

@@ -1,12 +1,7 @@
 package donnafin.logic;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import donnafin.logic.parser.ParserUtil;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
@@ -18,7 +13,6 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 import javafx.collections.ObservableList;
 
 public class PersonAdapter {
@@ -56,24 +50,6 @@ public class PersonAdapter {
     }
 
     /**
-     * Accept parameters to edit the person
-     *
-     * @param field    to be edited.
-     * @param newValue to replace the current value.
-     * @throws InvalidFieldException if creating a new {@code Person} was not possible with the value.
-     */
-    public void edit(PersonField field, String newValue) throws InvalidFieldException {
-        try {
-            Person curr = this.subject;
-            Person newPerson = editPerson(curr, field, newValue);
-            this.subject = newPerson;
-            model.setPerson(curr, newPerson);
-        } catch (IllegalArgumentException | ParseException e) {
-            throw new InvalidFieldException(field);
-        }
-    }
-
-    /**
      * Get all attributes from Person.
      * @return Observable list of attributes
      */
@@ -81,184 +57,172 @@ public class PersonAdapter {
         return subject.getContactAttributesList();
     }
 
-    private Person editPerson(Person personToEdit, PersonField field, String newValue) throws ParseException {
-        switch (field) {
-        case NAME:
-            return editPersonName(personToEdit, newValue);
-        case PHONE:
-            return editPersonPhone(personToEdit, newValue);
-        case EMAIL:
-            return editPersonEmail(personToEdit, newValue);
-        case ADDRESS:
-            return editPersonAddress(personToEdit, newValue);
-        case TAGS:
-            return editPersonTags(personToEdit, newValue);
-        case NOTES:
-            return editPersonNotes(personToEdit, newValue);
-        case POLICIES:
-            return editPersonPolicies(personToEdit, newValue);
-        case LIABILITIES:
-            return editPersonLiabilities(personToEdit, newValue);
-        case ASSETS:
-            return editPersonAssets(personToEdit, newValue);
-        default:
-            return personToEdit;
-        }
-    }
-
-    private Person editPersonName(Person personToEdit, String newValue) {
-        Name newName = new Name(newValue);
-
-        return new Person(
+    /**
+     * Method to edit the client's name.
+     * @param newName new name for the client.
+     */
+    public void edit(Name newName) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
                 newName,
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets());
-    }
-
-    private Person editPersonPhone(Person personToEdit, String newValue) {
-        Phone newPhone = new Phone(newValue);
-
-        return new Person(
-                personToEdit.getName(),
-                newPhone,
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets()
+                curr.getPhone(),
+                curr.getEmail(),
+                curr.getAddress(),
+                curr.getTags(),
+                curr.getNotes(),
+                curr.getPolicies(),
+                curr.getLiabilities(),
+                curr.getAssets()
         );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
-    private Person editPersonEmail(Person personToEdit, String newValue) {
-        Email newEmail = new Email(newValue);
+    /**
+     * Method to edit the client's phone number.
+     * @param newPhone new phone number for the client.
+     */
+    public void edit(Phone newPhone) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                newPhone,
+                curr.getEmail(),
+                curr.getAddress(),
+                curr.getTags(),
+                curr.getNotes(),
+                curr.getPolicies(),
+                curr.getLiabilities(),
+                curr.getAssets()
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
+    }
 
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
+    /**
+     * Method to edit the client's email.
+     * @param newEmail new email for the client.
+     */
+    public void edit(Email newEmail) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                curr.getPhone(),
                 newEmail,
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets());
+                curr.getAddress(),
+                curr.getTags(),
+                curr.getNotes(),
+                curr.getPolicies(),
+                curr.getLiabilities(),
+                curr.getAssets()
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
-    private Person editPersonAddress(Person personToEdit, String newValue) {
-        Address newAddress = new Address(newValue);
-
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
+    /**
+     * Method to edit the client's address.
+     * @param newAddress new address for the client.
+     */
+    public void edit(Address newAddress) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                curr.getPhone(),
+                curr.getEmail(),
                 newAddress,
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets());
-
+                curr.getTags(),
+                curr.getNotes(),
+                curr.getPolicies(),
+                curr.getLiabilities(),
+                curr.getAssets()
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
-    private Person editPersonTags(Person personToEdit, String newValue) {
-        String[] tagStrings = newValue.split(" ");
-        Set<Tag> newTags = Arrays.stream(tagStrings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                newTags,
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets());
-    }
-
-    private Person editPersonNotes(Person personToEdit, String newValue) {
-        Notes newNotes = new Notes(newValue);
-
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
+    /**
+     * Method to edit the client's notes.
+     * @param newNotes new notes for the client.
+     */
+    public void edit(Notes newNotes) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                curr.getPhone(),
+                curr.getEmail(),
+                curr.getAddress(),
+                curr.getTags(),
                 newNotes,
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets());
+                curr.getPolicies(),
+                curr.getLiabilities(),
+                curr.getAssets()
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
-    private Person editPersonPolicies(Person personToEdit, String newValue) throws ParseException {
-        String[] policiesStrings = newValue.split(SET_DELIMITER);
-        Set<Policy> newPolicies = new HashSet<>();
-        for (String policiesString : policiesStrings) {
-            Policy policy = ParserUtil.parsePolicy(policiesString);
-            newPolicies.add(policy);
-        }
-
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
+    /**
+     * Method to edit the client's policies.
+     * @param newPolicies new policies for the client.
+     */
+    public void editPolicies(Set<Policy> newPolicies) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                curr.getPhone(),
+                curr.getEmail(),
+                curr.getAddress(),
+                curr.getTags(),
+                curr.getNotes(),
                 newPolicies,
-                personToEdit.getLiabilities(),
-                personToEdit.getAssets());
+                curr.getLiabilities(),
+                curr.getAssets()
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
-    private Person editPersonLiabilities(Person personToEdit, String newValue) throws ParseException {
-        String[] liabilitiesStrings = newValue.split(ATTRIBUTE_DELIMITER);
-        Set<Liability> newLiabilities = new HashSet<>();
-        for (String liabilitiesString : liabilitiesStrings) {
-            Liability liability = ParserUtil.parseLiability(liabilitiesString);
-            newLiabilities.add(liability);
-        }
-
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
+    /**
+     * Method to edit the client's liabilities.
+     * @param newLiabilities new liabilities for the client.
+     */
+    public void editLiabilities(Set<Liability> newLiabilities) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                curr.getPhone(),
+                curr.getEmail(),
+                curr.getAddress(),
+                curr.getTags(),
+                curr.getNotes(),
+                curr.getPolicies(),
                 newLiabilities,
-                personToEdit.getAssets());
+                curr.getAssets()
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
-    private Person editPersonAssets(Person personToEdit, String newValue) throws ParseException {
-        String[] assetsStrings = newValue.split(SET_DELIMITER);
-        Set<Asset> newAssets = new HashSet<>();
-        for (String assetsString : assetsStrings) {
-            Asset asset = ParserUtil.parseAsset(assetsString);
-            newAssets.add(asset);
-        }
-
-        return new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getNotes(),
-                personToEdit.getPolicies(),
-                personToEdit.getLiabilities(),
-                newAssets);
+    /**
+     * Method to edit the client's assets.
+     * @param newAssets new assets for the client.
+     */
+    public void editAssets(Set<Asset> newAssets) {
+        Person curr = this.subject;
+        Person personToEdit = new Person(
+                curr.getName(),
+                curr.getPhone(),
+                curr.getEmail(),
+                curr.getAddress(),
+                curr.getTags(),
+                curr.getNotes(),
+                curr.getPolicies(),
+                curr.getLiabilities(),
+                newAssets
+        );
+        this.subject = personToEdit;
+        model.setPerson(curr, personToEdit);
     }
 
 }

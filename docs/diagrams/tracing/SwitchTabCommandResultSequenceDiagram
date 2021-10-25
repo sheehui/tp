@@ -1,0 +1,19 @@
+@startuml
+!include ../style.puml
+
+Participant ":UiManager" as uim LOGIC_COLOR
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":CommandResult" as cr LOGIC_COLOR
+
+[-> uim : execute
+activate uim
+uim -> logic ++: execute
+ref over logic: Switch Tab Command execution sequence
+logic -> cr ++: getLogicAction()
+cr -> logic --
+logic -> uim --
+uim -> cr ++: getUiAction()
+cr -> uim --
+destroy cr
+
+@enduml

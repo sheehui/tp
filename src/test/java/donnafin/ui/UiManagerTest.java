@@ -6,10 +6,6 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
-import donnafin.commons.core.types.Index;
-import donnafin.logic.commands.ViewCommand;
-import donnafin.logic.parser.ParserUtil;
-import donnafin.logic.parser.ViewCommandParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -194,18 +190,6 @@ public class UiManagerTest {
     }
 
     @Test
-    public void testViewCommand() throws CommandException, ParseException {
-
-//        uiManager.execute(ViewCommand.COMMAND_WORD + " 1");
-
-    }
-
-    @Test
-
-    /**
-     * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
     }
