@@ -9,7 +9,6 @@ import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
-import donnafin.logic.parser.ClientViewParser;
 import donnafin.model.Model;
 import donnafin.model.person.Person;
 
@@ -52,7 +51,7 @@ public class ViewCommand extends Command {
                 ui.showClientView(personToView);
             },
             logic -> {
-                logic.setParserStrategy(new ClientViewParser());
+                logic.setParserStrategy(new ContactTabParser(personToView));
             });
     }
 

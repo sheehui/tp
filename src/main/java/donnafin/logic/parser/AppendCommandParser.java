@@ -20,22 +20,22 @@ import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Policy;
-import donnafin.ui.Ui.ClientViewTab;
+import donnafin.ui.Ui;
 
 public class AppendCommandParser implements Parser<AppendCommand> {
 
-    private final ClientViewTab currentTab;
+    private final Ui.ViewFinderState currentTab;
     private final Prefix[] prefixes;
     private final PersonAdapter personAdapter;
 
     /**
      * Constructor for parser for append command.
      */
-    public AppendCommandParser(ClientViewTab currentTab, PersonAdapter personAdapter) throws ParseException {
+    public AppendCommandParser(Ui.ViewFinderState currentTab, PersonAdapter personAdapter) throws ParseException {
         this.currentTab = currentTab;
         this.personAdapter = personAdapter;
         switch (currentTab) {
-        case Policies:
+        case POLICIES:
             prefixes = new Prefix[]{
                 PREFIX_NAME,
                 PREFIX_INSURER,
@@ -44,9 +44,9 @@ public class AppendCommandParser implements Parser<AppendCommand> {
                 PREFIX_COMMISSION
             };
             break;
-        case Assets:
+        case ASSETS:
             // fallthrough
-        case Liabilities:
+        case LIABILITIES:
             prefixes = new Prefix[]{ PREFIX_NAME, PREFIX_TYPE, PREFIX_VALUE, PREFIX_REMARKS };
             break;
         default:
@@ -66,11 +66,11 @@ public class AppendCommandParser implements Parser<AppendCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, prefixes);
 
         switch (currentTab) {
-        case Policies:
+        case POLICIES:
             return parsePolicy(argMultimap);
-        case Assets:
+        case ASSETS:
             return parseAsset(argMultimap);
-        case Liabilities:
+        case LIABILITIES:
             return parseLiability(argMultimap);
         default:
             throw new ParseException("Invalid tab for append.");

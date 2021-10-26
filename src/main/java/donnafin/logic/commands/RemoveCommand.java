@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import donnafin.commons.core.types.Index;
@@ -18,9 +19,11 @@ import donnafin.model.Model;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Liability;
 import donnafin.model.person.Policy;
+import donnafin.ui.Ui;
 
 public class RemoveCommand extends Command {
 
+    public static final String COMMAND_WORD = "remove";
     public static final String MESSAGE_USAGE = ""; // TODO
     private static final String MESSAGE_SUCCESS = ""; // TODO
     private final PersonAdapter personAdapter;
@@ -66,7 +69,16 @@ public class RemoveCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("No such index found.");
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        //Used to refresh ui to display remove attribute
+        Consumer<Ui> refresh = x -> {
+            try {
+                x.switchClientViewTab(x.getUiState());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        };
+        return new CommandResult(MESSAGE_SUCCESS, refresh);
     }
 
     private <T> Set<T> removeWithOrder(Set<T> original, Index index) {

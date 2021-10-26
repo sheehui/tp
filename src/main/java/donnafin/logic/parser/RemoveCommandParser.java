@@ -6,11 +6,12 @@ import donnafin.logic.PersonAdapter;
 import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.RemoveCommand;
 import donnafin.logic.parser.exceptions.ParseException;
-import donnafin.ui.Ui.ClientViewTab;
+import donnafin.ui.Ui;
+import donnafin.ui.Ui.ViewFinderState;
 
 public class RemoveCommandParser {
 
-    private final ClientViewTab currentTab;
+    private final ViewFinderState currentTab;
     private final PersonAdapter personAdapter;
     private final PersonField field;
 
@@ -20,17 +21,17 @@ public class RemoveCommandParser {
      * @param personAdapter the person the user is currently viewing.
      * @throws ParseException
      */
-    public RemoveCommandParser(ClientViewTab currentTab, PersonAdapter personAdapter) throws ParseException {
+    public RemoveCommandParser(Ui.ViewFinderState currentTab, PersonAdapter personAdapter) throws ParseException {
         this.currentTab = currentTab;
         this.personAdapter = personAdapter;
         switch (currentTab) {
-        case Policies:
+        case POLICIES:
             field = PersonField.POLICIES;
             break;
-        case Assets:
+        case ASSETS:
             field = PersonField.ASSETS;
             break;
-        case Liabilities:
+        case LIABILITIES:
             field = PersonField.LIABILITIES;
             break;
         default:

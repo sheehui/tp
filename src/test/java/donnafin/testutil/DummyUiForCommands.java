@@ -13,7 +13,7 @@ public class DummyUiForCommands implements Ui {
     private int countHome = 0;
     private int countExit = 0;
     private int countView = 0;
-    private final List<ClientViewTab> tabSwitches = new ArrayList<>();
+    private final List<ViewFinderState> tabSwitches = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) {}
@@ -34,7 +34,7 @@ public class DummyUiForCommands implements Ui {
     }
 
     @Override
-    public void switchClientViewTab(ClientViewTab tab) {
+    public void switchClientViewTab(ViewFinderState tab) {
         tabSwitches.add(tab);
     }
 
@@ -45,7 +45,7 @@ public class DummyUiForCommands implements Ui {
 
     private boolean isValid(
             int countHome, int countExit, int countHelp,
-            int countView, List<ClientViewTab> tabSwitches) {
+            int countView, List<ViewFinderState> tabSwitches) {
         return countHome == this.countHome && countExit == this.countExit && countHelp == this.countHelp
                 && countView == this.countView && tabSwitches.equals(this.tabSwitches);
     }
@@ -67,18 +67,23 @@ public class DummyUiForCommands implements Ui {
         case SHOW_VIEW:
             return isValid(0, 0, 0, 1, List.of());
         case SWITCH_TAB_CONTACT:
-            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Contact));
+            return isValid(0, 0, 0, 0, List.of(ViewFinderState.CONTACT));
         case SWITCH_TAB_POLICIES:
-            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Policies));
+            return isValid(0, 0, 0, 0, List.of(ViewFinderState.POLICIES));
         case SWITCH_TAB_ASSETS:
-            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Assets));
+            return isValid(0, 0, 0, 0, List.of(ViewFinderState.ASSETS));
         case SWITCH_TAB_LIABILITIES:
-            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Liabilities));
+            return isValid(0, 0, 0, 0, List.of(ViewFinderState.LIABILITIES));
         case SWITCH_TAB_NOTES:
-            return isValid(0, 0, 0, 0, List.of(ClientViewTab.Notes));
+            return isValid(0, 0, 0, 0, List.of(ViewFinderState.NOTES));
         default:
             assert false : "No such Ui Action Type";
             return false;
         }
+    }
+
+    @Override
+    public ViewFinderState getUiState() {
+        return ViewFinderState.CONTACT;
     }
 }

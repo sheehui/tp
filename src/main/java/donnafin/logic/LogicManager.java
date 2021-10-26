@@ -84,7 +84,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    /*
+    /**
     Function to change the strategyParser in parserContext
      */
     public void setParserStrategy(ParserStrategy strategyParser) {
