@@ -15,6 +15,7 @@ public class NotesTabParser extends ClientViewParser {
     protected Command tabSpecificHandler(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
         case "INSERT COMMAND WORD FOR EDIT HERE":
+            //TODO
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

@@ -45,7 +45,7 @@ public class EditCommand extends Command {
 
     /**
      * @param personAdapter of the person in the filtered person list to edit
-     * @param name new name for the contact.
+     * @param editor new editor for the contact.
      */
     public EditCommand(PersonAdapter personAdapter, Consumer<PersonAdapter> editor) {
         requireNonNull(personAdapter);

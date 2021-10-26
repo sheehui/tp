@@ -21,7 +21,6 @@ public class LiabilitiesTabParser extends ClientViewParser {
             return new AppendCommandParser(Ui.ViewFinderState.LIABILITIES, super.personAdapter).parse(arguments);
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser(Ui.ViewFinderState.LIABILITIES, super.personAdapter).parse(arguments);
-        case "EDIT": // parse the rest of it
         default: // throw error
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
