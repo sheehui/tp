@@ -72,9 +72,8 @@ public class SwitchTabCommand extends Command {
                 logic.setParserStrategy(new NotesTabParser(personAdapter));
                 break;
             default:
-                //Impossible to reach here as all ViewFinderState has been covered
                 // Should throw an error and should never reach here
-                throw new RuntimeException();
+                throw new RuntimeException("Invalid enum for ViewFinderState");
             }
         };
         return new CommandResult(MESSAGE_SUCCESS, uiAction, logicAction);
