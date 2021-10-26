@@ -48,6 +48,8 @@ public class SwitchTabCommand extends Command {
             try {
                 ui.switchClientViewTab(tab);
             } catch (ParseException e) {
+                //This is sufficient as its only an exception due to switch
+                //Handling all cases normally and still having a default
                 e.printStackTrace();
             }
         };
@@ -70,6 +72,7 @@ public class SwitchTabCommand extends Command {
                 logic.setParserStrategy(new NotesTabParser(personAdapter));
                 break;
             default:
+                //Impossible to reach here as all ViewFinderState has been covered
                 // Should throw an error and should never reach here
                 throw new RuntimeException();
             }
