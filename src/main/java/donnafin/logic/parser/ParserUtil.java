@@ -243,12 +243,20 @@ public class ParserUtil {
         // Handling Default currency $XYZ or $XYZ.AB
         final String regexDollarCents = "^-?\\s*\\$\\s*\\d+(\\.\\d{2})?$";
         final String dollarCentsPrefix = "$";
-        final int dollarCentsToSmallUnit = 100;
 
         if (trimmedCommission.matches(regexDollarCents)) {
             String decimalString = trimmedCommission.replace(dollarCentsPrefix, "").replace(" ", "");
-            double value = Double.parseDouble(decimalString);
-            return new Money((int) (value * dollarCentsToSmallUnit));
+            if (!decimalString.contains(".")) {
+                decimalString += ".00";
+            }
+            long value;
+            try {
+                value = Long.parseLong(decimalString.replace(".", ""));
+            } catch (NumberFormatException e) {
+                throw new ParseException(
+                        String.format("Input string '%s' exceeds maximum monetary value.", trimmedCommission));
+            }
+            return new Money(value);
         } else {
             throw new ParseException(
                     String.format("Input string '%s' does not match any monetary value format.", trimmedCommission));

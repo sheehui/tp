@@ -10,25 +10,25 @@ public class Money {
     private static final String CURRENCY_SYMBOL = "$";
     private static final int CURRENCY_EXPONENT = 2;
 
-    private final int value;
+    private final long value;
 
     /**
      * Create a Money object with value and currency as specified.
      *
      * @param valueInSmallestUnit integer value of the currency in its smallest unit (e.g. cent)
      */
-    public Money(int valueInSmallestUnit) {
+    public Money(long valueInSmallestUnit) {
         this.value = valueInSmallestUnit;
     }
 
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
     @Override
     public String toString() {
-        int absVal = Math.abs(value);
-        int divisor = (int) Math.pow(10, CURRENCY_EXPONENT);
+        long absVal = Math.abs(value);
+        long divisor = (long) Math.pow(10, CURRENCY_EXPONENT);
 
         String biggerUnitValue = "" + absVal / divisor;
         String sign = absVal == value ? " " : "-";

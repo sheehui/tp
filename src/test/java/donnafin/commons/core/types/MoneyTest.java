@@ -52,8 +52,8 @@ public class MoneyTest {
 
     @Test
     public void safeMaths() {
-        Money maxValue = new Money(Integer.MAX_VALUE);
-        Money minValue = new Money(Integer.MIN_VALUE);
+        Money maxValue = new Money(Long.MAX_VALUE);
+        Money minValue = new Money(Long.MIN_VALUE);
         Money oneCent = new Money(1);
         assertThrows(Money.MoneyException.class, () -> Money.add(maxValue, oneCent));
         assertThrows(Money.MoneyException.class, () -> Money.subtract(minValue, oneCent));
