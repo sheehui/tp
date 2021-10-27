@@ -5,6 +5,7 @@ import donnafin.logic.PersonAdapter;
 import donnafin.logic.parser.ClientViewParser;
 import donnafin.logic.parser.EditCommandParser;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.ui.Ui;
 
 public class ContactTabParser extends ClientViewParser {
 
@@ -16,7 +17,7 @@ public class ContactTabParser extends ClientViewParser {
     protected Command tabSpecificHandler(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser(personAdapter).parse(arguments);
+            return new EditCommandParser(Ui.ViewFinderState.CONTACT, personAdapter).parse(arguments);
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
