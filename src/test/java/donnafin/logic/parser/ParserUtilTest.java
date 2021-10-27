@@ -254,16 +254,27 @@ public class ParserUtilTest {
     @Test
     public void parseMoney_invalidFormats() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.00$"));
-        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.0.0"));
-        assertThrows(ParseException.class, () -> ParserUtil.parseMoney(".50"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$1.0.0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$.50"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("abc $2.50"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$2.50 abc"));
     }
 
     @Test
-    public void parseMoney_invalidWithWrongPrecision() throws ParseException {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.0"));
-        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.000"));
+    public void parseMoney_invalidWithWrongPrecision() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$ 1.0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$ 1.000"));
+    }
+
+    @Test
+    public void parseMoney_testBigValues() throws ParseException {
+        assertEquals(" $ 100000000.00", ParserUtil.parseMoney("$ 100000000").toString());
+        assertEquals("-$ 100000000.00", ParserUtil.parseMoney("-$ 100000000").toString());
+        assertEquals(" $ 1000000000.00", ParserUtil.parseMoney("$ 1000000000").toString());
+        assertEquals("-$ 1000000000.00", ParserUtil.parseMoney("-$ 1000000000").toString());
+        assertEquals(" $ 92233720368547758.00", ParserUtil.parseMoney("$" + (Long.MAX_VALUE / 100)).toString());
+        assertEquals("-$ 92233720368547758.00", ParserUtil.parseMoney("-$" + (Long.MAX_VALUE / 100)).toString());
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$" + (Long.MAX_VALUE / 100) + 1));
     }
 
     @Test
