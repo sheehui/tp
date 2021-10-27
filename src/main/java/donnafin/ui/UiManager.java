@@ -190,10 +190,6 @@ public class UiManager implements Ui {
         return commandResult;
     };
 
-    public void setEditableCommandBox(boolean cond) {
-        mainWindow.setEditableCommandBox(cond);
-    }
-
     //For testing purposes. See UiManager Test for more info
     @Override
     public boolean equals(Object o) {

@@ -15,17 +15,14 @@ import donnafin.model.person.Address;
 import donnafin.model.person.Email;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
-import donnafin.ui.Ui;
 
 
 public class EditCommandParser implements Parser<EditCommand> {
 
     private final PersonAdapter personAdapter;
-    private final Ui.ViewFinderState currentTab;
 
-    public EditCommandParser(Ui.ViewFinderState currentTab, PersonAdapter personAdapter) {
+    public EditCommandParser(PersonAdapter personAdapter) {
         this.personAdapter = personAdapter;
-        this.currentTab = currentTab;
     }
 
     /**

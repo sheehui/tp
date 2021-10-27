@@ -32,6 +32,4 @@ public interface Ui {
     void showHome();
 
     ViewFinderState getUiState();
-
-    void setEditableCommandBox(boolean cond);
 }

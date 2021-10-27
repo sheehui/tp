@@ -39,7 +39,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ClientInfoPanel clientInfoPanel;
-    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -131,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        this.commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -141,10 +140,6 @@ public class MainWindow extends UiPart<Stage> {
     public void switchToHome() {
         switchTab(this.viewFinderPlaceholder, personListPanel);
         clientInfoPanel = null;
-    }
-
-    public void setEditableCommandBox(boolean cond) {
-        commandBox.setEditableTextField(cond);
     }
 
     private void switchTab(UiPart<Region> tab) {
@@ -168,7 +163,6 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
-
 
     /**
      * Opens the help window or focuses on it if it's already opened.
