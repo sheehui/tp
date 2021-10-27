@@ -5,6 +5,7 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -65,6 +66,14 @@ public class EditCommandParser implements Parser<EditCommand> {
                 return pa;
             });
         }
+
+        // Checks if at least one prefix is present
+        if (List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS).stream().anyMatch(
+            prefix -> argMultimap.getValue(prefix).isEmpty())
+        ) {
+            throw new ParseException("Please enter a valid prefix");
+        }
+
         return new EditCommand(personAdapter, fn::apply);
     }
 }
