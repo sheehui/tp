@@ -21,12 +21,12 @@ public class UiState {
      */
     public UiState() {
         logger.info("Creating Ui State: Set to Home");
-        this.state = ViewFinderState.PERSONLISTPANEL;
+        this.state = ViewFinderState.PERSON_LIST_PANEL;
     }
 
     public void setStatePersonListPanel() {
         logger.info("Set Ui state to home");
-        this.state = ViewFinderState.PERSONLISTPANEL;
+        this.state = ViewFinderState.PERSON_LIST_PANEL;
     }
 
     public void setStatePersonalInformationTab() {

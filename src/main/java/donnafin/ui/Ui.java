@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public interface Ui {
 
     enum ViewFinderState {
-        PERSONLISTPANEL,
+        PERSON_LIST_PANEL,
         CONTACT,
         POLICIES,
         ASSETS,
