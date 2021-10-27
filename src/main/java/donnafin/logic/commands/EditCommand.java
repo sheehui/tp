@@ -11,8 +11,9 @@ import java.util.function.Consumer;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
+import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
-
+import donnafin.ui.Ui;
 
 
 /**
@@ -35,7 +36,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Successful edit.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -59,7 +60,17 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         editor.accept(personAdapter);
-        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS);
+
+        //Used to refresh UI to display new attribute added
+        Consumer<Ui> refresh = x -> {
+            try {
+                x.switchClientViewTab(x.getUiState());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        };
+
+        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS, refresh);
     }
 }
 
