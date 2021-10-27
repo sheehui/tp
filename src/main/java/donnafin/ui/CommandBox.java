@@ -50,6 +50,10 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    public void setEditableTextField(boolean cond) {
+        this.commandTextField.setEditable(cond);
+    }
+
     /**
      * Sets the command box style to use the default style.
      */
