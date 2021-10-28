@@ -67,7 +67,7 @@ public class Policy implements Attribute {
             this.yearlyPremiums = ParserUtil.parseMoney(yearlyPremiums);
             this.commission = ParserUtil.parseMoney(commission);
         } catch (ParseException pe) {
-            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Money.MESSAGE_CONSTRAINTS);
         }
     }
 

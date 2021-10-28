@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 import donnafin.commons.core.types.Money;
-import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.logic.parser.ParserUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.AttributeTable;
@@ -54,7 +53,7 @@ public class Liability implements Attribute {
      * @param value A Liability's worth.
      * @param remarks A remark on Liability.
      */
-    public Liability(String name, String type, String value, String remarks) throws IllegalValueException {
+    public Liability(String name, String type, String value, String remarks) {
         requireAllNonNull(name, type, value, remarks);
         checkArgument(isValidVariable(name), MESSAGE_CONSTRAINTS);
         checkArgument(isValidVariable(type), MESSAGE_CONSTRAINTS);
@@ -64,7 +63,7 @@ public class Liability implements Attribute {
         try {
             this.value = ParserUtil.parseMoney(value);
         } catch (ParseException e) {
-            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Money.MESSAGE_CONSTRAINTS);
         }
         this.remarks = remarks;
     }

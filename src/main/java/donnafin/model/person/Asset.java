@@ -63,7 +63,7 @@ public class Asset implements Attribute {
         try {
             this.value = ParserUtil.parseMoney(value);
         } catch (ParseException e) {
-            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Money.MESSAGE_CONSTRAINTS);
         }
         this.remarks = remarks;
     }
