@@ -80,9 +80,9 @@ Exits the program.
 
 Format: `exit`
 
-### Main Window Commands
+### Home Commands
 
-These commands are exclusive to Main Window, which can also be known as Home, the default 
+These commands are exclusive to Home, which can also be known as Home, the default 
 window that pops up when DonnaFin is opened.
 
 #### Adding a Client : `add`
@@ -150,8 +150,9 @@ Access client information in a 'client view' mode where all data on the client i
 
 Format: view INDEX
 
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...​
-* The view screen will switch to the person and open the notepad. Cursor will be in the notes entry field, allowing the user to continue typing to fill in notes.
+* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed person list. 
+* The index **must be a positive integer** 1, 2, 3, ...​
+* The view screen will switch to the client window.
 
 Examples:
 * `view 1`
@@ -273,7 +274,7 @@ Example:
 Remove an existing asset from the current client you are viewing. You must be in the `Assets` tab.
 
 * Removes the asset at the specified `INDEX`.
-* The index refers to the position of the asset you want to delete starting from the first row.
+* The index refers to the index number shown in the displayed asset list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `remove INDEX`
@@ -295,7 +296,7 @@ Example:
 Remove an existing liability from the current client you are viewing. You must be in the `Liabilities` tab.
 
 * Removes the liability at the specified `INDEX`.
-* The index refers to the position of the liability you want to delete starting from the first row.
+* The index refers to the index number shown in the displayed liability list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `remove INDEX`
@@ -317,7 +318,7 @@ Example:
 Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
 
 * Removes the liability at the specified `INDEX`.
-* The index refers to the position of the policy you want to delete starting from the first row.
+* The index refers to the index number shown in the displayed policy list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `remove INDEX`
@@ -325,9 +326,13 @@ Format: `remove INDEX`
 Example:
 * `remove 1`
 
+#### Edit Notes
+
+You can simply add your changes inside the notes field inside `Notes` tab and DonnaFin will automatically save your data.
+
 #### Returning to Home view: `home`
 
-Allows the user to return to the home view, also known as Main Window.
+Allows the user to return to the home view.
 
 Format: `home`
 
@@ -342,10 +347,6 @@ DonnaFin data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
