@@ -64,7 +64,7 @@ public class Liability implements Attribute {
         try {
             this.value = ParserUtil.parseMoney(value);
         } catch (ParseException e) {
-            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
         }
         this.remarks = remarks;
     }
