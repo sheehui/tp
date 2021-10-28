@@ -80,9 +80,9 @@ Exits the program.
 
 Format: `exit`
 
-### Home Commands
+### Home Window Commands
 
-These commands are exclusive to Home, which can also be known as Home, the default 
+These commands are exclusive to Home Window the default 
 window that pops up when DonnaFin is opened.
 
 #### Adding a Client : `add`
@@ -165,7 +165,7 @@ Examples:
 ### Client Window Commands
 
 These commands are exclusive to client window. They give access and writing privileges for any client information
-fields. You can access these commands once enter the Client Window through our `view` command.
+fields. You can access these commands once you have entered the Client Window using our `view` command.
 
 #### Switching Tabs : `tab`
 
@@ -242,7 +242,7 @@ Edits the phone number of the client you are currently viewing.
 
 Format: `edit p/PHONE_NUMBER`
 
-Example: `edit p/98782341`
+Example: `edit p/81753076`
 
 ##### Edit Client Address
 
@@ -330,9 +330,9 @@ Example:
 
 You can simply add your changes inside the notes field inside `Notes` tab and DonnaFin will automatically save your data.
 
-#### Returning to Home view: `home`
+#### Returning to Home Window: `home`
 
-Allows the user to return to the home view.
+Allows the user to return to the home window.
 
 Format: `home`
 
