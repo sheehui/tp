@@ -125,15 +125,20 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img alt="Parser Classes" src="images/ParserClasses.png" width="600"/>
+<img alt="Parser Strategy" src="images/ParserStrategy.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* ParserContext holds a reference to a ParserStrategy that is set based on the current tab the user is on etc
+* When ParserContext calls upon the current ParserStrategy to parse a user command, the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` abstract class so that they can be treated similarly where possible e.g, during testing.
-* All `ABCParser` classes (e.g., `AddressBookParser`, `ContactTabParser`,...) inherit from the `ParserStrategy` interface so that they can be treated similarly where possible e.g, during testing.
+* ClientViewParser and AddressBookParser inherit from ParserStrategy while the tab specific parsers inherit from ClientViewParser inherit.
 
-How the `ABCParser` is updated:
+
+<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
+
+How the `ABCParser` in ParserContext is updated:
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view.
-2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present.
+2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present. LogicManager is a facade that is able to set and change the current ParserStrategy.
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
 
 

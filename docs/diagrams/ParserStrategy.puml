@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package ParserContext {
+Class ParserContext
+Class "{abstract}\nParserStrategy" as ParserStrategy
+Class AddressBookParser
+Class "{abstract}\nClientViewParser" as ClientViewParser
+Class ContactTabParser
+Class PolicyTabParser
+Class AssetTabParser
+Class LiabilitiesTabParser
+Class NotesTabParser
+}
+
+ParserContext --> ParserStrategy
+AddressBookParser -up-|> ParserStrategy
+ClientViewParser -up-|> ParserStrategy
+ContactTabParser -up-|> ClientViewParser
+PolicyTabParser -up-|> ClientViewParser
+AssetTabParser -up-|> ClientViewParser
+LiabilitiesTabParser -up-|> ClientViewParser
+NotesTabParser -up-|> ClientViewParser
+
+LogicManager --> ParserContext
+@enduml
