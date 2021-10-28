@@ -226,7 +226,7 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `HIGH`  | user                                       | delete a client                | remove clients that I no longer have                                   |
 | `HIGH`  | efficient user                                       | find a client by name          | locate details of clients without having to go through the entire list |
 | `HIGH`  | user                                       | view a client's personal info  | find out the personal information about the client |
-| `HIGH`  | user                                       |  return to home view from client's information | move on to view my other clients instead of the current client that I am viewing |
+| `HIGH`  | user                                       |  return to home window from client's information | move on to view my other clients instead of the current client that I am viewing |
 | `HIGH`  | new user                                       | clear all clients   | delete all clients and reset all my contacts for the application |
 | `HIGH`  |  user                                      |  edit a client's contact information  |  keep up to date with the clients information for further usage|
 | `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased| 
@@ -258,7 +258,7 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 
 
 **UC01: Adding a client to DonnaFin** \
-State: Home view
+State: Home Window
 
 **MSS**
 
@@ -272,7 +272,7 @@ State: Home view
          Use Case resumes from step 1.
 
 **UC02: Deleting a client from DonnaFin** \
-State: Home view
+State: Home Window
 
 **MSS**
 
@@ -289,7 +289,7 @@ Use case ends.
       Use case resumes from step 1.
 
 **UC03: Finding a client by name** \
-State: Home view
+State: Home Window
 
 **MSS**
 1. User chooses to find a client within DonnaFin using the right syntax.
@@ -304,7 +304,7 @@ State: Home view
          Use Case ends.
 
 **UC04: Viewing the details of a client** \
-State: Home view
+State: Home Window
 
 **MSS**
 1. User requests to view a client using the right syntax.
@@ -320,21 +320,21 @@ State: Home view
 
 
 **UC05: Getting help** \
-State: Works on both Home and Client view
+State: Works on both Home and Client Window
 
 **MSS**
 1. User requests for help to get assistance on commands.
 2. DonnaFin displays a window with the user guide for the DonnaFin application.
 
 **UC06: Listing all clients** \
-State: Home View
+State: Home Window
 
 **MSS**
 1. User requests for the list of all the registered clients.
 2. DonnaFin displays all the clients that has been registered within DonnaFin.
 
 **UC07: Exiting the application** \
-State: Works on both Home and Client view
+State: Works on both Home and Client Window
 
 
 **MSS**
@@ -342,10 +342,10 @@ State: Works on both Home and Client view
 2. DonnaFin closes itself.
 
 **UC08: Switching to other tabs** \
-State: Client view
+State: Client Window
 
 **MSS**
-1. User requests to view another tab within the client view.
+1. User requests to view another tab within the client Window.
 2. DonnaFin switches the current tab to the requested tab.
 
 **Extensions**
@@ -356,13 +356,13 @@ State: Client view
   * 1b1. DonnaFin shows an error message and tells the user that the tab they request does not match any existing tab. \
          Use case resumes at step 1.
 
-**UC09: Returning to Home View**
-State: Client view
+**UC09: Returning to Home Window**
+State: Client Window
 
 **MSS**
 
-1. User requests to return to home view.
-2. DonnaFin switches the view back to Home view.
+1. User requests to return to home window.
+2. DonnaFin switches the view back to home window.
 
 **Extensions**
 
@@ -371,12 +371,12 @@ State: Client view
         Use case resumes at step 1.
 
 **UC10: Editing a client's contact information**
-State: Client view (Contact Tab)
+State: Client Window (Contact Tab)
 
 **MSS**
 
 1. User requests to edit client's contact information
-2. Field is edited and client view with the updated field is shown
+2. Field is edited and client window with the updated field is shown
 
 **Extensions**
 
@@ -423,7 +423,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample clients. The window size may not be optimised for your display.
 
 1. Saving window preferences
 
@@ -434,9 +434,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a client
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all clients are being shown (home window)
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
@@ -444,10 +444,27 @@ testers are expected to do more *exploratory* testing.
       Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Viewing and editing a client
+
+1. Enter client window
+    
+    1. Prerequisites: Currently in the home window
+    
+    1. Test case: `view 1`<br>
+       Expected: client window will be shown, and you can inspect the details of the client.
+   
+    1. Test case: `view -4`<br>
+       Expected: As it is not a valid index, you will remain in the home window with an error command output.
+       
+    1. Test case: editing fields
+       Expected: Switching tabs and editing fields with the commands listed in the user guide [here](./UserGuide.md#Client-Window-Commands) works correctly.
 
 1. _{ more test cases …​ }_
 
