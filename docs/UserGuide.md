@@ -308,10 +308,10 @@ Example:
 
 Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
 
-Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE yp/$YEARLY_PREMIUM c/$COMMISSION`
+Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`
 
 Example:
-* `append n/Diamond Policy i/AIA iv/$10000 yp/$200 c/$1000`
+* `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 
 #### Remove a Policy: `remove`
 
