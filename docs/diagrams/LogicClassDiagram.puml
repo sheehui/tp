@@ -29,7 +29,7 @@ HiddenOutside ..> Logic
 LogicManager .right.|> Logic
 LogicManager -->"1" ParserContext
 ParserContext -->"*" ParserStrategy
-ABCParser -up-|> ParserStrategy
+ABCParser *-up-> ParserStrategy
 ABCParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command

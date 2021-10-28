@@ -3,19 +3,22 @@
 mainframe **sd** Switch Tab Command execution sequence
 
 Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":ParserContext" as pc LOGIC_COLOR
 Participant ":ClientViewParser" as cvp LOGIC_COLOR
 Participant ":ParserUtil" as pu LOGIC_COLOR
 Participant ":SwitchTabCommand" as stc LOGIC_COLOR
 
 [-> logic : execute
 activate logic
-logic -> cvp ++: parseCommand(commandText)
+logic -> pc ++: parseCommand(commandText)
+pc -> cvp ++: executeParserStrategy(commandText)
 cvp -> pu ++: parseTab(argument)
 pu --> cvp --: tab
 create stc
 cvp -> stc ++: SwitchTabCommand(tab)
 stc --> cvp --
-cvp --> logic --: command
+cvp --> pc --: command
+pc --> logic --: command
 logic -> stc ++: execute(model)
 stc --> logic --: commandResult
 destroy stc
