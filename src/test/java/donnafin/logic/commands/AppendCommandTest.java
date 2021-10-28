@@ -1,8 +1,17 @@
 package donnafin.logic.commands;
 
-import static donnafin.testutil.TypicalPersons.*;
+import static donnafin.testutil.TypicalPersons.GEORGE;
+import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.logic.PersonAdapter;
@@ -18,29 +27,21 @@ import donnafin.model.person.Policy;
 import donnafin.storage.JsonAddressBookStorage;
 import donnafin.storage.JsonUserPrefsStorage;
 import donnafin.storage.StorageManager;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
 
 public class AppendCommandTest {
-
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
-
-    private static Policy testPolicy;
-    private static Liability testLiability;
     private static Asset testAsset;
+    private static Liability testLiability;
+    private static Policy testPolicy;
 
-    private static Set<Policy> combinedPolicy;
-    private static Set<Liability> combinedLiability;
     private static Set<Asset> combinedAssets;
+    private static Set<Liability> combinedLiability;
+    private static Set<Policy> combinedPolicy;
 
     @TempDir
     public Path temporaryFolder;
     private PersonAdapter personAdapter;
+
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
 
     @BeforeEach
     public void setUp() throws IllegalValueException {
