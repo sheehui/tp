@@ -38,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private ClientInfoPanel clientInfoPanel;
+    private ClientPanel clientPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void switchToHome() {
         switchTab(this.viewFinderPlaceholder, personListPanel);
-        clientInfoPanel = null;
+        clientPanel = null;
     }
 
     private void switchTab(UiPart<Region> tab) {
@@ -217,28 +217,28 @@ public class MainWindow extends UiPart<Stage> {
 
     /** Show Client View */
     public void showClientView(PersonAdapter subject) {
-        clientInfoPanel = new ClientInfoPanel(subject, this::executeCommand);
-        switchTab(clientInfoPanel);
+        clientPanel = new ClientPanel(subject, this::executeCommand);
+        switchTab(clientPanel);
     }
 
     /** Switch tab in Client View */
     public void switchClientViewTab(Ui.ViewFinderState tab) {
-        Objects.requireNonNull(clientInfoPanel);
+        Objects.requireNonNull(clientPanel);
         switch (tab) {
         case CONTACT:
-            clientInfoPanel.changeTabToContact();
+            clientPanel.changeTabToContact();
             break;
         case POLICIES:
-            clientInfoPanel.changeTabToPolicies();
+            clientPanel.changeTabToPolicies();
             break;
         case ASSETS:
-            clientInfoPanel.changeTabToAssets();
+            clientPanel.changeTabToAssets();
             break;
         case LIABILITIES:
-            clientInfoPanel.changeTabToLiabilities();
+            clientPanel.changeTabToLiabilities();
             break;
         case NOTES:
-            clientInfoPanel.changeTabToNotes();
+            clientPanel.changeTabToNotes();
             break;
         default:
             // TODO: @parser team pls

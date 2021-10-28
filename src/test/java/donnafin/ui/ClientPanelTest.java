@@ -10,18 +10,18 @@ import guitests.guihandles.ClientInfoPanelHandle;
 //@@author bharathcs-reused
 //Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
-public class ClientInfoPanelTest extends GuiUnitTest {
+public class ClientPanelTest extends GuiUnitTest {
 
-    private ClientInfoPanel clientInfoPanel;
+    private ClientPanel clientPanel;
     private ClientInfoPanelHandle clientInfoPanelHandle;
 
     @BeforeEach
     public void setUp() {
-        clientInfoPanel = new ClientInfoPanel(new PersonAdapter(null, new PersonBuilder().build()), null);
-        uiPartExtension.setUiPart(clientInfoPanel);
+        clientPanel = new ClientPanel(new PersonAdapter(null, new PersonBuilder().build()), null);
+        uiPartExtension.setUiPart(clientPanel);
 
         clientInfoPanelHandle = new ClientInfoPanelHandle(
-                getChildNode(clientInfoPanel.getRoot(),
+                getChildNode(clientPanel.getRoot(),
                 ClientInfoPanelHandle.CLIENT_INFO_PANEL_ID)
         );
     }
