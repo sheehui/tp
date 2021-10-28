@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class ClientInfoPanel extends UiPart<Region> {
+public class ClientPanel extends UiPart<Region> {
 
     private static final String FXML = "ClientInfoPanel.fxml";
     private final PersonAdapter personAdapter;
@@ -48,7 +48,7 @@ public class ClientInfoPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ClientInfoPanel(PersonAdapter personAdapter, CommandExecutor commandExecutor) {
+    public ClientPanel(PersonAdapter personAdapter, CommandExecutor commandExecutor) {
         super(FXML);
         this.personAdapter = personAdapter;
         this.commandExecutor = commandExecutor;

@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 * Allow user to edit information directly in the Client View
   * The user must be able to cycle through the different attributes (presented in a row format), and edit as necessary.
-    * Heavily refactor `ClientInfoPanel` to support actual interactions with the `AttributePanel`s [#90](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/90)
+    * Heavily refactor `ClientPanel` to support actual interactions with the `AttributePanel`s [#90](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/90)
     * Support user focus (highlight row when tabbing through) [#92](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/92)
     * Show user in an alert whenever edit fails, and for what field (e.g. put letters in the phone number field) [#95](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/95)
   * As this is a critical part of our functionality, we need this to be intuitive and easy to use.

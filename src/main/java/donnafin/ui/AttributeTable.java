@@ -6,10 +6,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -99,10 +101,28 @@ public class AttributeTable<T> extends UiPart<Region> {
         super(FXML);
         table.getColumns().clear();
         table.setEditable(true);
-
         this.title.setText(tableConfig.tableTitle);
 
+        //@@author bharathcs-reused
+        //Reused from https://stackoverflow.com/a/31213320/4179939 with minor modifications.
+        TableColumn<T, String> indexCol = new TableColumn<>("No.");
+        indexCol.setCellFactory(col -> {
+            TableCell<T, String> cell = new TableCell<>();
+            cell.textProperty().bind(Bindings.createStringBinding(() -> {
+                if (cell.isEmpty()) {
+                    return null;
+                } else {
+                    return Integer.toString(cell.getIndex() + 1);
+                }
+            }, cell.emptyProperty(), cell.indexProperty()));
+            return cell;
+        });
+        //@@author
+
         List<TableColumn<T, String>> columns = new ArrayList<>();
+        indexCol.setMaxWidth(100);
+        columns.add(indexCol);
+
         for (ColumnConfig columnConfig : tableConfig.columnConfigs) {
             TableColumn<T, String> col = new TableColumn<>(columnConfig.heading);
             col.setMinWidth(columnConfig.minWidth);
