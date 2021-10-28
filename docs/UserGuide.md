@@ -59,9 +59,8 @@ DonnaFin.io is a desktop DonnaFin application used by financial advisors to keep
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+* The format given for monetary parameters includes `$`, you should add it or the input will be rejected. </br>
+  e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 
 ### Global Commands
@@ -120,22 +119,6 @@ Shows a list of all persons in the DonnaFin.
 
 Format: `list`
 
-#### View Client Information : `view`
-
-Access client information in a 'client view' mode where all data on the client is presented to you. Once in the page, you can see each field in detail and edit existing information.
-
-Format: view INDEX
-
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...​
-* The view screen will switch to the person and open the notepad. Cursor will be in the notes entry field, allowing the user to continue typing to fill in notes.
-
-Examples:
-* `view 1`
-* This will open a new view mode, where the clients data is present in field-value pairs as such:
-* ![Client View Mockup](./images/ClientViewNew.png)
-* The information related to the client is separated to different tabs.
-* Each tab contains information closely related to the title of the tab.
-
 #### Locating Clients by Name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -161,39 +144,190 @@ Clears all entries from the DonnaFin.
 
 Format: `clear`
 
+#### View Client Information : `view`
+
+Access client information in a 'client view' mode where all data on the client is presented to you. Once in the page, you can see each field in detail and edit existing information.
+
+Format: view INDEX
+
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...​
+* The view screen will switch to the person and open the notepad. Cursor will be in the notes entry field, allowing the user to continue typing to fill in notes.
+
+Examples:
+* `view 1`
+* This will open a new view mode, where the client's data is present in field-value pairs as such:
+* ![Client View Mockup](./images/ClientViewNew.png)
+* The information related to the client is separated to different tabs.
+* Each tab contains information closely related to the title of the tab.
+
+
 ### Client Window Commands
 
 These commands are exclusive to client window. They give access and writing privileges for any client information
-fields.
+fields. You can access these commands once enter the Client Window through our `view` command.
 
-#### Switching tabs : `tab`
+#### Switching Tabs : `tab`
 
 Allows user to navigate to a different tab.
+* There are 5 tabs: Contacts, Policies, Assets, Liabilities and Notes.
 
 Format: `tab KEYWORD`
 
-Keywords available:
+##### Contacts Tab
 
-`Contact` tab: `c` or `contact` or `contacts`
+Switches from any tab in Client Window to `Contact` tab.
 
-`Policies` tab: `p` or `policy` or `policies`
-
-`Assets` tab: `a` or `asset` or `assets`
-
-`Liabilities` tab: `l` or `liability` or `liabilities`
-
-`Notes` tab: `n` or `note` or `notes`
+Keywords: `c` or `C` or `contact` or `contacts`
 
 Examples:
+* `tab c`
+* `tab contact`
 
-* `tab c`: Switches the current tab to the `Contact` tab.
-* `tab notes`: Switches the current tab to the `Notes` tab.
-* `tab liability`: Switches the current tab to the `Liabilities` tab.
+##### Policies Tab
 
+Switches from any tab in Client Window to `Policies` tab.
+
+Keywords: `p` or `P` or `policy` or `policies`
+
+Examples:
+* `tab p`
+* `tab policy`
+
+##### Assets Tab
+
+Switches from any tab in Client Window to `Assets` tab.
+
+Keywords: `a` or `asset` or `assets`
+
+Examples:
+* `tab a`
+* `tab asset`
+
+##### Liabilities Tab
+
+Switches from any tab in Client Window to `Liabilities` tab.
+
+Keywords: `l` or `L` or `liability` or `liabilities`
+
+Examples:
+* `tab l`
+* `tab liability`
+
+##### Notes Tab
+
+Switches from any tab in Client Window to `Notes` tab.
+
+Keywords:  `n` or `N` or `note` or `notes`
+
+Examples:
+* `tab n`
+* `tab note`
+
+#### Edit Contacts: `edit`
+
+Edit your client field in contacts. You should be in `Contacts` tab to use these commands.
+
+##### Edit Client Name
+
+Edits the name of the client you are currently viewing.
+
+Format: `edit n/NAME`
+
+Example: `edit n/Allison Wang`
+
+##### Edit Client Phone Number
+
+Edits the phone number of the client you are currently viewing.
+
+Format: `edit p/PHONE_NUMBER`
+
+Example: `edit p/98782341`
+
+##### Edit Client Address
+
+Edits the address of the client you are currently viewing.
+
+Format: `edit a/ADDRESS`
+
+Example: `edit a/#12-123 Phua Chu Kang Ave 7`
+
+##### Edit Client Email
+
+Edits the email of the client you are currently viewing.
+
+Format: `edit e/EMAIL`
+
+Example: `edit e/allison@gmail.com`
+
+#### Add an Asset: `append`
+
+Adds a new asset to the current client you are viewing. You must be in the `Assets` tab.
+
+Format: `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`
+
+Example:
+* `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
+
+#### Remove an Asset: `remove`
+
+Remove an existing asset from the current client you are viewing. You must be in the `Assets` tab.
+
+* Removes the asset at the specified `INDEX`.
+* The index refers to the position of the asset you want to delete starting from the first row.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Format: `remove INDEX`
+
+Example:
+* `remove 1`
+
+#### Add a Liability: `append`
+
+Adds a new liability to the current client you are viewing. You must be in the `Liabilities` tab.
+
+Format: `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`
+
+Example:
+* `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
+
+#### Remove a Liability: `remove`
+
+Remove an existing liability from the current client you are viewing. You must be in the `Liabilities` tab.
+
+* Removes the liability at the specified `INDEX`.
+* The index refers to the position of the liability you want to delete starting from the first row.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Format: `remove INDEX`
+
+Example:
+* `remove 1`
+
+#### Add a Policy: `append`
+
+Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
+
+Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE yp/$YEARLY_PREMIUM c/$COMMISSION`
+
+Example:
+* `append n/Diamond Policy i/AIA iv/$10000 yp/$200 c/$1000`
+
+#### Remove a Policy: `remove`
+
+Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
+
+* Removes the liability at the specified `INDEX`.
+* The index refers to the position of the policy you want to delete starting from the first row.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Format: `remove INDEX`
+
+Example:
+* `remove 1`
 
 #### Returning to Home view: `home`
 
-Allows the user to return to the home view.
+Allows the user to return to the home view, also known as Main Window.
 
 Format: `home`
 
@@ -227,10 +361,20 @@ _Details coming soon ..._
 | Action     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-| **Clear**  | `clear`                                                                |
+| **Clear**  | `clear`                                                                | `clear`
 | **Delete** | `delete`                                                               | `delete 3`
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`
+| **Edit Name**   | `edit n/NAME` | `edit n/James Lee`
+| **Edit Address**   | `edit a/ADDRESS` | `edit n/blk 123 bukit batok ave 4`
+| **Edit Email**   | `edit e/EMAIL` | `edit e/jameslee@donnafin.com`
+| **Edit Phone Number**   | `edit p/PHONE_NUMBER` | `edit p/98374283`
 | **View**   | `view INDEX`                                                           | `view 2`
 | **Find**   | `find KEYWORD`                                                         | `find James Jake`
-| **List**   | `list`                                                                 |
-| **Help**   | `help`                                                                 |
+| **List**   | `list`                                                                 | `list`
+| **Help**   | `help`                                                                 | `help`
+| **Home**   | `home`                                                                 | `home`
+| **View**   | `view INDEX`                                                                 | `view 1`
+| **Append Asset**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
+| **Append Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
+| **Append Policy**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
+| **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
+| **Tab**   | `tab KEYWORD`                                                                 | `tab p`
