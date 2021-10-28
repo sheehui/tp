@@ -236,9 +236,9 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|  
 | `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |   
 | `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |   
-| `HIGH`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |  
-| `HIGH`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
-| `HIGH`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
+| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |  
+| `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
+| `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
 | `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
 | `LOW`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
 | `LOW`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
