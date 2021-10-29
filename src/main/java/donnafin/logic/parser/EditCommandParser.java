@@ -68,7 +68,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         // Checks if at least one prefix is present
-        if (List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS).stream().anyMatch(
+        if (List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS).stream().allMatch(
             prefix -> argMultimap.getValue(prefix).isEmpty())
         ) {
             throw new ParseException("Please enter a valid prefix");
