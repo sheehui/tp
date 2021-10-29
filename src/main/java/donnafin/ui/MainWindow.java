@@ -241,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
             clientPanel.changeTabToNotes();
             break;
         default:
-            // TODO: @parser team pls
+            // sufficient as no other tab exists.
             throw new RuntimeException("Switched to a fake tab");
         }
     }
