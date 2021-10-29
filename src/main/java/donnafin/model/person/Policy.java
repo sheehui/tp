@@ -25,7 +25,7 @@ public class Policy implements Attribute {
                     new AttributeTable.ColumnConfig("Policy Name", "name", 300),
                     new AttributeTable.ColumnConfig("Insurer", "insurer", 100),
                     new AttributeTable.ColumnConfig("Insured Value", "totalValueInsuredToString", 100),
-                    new AttributeTable.ColumnConfig("Premiums (Yr.)", "yearlyPremiumsToString", 100),
+                    new AttributeTable.ColumnConfig("Premium (yearly)", "yearlyPremiumsToString", 100),
                     new AttributeTable.ColumnConfig("Commission", "commissionToString", 100)
             ),
         policyCol -> {

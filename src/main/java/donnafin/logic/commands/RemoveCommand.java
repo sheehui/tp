@@ -24,8 +24,11 @@ import donnafin.ui.Ui;
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
-    public static final String MESSAGE_USAGE = ""; // TODO
-    private static final String MESSAGE_SUCCESS = ""; // TODO
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": removes a row from the attribute table. "
+            + "Parameters: INDEX (must be a positive integer) "
+            + "Example: remove 3";
+    private static final String MESSAGE_SUCCESS = "Successfully removed row.";
     private final PersonAdapter personAdapter;
     private final PersonField field;
     private final Index index;
