@@ -224,42 +224,6 @@ Examples:
 * `tab n`
 * `tab note`
 
-#### Edit Contacts: `edit`
-
-Edit your client field in contacts. You should be in `Contacts` tab to use these commands.
-
-##### Edit Client Name
-
-Edits the name of the client you are currently viewing.
-
-Format: `edit n/NAME`
-
-Example: `edit n/Allison Wang`
-
-##### Edit Client Phone Number
-
-Edits the phone number of the client you are currently viewing.
-
-Format: `edit p/PHONE_NUMBER`
-
-Example: `edit p/81753076`
-
-##### Edit Client Address
-
-Edits the address of the client you are currently viewing.
-
-Format: `edit a/ADDRESS`
-
-Example: `edit a/#12-123 Phua Chu Kang Ave 7`
-
-##### Edit Client Email
-
-Edits the email of the client you are currently viewing.
-
-Format: `edit e/EMAIL`
-
-Example: `edit e/allison@gmail.com`
-
 #### Add an Asset: `append`
 
 Adds a new asset to the current client you are viewing. You must be in the `Assets` tab.
