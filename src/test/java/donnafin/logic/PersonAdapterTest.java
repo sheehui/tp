@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,11 +17,14 @@ import donnafin.model.Model;
 import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Address;
+import donnafin.model.person.Asset;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 import donnafin.storage.JsonAddressBookStorage;
 import donnafin.storage.JsonUserPrefsStorage;
 import donnafin.storage.StorageManager;
@@ -167,6 +171,60 @@ public class PersonAdapterTest {
         assertNotEquals(ALICE, personAdapter.getSubject());
 
         personAdapter.edit(new Notes("Loves cai fan"));
+        assertEquals(ALICE, personAdapter.getSubject());
+    }
+
+    @Test
+    public void editPersonPolicies_changesSubject() {
+        Set<Policy> original = ALICE.getPolicies();
+        Set<Policy> policies = Set.of(
+                new Policy("Policy test", "insurer", "$4", "$5", "$6")
+        );
+        personAdapter.editPolicies(policies);
+
+        assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
+                        ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), policies,
+                        ALICE.getLiabilities(), ALICE.getAssets()),
+                personAdapter.getSubject());
+        assertNotEquals(ALICE, personAdapter.getSubject());
+
+        personAdapter.editPolicies(original);
+        assertEquals(ALICE, personAdapter.getSubject());
+    }
+
+    @Test
+    public void editPersonAssets_changesSubject() {
+        Set<Asset> original = ALICE.getAssets();
+        Set<Asset> assets = Set.of(
+                new Asset("asset test", "asset type", "$40", "Worth $5")
+        );
+        personAdapter.editAssets(assets);
+
+        assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
+                        ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                        ALICE.getLiabilities(), assets),
+                personAdapter.getSubject());
+        assertNotEquals(ALICE, personAdapter.getSubject());
+
+        personAdapter.editAssets(original);
+        assertEquals(ALICE, personAdapter.getSubject());
+    }
+
+    @Test
+    public void editPersonLiabilities_changesSubject() {
+        Set<Liability> original = ALICE.getLiabilities();
+        Set<Liability> liabilities = Set.of(
+                new Liability("liability test", "liability type", "$13", "interest: 4% pa")
+        );
+        personAdapter.editLiabilities(liabilities);
+
+        assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
+                        ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                        liabilities, ALICE.getAssets()),
+                personAdapter.getSubject());
+        assertNotEquals(ALICE, personAdapter.getSubject());
+
+        personAdapter.editLiabilities(original);
         assertEquals(ALICE, personAdapter.getSubject());
     }
 }

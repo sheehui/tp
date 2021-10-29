@@ -7,11 +7,9 @@ import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.RemoveCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.Ui;
-import donnafin.ui.Ui.ViewFinderState;
 
 public class RemoveCommandParser {
 
-    private final ViewFinderState currentTab;
     private final PersonAdapter personAdapter;
     private final PersonField field;
 
@@ -19,10 +17,9 @@ public class RemoveCommandParser {
      * The parser used to parse the input for the remove command.
      * @param currentTab the current tab that the user is viewing when the command is used.
      * @param personAdapter the person the user is currently viewing.
-     * @throws ParseException
+     * @throws ParseException if it is called in the wrong tab.
      */
     public RemoveCommandParser(Ui.ViewFinderState currentTab, PersonAdapter personAdapter) throws ParseException {
-        this.currentTab = currentTab;
         this.personAdapter = personAdapter;
         switch (currentTab) {
         case POLICIES:
