@@ -7,7 +7,7 @@ import donnafin.commons.exceptions.IllegalValueException;
 public class Money {
     public static final String MONEY_ARITHMETIC_OVERFLOW =
             "Unable to calculate due to Integer limitations.";
-    public static final String MESSAGE_CONSTRAINTS = "Numerical value fields should include $";
+    public static final String MESSAGE_CONSTRAINTS = "Monetary value fields should start with '$'";
     private static final String CURRENCY_SYMBOL = "$";
     private static final int CURRENCY_EXPONENT = 2;
 
