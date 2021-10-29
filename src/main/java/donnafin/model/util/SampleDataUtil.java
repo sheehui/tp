@@ -1,9 +1,6 @@
 package donnafin.model.util;
 
-import static donnafin.commons.util.AppUtil.checkArgument;
-
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -112,50 +109,32 @@ public class SampleDataUtil {
      * Returns a policy set containing the list of strings given.
      */
     public static Set<Policy> getPolicies(String... strings) {
-        Set<Policy> set = new HashSet<>();
-        for (String x : strings) {
-            Policy policy = null;
-            try {
-                policy = ParserUtil.parsePolicy(x);
-            } catch (ParseException e) {
-                checkArgument(false, Policy.MESSAGE_CONSTRAINTS);
-            }
-            set.add(policy);
+        try {
+            return ParserUtil.parsePolicies(Arrays.asList(strings));
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
         }
-        return set;
     }
 
     /**
      * Returns an asset set containing the list of strings given.
      */
     public static Set<Asset> getAssets(String... strings) {
-        Set<Asset> set = new HashSet<>();
-        for (String x : strings) {
-            Asset asset = null;
-            try {
-                asset = ParserUtil.parseAsset(x);
-            } catch (ParseException e) {
-                checkArgument(false, Asset.MESSAGE_CONSTRAINTS);
-            }
-            set.add(asset);
+        try {
+            return ParserUtil.parseAssets(Arrays.asList(strings));
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(Asset.MESSAGE_CONSTRAINTS);
         }
-        return set;
     }
 
     /**
      * Returns a liability set containing the list of strings given.
      */
     public static Set<Liability> getLiabilities(String... strings) {
-        Set<Liability> set = new HashSet<>();
-        for (String x : strings) {
-            Liability liability = null;
-            try {
-                liability = ParserUtil.parseLiability(x);
-            } catch (ParseException e) {
-                checkArgument(false, Liability.MESSAGE_CONSTRAINTS);
-            }
-            set.add(liability);
+        try {
+            return ParserUtil.parseLiabilities(Arrays.asList(strings));
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(Liability.MESSAGE_CONSTRAINTS);
         }
-        return set;
     }
 }
