@@ -3,7 +3,14 @@ layout: page
 title: User Guide
 ---
 
-DonnaFin.io is a desktop DonnaFin application used by financial advisors to keep track of their client information and related tasks. This is a Java program with about 10 kloc with a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a faster workflow for input and output. If you can type fast, you can use our CLI-like commands to manage and view your notes, upcoming meetings and todo lists much faster than your typical customer relationship manager apps.
+DonnaFin.io is a desktop application used by financial advisors to keep track of their 
+client information and related tasks. This is a Java program with about 10 kloc with 
+a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a 
+faster workflow for input and output. If you can type fast, you can use our CLI-like 
+commands to manage your client information and view your notes much faster 
+than your typical customer relationship manager apps.
+
+Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
 
 * Table of Contents
 {:toc}
@@ -16,7 +23,7 @@ DonnaFin.io is a desktop DonnaFin application used by financial advisors to keep
 
 1. Download the latest `donnafin.jar` from [here](https://github.com/AY2122S1-CS2103T-W16-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your DonnaFin.
+1. Copy the file to the folder you want to use as the _home folder_ for your DonnaFin app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -47,19 +54,13 @@ DonnaFin.io is a desktop DonnaFin application used by financial advisors to keep
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* The format given for monetary parameters includes `$`, you should add it or the input will be rejected. </br>
+* The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 
@@ -70,7 +71,7 @@ These commands can be accessed from any window of DonnaFin.
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<img alt="help message" src="./images/helpMessage.png" width="1232"/>
 
 Format: `help`
 
@@ -89,15 +90,11 @@ window that pops up when DonnaFin is opened.
 
 Adds a person to the DonnaFin.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
 #### Deleting a Client : `delete`
 
@@ -361,7 +358,7 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 
 | Action     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`                | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
 | **Clear**  | `clear`                                                                | `clear`
 | **Delete** | `delete`                                                               | `delete 3`
 | **Edit Name**   | `edit n/NAME` | `edit n/James Lee`
