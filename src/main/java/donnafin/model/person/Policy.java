@@ -38,11 +38,11 @@ public class Policy implements Attribute {
     public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Policies",
         List.of(
-                    new AttributeTable.ColumnConfig("Policy Name", "name", 300),
-                    new AttributeTable.ColumnConfig("Insurer", "insurer", 100),
-                    new AttributeTable.ColumnConfig("Insured Value", "totalValueInsuredToString", 100),
-                    new AttributeTable.ColumnConfig("Premium (yearly)", "yearlyPremiumsToString", 100),
-                    new AttributeTable.ColumnConfig("Commission", "commissionToString", 100)
+                    new AttributeTable.ColumnConfig("Policy Name", "name", 200, 500),
+                    new AttributeTable.ColumnConfig("Insurer", "insurer", 100, 250),
+                    new AttributeTable.ColumnConfig("Insured Value", "totalValueInsuredToString", 200, 300),
+                    new AttributeTable.ColumnConfig("Premium (yearly)", "yearlyPremiumsToString", 200, 300),
+                    new AttributeTable.ColumnConfig("Commission", "commissionToString", 100, 250)
             ),
         policyCol -> policyCol.stream()
             .map(Policy::getCommission)

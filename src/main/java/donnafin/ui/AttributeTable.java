@@ -29,7 +29,8 @@ public class AttributeTable<T> extends UiPart<Region> {
     public static class ColumnConfig {
         final String heading;
         final String propertyName;
-        final int minWidth;
+        final int maxWidth;
+        final int prefWidth;
 
         /**
          * Create a column config for use in the {@code AttributeTable}.
@@ -40,10 +41,11 @@ public class AttributeTable<T> extends UiPart<Region> {
          * @param propertyName name of the variable (must have a public getter function too)
          * @param minWidth in pixels
          */
-        public ColumnConfig(String heading, String propertyName, int minWidth) {
+        public ColumnConfig(String heading, String propertyName, int prefWidth, int maxWidth) {
             this.heading = heading;
             this.propertyName = propertyName;
-            this.minWidth = minWidth;
+            this.maxWidth = maxWidth;
+            this.prefWidth = prefWidth;
         }
     }
 
@@ -105,7 +107,7 @@ public class AttributeTable<T> extends UiPart<Region> {
 
         //@@author bharathcs-reused
         //Reused from https://stackoverflow.com/a/31213320/4179939 with minor modifications.
-        TableColumn<T, String> indexCol = new TableColumn<>("No.");
+        TableColumn<T, String> indexCol = new TableColumn<>("");
         indexCol.setCellFactory(col -> {
             TableCell<T, String> cell = new TableCell<>();
             cell.textProperty().bind(Bindings.createStringBinding(() -> {
@@ -120,13 +122,14 @@ public class AttributeTable<T> extends UiPart<Region> {
         //@@author
 
         List<TableColumn<T, String>> columns = new ArrayList<>();
-        indexCol.setMaxWidth(100);
+        indexCol.setMinWidth(40);
+        indexCol.setMaxWidth(40);
         columns.add(indexCol);
 
         for (ColumnConfig columnConfig : tableConfig.columnConfigs) {
             TableColumn<T, String> col = new TableColumn<>(columnConfig.heading);
-            col.setMinWidth(columnConfig.minWidth);
-            col.setMaxWidth(600);
+            col.setPrefWidth(columnConfig.prefWidth);
+            col.setMaxWidth(columnConfig.maxWidth);
             col.setCellValueFactory(new PropertyValueFactory<>(columnConfig.propertyName));
             columns.add(col);
         }

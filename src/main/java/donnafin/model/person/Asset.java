@@ -35,10 +35,10 @@ public class Asset implements Attribute {
     public static final AttributeTable.TableConfig<Asset> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Assets",
         List.of(
-                new AttributeTable.ColumnConfig("Asset Name", "name", 300),
-                new AttributeTable.ColumnConfig("Type", "type", 100),
-                new AttributeTable.ColumnConfig("Value", "valueToString", 100),
-                new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
+                new AttributeTable.ColumnConfig("Asset Name", "name", 300, 500),
+                new AttributeTable.ColumnConfig("Type", "type", 100, 250),
+                new AttributeTable.ColumnConfig("Value", "valueToString", 100, 250),
+                new AttributeTable.ColumnConfig("Remarks", "remarks", 100, 250)
         ),
         assetCol -> assetCol.stream()
             .map(Asset::getValue)

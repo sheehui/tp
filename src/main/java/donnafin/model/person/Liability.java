@@ -35,10 +35,10 @@ public class Liability implements Attribute {
     public static final AttributeTable.TableConfig<Liability> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Liabilities",
         List.of(
-                new AttributeTable.ColumnConfig("Liability Name", "name", 300),
-                new AttributeTable.ColumnConfig("Type", "type", 100),
-                new AttributeTable.ColumnConfig("Value", "valueToString", 100),
-                new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
+                new AttributeTable.ColumnConfig("Liability Name", "name", 300, 500),
+                new AttributeTable.ColumnConfig("Type", "type", 100, 250),
+                new AttributeTable.ColumnConfig("Value", "valueToString", 100, 250),
+                new AttributeTable.ColumnConfig("Remarks", "remarks", 100, 250)
         ),
         liabilityCol -> liabilityCol.stream()
             .map(Liability::getValue)
