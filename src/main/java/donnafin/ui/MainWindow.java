@@ -86,10 +86,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
-    public StackPane getViewFinderPlaceholder() {
-        return this.viewFinderPlaceholder;
-    }
-
     /**
      * Sets the accelerator of a MenuItem.
      * @param keyCombination the KeyCombination value of the accelerator
@@ -190,10 +186,6 @@ public class MainWindow extends UiPart<Stage> {
         uiManager.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
