@@ -2,6 +2,10 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
+import static donnafin.logic.parser.CliSyntax.PREFIX_REMARKS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_TYPE;
+import static donnafin.logic.parser.CliSyntax.PREFIX_VALUE;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -17,8 +21,16 @@ import donnafin.ui.AttributeTable;
  */
 public class Asset implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Asset fields should not start with empty spaces or contain "
-            + "new lines.";
+    public static final String MESSAGE_CONSTRAINTS = "Assets must be specified with "
+            + "a name (non-empty string) "
+            + "a type (non-empty string) "
+            + "a value (positive monetary value) "
+            + "a remark (non-empty string) "
+            + "\nE.g. "
+            + PREFIX_NAME + "GCB at Dempsey Rd "
+            + PREFIX_TYPE + "Property "
+            + PREFIX_VALUE + "$10000000 "
+            + PREFIX_REMARKS + "unoccupied";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Asset> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Assets",

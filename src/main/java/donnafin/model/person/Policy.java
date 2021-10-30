@@ -2,6 +2,11 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static donnafin.logic.parser.CliSyntax.PREFIX_INSURED_VALUE;
+import static donnafin.logic.parser.CliSyntax.PREFIX_INSURER;
+import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
+import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -17,8 +22,18 @@ import donnafin.ui.AttributeTable;
  */
 public class Policy implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Policy name and insurer should not contain new lines or "
-            + "start with empty spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Policies must be specified with "
+            + "a name (non-empty string) "
+            + "a insurer name (non-empty string) "
+            + "a value insured (positive monetary value) "
+            + "a yearly premium (positive monetary value) "
+            + "a commission (positive monetary value) "
+            + "\nE.g. "
+            + PREFIX_NAME + "Platinum Years "
+            + PREFIX_INSURER + "FinAssurance Corp. "
+            + PREFIX_INSURED_VALUE + "$100000 "
+            + PREFIX_YEARLY_PREMIUM + "$100 "
+            + PREFIX_COMMISSION + "$10 ";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Policies",

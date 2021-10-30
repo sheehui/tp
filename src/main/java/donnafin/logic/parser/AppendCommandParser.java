@@ -107,7 +107,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
             value = ParserUtil.parseMoney(argMultimap.getValue(PREFIX_VALUE).orElseThrow());
             remarks = argMultimap.getValue(PREFIX_REMARKS).orElse("");
         } catch (NoSuchElementException e) {
-            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
         }
 
         Liability newLiability = null;
