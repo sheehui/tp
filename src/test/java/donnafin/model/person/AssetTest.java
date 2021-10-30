@@ -2,6 +2,9 @@ package donnafin.model.person;
 
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -85,4 +88,35 @@ public class AssetTest {
         assertEquals(value.toString(), VALID_ASSET.getValueToString());
     }
 
+    @Test
+    public void testEquals() {
+        final Asset sameAsset = new Asset(VALID_NAME, VALID_TYPE, VALID_VALUE, VALID_REMARKS);
+        final Asset otherAsset = new Asset(VALID_NAME + " something", VALID_TYPE, VALID_VALUE, VALID_REMARKS);
+        assertEquals(sameAsset, VALID_ASSET);
+        assertNotEquals(otherAsset, sameAsset);
+        assertNotEquals(null, sameAsset);
+    }
+
+    @Test
+    public void aggregateFunctionWorks() {
+        // EP: 1 Asset
+        assertEquals(
+                "Total Asset Value: $2000.00",
+                Asset.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of(VALID_ASSET))
+        );
+
+        // EP: 0 Asset
+        assertEquals("", Asset.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of()));
+
+        // EP: Value exceeds Long.MAX_VALUE
+        String maxMoneyVal = "$" + Long.MAX_VALUE / 100;
+        assertEquals(
+                "Total Asset Value: $276701161105643274.00",
+                Asset.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of(
+                        new Asset("Test", "Test", maxMoneyVal, "test"),
+                        new Asset("Test", "Test", maxMoneyVal, "test"),
+                        new Asset("Test", "Test", maxMoneyVal, "test")
+                ))
+        );
+    }
 }
