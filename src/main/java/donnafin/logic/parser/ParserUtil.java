@@ -237,22 +237,22 @@ public class ParserUtil {
      */
     public static Money parseMoney(String money) throws ParseException {
         requireNonNull(money);
-        String trimmedCommission = money.trim();
+        String trimmedInput = money.trim();
 
         // Handling Default currency $XYZ or $XYZ.AB
         final String regexDollarCents = "^\\s*\\$\\s*\\d+(\\.\\d{2})?$";
         final String dollarCentsPrefix = "$";
 
-        if (!trimmedCommission.matches(regexDollarCents)) {
+        if (!trimmedInput.matches(regexDollarCents)) {
             throw new ParseException(
                     String.format(
                             "Input string '%s' does not match monetary value format. %s",
-                            trimmedCommission,
+                            trimmedInput,
                             Money.MESSAGE_CONSTRAINTS)
             );
         }
 
-        String decimalString = trimmedCommission.replace(dollarCentsPrefix, "").replace(" ", "");
+        String decimalString = trimmedInput.replace(dollarCentsPrefix, "").replace(" ", "");
         if (!decimalString.contains(".")) {
             decimalString += ".00";
         }
@@ -263,7 +263,7 @@ public class ParserUtil {
             throw new ParseException(e.getMessage());
         } catch (NumberFormatException e) {
             throw new ParseException(
-                    String.format("Input string '%s' exceeds maximum monetary value.", trimmedCommission));
+                String.format("'%s' exceeds maximum monetary value (~$92 quadrillion).", trimmedInput));
         }
     }
 
