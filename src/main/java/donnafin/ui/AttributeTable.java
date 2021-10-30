@@ -62,9 +62,9 @@ public class AttributeTable<T> extends UiPart<Region> {
     }
 
     public static class TableConfig<R> {
-        final String tableTitle;
-        final List<ColumnConfig> columnConfigs;
-        final AggregatorLabelCreator<? super R> aggregatorLabelCreator;
+        public final String tableTitle;
+        public final List<ColumnConfig> columnConfigs;
+        public final AggregatorLabelCreator<? super R> aggregatorLabelCreator;
 
         /** Create Table Config for setting up {@code AttributeTable} */
         public TableConfig(
