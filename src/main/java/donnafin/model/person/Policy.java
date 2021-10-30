@@ -3,6 +3,7 @@ package donnafin.model.person;
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,19 +29,19 @@ public class Policy implements Attribute {
                     new AttributeTable.ColumnConfig("Premium (yearly)", "yearlyPremiumsToString", 100),
                     new AttributeTable.ColumnConfig("Commission", "commissionToString", 100)
             ),
-        policyCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Policy policy : policyCol) {
-                    Money commission = policy.getCommission();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return "Total Policy Commissions: " + acc;
-        }
+        policyCol -> policyCol.stream()
+            .map(Policy::getCommission)
+            .map(Money::getValue)
+            .map(BigInteger::valueOf)
+            .reduce(BigInteger::add)
+            .map(i -> {
+                BigInteger unit = BigInteger.valueOf(100);
+                String cents = i.mod(unit).add(unit).toString().substring(1);
+                String dollars = i.divide(unit).toString();
+                return String.format("Total Policy Commissions: $%s.%s", dollars, cents);
+            }).orElse("")
     );
+
     private final String name;
     private final String insurer;
     private final Money totalValueInsured;

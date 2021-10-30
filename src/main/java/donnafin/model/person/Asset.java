@@ -3,6 +3,7 @@ package donnafin.model.person;
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,19 +28,19 @@ public class Asset implements Attribute {
                 new AttributeTable.ColumnConfig("Value", "valueToString", 100),
                 new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
         ),
-        assetCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Asset asset : assetCol) {
-                    Money commission = asset.getValue();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return "Total Asset Value: " + acc;
-        }
+        assetCol -> assetCol.stream()
+            .map(Asset::getValue)
+            .map(Money::getValue)
+            .map(BigInteger::valueOf)
+            .reduce(BigInteger::add)
+            .map(i -> {
+                BigInteger unit = BigInteger.valueOf(100);
+                String cents = i.mod(unit).add(unit).toString().substring(1);
+                String dollars = i.divide(unit).toString();
+                return String.format("Total Asset Value: $%s.%s", dollars, cents);
+            }).orElse("")
     );
+
     private final String name;
     private final String type;
     private final Money value;

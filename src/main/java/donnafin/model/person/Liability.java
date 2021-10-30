@@ -3,6 +3,7 @@ package donnafin.model.person;
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,19 +28,19 @@ public class Liability implements Attribute {
                 new AttributeTable.ColumnConfig("Value", "valueToString", 100),
                 new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
         ),
-        liabilityCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Liability liability : liabilityCol) {
-                    Money commission = liability.getValue();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return "Total Liability Value: " + acc;
-        }
+        liabilityCol -> liabilityCol.stream()
+            .map(Liability::getValue)
+            .map(Money::getValue)
+            .map(BigInteger::valueOf)
+            .reduce(BigInteger::add)
+            .map(i -> {
+                BigInteger unit = BigInteger.valueOf(100);
+                String cents = i.mod(unit).add(unit).toString().substring(1);
+                String dollars = i.divide(unit).toString();
+                return String.format("Total Liability Value: $%s.%s", dollars, cents);
+            }).orElse("")
     );
+
     private final String name;
     private final String type;
     private final Money value;
