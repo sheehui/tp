@@ -4,7 +4,6 @@ import static donnafin.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.ALICE;
 import static donnafin.testutil.TypicalPersons.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;

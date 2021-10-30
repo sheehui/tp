@@ -4,7 +4,6 @@ import static donnafin.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
