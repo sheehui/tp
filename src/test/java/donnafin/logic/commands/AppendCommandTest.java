@@ -92,7 +92,7 @@ public class AppendCommandTest {
         testCommand.execute(model);
 
         assertEquals(new Person(GEORGE.getName(), GEORGE.getPhone(), GEORGE.getEmail(), GEORGE.getAddress(),
-                GEORGE.getTags(), GEORGE.getNotes(), combinedPolicy, GEORGE.getLiabilities(),
+                GEORGE.getNotes(), combinedPolicy, GEORGE.getLiabilities(),
                 GEORGE.getAssets()), personAdapter.getSubject());
 
         assertNotEquals(GEORGE, personAdapter.getSubject());
@@ -104,7 +104,7 @@ public class AppendCommandTest {
         testCommand.execute(model);
 
         assertEquals(new Person(GEORGE.getName(), GEORGE.getPhone(), GEORGE.getEmail(), GEORGE.getAddress(),
-                GEORGE.getTags(), GEORGE.getNotes(), GEORGE.getPolicies(), combinedLiability,
+                GEORGE.getNotes(), GEORGE.getPolicies(), combinedLiability,
                 GEORGE.getAssets()), personAdapter.getSubject());
 
         assertNotEquals(GEORGE, personAdapter.getSubject());
@@ -116,7 +116,7 @@ public class AppendCommandTest {
         testCommand.execute(model);
 
         assertEquals(new Person(GEORGE.getName(), GEORGE.getPhone(), GEORGE.getEmail(), GEORGE.getAddress(),
-                GEORGE.getTags(), GEORGE.getNotes(), GEORGE.getPolicies(), GEORGE.getLiabilities(),
+                GEORGE.getNotes(), GEORGE.getPolicies(), GEORGE.getLiabilities(),
                 combinedAssets), personAdapter.getSubject());
 
         assertNotEquals(GEORGE, personAdapter.getSubject());
