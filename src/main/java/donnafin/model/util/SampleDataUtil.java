@@ -2,7 +2,6 @@ package donnafin.model.util;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import donnafin.logic.parser.ParserUtil;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -17,74 +16,95 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
     private static final String ATTRIBUTE_DELIMITER = ";;;";
-    private static final String POLICIES_STAND_IN = String.join(
+    private static final String POLICIES_STAND_IN_ONE = String.join(
             ATTRIBUTE_DELIMITER,
-            "Policy name",
-            "Policy insurer",
+            "Golden Age",
+            "AIA",
             "$14000",
             "$28",
             "$4"
     );
-    private static final String ASSETS_STAND_IN = String.join(
+    private static final String POLICIES_STAND_IN_TWO = String.join(
             ATTRIBUTE_DELIMITER,
-            "asset name",
-            "asset type",
-            "$90.00",
-            "asset remarks"
+            "Golden Age",
+            "Prudential",
+            "$100000",
+            "$2800",
+            "$4000"
     );
-    private static final String LIABILITIES_STAND_IN = String.join(
+    private static final String ASSETS_STAND_IN_ONE = String.join(
             ATTRIBUTE_DELIMITER,
-            "liability name:",
-            "liability type",
-            "$42.01",
-            "liability remarks"
+            "HDB @Jurong",
+            "Property",
+            "$300000",
+            "BTO"
+    );
+    private static final String ASSETS_STAND_IN_TWO = String.join(
+            ATTRIBUTE_DELIMITER,
+            "GCB @Sentosa Cove",
+            "Property",
+            "$9000000",
+            "Newly renovated"
+    );
+    private static final String LIABILITIES_STAND_IN_ONE = String.join(
+            ATTRIBUTE_DELIMITER,
+            "Bank debt",
+            "debt",
+            "$20000",
+            "10% interest"
+    );
+    private static final String LIABILITIES_STAND_IN_TWO = String.join(
+            ATTRIBUTE_DELIMITER,
+            "Bank Loan for Condo @Marina",
+            "Mortgage",
+            "$5000000",
+            "To be settled in 5 years"
     );
 
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"), new Notes("Likes bread"),
-                    getPolicies(POLICIES_STAND_IN),
-                    getLiabilities(LIABILITIES_STAND_IN),
-                    getAssets(ASSETS_STAND_IN)),
+                    new Notes("Likes bread"),
+                    getPolicies(POLICIES_STAND_IN_ONE),
+                    getLiabilities(LIABILITIES_STAND_IN_ONE),
+                    getAssets(ASSETS_STAND_IN_ONE)),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"), new Notes("Has 2 children"),
-                    getPolicies(POLICIES_STAND_IN),
-                    getLiabilities(LIABILITIES_STAND_IN),
-                    getAssets(ASSETS_STAND_IN)),
+                    new Notes("Has 2 children"),
+                    getPolicies(POLICIES_STAND_IN_TWO),
+                    getLiabilities(LIABILITIES_STAND_IN_TWO),
+                    getAssets(ASSETS_STAND_IN_TWO)),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"), new Notes(""),
-                    getPolicies(POLICIES_STAND_IN),
-                    getLiabilities(LIABILITIES_STAND_IN),
-                    getAssets(ASSETS_STAND_IN)),
+                    new Notes(""),
+                    getPolicies(POLICIES_STAND_IN_ONE),
+                    getLiabilities(LIABILITIES_STAND_IN_TWO),
+                    getAssets(ASSETS_STAND_IN_TWO)),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"), new Notes(""),
-                    getPolicies(POLICIES_STAND_IN),
-                    getLiabilities(LIABILITIES_STAND_IN),
-                    getAssets(ASSETS_STAND_IN)),
+                    new Notes(""),
+                    getPolicies(POLICIES_STAND_IN_ONE),
+                    getLiabilities(LIABILITIES_STAND_IN_ONE),
+                    getAssets(ASSETS_STAND_IN_ONE)),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"), new Notes(""),
-                    getPolicies(POLICIES_STAND_IN),
-                    getLiabilities(LIABILITIES_STAND_IN),
-                    getAssets(ASSETS_STAND_IN)),
+                    new Notes(""),
+                    getPolicies(POLICIES_STAND_IN_TWO),
+                    getLiabilities(LIABILITIES_STAND_IN_ONE),
+                    getAssets(ASSETS_STAND_IN_ONE)),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"), new Notes(""),
-                    getPolicies(POLICIES_STAND_IN),
-                    getLiabilities(LIABILITIES_STAND_IN),
-                    getAssets(ASSETS_STAND_IN))
+                    new Notes(""),
+                    getPolicies(POLICIES_STAND_IN_ONE),
+                    getLiabilities(LIABILITIES_STAND_IN_ONE),
+                    getAssets(ASSETS_STAND_IN_TWO))
         };
     }
 
@@ -94,15 +114,6 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
     }
 
     /**

@@ -12,7 +12,6 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 import donnafin.model.util.SampleDataUtil;
 
 /**
@@ -30,7 +29,6 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
     private Notes notes;
     private Set<Policy> policies;
     private Set<Liability> liabilities;
@@ -44,7 +42,6 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
         policies = new HashSet<>();
         liabilities = new HashSet<>();
         assets = new HashSet<>();
@@ -59,7 +56,6 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
         notes = personToCopy.getNotes();
         policies = new HashSet<>(personToCopy.getPolicies());
         liabilities = new HashSet<>(personToCopy.getLiabilities());
@@ -71,14 +67,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -141,8 +129,7 @@ public class PersonBuilder {
      * @return a fully constructed Person object.
      */
     public Person build() {
-        return new Person(name, phone, email, address, tags,
-                notes, policies, liabilities, assets);
+        return new Person(name, phone, email, address, notes, policies, liabilities, assets);
     }
 
 }

@@ -4,7 +4,6 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static donnafin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
-import static donnafin.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +21,6 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -36,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         // Should check that all are present accept for the non required fields, policy and assets
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,14 +45,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Policy> policySet = new HashSet<>();
         Set<Liability> liabilitySet = new HashSet<>();
         Set<Asset> assetSet = new HashSet<>();
         Notes notes = new Notes("");
 
         Person person = new Person(
-                name, phone, email, address, tagList, notes, policySet, liabilitySet, assetSet);
+                name, phone, email, address, notes, policySet, liabilitySet, assetSet);
 
         return new AddCommand(person);
     }

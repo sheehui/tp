@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import donnafin.model.tag.Tag;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -24,7 +23,6 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
     private final Notes notes;
 
     // Financial Information fields
@@ -35,14 +33,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Notes notes,
+    public Person(Name name, Phone phone, Email email, Address address, Notes notes,
                   Set<Policy> policies, Set<Liability> liabilities, Set<Asset> assets) {
-        requireAllNonNull(name, phone, email, address, tags, notes, policies, liabilities, assets);
+        requireAllNonNull(name, phone, email, address, notes, policies, liabilities, assets);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
         this.notes = notes;
         this.policies.addAll(policies);
         this.liabilities.addAll(liabilities);
@@ -72,12 +69,8 @@ public class Person {
     /**
      * Returns an immutable set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
-     * Valid for tags, policies, assets and liabilities.
+     * Valid for policies, assets and liabilities.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
     public Set<Policy> getPolicies() {
         return Collections.unmodifiableSet(policies);
     }
@@ -141,14 +134,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
                 && otherPerson.getNotes().equals(getNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, notes);
+        return Objects.hash(name, phone, email, address, notes);
     }
 
     @Override
@@ -161,12 +153,6 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
 
         builder.append("; Notes: ").append(getNotes());
 
