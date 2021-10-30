@@ -61,6 +61,10 @@ public class JsonAdaptedLiability {
      * @throws IllegalValueException if there were any data constraints violated in the adapted liability.
      */
     public Liability toModelType() throws IllegalValueException {
-        return new Liability(liabilityName, liabilityType, liabilityValue, liabilityRemarks);
+        try {
+            return new Liability(liabilityName, liabilityType, liabilityValue, liabilityRemarks);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
     }
 }

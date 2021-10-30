@@ -75,6 +75,11 @@ class JsonAdaptedPolicy {
      * @throws IllegalValueException if there were any data constraints violated in the adapted policy.
      */
     public Policy toModelType() throws IllegalValueException {
-        return new Policy(policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
+        try {
+            return new Policy(
+                    policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
     }
 }
