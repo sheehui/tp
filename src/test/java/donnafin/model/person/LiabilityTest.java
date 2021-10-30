@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import donnafin.commons.core.types.Money;
+import donnafin.commons.core.types.Money.MoneyException;
 
 public class LiabilityTest {
     private static final String VALID_NAME = "Mortgage debt";
@@ -78,7 +79,7 @@ public class LiabilityTest {
     }
 
     @Test
-    public void variable_commissionToString_valid() {
+    public void variable_commissionToString_valid() throws MoneyException {
         Money value = new Money(200000);
         assertEquals(value.toString(), VALID_LIABILITY.getValueToString());
     }
