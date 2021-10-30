@@ -1,10 +1,13 @@
 package donnafin.ui;
 
+import java.util.List;
+
 import donnafin.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,6 +50,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        List.of(name, id, phone, address, email).stream().forEach(x -> x.setWrapText(true));
     }
 
     @Override
