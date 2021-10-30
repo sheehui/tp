@@ -108,7 +108,7 @@ public class LiabilityTest {
         // EP: 0 Liability
         assertEquals("", Liability.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of()));
 
-        // EP: Commissions exceeds Long.MAX_VALUE
+        // EP: Value exceeds Long.MAX_VALUE
         String maxMoneyVal = "$" + Long.MAX_VALUE / 100;
         assertEquals(
                 "Total Liability Value: $276701161105643274.00",
