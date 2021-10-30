@@ -209,28 +209,33 @@ public class ParserUtil {
      */
     public static Money parseMoney(String money) throws ParseException {
         requireNonNull(money);
-        String trimmedCommission = money.trim();
+        String trimmedInput = money.trim();
 
         // Handling Default currency $XYZ or $XYZ.AB
-        final String regexDollarCents = "^-?\\s*\\$\\s*\\d+(\\.\\d{2})?$";
+        final String regexDollarCents = "^\\s*\\$\\s*\\d+(\\.\\d{2})?$";
         final String dollarCentsPrefix = "$";
 
-        if (trimmedCommission.matches(regexDollarCents)) {
-            String decimalString = trimmedCommission.replace(dollarCentsPrefix, "").replace(" ", "");
-            if (!decimalString.contains(".")) {
-                decimalString += ".00";
-            }
-            long value;
-            try {
-                value = Long.parseLong(decimalString.replace(".", ""));
-            } catch (NumberFormatException e) {
-                throw new ParseException(
-                        String.format("Input string '%s' exceeds maximum monetary value.", trimmedCommission));
-            }
-            return new Money(value);
-        } else {
+        if (!trimmedInput.matches(regexDollarCents)) {
             throw new ParseException(
-                    String.format("Input string '%s' does not match any monetary value format.", trimmedCommission));
+                    String.format(
+                            "Input string '%s' does not match monetary value format. %s",
+                            trimmedInput,
+                            Money.MESSAGE_CONSTRAINTS)
+            );
+        }
+
+        String decimalString = trimmedInput.replace(dollarCentsPrefix, "").replace(" ", "");
+        if (!decimalString.contains(".")) {
+            decimalString += ".00";
+        }
+        try {
+            long value = Long.parseLong(decimalString.replace(".", ""));
+            return new Money(value);
+        } catch (Money.MoneyException e) {
+            throw new ParseException(e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new ParseException(
+                String.format("'%s' exceeds maximum monetary value (~$92 quadrillion).", trimmedInput));
         }
     }
 

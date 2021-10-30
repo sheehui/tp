@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import donnafin.commons.core.types.Money;
+import donnafin.commons.core.types.Money.MoneyException;
 
 public class PolicyTest {
 
@@ -99,19 +100,19 @@ public class PolicyTest {
     }
 
     @Test
-    public void variable_commissionToString_valid() {
+    public void variable_commissionToString_valid() throws MoneyException {
         Money commission = new Money(20000);
         assertEquals(commission.toString(), VALID_POLICY.getCommissionToString());
     }
 
     @Test
-    public void variable_yearlyPremiumsToString_valid() {
+    public void variable_yearlyPremiumsToString_valid() throws MoneyException {
         Money yearlyPremiums = new Money(10000);
         assertEquals(yearlyPremiums.toString(), VALID_POLICY.getYearlyPremiumsToString());
     }
 
     @Test
-    public void variable_totalValueInsuredToString_valid() {
+    public void variable_totalValueInsuredToString_valid() throws MoneyException {
         Money totalValueInsured = new Money(200000);
         assertEquals(totalValueInsured.toString(), VALID_POLICY.getTotalValueInsuredToString());
     }

@@ -2,7 +2,12 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
+import static donnafin.logic.parser.CliSyntax.PREFIX_REMARKS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_TYPE;
+import static donnafin.logic.parser.CliSyntax.PREFIX_VALUE;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,30 +21,38 @@ import donnafin.ui.AttributeTable;
  */
 public class Liability implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Liability fields should not start with empty spaces or "
-            + "contain new lines.";
+    public static final String MESSAGE_CONSTRAINTS = "Liability must be specified with "
+            + "a name (non-empty string) "
+            + "a type (non-empty string) "
+            + "a value (positive monetary value) "
+            + "a remark (non-empty string) "
+            + "\nE.g. "
+            + PREFIX_NAME + "DBS loan for Dempsey Rd unit "
+            + PREFIX_TYPE + "Property Mortgage "
+            + PREFIX_VALUE + "$420 "
+            + PREFIX_REMARKS + "mostly paid off ";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Liability> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Liabilities",
         List.of(
-                new AttributeTable.ColumnConfig("Liability Name", "name", 300),
-                new AttributeTable.ColumnConfig("Type", "type", 100),
-                new AttributeTable.ColumnConfig("Value", "valueToString", 100),
-                new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
+                new AttributeTable.ColumnConfig("Liability Name", "name", 300, 500),
+                new AttributeTable.ColumnConfig("Type", "type", 100, 250),
+                new AttributeTable.ColumnConfig("Value", "valueToString", 100, 250),
+                new AttributeTable.ColumnConfig("Remarks", "remarks", 100, 250)
         ),
-        liabilityCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Liability liability : liabilityCol) {
-                    Money commission = liability.getValue();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return "Total Liability Value: " + acc;
-        }
+        liabilityCol -> liabilityCol.stream()
+            .map(Liability::getValue)
+            .map(Money::getValue)
+            .map(BigInteger::valueOf)
+            .reduce(BigInteger::add)
+            .map(i -> {
+                BigInteger unit = BigInteger.valueOf(100);
+                String cents = i.mod(unit).add(unit).toString().substring(1);
+                String dollars = i.divide(unit).toString();
+                return String.format("Total Liability Value: $%s.%s", dollars, cents);
+            }).orElse("")
     );
+
     private final String name;
     private final String type;
     private final Money value;

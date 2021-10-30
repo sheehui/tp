@@ -7,7 +7,8 @@ import donnafin.commons.exceptions.IllegalValueException;
 public class Money {
     public static final String MONEY_ARITHMETIC_OVERFLOW =
             "Unable to calculate due to Integer limitations.";
-    public static final String MESSAGE_CONSTRAINTS = "Monetary value fields should start with '$'";
+    public static final String MESSAGE_CONSTRAINTS = "Monetary value fields should start with '$' followed by digits."
+            + " 2 digits preceded by a '.' may be added at the end to indicate cents";
     private static final String CURRENCY_SYMBOL = "$";
     private static final int CURRENCY_EXPONENT = 2;
 
@@ -18,7 +19,10 @@ public class Money {
      *
      * @param valueInSmallestUnit integer value of the currency in its smallest unit (e.g. cent)
      */
-    public Money(long valueInSmallestUnit) {
+    public Money(long valueInSmallestUnit) throws MoneyException {
+        if (valueInSmallestUnit < 0) {
+            throw new MoneyException("Negative monetary values are not supported");
+        }
         this.value = valueInSmallestUnit;
     }
 
@@ -28,19 +32,17 @@ public class Money {
 
     @Override
     public String toString() {
-        long absVal = Math.abs(value);
         long divisor = (long) Math.pow(10, CURRENCY_EXPONENT);
 
-        String biggerUnitValue = "" + absVal / divisor;
-        String sign = absVal == value ? " " : "-";
+        String biggerUnitValue = "" + value / divisor;
 
-        int numDigitsSmallerValue = absVal % divisor != 0
-                ? (int) Math.floor(Math.log10(absVal % divisor)) + 1
+        int numDigitsSmallerValue = value % divisor != 0
+                ? (int) Math.floor(Math.log10(value % divisor)) + 1
                 : 1;
         String smallerUnitValue = "0".repeat(Math.max(0, CURRENCY_EXPONENT - numDigitsSmallerValue));
-        smallerUnitValue += absVal % divisor;
+        smallerUnitValue += value % divisor;
 
-        return String.format("%s%s %s.%s", sign, CURRENCY_SYMBOL, biggerUnitValue, smallerUnitValue);
+        return String.format("%s %s.%s", CURRENCY_SYMBOL, biggerUnitValue, smallerUnitValue);
     }
 
     @Override
@@ -84,6 +86,9 @@ public class Money {
      */
     public static Money subtract(Money a, Money b) throws MoneyException {
         try {
+            if (b.getValue() > b.getValue()) {
+                throw new ArithmeticException("Negative result after subtraction");
+            }
             return new Money(Math.subtractExact(a.value, b.value));
         } catch (ArithmeticException e) {
             throw new MoneyException(Money.MONEY_ARITHMETIC_OVERFLOW);

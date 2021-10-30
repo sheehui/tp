@@ -13,8 +13,8 @@ public class PolicyTestTable {
                     .reduce(0.0, Double::sum)
         );
     private static final List<AttributeTable.ColumnConfig> columnConfigs = List.of(
-            new AttributeTable.ColumnConfig("Policy Name", "name", 400),
-            new AttributeTable.ColumnConfig("Value", "amt", 100)
+            new AttributeTable.ColumnConfig("Policy Name", "name", 400, 400),
+            new AttributeTable.ColumnConfig("Value", "amt", 100, 100)
     );
 
     private static final AttributeTable.TableConfig<PolicyTest> tableConfig = new AttributeTable.TableConfig<>(
