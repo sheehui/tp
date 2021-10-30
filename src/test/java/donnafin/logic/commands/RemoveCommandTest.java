@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import donnafin.commons.core.types.Index;
-import donnafin.commons.core.types.Money;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
@@ -64,16 +63,12 @@ public class RemoveCommandTest {
         model.addPerson(GEORGE);
         personAdapter = new PersonAdapter(model, GEORGE);
 
-        try {
-            testPolicy = new Policy("Golden Mile", "AIA",
-                    "$2000", "$100", "$200");
-            testLiability = new Liability("Mortgage debt", "Debt", "$20000",
-                    "23 year loan from DBS Bank.");
-            testAsset = new Asset("Good Class Bungalow", "Property", "$2000000",
-                    "Paid in full. No debt.");
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(Money.MESSAGE_CONSTRAINTS);
-        }
+        testPolicy = new Policy("Golden Mile", "AIA",
+                "$2000", "$100", "$200");
+        testLiability = new Liability("Mortgage debt", "Debt", "$20000",
+                "23 year loan from DBS Bank.");
+        testAsset = new Asset("Good Class Bungalow", "Property", "$2000000",
+                "Paid in full. No debt.");
 
         combinedPolicy = new HashSet<>(GEORGE.getPolicies());
         combinedPolicy.add(testPolicy);
