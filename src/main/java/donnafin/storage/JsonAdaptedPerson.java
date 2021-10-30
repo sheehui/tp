@@ -19,7 +19,6 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -33,7 +32,6 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String notes;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
     private final List<JsonAdaptedAsset> assets = new ArrayList<>();
     private final List<JsonAdaptedLiability> liabilities = new ArrayList<>();
@@ -45,7 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(
             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("notes") String notes,
+            @JsonProperty("notes") String notes,
             @JsonProperty("policies") List<JsonAdaptedPolicy> policies,
             @JsonProperty("liabilities") List<JsonAdaptedLiability> liabilities,
             @JsonProperty("assets") List<JsonAdaptedAsset> assets) {
@@ -54,9 +52,6 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.notes = notes == null ? "" : notes;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         if (policies != null) {
             this.policies.addAll(policies);
         }
@@ -77,9 +72,6 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         notes = source.getNotes().notes;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         policies.addAll(source.getPolicies().stream()
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
@@ -97,14 +89,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
         final List<Policy> personPolicies = new ArrayList<>();
         final List<Asset> personAssets = new ArrayList<>();
         final List<Liability> personLiabilities = new ArrayList<>();
-
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
 
         for (JsonAdaptedPolicy policy : policies) {
             personPolicies.add(policy.toModelType());
@@ -149,12 +136,11 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
         final Notes modelNotes = new Notes(notes);
         final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
         final Set<Asset> modelAssets = new HashSet<>(personAssets);
         final Set<Liability> modelLiabilities = new HashSet<>(personLiabilities);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNotes,
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNotes,
                 modelPolicies, modelLiabilities, modelAssets);
     }
 
