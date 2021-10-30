@@ -130,6 +130,7 @@ public class AttributeTable<T> extends UiPart<Region> {
             col.setCellValueFactory(new PropertyValueFactory<>(columnConfig.propertyName));
             columns.add(col);
         }
+        columns.forEach(col -> col.setSortable(false));
 
         aggregatorLabel.setText(tableConfig.aggregatorLabelCreator.applyOn(collection));
 
