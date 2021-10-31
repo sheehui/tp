@@ -92,7 +92,9 @@ public class AssetTest {
     public void testEquals() {
         final Asset sameAsset = new Asset(VALID_NAME, VALID_TYPE, VALID_VALUE, VALID_REMARKS);
         final Asset otherAsset = new Asset(VALID_NAME + " something", VALID_TYPE, VALID_VALUE, VALID_REMARKS);
+        assertEquals(VALID_ASSET, VALID_ASSET);
         assertEquals(sameAsset, VALID_ASSET);
+        assertNotEquals(sameAsset, "a string");
         assertNotEquals(otherAsset, sameAsset);
         assertNotEquals(null, sameAsset);
     }

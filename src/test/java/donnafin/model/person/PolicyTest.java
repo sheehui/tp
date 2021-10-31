@@ -130,7 +130,9 @@ public class PolicyTest {
                 VALID_NAME + "something", VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
                 VALID_YEARLY_PREMIUMS, VALID_COMMISSION
         );
+        assertEquals(VALID_POLICY, VALID_POLICY);
         assertEquals(samePolicy, VALID_POLICY);
+        assertNotEquals(samePolicy, "a string");
         assertNotEquals(otherPolicy, samePolicy);
         assertNotEquals(null, samePolicy);
     }
