@@ -261,6 +261,9 @@ Example: `edit e/allison@gmail.com`
 
 Adds a new asset to the current client you are viewing. You must be in the `Assets` tab.
 
+* `ASSET_VALUE` is a monetary value. DonnaFin only accepts whole numbers and
+  values in 2 decimal places (i.e. 120 and 120.20 are valid. 120.2 is invalid).
+
 Format: `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`
 
 Example:
@@ -283,6 +286,9 @@ Example:
 
 Adds a new liability to the current client you are viewing. You must be in the `Liabilities` tab.
 
+* `LIABILITY_VALUE` is a monetary value. DonnaFin only accepts whole numbers and
+  values in 2 decimal places (i.e. 120 and 120.20 are valid. 120.2 is invalid).
+
 Format: `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`
 
 Example:
@@ -304,6 +310,9 @@ Example:
 #### Add a Policy: `append`
 
 Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
+
+* `INSURED_VALUE`, `YEARLY_PREMIUM` and `COMMISSION` are monetary values. DonnaFin only accepts whole numbers and
+values in 2 decimal places (i.e. 120 and 120.20 are valid. 120.2 is invalid).
 
 Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`
 
@@ -362,7 +371,7 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 | **Clear**  | `clear`                                                                | `clear`
 | **Delete** | `delete`                                                               | `delete 3`
 | **Edit Name**   | `edit n/NAME` | `edit n/James Lee`
-| **Edit Address**   | `edit a/ADDRESS` | `edit n/blk 123 bukit batok ave 4`
+| **Edit Address**   | `edit a/ADDRESS` | `edit a/blk 123 bukit batok ave 4`
 | **Edit Email**   | `edit e/EMAIL` | `edit e/jameslee@donnafin.com`
 | **Edit Phone Number**   | `edit p/PHONE_NUMBER` | `edit p/98374283`
 | **View**   | `view INDEX`                                                           | `view 2`
@@ -375,4 +384,8 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 | **Append Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 | **Append Policy**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
-| **Tab**   | `tab KEYWORD`                                                                 | `tab p`
+| **Switch to Policies tab**   | `tab KEYWORD`                                                                 | `tab p` or `tab policy`
+| **Switch to Assets tab**   | `tab KEYWORD`                                                                 | `tab a` or `tab asset`
+| **Switch to Liabilities tab**   | `tab KEYWORD`                                                                 | `tab l` or `tab liability`
+| **Switch to Contacts tab**   | `tab KEYWORD`                                                                 | `tab c` or `tab contacts`
+| **Switch to Notes tab**   | `tab KEYWORD`                                                                 | `tab n` or `tab notes`
