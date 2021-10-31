@@ -2,7 +2,12 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
+import static donnafin.logic.parser.CliSyntax.PREFIX_REMARKS;
+import static donnafin.logic.parser.CliSyntax.PREFIX_TYPE;
+import static donnafin.logic.parser.CliSyntax.PREFIX_VALUE;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,30 +21,38 @@ import donnafin.ui.AttributeTable;
  */
 public class Asset implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Asset fields should not start with empty spaces or contain "
-            + "new lines.";
+    public static final String MESSAGE_CONSTRAINTS = "Assets must be specified with "
+            + "a name (non-empty string) "
+            + "a type (non-empty string) "
+            + "a value (positive monetary value) "
+            + "a remark (non-empty string) "
+            + "\nE.g. "
+            + PREFIX_NAME + "GCB at Dempsey Rd "
+            + PREFIX_TYPE + "Property "
+            + PREFIX_VALUE + "$10000000 "
+            + PREFIX_REMARKS + "unoccupied";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Asset> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Assets",
         List.of(
-                new AttributeTable.ColumnConfig("Asset Name", "name", 300),
-                new AttributeTable.ColumnConfig("Type", "type", 100),
-                new AttributeTable.ColumnConfig("Value", "valueToString", 100),
-                new AttributeTable.ColumnConfig("Remarks", "remarks", 100)
+                new AttributeTable.ColumnConfig("Asset Name", "name", 300, 500),
+                new AttributeTable.ColumnConfig("Type", "type", 100, 250),
+                new AttributeTable.ColumnConfig("Value", "valueToString", 100, 250),
+                new AttributeTable.ColumnConfig("Remarks", "remarks", 100, 250)
         ),
-        assetCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Asset asset : assetCol) {
-                    Money commission = asset.getValue();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return "Total Asset Value: " + acc;
-        }
+        assetCol -> assetCol.stream()
+            .map(Asset::getValue)
+            .map(Money::getValue)
+            .map(BigInteger::valueOf)
+            .reduce(BigInteger::add)
+            .map(i -> {
+                BigInteger unit = BigInteger.valueOf(100);
+                String cents = i.mod(unit).add(unit).toString().substring(1);
+                String dollars = i.divide(unit).toString();
+                return String.format("Total Asset Value: $%s.%s", dollars, cents);
+            }).orElse("")
     );
+
     private final String name;
     private final String type;
     private final Money value;

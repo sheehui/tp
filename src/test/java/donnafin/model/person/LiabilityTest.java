@@ -2,10 +2,14 @@ package donnafin.model.person;
 
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import donnafin.commons.core.types.Money;
+import donnafin.commons.core.types.Money.MoneyException;
 
 public class LiabilityTest {
     private static final String VALID_NAME = "Mortgage debt";
@@ -78,8 +82,41 @@ public class LiabilityTest {
     }
 
     @Test
-    public void variable_commissionToString_valid() {
+    public void variable_commissionToString_valid() throws MoneyException {
         Money value = new Money(200000);
         assertEquals(value.toString(), VALID_LIABILITY.getValueToString());
+    }
+
+    @Test
+    public void testEquals() {
+        final Liability sameLiability = new Liability(VALID_NAME, VALID_TYPE, VALID_VALUE, VALID_REMARKS);
+        final Liability otherLiability =
+                new Liability(VALID_NAME + " something", VALID_TYPE, VALID_VALUE, VALID_REMARKS);
+        assertEquals(sameLiability, VALID_LIABILITY);
+        assertNotEquals(otherLiability, sameLiability);
+        assertNotEquals(null, sameLiability);
+    }
+
+    @Test
+    public void aggregateFunctionWorks() {
+        // EP: 1 Liability
+        assertEquals(
+                "Total Liability Value: $2000.00",
+                Liability.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of(VALID_LIABILITY))
+        );
+
+        // EP: 0 Liability
+        assertEquals("", Liability.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of()));
+
+        // EP: Value exceeds Long.MAX_VALUE
+        String maxMoneyVal = "$" + Long.MAX_VALUE / 100;
+        assertEquals(
+                "Total Liability Value: $276701161105643274.00",
+                Liability.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of(
+                        new Liability("Test", "Test", maxMoneyVal, "test"),
+                        new Liability("Test", "Test", maxMoneyVal, "test"),
+                        new Liability("Test", "Test", maxMoneyVal, "test")
+                ))
+        );
     }
 }

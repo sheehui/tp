@@ -2,10 +2,14 @@ package donnafin.model.person;
 
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import donnafin.commons.core.types.Money;
+import donnafin.commons.core.types.Money.MoneyException;
 
 public class PolicyTest {
 
@@ -99,20 +103,58 @@ public class PolicyTest {
     }
 
     @Test
-    public void variable_commissionToString_valid() {
+    public void variable_commissionToString_valid() throws MoneyException {
         Money commission = new Money(20000);
         assertEquals(commission.toString(), VALID_POLICY.getCommissionToString());
     }
 
     @Test
-    public void variable_yearlyPremiumsToString_valid() {
+    public void variable_yearlyPremiumsToString_valid() throws MoneyException {
         Money yearlyPremiums = new Money(10000);
         assertEquals(yearlyPremiums.toString(), VALID_POLICY.getYearlyPremiumsToString());
     }
 
     @Test
-    public void variable_totalValueInsuredToString_valid() {
+    public void variable_totalValueInsuredToString_valid() throws MoneyException {
         Money totalValueInsured = new Money(200000);
         assertEquals(totalValueInsured.toString(), VALID_POLICY.getTotalValueInsuredToString());
+    }
+
+    @Test
+    public void testEquals() {
+        final Policy samePolicy = new Policy(
+                VALID_NAME, VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
+                VALID_YEARLY_PREMIUMS, VALID_COMMISSION
+        );
+        final Policy otherPolicy = new Policy(
+                VALID_NAME + "something", VALID_INSURER, VALID_TOTAL_VALUE_INSURED,
+                VALID_YEARLY_PREMIUMS, VALID_COMMISSION
+        );
+        assertEquals(samePolicy, VALID_POLICY);
+        assertNotEquals(otherPolicy, samePolicy);
+        assertNotEquals(null, samePolicy);
+    }
+
+    @Test
+    public void aggregateFunctionWorks() {
+        // EP: 1 policy
+        assertEquals(
+                "Total Policy Commissions: $200.00",
+                Policy.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of(VALID_POLICY))
+        );
+
+        // EP: 0 policy
+        assertEquals("", Policy.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of()));
+
+        // EP: Commissions exceeds Long.MAX_VALUE
+        String maxMoneyVal = "$" + Long.MAX_VALUE / 100;
+        assertEquals(
+                "Total Policy Commissions: $276701161105643274.00",
+                Policy.TABLE_CONFIG.aggregatorLabelCreator.applyOn(List.of(
+                        new Policy("Test", "Test", maxMoneyVal, maxMoneyVal, maxMoneyVal),
+                        new Policy("Test", "Test", maxMoneyVal, maxMoneyVal, maxMoneyVal),
+                        new Policy("Test", "Test", maxMoneyVal, maxMoneyVal, maxMoneyVal)
+                ))
+        );
     }
 }

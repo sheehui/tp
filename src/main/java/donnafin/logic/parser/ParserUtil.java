@@ -18,7 +18,6 @@ import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.tag.Tag;
 import donnafin.ui.Ui;
 import donnafin.ui.Ui.ViewFinderState;
 
@@ -101,33 +100,6 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**
@@ -237,28 +209,33 @@ public class ParserUtil {
      */
     public static Money parseMoney(String money) throws ParseException {
         requireNonNull(money);
-        String trimmedCommission = money.trim();
+        String trimmedInput = money.trim();
 
         // Handling Default currency $XYZ or $XYZ.AB
-        final String regexDollarCents = "^-?\\s*\\$\\s*\\d+(\\.\\d{2})?$";
+        final String regexDollarCents = "^\\s*\\$\\s*\\d+(\\.\\d{2})?$";
         final String dollarCentsPrefix = "$";
 
-        if (trimmedCommission.matches(regexDollarCents)) {
-            String decimalString = trimmedCommission.replace(dollarCentsPrefix, "").replace(" ", "");
-            if (!decimalString.contains(".")) {
-                decimalString += ".00";
-            }
-            long value;
-            try {
-                value = Long.parseLong(decimalString.replace(".", ""));
-            } catch (NumberFormatException e) {
-                throw new ParseException(
-                        String.format("Input string '%s' exceeds maximum monetary value.", trimmedCommission));
-            }
-            return new Money(value);
-        } else {
+        if (!trimmedInput.matches(regexDollarCents)) {
             throw new ParseException(
-                    String.format("Input string '%s' does not match any monetary value format.", trimmedCommission));
+                    String.format(
+                            "Input string '%s' does not match monetary value format. %s",
+                            trimmedInput,
+                            Money.MESSAGE_CONSTRAINTS)
+            );
+        }
+
+        String decimalString = trimmedInput.replace(dollarCentsPrefix, "").replace(" ", "");
+        if (!decimalString.contains(".")) {
+            decimalString += ".00";
+        }
+        try {
+            long value = Long.parseLong(decimalString.replace(".", ""));
+            return new Money(value);
+        } catch (Money.MoneyException e) {
+            throw new ParseException(e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new ParseException(
+                String.format("'%s' exceeds maximum monetary value (~$92 quadrillion).", trimmedInput));
         }
     }
 

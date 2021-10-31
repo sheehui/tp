@@ -61,7 +61,7 @@ public class PersonAdapterTest {
         personAdapter.edit(new Name("Peter"));
 
         assertEquals(new Person(new Name("Peter"), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                ALICE.getAddress(), ALICE.getNotes(), ALICE.getPolicies(),
                 ALICE.getLiabilities(), ALICE.getAssets()),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
@@ -84,7 +84,7 @@ public class PersonAdapterTest {
         personAdapter.edit(new Phone("90538978"));
 
         assertEquals(new Person(ALICE.getName(), new Phone("90538978"),
-                ALICE.getEmail(), ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(),
+                ALICE.getEmail(), ALICE.getAddress(), ALICE.getNotes(),
                 ALICE.getPolicies(), ALICE.getLiabilities(), ALICE.getAssets()),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
@@ -111,7 +111,7 @@ public class PersonAdapterTest {
         personAdapter.edit(new Email("alice29@email.com"));
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), new Email("alice29@email.com"),
-                ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                ALICE.getAddress(), ALICE.getNotes(), ALICE.getPolicies(),
                 ALICE.getLiabilities(), ALICE.getAssets()),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
@@ -140,7 +140,7 @@ public class PersonAdapterTest {
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
                 new Address("28 College Ave E, #B1-01, Singapore 138598"),
-                ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(), ALICE.getLiabilities(),
+                ALICE.getNotes(), ALICE.getPolicies(), ALICE.getLiabilities(),
                 ALICE.getAssets()), personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
@@ -165,7 +165,7 @@ public class PersonAdapterTest {
         Notes modifiedNotes = new Notes("Loves cai fan & teh ping");
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                ALICE.getAddress(), ALICE.getTags(), modifiedNotes, ALICE.getPolicies(),
+                ALICE.getAddress(), modifiedNotes, ALICE.getPolicies(),
                         ALICE.getLiabilities(), ALICE.getAssets()),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
@@ -183,7 +183,7 @@ public class PersonAdapterTest {
         personAdapter.editPolicies(policies);
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                        ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), policies,
+                        ALICE.getAddress(), ALICE.getNotes(), policies,
                         ALICE.getLiabilities(), ALICE.getAssets()),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
@@ -201,7 +201,7 @@ public class PersonAdapterTest {
         personAdapter.editAssets(assets);
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                        ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                        ALICE.getAddress(), ALICE.getNotes(), ALICE.getPolicies(),
                         ALICE.getLiabilities(), assets),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
@@ -219,7 +219,7 @@ public class PersonAdapterTest {
         personAdapter.editLiabilities(liabilities);
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
-                        ALICE.getAddress(), ALICE.getTags(), ALICE.getNotes(), ALICE.getPolicies(),
+                        ALICE.getAddress(), ALICE.getNotes(), ALICE.getPolicies(),
                         liabilities, ALICE.getAssets()),
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());

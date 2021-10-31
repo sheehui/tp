@@ -17,8 +17,6 @@ import javafx.collections.ObservableList;
 
 public class PersonAdapter {
 
-    private static final String SET_DELIMITER = "<>";
-    private static final String ATTRIBUTE_DELIMITER = ";;;";
     private final Model model;
     private Person subject;
 
@@ -27,7 +25,6 @@ public class PersonAdapter {
         PHONE,
         EMAIL,
         ADDRESS,
-        TAGS,
         NOTES,
         POLICIES,
         LIABILITIES,
@@ -68,7 +65,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 curr.getEmail(),
                 curr.getAddress(),
-                curr.getTags(),
                 curr.getNotes(),
                 curr.getPolicies(),
                 curr.getLiabilities(),
@@ -89,7 +85,6 @@ public class PersonAdapter {
                 newPhone,
                 curr.getEmail(),
                 curr.getAddress(),
-                curr.getTags(),
                 curr.getNotes(),
                 curr.getPolicies(),
                 curr.getLiabilities(),
@@ -110,7 +105,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 newEmail,
                 curr.getAddress(),
-                curr.getTags(),
                 curr.getNotes(),
                 curr.getPolicies(),
                 curr.getLiabilities(),
@@ -131,7 +125,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 curr.getEmail(),
                 newAddress,
-                curr.getTags(),
                 curr.getNotes(),
                 curr.getPolicies(),
                 curr.getLiabilities(),
@@ -152,7 +145,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 curr.getEmail(),
                 curr.getAddress(),
-                curr.getTags(),
                 newNotes,
                 curr.getPolicies(),
                 curr.getLiabilities(),
@@ -173,7 +165,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 curr.getEmail(),
                 curr.getAddress(),
-                curr.getTags(),
                 curr.getNotes(),
                 newPolicies,
                 curr.getLiabilities(),
@@ -194,7 +185,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 curr.getEmail(),
                 curr.getAddress(),
-                curr.getTags(),
                 curr.getNotes(),
                 curr.getPolicies(),
                 newLiabilities,
@@ -215,7 +205,6 @@ public class PersonAdapter {
                 curr.getPhone(),
                 curr.getEmail(),
                 curr.getAddress(),
-                curr.getTags(),
                 curr.getNotes(),
                 curr.getPolicies(),
                 curr.getLiabilities(),

@@ -71,9 +71,9 @@ public class PersonListPanelTest extends GuiUnitTest {
         for (int i = 0; i < personCount; i++) {
             Name name = new Name(i + "a");
             Phone phone = new Phone("000");
-            Email email = new Email("a@aa");
+            Email email = new Email("a@aa.aa");
             Address address = new Address("a");
-            Person person = new Person(name, phone, email, address, Collections.emptySet(), new Notes(""),
+            Person person = new Person(name, phone, email, address, new Notes(""),
                     Collections.emptySet(), Collections.emptySet(), Collections.emptySet());
             backingList.add(person);
         }

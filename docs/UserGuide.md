@@ -361,6 +361,15 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DonnaFin home folder.
 
+**Q**: I have multiple clients with the same name, but your application won't let me add them! What do I do?
+**A**: We realise some names are common, but we decided to prioritise your ability to instantly recognise a client over letting you keep the accuracy of the name. For that reason, we suggest adding other identifying nicknames or words in the name e.g. "John Walker (Bartender)" and "John Walker (Johnny)".
+
+**Q**: My clients have assets and policies valued in USD / RMB / AUD / other currency. How can I show this in the table?
+**A**: We plan to have multi-currency support in future developments. However, currently we only accept dollar ('$') currencies and formats that are compatible with the Singapore Dollar. For now, please use only a single currency and convert as appropriate.
+
+**Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)
+**A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary

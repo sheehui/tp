@@ -25,9 +25,6 @@ public class PersonUtil {
         sb.append(CliSyntax.PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(CliSyntax.PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(CliSyntax.PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().forEach(
-            s -> sb.append(CliSyntax.PREFIX_TAG + s.tagName + " ")
-        );
 
         return sb.toString();
     }

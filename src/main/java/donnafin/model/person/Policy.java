@@ -2,7 +2,13 @@ package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
 import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+import static donnafin.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static donnafin.logic.parser.CliSyntax.PREFIX_INSURED_VALUE;
+import static donnafin.logic.parser.CliSyntax.PREFIX_INSURER;
+import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
+import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,31 +22,41 @@ import donnafin.ui.AttributeTable;
  */
 public class Policy implements Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Policy name and insurer should not contain new lines or "
-            + "start with empty spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Policies must be specified with "
+            + "a name (non-empty string) "
+            + "a insurer name (non-empty string) "
+            + "a value insured (positive monetary value) "
+            + "a yearly premium (positive monetary value) "
+            + "a commission (positive monetary value) "
+            + "\nE.g. "
+            + PREFIX_NAME + "Platinum Years "
+            + PREFIX_INSURER + "FinAssurance Corp. "
+            + PREFIX_INSURED_VALUE + "$100000 "
+            + PREFIX_YEARLY_PREMIUM + "$100 "
+            + PREFIX_COMMISSION + "$10 ";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Policies",
         List.of(
-                    new AttributeTable.ColumnConfig("Policy Name", "name", 300),
-                    new AttributeTable.ColumnConfig("Insurer", "insurer", 100),
-                    new AttributeTable.ColumnConfig("Insured Value", "totalValueInsuredToString", 100),
-                    new AttributeTable.ColumnConfig("Premium (yearly)", "yearlyPremiumsToString", 100),
-                    new AttributeTable.ColumnConfig("Commission", "commissionToString", 100)
+                    new AttributeTable.ColumnConfig("Policy Name", "name", 200, 500),
+                    new AttributeTable.ColumnConfig("Insurer", "insurer", 100, 250),
+                    new AttributeTable.ColumnConfig("Insured Value", "totalValueInsuredToString", 200, 300),
+                    new AttributeTable.ColumnConfig("Premium (yearly)", "yearlyPremiumsToString", 200, 300),
+                    new AttributeTable.ColumnConfig("Commission", "commissionToString", 100, 250)
             ),
-        policyCol -> {
-            Money acc = new Money(0);
-            try {
-                for (Policy policy : policyCol) {
-                    Money commission = policy.getCommission();
-                    acc = Money.add(acc, commission);
-                }
-            } catch (Money.MoneyException e) {
-                return "-";
-            }
-            return "Total Policy Commissions: " + acc;
-        }
+        policyCol -> policyCol.stream()
+            .map(Policy::getCommission)
+            .map(Money::getValue)
+            .map(BigInteger::valueOf)
+            .reduce(BigInteger::add)
+            .map(i -> {
+                BigInteger unit = BigInteger.valueOf(100);
+                String cents = i.mod(unit).add(unit).toString().substring(1);
+                String dollars = i.divide(unit).toString();
+                return String.format("Total Policy Commissions: $%s.%s", dollars, cents);
+            }).orElse("")
     );
+
     private final String name;
     private final String insurer;
     private final Money totalValueInsured;
