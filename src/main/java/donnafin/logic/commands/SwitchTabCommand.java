@@ -18,7 +18,6 @@ public class SwitchTabCommand extends Command {
 
     public static final String COMMAND_WORD = "tab";
     private static final String MESSAGE_SUCCESS = "Switched tab";
-    private static final String MESSAGE_ERROR = "Failed to switch tab";
 
     private final Ui.ViewFinderState tab;
     private final PersonAdapter personAdapter;
