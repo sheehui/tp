@@ -8,5 +8,5 @@ public interface Attribute {
     String toString();
     boolean equals(Object other);
     int hashCode();
-
+    boolean isPossibleDuplicate(Attribute other);
 }

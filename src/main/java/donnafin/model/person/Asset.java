@@ -120,6 +120,12 @@ public class Asset implements Attribute {
         return Objects.hash(getName(), getType(), getValue(), getRemarks());
     }
 
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        // TODO: @Donny
+        return equals(other);
+    }
+
     public String getName() {
         return name;
     }

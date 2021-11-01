@@ -18,4 +18,9 @@ public class PolicyTest implements Attribute {
     public String getAmt() {
         return amt;
     }
+
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        return false;
+    }
 }
