@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -155,6 +156,16 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Set<Person> getWeakDuplicates(Person target) {
+            return null;
+        }
+
+        @Override
+        public Set<Set<Person>> getWeakDuplicatesAllClients() {
+            return null;
+        }
     }
 
     /**
@@ -172,6 +183,16 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public Set<Person> getWeakDuplicates(Person target) {
+            return null;
+        }
+
+        @Override
+        public Set<Set<Person>> getWeakDuplicatesAllClients() {
+            return null;
         }
     }
 
@@ -191,6 +212,16 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public Set<Person> getWeakDuplicates(Person target) {
+            return null;
+        }
+
+        @Override
+        public Set<Set<Person>> getWeakDuplicatesAllClients() {
+            return null;
         }
 
         @Override

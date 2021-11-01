@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -137,6 +138,16 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Set<Person> getWeakDuplicates(Person target) {
+        return null;
+    }
+
+    @Override
+    public Set<Set<Person>> getWeakDuplicatesAllClients() {
+        return null;
     }
 
     @Override

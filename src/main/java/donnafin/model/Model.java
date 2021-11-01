@@ -2,6 +2,7 @@ package donnafin.model;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import donnafin.commons.core.GuiSettings;
@@ -88,4 +89,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Find possible user errors (very similar clients of the same name).
+     * Weak duplicates refer to comparing {@code Person} and ignoring case and white space.
+     *
+     * @param target compare list against this {@code Person}.
+     * @return a set of sets where each set contains weak duplicates together.
+     */
+    Set<Person> getWeakDuplicates(Person target);
+
+    /**
+     * Find possible user errors (very similar clients of the same name).
+     * Weak duplicates refer to comparing {@code Person} and ignoring case and white space.
+     *
+     * @return result of running {@code getWeakDuplicates} on each clients.
+     */
+    Set<Set<Person>> getWeakDuplicatesAllClients();
 }
