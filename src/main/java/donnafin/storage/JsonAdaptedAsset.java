@@ -64,7 +64,11 @@ class JsonAdaptedAsset {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assets.
      */
     public Asset toModelType() throws IllegalValueException {
-        return new Asset(assetName, assetType, assetValue, assetRemarks);
+        try {
+            return new Asset(assetName, assetType, assetValue, assetRemarks);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
     }
 
 }

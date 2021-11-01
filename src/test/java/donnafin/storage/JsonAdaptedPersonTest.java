@@ -12,15 +12,27 @@ import org.junit.jupiter.api.Test;
 
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Address;
+import donnafin.model.person.Asset;
 import donnafin.model.person.Email;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
+import donnafin.model.person.Policy;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final List<JsonAdaptedPolicy> INVALID_POLICIES = List.of(
+            new JsonAdaptedPolicy("Everlong", "Foo", "Fighters", "$3", "$20")
+    );
+    private static final List<JsonAdaptedAsset> INVALID_ASSETS = List.of(
+            new JsonAdaptedAsset("Bender", "Robot", "30", "Bends pipes")
+    );
+    private static final List<JsonAdaptedLiability> INVALID_LIABILITIES = List.of(
+            new JsonAdaptedLiability("Philip Fry", "Human", "incalculable", "Pizza boy")
+    );
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -76,6 +88,32 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
                 VALID_NOTES, VALID_POLICY, VALID_LIABILITIES, VALID_ASSETS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPolicy_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, INVALID_POLICIES, VALID_LIABILITIES, VALID_ASSETS);
+        String expectedMessage = Policy.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+
+    @Test
+    public void toModelType_invalidAsset_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, VALID_LIABILITIES, INVALID_ASSETS);
+        String expectedMessage = Asset.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+
+    @Test
+    public void toModelType_invalidLiability_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, INVALID_LIABILITIES, VALID_ASSETS);
+        String expectedMessage = Liability.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

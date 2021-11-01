@@ -92,7 +92,9 @@ public class LiabilityTest {
         final Liability sameLiability = new Liability(VALID_NAME, VALID_TYPE, VALID_VALUE, VALID_REMARKS);
         final Liability otherLiability =
                 new Liability(VALID_NAME + " something", VALID_TYPE, VALID_VALUE, VALID_REMARKS);
+        assertEquals(VALID_LIABILITY, VALID_LIABILITY);
         assertEquals(sameLiability, VALID_LIABILITY);
+        assertNotEquals(sameLiability, "a string");
         assertNotEquals(otherLiability, sameLiability);
         assertNotEquals(null, sameLiability);
     }
