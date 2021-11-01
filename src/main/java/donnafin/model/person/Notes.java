@@ -52,4 +52,9 @@ public class Notes implements Attribute {
     public int hashCode() {
         return notes.hashCode();
     }
+
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        return equals(other);
+    }
 }

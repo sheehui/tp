@@ -6,6 +6,7 @@ import java.util.List;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.CommandTestUtil;
 import donnafin.ui.Ui;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class DummyUiForCommands implements Ui {
@@ -86,4 +87,7 @@ public class DummyUiForCommands implements Ui {
     public ViewFinderState getUiState() {
         return ViewFinderState.CONTACT;
     }
+
+    @Override
+    public void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {}
 }

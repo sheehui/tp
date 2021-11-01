@@ -96,6 +96,10 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public boolean isPossibleDuplicate(Person other) {
+        return name.isPossibleDuplicate(other.name);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -112,7 +116,7 @@ public class Person {
      * Checks if two {@code Person} are the same during {@code AddCommand} by checking the common attributes
      * and ignoring the composite financial attributes, which are not present.
      *
-     * @param other Object being comapred.
+     * @param other Object being compared.
      * @param ignoreCompoundAttributes Boolean value to determine if financial attributes should be compared.
      * @return Boolean representative if both objects are equal.
      */

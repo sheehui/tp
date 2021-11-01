@@ -54,4 +54,9 @@ public class Address implements Attribute {
         return value.hashCode();
     }
 
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        return (other instanceof Address) && other.toString().replaceAll("\\s\\s+", " ")
+                .equalsIgnoreCase(toString().replaceAll("\\s\\s+", " "));
+    }
 }

@@ -68,4 +68,9 @@ public class Email implements Attribute {
         return value.hashCode();
     }
 
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        return equals(other);
+    }
+
 }

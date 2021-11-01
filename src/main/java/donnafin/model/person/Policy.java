@@ -128,6 +128,12 @@ public class Policy implements Attribute {
         return Objects.hash(getName(), getInsurer(), getTotalValueInsured(), getYearlyPremiums(), getCommission());
     }
 
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        // TODO: @Donny
+        return equals(other);
+    }
+
     public String getName() {
         return name;
     }

@@ -50,4 +50,10 @@ public class Phone implements Attribute {
         return value.hashCode();
     }
 
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        return (other instanceof Phone) && other.toString().replaceAll("[^\\d]", "")
+                .equals(toString().replaceAll("[^\\d]", ""));
+    }
+
 }

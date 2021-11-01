@@ -6,6 +6,8 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_NAME;
 import static donnafin.logic.parser.CliSyntax.PREFIX_PHONE;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.model.Model;
 import donnafin.model.person.Person;
@@ -51,8 +53,23 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Set<Person> weakDuplicatesSet = model.getWeakDuplicates(toAdd);
+        String duplicateWarning = "";
+        if (weakDuplicatesSet != null && weakDuplicatesSet.size() != 0) {
+            String listDuplicates = weakDuplicatesSet.stream()
+                    .filter(x -> !toAdd.equals(x))
+                    .map(p -> p.getName() + "\n")
+                    .reduce("", (a, b) -> a + b);
+            duplicateWarning = String.format(
+                    "\nWARNING: Found %d other clients who could be duplicate(s):\n%s\n"
+                    + "Hint: REMOVE command can be useful to remove duplicates.",
+                    weakDuplicatesSet.size(),
+                    listDuplicates
+            );
+        }
+
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd) + duplicateWarning);
     }
 
     @Override

@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import donnafin.commons.core.GuiSettings;
 import donnafin.commons.core.LogsCenter;
@@ -137,6 +139,21 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Set<Person> getWeakDuplicates(Person target) {
+        return getAddressBook().getPersonList().stream()
+                .filter(p -> p.isPossibleDuplicate(target))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Set<Person>> getWeakDuplicatesAllClients() {
+        return getAddressBook().getPersonList().stream()
+                .map(this::getWeakDuplicates)
+                .filter(set -> set.size() != 1)
+                .collect(Collectors.toSet());
     }
 
     @Override

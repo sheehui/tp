@@ -3,6 +3,7 @@ package donnafin;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import donnafin.commons.core.Config;
@@ -19,6 +20,7 @@ import donnafin.model.ModelManager;
 import donnafin.model.ReadOnlyAddressBook;
 import donnafin.model.ReadOnlyUserPrefs;
 import donnafin.model.UserPrefs;
+import donnafin.model.person.Person;
 import donnafin.model.util.SampleDataUtil;
 import donnafin.storage.AddressBookStorage;
 import donnafin.storage.JsonAddressBookStorage;
@@ -29,6 +31,7 @@ import donnafin.storage.UserPrefsStorage;
 import donnafin.ui.Ui;
 import donnafin.ui.UiManager;
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -78,7 +81,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -169,6 +172,26 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+
+        Set<Set<Person>> weakDuplicatesSets = model.getWeakDuplicatesAllClients();
+        if (weakDuplicatesSets != null) {
+            String listDuplicates = weakDuplicatesSets.stream()
+                    .map(weakDuplicatesSet -> weakDuplicatesSet.stream()
+                            .map(p -> "'" + p.getName() + "', ")
+                            .reduce("", (a, b) -> a + b))
+                    .map(duplicateSetStr -> "---\n" + duplicateSetStr + "\n")
+                    .reduce("", (a, b) -> a + b);
+            if (listDuplicates.length() > 0) {
+                String duplicateWarning = String.format(
+                        "%s\nHint: REMOVE command can be useful to remove duplicates.",
+                        listDuplicates
+                );
+                ui.showAlertDialogAndWait(
+                        Alert.AlertType.WARNING, "Warning: Possible duplicates read from storage.",
+                        "Clients with similar names found.", duplicateWarning
+                );
+            }
+        }
     }
 
     @Override

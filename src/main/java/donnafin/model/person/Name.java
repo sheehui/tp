@@ -56,4 +56,9 @@ public class Name implements Attribute {
         return fullName.hashCode();
     }
 
+    @Override
+    public boolean isPossibleDuplicate(Attribute other) {
+        return (other instanceof Name) && other.toString().replaceAll("\\s\\s+", " ")
+                .equalsIgnoreCase(toString().replaceAll("\\s\\s+", " "));
+    }
 }
