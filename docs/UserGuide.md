@@ -352,6 +352,17 @@ DonnaFin data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
+
+Original format           |  Invalid format
+:-------------------------:|:-------------------------:
+![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
+
+As seen in the above side by side comparsion, the first figure show the original .json data 
+regarding the client Alex Yeoh. All attributes are in the correct format. However, if you do tamper with the 
+json file directly and change one of the attributes to an invalid format, in this case the 
+total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
+discard all the data and start with an empty data file as seen below.
+![InvalidFormat](images/InvalidFormatError.png)
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
