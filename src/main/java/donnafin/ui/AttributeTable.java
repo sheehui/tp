@@ -142,7 +142,7 @@ public class AttributeTable<T> extends UiPart<Region> {
                 text.wrappingWidthProperty().bind(col.widthProperty());
                 text.textProperty().bind(cell.itemProperty());
                 text.setFill(Color.WHITE);
-                return cell ;
+                return cell;
             });
             columns.add(col);
         }
