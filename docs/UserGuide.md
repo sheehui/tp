@@ -261,8 +261,8 @@ Example: `edit e/allison@gmail.com`
 
 Adds a new asset to the current client you are viewing. You must be in the `Assets` tab.
 
-* `ASSET_VALUE` is a monetary value. DonnaFin only accepts whole numbers and
-  values in 2 decimal places (i.e. 120 and 120.20 are valid. 120.2 is invalid).
+* `$ASSET_VALUE` is a monetary value. DonnaFin will only accept whole numbers and
+  values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
 
 Format: `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`
 
@@ -286,8 +286,8 @@ Example:
 
 Adds a new liability to the current client you are viewing. You must be in the `Liabilities` tab.
 
-* `LIABILITY_VALUE` is a monetary value. DonnaFin only accepts whole numbers and
-  values in 2 decimal places (i.e. 120 and 120.20 are valid. 120.2 is invalid).
+* `$LIABILITY_VALUE` is a monetary value. DonnaFin will only accept whole numbers and
+  values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
 
 Format: `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`
 
@@ -311,8 +311,8 @@ Example:
 
 Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
 
-* `INSURED_VALUE`, `YEARLY_PREMIUM` and `COMMISSION` are monetary values. DonnaFin only accepts whole numbers and
-values in 2 decimal places (i.e. 120 and 120.20 are valid. 120.2 is invalid).
+* `$INSURED_VALUE`, `$YEARLY_PREMIUM` and `$COMMISSION` are monetary values. DonnaFin will only accept whole numbers and
+values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
 
 Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`
 
