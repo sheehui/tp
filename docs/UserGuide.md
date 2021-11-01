@@ -175,7 +175,7 @@ Format: `tab KEYWORD`
 
 Switches from any tab in Client Window to `Contact` tab.
 
-Keywords: `c` or `C` or `contact` or `contacts`
+Keywords: `c`, `contact` or `contacts` (case insensitive)
 
 Examples:
 * `tab c`
@@ -185,7 +185,7 @@ Examples:
 
 Switches from any tab in Client Window to `Policies` tab.
 
-Keywords: `p` or `P` or `policy` or `policies`
+Keywords: `p`, `policy` or `policies` (case insensitive)
 
 Examples:
 * `tab p`
@@ -195,7 +195,7 @@ Examples:
 
 Switches from any tab in Client Window to `Assets` tab.
 
-Keywords: `a` or `asset` or `assets`
+Keywords: `a`, `asset` or `assets` (case insensitive)
 
 Examples:
 * `tab a`
@@ -205,7 +205,7 @@ Examples:
 
 Switches from any tab in Client Window to `Liabilities` tab.
 
-Keywords: `l` or `L` or `liability` or `liabilities`
+Keywords: `l`, `liability` or `liabilities` (case insensitive)
 
 Examples:
 * `tab l`
@@ -215,7 +215,7 @@ Examples:
 
 Switches from any tab in Client Window to `Notes` tab.
 
-Keywords:  `n` or `N` or `note` or `notes`
+Keywords:  `n`, or `note` or `notes` (case insensitive)
 
 Examples:
 * `tab n`
@@ -261,6 +261,9 @@ Example: `edit e/allison@gmail.com`
 
 Adds a new asset to the current client you are viewing. You must be in the `Assets` tab.
 
+* `$ASSET_VALUE` is a monetary value. DonnaFin will only accept whole numbers and
+  values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
+
 Format: `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`
 
 Example:
@@ -283,6 +286,9 @@ Example:
 
 Adds a new liability to the current client you are viewing. You must be in the `Liabilities` tab.
 
+* `$LIABILITY_VALUE` is a monetary value. DonnaFin will only accept whole numbers and
+  values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
+
 Format: `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`
 
 Example:
@@ -304,6 +310,9 @@ Example:
 #### Add a Policy: `append`
 
 Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
+
+* `$INSURED_VALUE`, `$YEARLY_PREMIUM` and `$COMMISSION` are monetary values. DonnaFin will only accept whole numbers and
+values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
 
 Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`
 
@@ -352,13 +361,13 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DonnaFin home folder.
 
-**Q**: I have multiple clients with the same name, but your application won't let me add them! What do I do?
+**Q**: I have multiple clients with the same name, but your application won't let me add them! What do I do?<br>
 **A**: We realise some names are common, but we decided to prioritise your ability to instantly recognise a client over letting you keep the accuracy of the name. For that reason, we suggest adding other identifying nicknames or words in the name e.g. "John Walker (Bartender)" and "John Walker (Johnny)".
 
-**Q**: My clients have assets and policies valued in USD / RMB / AUD / other currency. How can I show this in the table?
+**Q**: My clients have assets and policies valued in USD / RMB / AUD / other currency. How can I show this in the table?<br>
 **A**: We plan to have multi-currency support in future developments. However, currently we only accept dollar ('$') currencies and formats that are compatible with the Singapore Dollar. For now, please use only a single currency and convert as appropriate.
 
-**Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)
+**Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -371,7 +380,7 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 | **Clear**  | `clear`                                                                | `clear`
 | **Delete** | `delete`                                                               | `delete 3`
 | **Edit Name**   | `edit n/NAME` | `edit n/James Lee`
-| **Edit Address**   | `edit a/ADDRESS` | `edit n/blk 123 bukit batok ave 4`
+| **Edit Address**   | `edit a/ADDRESS` | `edit a/blk 123 bukit batok ave 4`
 | **Edit Email**   | `edit e/EMAIL` | `edit e/jameslee@donnafin.com`
 | **Edit Phone Number**   | `edit p/PHONE_NUMBER` | `edit p/98374283`
 | **View**   | `view INDEX`                                                           | `view 2`
@@ -384,4 +393,8 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 | **Append Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 | **Append Policy**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
-| **Tab**   | `tab KEYWORD`                                                                 | `tab p`
+| **Switch to Contacts tab**   | `tab KEYWORD`                                                                 | `tab c`
+| **Switch to Policies tab**   | `tab KEYWORD`                                                                 | `tab p`
+| **Switch to Assets tab**   | `tab KEYWORD`                                                                 | `tab a`
+| **Switch to Liabilities tab**   | `tab KEYWORD`                                                                 | `tab l`
+| **Switch to Notes tab**   | `tab KEYWORD`                                                                 | `tab n`

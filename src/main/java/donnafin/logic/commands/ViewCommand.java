@@ -17,11 +17,11 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views a contact card with more detail.\n"
+            + ": Views a client in more detail.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewing Person: %1$s";
+    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewing Client: %1$s";
 
     private final Index index;
 
