@@ -393,8 +393,8 @@ If your changes to the data file makes its format invalid, DonnaFin will discard
 | **Append Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 | **Append Policy**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
-| **Switch to Policies tab**   | `tab KEYWORD`                                                                 | `tab p` or `tab policy`
-| **Switch to Assets tab**   | `tab KEYWORD`                                                                 | `tab a` or `tab asset`
-| **Switch to Liabilities tab**   | `tab KEYWORD`                                                                 | `tab l` or `tab liability`
-| **Switch to Contacts tab**   | `tab KEYWORD`                                                                 | `tab c` or `tab contacts`
-| **Switch to Notes tab**   | `tab KEYWORD`                                                                 | `tab n` or `tab notes`
+| **Switch to Contacts tab**   | `tab KEYWORD`                                                                 | `tab c`
+| **Switch to Policies tab**   | `tab KEYWORD`                                                                 | `tab p`
+| **Switch to Assets tab**   | `tab KEYWORD`                                                                 | `tab a`
+| **Switch to Liabilities tab**   | `tab KEYWORD`                                                                 | `tab l`
+| **Switch to Notes tab**   | `tab KEYWORD`                                                                 | `tab n`
