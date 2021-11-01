@@ -52,8 +52,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        String personString = toAdd.toString().replace("Notes:", "");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personString));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

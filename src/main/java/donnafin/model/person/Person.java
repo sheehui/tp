@@ -154,8 +154,6 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        builder.append("; Notes: ").append(getNotes());
-
         Set<Policy> policies = getPolicies();
         if (!policies.isEmpty()) {
             builder.append("; Policies: ");
