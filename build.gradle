@@ -28,6 +28,8 @@ checkstyle {
 
 clean.doFirst {
     delete "${rootDir}/data/"
+    delete "${rootDir}/config.json"
+    delete "${rootDir}/preferences.json"
 }
 
 test {
