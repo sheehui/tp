@@ -2,12 +2,9 @@ package donnafin.logic.commands;
 
 import donnafin.commons.core.Messages;
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.parser.AppendCommandParser;
 import donnafin.logic.parser.ClientViewParser;
 import donnafin.logic.parser.EditCommandParser;
-import donnafin.logic.parser.RemoveCommandParser;
 import donnafin.logic.parser.exceptions.ParseException;
-import donnafin.ui.Ui;
 
 public class ContactTabParser extends ClientViewParser {
 

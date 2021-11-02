@@ -122,13 +122,11 @@ public class AddressBookParserContextTest {
             -> parserContext.executeParserStrategyCommand("unknownCommand"));
     }
 
-    //From here on out it should we will clientParser fails
     @Test
     public void executeParserStrategyCommand_clientParserHome() throws Exception {
         assertTrue(strategyIsAddressBookParser());
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
-            -> parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD));
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
+        assertTrue(parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD) instanceof HomeCommand);
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
             -> parserContext.executeParserStrategyCommand(
                HomeCommand.COMMAND_WORD + " 3"));
     }
