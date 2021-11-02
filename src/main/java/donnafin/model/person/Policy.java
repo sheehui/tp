@@ -23,9 +23,9 @@ import donnafin.ui.AttributeTable;
 public class Policy implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Policies must be specified with "
-            + "a name (non-empty string) "
+            + "\na name (non-empty string) "
             + "a insurer name (non-empty string) "
-            + "a value insured (positive monetary value) "
+            + "\na value insured (positive monetary value) "
             + "a yearly premium (positive monetary value) "
             + "a commission (positive monetary value) "
             + "\nE.g. "

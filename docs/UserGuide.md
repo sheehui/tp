@@ -353,7 +353,7 @@ DonnaFin data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
 
-Original format           |  Invalid format
+Original AddressBook format           |  Invalid Addressbook format due to direct editting
 :-------------------------:|:-------------------------:
 ![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
 
@@ -362,7 +362,27 @@ regarding the client Alex Yeoh. All attributes are in the correct format. Howeve
 json file directly and change one of the attributes to an invalid format, in this case the 
 total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
 discard all the data and start with an empty data file as seen below.
+When this happens however, to prevent total loss of your data, we do not delete it right away.
+
+DonnaFinGui           |  Addressbook.json
+:-------------------------:|:-------------------------:
+![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
+
+The follow error message is displayed as well:
 ![InvalidFormat](images/InvalidFormatError.png)
+
+When this happens however, to prevent total loss of your data, we do not delete it right away.
+
+
+Only when a new add command is run, will DonnaFin assume this is the intended action and proceed to cleanly wipe
+the addressbook.json and populate with the new client as seen below.
+
+
+DonnaFinGui           |  Addressbook.json
+:-------------------------:|:-------------------------:
+![DonnaFinSingleUser](images/DonnaFinSingleUser.png) | ![DonnaFinJsonSingleUser](./images/DonnaFinJsonSingleUser.png)
+
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
