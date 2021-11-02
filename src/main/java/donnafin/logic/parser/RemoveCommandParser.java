@@ -5,6 +5,7 @@ import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.RemoveCommand;
+import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.Ui;
 
@@ -42,6 +43,12 @@ public class RemoveCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveCommand parse(String args) throws ParseException {
+
+        if (args.trim().equals("")) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
+
         try {
             ParserUtil.checkIntegerMax(args);
             Index index = ParserUtil.parseIndex(args);

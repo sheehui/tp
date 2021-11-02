@@ -3,6 +3,7 @@ package donnafin.logic.parser;
 import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.logic.commands.DeleteCommand;
+import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
 import java.math.BigInteger;
@@ -18,6 +19,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
+
+        if (args.trim().equals("")) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
+
         try {
             ParserUtil.checkIntegerMax(args);
             Index index = ParserUtil.parseIndex(args);
