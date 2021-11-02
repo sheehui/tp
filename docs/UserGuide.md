@@ -348,12 +348,12 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-DonnaFin data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
 
-Original AddressBook format           |  Invalid Addressbook format due to direct editting
+Original `donnaFin.json` format           |  Invalid `donnaFin.json` format due to direct editing
 :-------------------------:|:-------------------------:
 ![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
 
@@ -364,7 +364,7 @@ total value of assets(supposed to be prefixed with a $ to indicate that it is a 
 discard all the data and start with an empty data file as seen below.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
 
-DonnaFinGui           |  Addressbook.json
+DonnaFinGui           |  `donnaFin.json`
 :-------------------------:|:-------------------------:
 ![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
 
@@ -375,10 +375,10 @@ When this happens however, to prevent total loss of your data, we do not delete 
 
 
 Only when a new add command is run, will DonnaFin assume this is the intended action and proceed to cleanly wipe
-the addressbook.json and populate with the new client as seen below.
+the DonnaFin.json and populate with the new client as seen below.
 
 
-DonnaFinGui           |  Addressbook.json
+DonnaFinGui           |  `DonnaFin.json`
 :-------------------------:|:-------------------------:
 ![DonnaFinSingleUser](images/DonnaFinSingleUser.png) | ![DonnaFinJsonSingleUser](./images/DonnaFinJsonSingleUser.png)
 
