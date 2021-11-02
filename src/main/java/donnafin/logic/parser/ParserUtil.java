@@ -44,9 +44,10 @@ public class ParserUtil {
     }
 
     /**
-     *  Checks {@code indexString} if it is larger than Max Integer Value.
+     * Checks {@code indexString} if it is larger than Max Integer Value.
      *
      * @throws NumberFormatException if specified index string is larger than max Integer.
+     * @throws ParseException if specified index string is non-integer.
      */
     public static void checkIntegerMax(String indexString) throws NumberFormatException, ParseException {
         String trimmedIndex = indexString.trim();
