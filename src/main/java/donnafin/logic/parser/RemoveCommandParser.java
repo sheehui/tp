@@ -5,7 +5,6 @@ import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.PersonAdapter.PersonField;
 import donnafin.logic.commands.RemoveCommand;
-import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.Ui;
 
