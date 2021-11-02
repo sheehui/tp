@@ -5,6 +5,8 @@ import donnafin.commons.core.types.Index;
 import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
+import java.math.BigInteger;
+
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
@@ -17,8 +19,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
+            ParserUtil.checkIntegerMax(args);
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_INDEX);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

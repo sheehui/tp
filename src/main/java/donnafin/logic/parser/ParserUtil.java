@@ -2,11 +2,13 @@ package donnafin.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.commons.core.types.Money;
 import donnafin.commons.util.StringUtil;
@@ -40,6 +42,15 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static void checkIntegerMax(String args) throws NumberFormatException {
+        String trimmedIndex = args.trim();
+        BigInteger maxInt = BigInteger.valueOf(Integer.MAX_VALUE);
+        BigInteger value = new BigInteger(trimmedIndex);
+        if (value.compareTo(maxInt) > 0) {
+            throw new NumberFormatException();
+        }
     }
 
     /**
