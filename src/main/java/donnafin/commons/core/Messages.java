@@ -1,5 +1,6 @@
 package donnafin.commons.core;
 
+import donnafin.logic.commands.EditCommand;
 import donnafin.logic.commands.HelpCommand;
 
 /**
@@ -19,5 +20,9 @@ public class Messages {
     public static final String MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW = "This is a home window command and is not "
             + "available in client window!\nTry using the home command to access home window commands."
             + "\nRefer to our user guide for more info.";
-
+    public static final String MESSAGE_EDIT_COMMAND_UNAVAILABLE = "Editing is not supported in current version of "
+            + "DonnaFin.\nSupport for editing will be coming soon!";
+    public static final String MESSAGE_EDIT_COMMAND_SUPPORTED = String.format(
+            "Append and Remove commands are unavailable but Edit command is supported for Contacts.\n%1$s",
+            EditCommand.MESSAGE_USAGE);
 }

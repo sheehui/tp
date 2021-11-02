@@ -2,9 +2,12 @@ package donnafin.logic.commands;
 
 import donnafin.commons.core.Messages;
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.parser.AppendCommandParser;
 import donnafin.logic.parser.ClientViewParser;
 import donnafin.logic.parser.EditCommandParser;
+import donnafin.logic.parser.RemoveCommandParser;
 import donnafin.logic.parser.exceptions.ParseException;
+import donnafin.ui.Ui;
 
 public class ContactTabParser extends ClientViewParser {
 
@@ -17,6 +20,13 @@ public class ContactTabParser extends ClientViewParser {
         switch (commandWord) {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser(personAdapter).parse(arguments);
+
+        case AppendCommand.COMMAND_WORD:
+            //fallthrough
+
+        case RemoveCommand.COMMAND_WORD:
+            throw new ParseException(Messages.MESSAGE_EDIT_COMMAND_SUPPORTED);
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
