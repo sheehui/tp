@@ -116,6 +116,7 @@ public class ClientPanel extends UiPart<Region> {
 
     protected void changeTabToNotes() {
         TextArea notesField = new TextArea();
+        notesField.setWrapText(true);
         notesField.setText(personAdapter.getSubject().getNotes().getNotes());
         notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
             // TODO: Replace this whole listener with just calling an edit command.
