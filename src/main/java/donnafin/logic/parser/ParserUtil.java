@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.commons.core.types.Money;
 import donnafin.commons.util.StringUtil;
@@ -44,10 +43,22 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
-    public static void checkIntegerMax(String args) throws NumberFormatException {
-        String trimmedIndex = args.trim();
+    /**
+     *  Checks {@code indexString} if it is larger than Max Integer Value.
+     *
+     * @throws NumberFormatException if specified index string is larger than max Integer.
+     */
+    public static void checkIntegerMax(String indexString) throws NumberFormatException, ParseException {
+        String trimmedIndex = indexString.trim();
         BigInteger maxInt = BigInteger.valueOf(Integer.MAX_VALUE);
-        BigInteger value = new BigInteger(trimmedIndex);
+        BigInteger value;
+
+        try {
+            value = new BigInteger(trimmedIndex);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
         if (value.compareTo(maxInt) > 0) {
             throw new NumberFormatException();
         }
