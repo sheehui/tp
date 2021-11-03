@@ -30,12 +30,12 @@ public class DeleteCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
-    
+
     @Test
     public void parse_emptyArgs_throwsParseException() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
-    
+
     @Test
     public void parse_numberFormatException_throwsParseException() {
         assertParseFailure(parser, "99999999999999999999999999", MESSAGE_INVALID_PERSON_INDEX);
