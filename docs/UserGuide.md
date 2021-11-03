@@ -348,7 +348,7 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-Donnafin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
+DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Donnafin will discard all data and start with an empty data file at the next run.
@@ -364,7 +364,7 @@ total value of assets(supposed to be prefixed with a $ to indicate that it is a 
 discard all the data and start with an empty data file as seen below.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
 
-User interface for Donnafin           |  `donnafin.json`
+User Interface for DonnaFin           |  `donnafin.json`
 :-------------------------:|:-------------------------:
 ![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
 
@@ -372,13 +372,8 @@ The follow error message is displayed as well:
 ![InvalidFormat](images/InvalidFormatError.png)
 
 
-When any command with a valid input is run, will DonnaFin assume this is the intended action and proceed to cleanly wipe
-the DonnaFin.json and populate with the new client as seen below.
-
-
-User interface for Donnafin      |  `donnaFin.json`
-:-------------------------:|:-------------------------:
-![DonnaFinSingleUser](images/DonnaFinSingleUser.png) | ![DonnaFinJsonSingleUser](./images/DonnaFinJsonSingleUser.png)
+When *any* valid command is run, DonnaFin will assume that the intended action is to clear your data and proceed to cleanly wipe
+donnafin.json and execute your command.
 
 
 </div>
