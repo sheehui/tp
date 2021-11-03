@@ -1,5 +1,6 @@
 package donnafin.logic.commands;
 
+import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.GEORGE;
 import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,6 +12,7 @@ import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
+import donnafin.testutil.PersonBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -121,4 +123,19 @@ public class AppendCommandTest {
 
         assertNotEquals(GEORGE, personAdapter.getSubject());
     }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testAsset);
+        assertThrows(NullPointerException.class, () -> testCommand.execute(null));
+    }
+
+    @Test
+    public void constructor_nullPersonAdapter_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AppendCommand(null, testAsset));
+        assertThrows(NullPointerException.class, () -> new AppendCommand(null, testLiability));
+        assertThrows(NullPointerException.class, () -> new AppendCommand(null, testPolicy));
+    }
+
+
 }

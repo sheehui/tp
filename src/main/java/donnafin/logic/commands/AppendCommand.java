@@ -11,6 +11,7 @@ import static donnafin.logic.parser.CliSyntax.PREFIX_YEARLY_PREMIUM;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -42,7 +43,26 @@ public class AppendCommand extends Command {
         + PREFIX_VALUE + "VALUE "
         + PREFIX_REMARKS + "REMARKS ";
 
-    public static final String MESSAGE_SUCCESS = "New policy/asset/liability added";
+    public static String MESSAGE_RESULT;
+
+    public static final String MESSAGE_SUCCESS_ASSET = "New asset added";
+    public static final String MESSAGE_SUCCESS_LIABILITY = "New liability added";
+    public static final String MESSAGE_SUCCESS_POLICY = "New policy added";
+
+
+    public static final String MESSAGE_DUPLICATE_ASSET = "Sorry, the asset with this exact specifications" +
+            " has already been added!";
+    public static final String MESSAGE_DUPLICATE_LIABILITY = "Sorry, the liability with this exact specifications " +
+            "has already been added!";
+    public static final String MESSAGE_DUPLICATE_POLICY = "Sorry, the policy with this exact specifications" +
+            " has already been added!";
+
+    public static final String MESSAGE_SIMILAR_ASSET = "New asset added. " +
+            "Warning! An asset with a similar name has been added previously.";
+    public static final String MESSAGE_SIMILAR_LIABILITY = "New liability added. " +
+            "Warning! A liability with a similar name has been added previously.";
+    public static final String MESSAGE_SIMILAR_POLICY = "New policy added. " +
+            "Warning! An policy with a similar name has been added previously.";
 
     private final Consumer<PersonAdapter> editor;
     private final PersonAdapter personAdapter;
@@ -54,12 +74,26 @@ public class AppendCommand extends Command {
      * @param policy the new policy being added.
      */
     public AppendCommand(PersonAdapter personAdapter, Policy policy) {
+        requireNonNull(personAdapter);
+        requireNonNull(policy);
         this.personAdapter = personAdapter;
         this.hashableNewValue = policy;
         this.editor = pa -> {
             Set<Policy> policies = new HashSet<>(pa.getSubject().getPolicies());
-            policies.add(policy);
-            pa.editPolicies(policies);
+            boolean containsSimilarName = policies.stream().anyMatch(item ->
+                    item.getName().equalsIgnoreCase(policy.getName()));
+            if (policies.contains(policy)) {
+                try {
+                    MESSAGE_RESULT = MESSAGE_DUPLICATE_POLICY;
+                    throw new CommandException(MESSAGE_DUPLICATE_POLICY);
+                } catch (CommandException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                policies.add(policy);
+                pa.editPolicies(policies);
+                MESSAGE_RESULT = containsSimilarName ? MESSAGE_SIMILAR_POLICY : MESSAGE_SUCCESS_POLICY;
+            }
         };
     }
 
@@ -69,12 +103,27 @@ public class AppendCommand extends Command {
      * @param liability the new liability being added.
      */
     public AppendCommand(PersonAdapter personAdapter, Liability liability) {
+        requireNonNull(personAdapter);
+        requireNonNull(liability);
         this.personAdapter = personAdapter;
         this.hashableNewValue = liability;
         this.editor = pa -> {
             Set<Liability> liabilities = new HashSet<>(pa.getSubject().getLiabilities());
-            liabilities.add(liability);
-            pa.editLiabilities(liabilities);
+            boolean containsSimilarName = liabilities.stream().anyMatch(item ->
+                    item.getName().equalsIgnoreCase(liability.getName()));
+            if (liabilities.contains(liability)) {
+                try {
+                    MESSAGE_RESULT = MESSAGE_DUPLICATE_LIABILITY;
+                    throw new CommandException(MESSAGE_DUPLICATE_LIABILITY);
+                } catch (CommandException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                liabilities.add(liability);
+                pa.editLiabilities(liabilities);
+                MESSAGE_RESULT = containsSimilarName ? MESSAGE_SIMILAR_LIABILITY : MESSAGE_SUCCESS_LIABILITY;
+
+            }
         };
     }
 
@@ -84,12 +133,26 @@ public class AppendCommand extends Command {
      * @param asset the new asset being added.
      */
     public AppendCommand(PersonAdapter personAdapter, Asset asset) {
+        requireNonNull(personAdapter);
+        requireNonNull(asset);
         this.personAdapter = personAdapter;
         this.hashableNewValue = asset;
         this.editor = pa -> {
             Set<Asset> assets = new HashSet<>(pa.getSubject().getAssets());
-            assets.add(asset);
-            pa.editAssets(assets);
+            boolean containsSimilarName = assets.stream().anyMatch(item ->
+                    item.getName().equalsIgnoreCase(asset.getName()));
+            if (assets.contains(asset)) {
+                try {
+                    MESSAGE_RESULT = MESSAGE_DUPLICATE_ASSET;
+                    throw new CommandException(MESSAGE_DUPLICATE_ASSET);
+                } catch (CommandException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                assets.add(asset);
+                pa.editAssets(assets);
+                MESSAGE_RESULT = containsSimilarName ? MESSAGE_SIMILAR_ASSET : MESSAGE_SUCCESS_ASSET;
+            }
         };
     }
 
@@ -107,7 +170,7 @@ public class AppendCommand extends Command {
             }
         };
 
-        return new CommandResult(MESSAGE_SUCCESS, refresh);
+        return new CommandResult(MESSAGE_RESULT, refresh);
     }
 
     @Override
