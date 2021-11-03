@@ -2,6 +2,7 @@ package donnafin.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
@@ -40,6 +41,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Checks {@code indexString} if it is larger than Max Integer Value.
+     *
+     * @throws NumberFormatException if specified index string is larger than max Integer.
+     * @throws ParseException if specified index string is non-integer.
+     */
+    public static void checkIntegerMax(String indexString) throws NumberFormatException, ParseException {
+        String trimmedIndex = indexString.trim();
+        BigInteger maxInt = BigInteger.valueOf(Integer.MAX_VALUE);
+        BigInteger value;
+
+        try {
+            value = new BigInteger(trimmedIndex);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        if (value.compareTo(maxInt) > 0) {
+            throw new NumberFormatException();
+        }
     }
 
     /**
