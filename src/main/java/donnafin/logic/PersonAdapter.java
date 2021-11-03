@@ -72,7 +72,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -92,7 +96,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
