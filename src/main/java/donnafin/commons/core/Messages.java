@@ -23,6 +23,8 @@ public class Messages {
     public static final String MESSAGE_EDIT_COMMAND_UNAVAILABLE = "Editing is not supported in current version of "
             + "DonnaFin.\nSupport for editing will be coming soon!";
     public static final String MESSAGE_EDIT_COMMAND_SUPPORTED = String.format(
-            "Append and Remove commands are unavailable but Edit command is supported for Contacts.\n%1$s",
+            "Append and Remove commands are unavailable but the Edit command is supported for Contacts.\n%1$s",
             EditCommand.MESSAGE_USAGE);
+    public static final String MESSAGE_NO_CLIENTWINDOW_COMMANDS_SUPPORTED = "Append, Remove and Edit commands are "
+            + "not supported in the Notes tab.\nYou may add your changes directly in the text box below.";
 }
