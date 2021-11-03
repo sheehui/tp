@@ -9,23 +9,23 @@ import static donnafin.testutil.TypicalPersons.getTypicalPersons;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Objects;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.ContactTabParser;
 import donnafin.logic.commands.EditCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.SwitchTabCommand;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import donnafin.logic.PersonAdapter;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Person;
-
-import java.util.Objects;
 
 public class ContactTabParserTest {
 
@@ -77,10 +77,10 @@ public class ContactTabParserTest {
     public void parseCommand_switchTabCommand() throws ParseException {
         assertTrue(parser.parseCommand(SwitchTabCommand.COMMAND_WORD, "assets") instanceof SwitchTabCommand);
     }
-    
+
     @Test
-    public void parseCommand_defaultCase() throws ParseException{
-        assertTrue(parser.parseCommand(EditCommand.COMMAND_WORD, 
+    public void parseCommand_defaultCase() throws ParseException {
+        assertTrue(parser.parseCommand(EditCommand.COMMAND_WORD,
                 "edit e/johndoe@email.com") instanceof EditCommand);
     }
 
@@ -94,21 +94,21 @@ public class ContactTabParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
-    
+
     @Test
     public void equals_returnsCorrectOutput() {
         ContactTabParser newInstance = new ContactTabParser(personAdapter);
         assertEquals(true, parser.equals(newInstance));
     }
-    
+
     @Test
     public void equals_nullInstance_returnsCorrectOutput() {
         ContactTabParser nullInstance = null;
         assertEquals(false, parser.equals(nullInstance));
     }
-    
+
     @Test
-    public void hashCode_returns_valid_output() {
+    public void hashCode_returnsValid_output() {
         assertEquals(Objects.hash(personAdapter), parser.hashCode());
     }
 }
