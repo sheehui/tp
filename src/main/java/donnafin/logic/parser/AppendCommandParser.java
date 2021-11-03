@@ -91,7 +91,12 @@ public class AppendCommandParser implements Parser<AppendCommand> {
             throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
         }
 
-        Asset newAsset = new Asset(name, type, value.toString(), remarks);
+        Asset newAsset = null;
+        try {
+            newAsset = new Asset(name, type, value.toString(), remarks);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
         return new AppendCommand(personAdapter, newAsset);
     }
 
