@@ -1,5 +1,6 @@
 package donnafin.logic.commands;
 
+import static donnafin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.GEORGE;
 import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
@@ -33,8 +34,12 @@ import donnafin.storage.StorageManager;
 
 public class AppendCommandTest {
     private static Asset testAsset;
+    private static Asset similarAsset;
     private static Liability testLiability;
+    private static Liability similarLiability;
     private static Policy testPolicy;
+    private static Policy similarPolicy;
+
 
     private static Set<Asset> combinedAssets;
     private static Set<Liability> combinedLiability;
@@ -62,6 +67,14 @@ public class AppendCommandTest {
                 "23 year loan from DBS Bank.");
         testAsset = new Asset("Good Class Bungalow", "Property",
                 "$2000000", "Paid in full. No debt.");
+        similarAsset = new Asset("Good Class Bungalow", "Property",
+                "$20000000", "Paid in full. No debt.");
+        similarLiability = new Liability("Mortgage debt", "Debt", "$200000",
+                "23 year loan from DBS Bank.");
+        similarPolicy = new Policy("Golden Mile", "AIA",
+                "$1800", "$100", "$200");
+
+
 
         combinedPolicy = new HashSet<>(GEORGE.getPolicies());
         combinedPolicy.add(testPolicy);
@@ -124,6 +137,33 @@ public class AppendCommandTest {
     }
 
     @Test
+    public void appendNewAsset_SimilarAssetName() throws CommandException {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testAsset);
+        AppendCommand testCommand2 = new AppendCommand(personAdapter, similarAsset);
+        testCommand.execute(model);
+        assertCommandSuccess(testCommand2, model, "New asset added. "
+                + "Warning! An asset with a similar name has been added previously.", model);
+    }
+
+    @Test
+    public void appendNewLiability_SimilarLiabilityName() throws CommandException {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testLiability);
+        AppendCommand testCommand2 = new AppendCommand(personAdapter, similarLiability);
+        testCommand.execute(model);
+        assertCommandSuccess(testCommand2, model, "New liability added. "
+                + "Warning! A liability with a similar name has been added previously.", model);
+    }
+
+    @Test
+    public void appendNewPolicy_SimilarPolicyName() throws CommandException {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testPolicy);
+        AppendCommand testCommand2 = new AppendCommand(personAdapter, similarPolicy);
+        testCommand.execute(model);
+        assertCommandSuccess(testCommand2, model, "New policy added. "
+                + "Warning! A policy with a similar name has been added previously.", model);
+    }
+
+    @Test
     public void execute_nullModel_throwsNullPointerException() {
         AppendCommand testCommand = new AppendCommand(personAdapter, testAsset);
         assertThrows(NullPointerException.class, () -> testCommand.execute(null));
@@ -135,6 +175,4 @@ public class AppendCommandTest {
         assertThrows(NullPointerException.class, () -> new AppendCommand(null, testLiability));
         assertThrows(NullPointerException.class, () -> new AppendCommand(null, testPolicy));
     }
-
-
 }

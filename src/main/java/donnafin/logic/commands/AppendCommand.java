@@ -59,7 +59,7 @@ public class AppendCommand extends Command {
     public static final String MESSAGE_SIMILAR_LIABILITY = "New liability added. "
             + "Warning! A liability with a similar name has been added previously.";
     public static final String MESSAGE_SIMILAR_POLICY = "New policy added. "
-            + "Warning! An policy with a similar name has been added previously.";
+            + "Warning! A policy with a similar name has been added previously.";
 
     private static String messageRESULT;
     private final Consumer<PersonAdapter> editor;
