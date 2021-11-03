@@ -1,6 +1,8 @@
 package donnafin.logic.commands;
 
+import static donnafin.commons.core.Messages.MESSAGE_NO_PERSON_LISTED_OVERVIEW;
 import static donnafin.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static donnafin.commons.core.Messages.MESSAGE_PERSON_LISTED_OVERVIEW;
 import static donnafin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static donnafin.testutil.TypicalPersons.CARL;
 import static donnafin.testutil.TypicalPersons.ELLE;
@@ -55,12 +57,22 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_NO_PERSON_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_oneKeywords_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSON_LISTED_OVERVIEW);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Carl");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
 
     @Test

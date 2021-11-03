@@ -2,13 +2,18 @@ package donnafin.logic.parser;
 
 import donnafin.commons.core.Messages;
 import donnafin.logic.commands.AddCommand;
+import donnafin.logic.commands.AppendCommand;
 import donnafin.logic.commands.ClearCommand;
 import donnafin.logic.commands.Command;
 import donnafin.logic.commands.DeleteCommand;
+import donnafin.logic.commands.EditCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.ListCommand;
+import donnafin.logic.commands.RemoveCommand;
+import donnafin.logic.commands.SwitchTabCommand;
 import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
@@ -48,6 +53,21 @@ public final class AddressBookParser extends ParserStrategy {
 
         case HelpCommand.COMMAND_WORD:
             return !arguments.equals("") ? throwsInvalidInputMsg() : new HelpCommand();
+
+        case HomeCommand.COMMAND_WORD:
+            return !arguments.equals("") ? throwsInvalidInputMsg() : new HomeCommand();
+
+        case AppendCommand.COMMAND_WORD:
+            //fallthrough
+
+        case RemoveCommand.COMMAND_WORD:
+            //fallthrough
+
+        case EditCommand.COMMAND_WORD:
+            //fallthrough
+
+        case SwitchTabCommand.COMMAND_WORD:
+            throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_HOMEWINDOW);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
