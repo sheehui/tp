@@ -2,12 +2,19 @@ package donnafin.logic.parser;
 
 import java.util.Objects;
 
+import donnafin.commons.core.Messages;
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.commands.AddCommand;
+import donnafin.logic.commands.ClearCommand;
 import donnafin.logic.commands.Command;
+import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.ExitCommand;
+import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
+import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.SwitchTabCommand;
+import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 
 public abstract class ClientViewParser extends ParserStrategy {
@@ -38,6 +45,24 @@ public abstract class ClientViewParser extends ParserStrategy {
 
         case SwitchTabCommand.COMMAND_WORD:
             return new SwitchTabCommand(ParserUtil.parseTab(arguments), personAdapter);
+
+        case AddCommand.COMMAND_WORD:
+            //fallthrough
+
+        case DeleteCommand.COMMAND_WORD:
+            //fallthrough
+
+        case ClearCommand.COMMAND_WORD:
+            //fallthrough
+
+        case FindCommand.COMMAND_WORD:
+            //fallthrough
+
+        case ListCommand.COMMAND_WORD:
+            //fallthrough
+
+        case ViewCommand.COMMAND_WORD:
+            throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW);
 
         default:
             return tabSpecificHandler(commandWord, arguments);

@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
@@ -100,6 +101,7 @@ public class ClientPanel extends UiPart<Region> {
             refresh();
             attributeDisplayContainer.getChildren().add(node);
         });
+        attributeDisplayContainer.setVgrow(node, Priority.ALWAYS);
     }
 
     protected void changeTabToPolicies() {

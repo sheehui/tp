@@ -1,5 +1,6 @@
 package donnafin.logic.parser;
 
+import static donnafin.commons.core.Messages.MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW;
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
@@ -103,7 +104,7 @@ public class ClientViewParserContextTest {
     public void test_executeParserStrategyCommand_addressBookParserAdd() throws ParseException {
         Person person = new PersonBuilder().build();
         assertThrows(ParseException.class,
-            MESSAGE_UNKNOWN_COMMAND, ()
+                MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW, ()
                 -> parserContext.executeParserStrategyCommand(PersonUtil.getAddCommand(person)));
     }
 
@@ -111,7 +112,7 @@ public class ClientViewParserContextTest {
     @Test
     public void executeParserStrategyCommand_addressBookParserClear() throws Exception {
         assertThrows(ParseException.class,
-            MESSAGE_UNKNOWN_COMMAND, ()
+            MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW, ()
                 -> parserContext.executeParserStrategyCommand(ClearCommand.COMMAND_WORD));
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
@@ -121,7 +122,7 @@ public class ClientViewParserContextTest {
     @Test
     public void executeParserStrategyCommand_addressBookParserDelete() throws Exception {
         assertThrows(ParseException.class,
-            MESSAGE_UNKNOWN_COMMAND, ()
+            MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW, ()
                 -> parserContext.executeParserStrategyCommand(DeleteCommand.COMMAND_WORD));
         assertThrows(ParseException.class,
             MESSAGE_UNKNOWN_COMMAND, ()
@@ -133,14 +134,14 @@ public class ClientViewParserContextTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         String userInput = FindCommand.COMMAND_WORD + " " + String.join(" ", keywords);
         assertThrows(ParseException.class,
-            MESSAGE_UNKNOWN_COMMAND, ()
+            MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW, ()
                 -> parserContext.executeParserStrategyCommand(userInput));
     }
 
     @Test
     public void executeParserStrategyCommand_addressBookParserList() throws Exception {
         assertThrows(ParseException.class,
-            MESSAGE_UNKNOWN_COMMAND, ()
+            MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW, ()
                 -> parserContext.executeParserStrategyCommand(ListCommand.COMMAND_WORD));
     }
 
