@@ -118,17 +118,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) throws IOException {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
 
         //Need to run save addressBook if not it wont save.
-        try {
-            this.saveAddressBook();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.saveAddressBook();
     }
 
     //=========== Filtered Person List Accessors =============================================================

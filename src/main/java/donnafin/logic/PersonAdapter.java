@@ -1,5 +1,6 @@
 package donnafin.logic;
 
+import java.io.IOException;
 import java.util.Set;
 
 import donnafin.model.Model;
@@ -111,7 +112,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -131,7 +136,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -151,7 +160,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -171,7 +184,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -191,7 +208,11 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -211,7 +232,11 @@ public class PersonAdapter {
                 newAssets
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        try {
+            model.setPerson(curr, personToEdit);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 }
