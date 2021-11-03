@@ -137,7 +137,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void appendNewAsset_SimilarAssetName() throws CommandException {
+    public void appendNewAsset_similarAssetName() throws CommandException {
         AppendCommand testCommand = new AppendCommand(personAdapter, testAsset);
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarAsset);
         testCommand.execute(model);
@@ -146,7 +146,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void appendNewLiability_SimilarLiabilityName() throws CommandException {
+    public void appendNewLiability_similarLiabilityName() throws CommandException {
         AppendCommand testCommand = new AppendCommand(personAdapter, testLiability);
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarLiability);
         testCommand.execute(model);
@@ -155,7 +155,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void appendNewPolicy_SimilarPolicyName() throws CommandException {
+    public void appendNewPolicy_similarPolicyName() throws CommandException {
         AppendCommand testCommand = new AppendCommand(personAdapter, testPolicy);
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarPolicy);
         testCommand.execute(model);

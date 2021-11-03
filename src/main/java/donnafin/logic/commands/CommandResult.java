@@ -65,11 +65,6 @@ public class CommandResult {
     }
 
     @Override
-    public String toString() {
-        return getFeedbackToUser();
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser);
         // it is no longer possible to compare it on the basis of show help or exit
