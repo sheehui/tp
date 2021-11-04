@@ -184,6 +184,7 @@ public class ParserUtilTest {
     @Test
     public void parseMoney_invalidFormats() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.00$"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$01.00"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$1.0.0"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$.50"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("abc $2.50"));
