@@ -122,8 +122,11 @@ public class Liability implements Attribute {
 
     @Override
     public boolean isPossibleDuplicate(Attribute other) {
-        // TODO: @Donny
-        return equals(other);
+        if (other instanceof Liability) {
+            return getName().equalsIgnoreCase(((Liability) other).getName());
+        } else {
+            return false;
+        }
     }
 
     public String getName() {

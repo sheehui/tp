@@ -130,8 +130,11 @@ public class Policy implements Attribute {
 
     @Override
     public boolean isPossibleDuplicate(Attribute other) {
-        // TODO: @Donny
-        return equals(other);
+        if (other instanceof Policy) {
+            return getName().equalsIgnoreCase(((Policy) other).getName());
+        } else {
+            return false;
+        }
     }
 
     public String getName() {
