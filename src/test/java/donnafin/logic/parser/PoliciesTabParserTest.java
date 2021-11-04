@@ -1,15 +1,10 @@
 package donnafin.logic.parser;
 
-import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
-import static donnafin.testutil.TypicalPersons.getTypicalPersons;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.commands.AppendCommand;
+import donnafin.logic.commands.EditCommand;
+import donnafin.logic.commands.RemoveCommand;
+import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
@@ -17,6 +12,12 @@ import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Person;
 import donnafin.model.person.Policy;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
+import static donnafin.testutil.TypicalPersons.getTypicalPersons;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PoliciesTabParserTest {
     private PersonAdapter personAdapter;
@@ -34,7 +35,7 @@ public class PoliciesTabParserTest {
 
     @Test
     public void parserCommand_appendCommand() throws ParseException, CommandException {
-        parser.tabSpecificHandler("append",
+        parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                         "append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000")
                 .execute(model);
         Policy addedPolicy = new Policy("Diamond Policy", "AIA", "$10000",
@@ -44,45 +45,53 @@ public class PoliciesTabParserTest {
 
     @Test
     public void parserCommand_appendCommandInvalidInput_throwsException() {
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("append",
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                 "i/AIA iv/$10000 pr/$200 c/$1000").execute(model));
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("append",
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                 "append i/AIA iv/$10000 pr/$200 c/$1000").execute(model));
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("append",
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                 "append n/Diamond Policy iv/$10000 pr/$200 c/$1000").execute(model));
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("append",
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                 "append n/Diamond Policy i/AIA pr/$200 c/$1000").execute(model));
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("append",
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                 "append n/Diamond Policy i/AIA iv/$10000 c/$1000").execute(model));
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("append",
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                 "append n/Diamond Policy i/AIA pr/$200 iv/$10000").execute(model));
     }
 
     @Test
     public void parserCommand_removeCommand() throws ParseException, CommandException {
-        parser.tabSpecificHandler("append",
+        parser.tabSpecificHandler(AppendCommand.COMMAND_WORD,
                         "append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000")
                 .execute(model);
         Policy addedPolicy = new Policy("Diamond Policy", "AIA", "$10000",
                 "$200", "$1000");
-        parser.tabSpecificHandler("remove", "1").execute(model);
+        parser.tabSpecificHandler(RemoveCommand.COMMAND_WORD, "1").execute(model);
         assertFalse(model.getFilteredPersonList().get(0).getAssets().contains(addedPolicy));
     }
 
     @Test
     public void parserCommand_removeCommandInvalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> parser.tabSpecificHandler("remove", "p"));
+        assertThrows(ParseException.class, () -> parser.tabSpecificHandler(RemoveCommand.COMMAND_WORD, "p"));
     }
 
     @Test
     public void parserCommand_editCommand_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                parser.tabSpecificHandler("edit", "edit m/Benson").execute(model));
+                parser.tabSpecificHandler(EditCommand.COMMAND_WORD, "").execute(model));
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(EditCommand.COMMAND_WORD, "edit").execute(model));
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(EditCommand.COMMAND_WORD, "edit m/Benson").execute(model));
     }
 
     @Test
     public void parserCommand_invalidCommands_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                parser.tabSpecificHandler("view", "view 1").execute(model));
+                parser.tabSpecificHandler(ViewCommand.COMMAND_WORD, "").execute(model));
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(ViewCommand.COMMAND_WORD, "view").execute(model));
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(ViewCommand.COMMAND_WORD, "view 1").execute(model));
     }
 }
