@@ -1,5 +1,14 @@
 package donnafin.logic.parser;
 
+import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
+import static donnafin.testutil.TypicalPersons.getTypicalPersons;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.AppendCommand;
 import donnafin.logic.commands.EditCommand;
@@ -12,12 +21,6 @@ import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Person;
 import donnafin.model.person.Policy;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
-import static donnafin.testutil.TypicalPersons.getTypicalPersons;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class PoliciesTabParserTest {
     private PersonAdapter personAdapter;

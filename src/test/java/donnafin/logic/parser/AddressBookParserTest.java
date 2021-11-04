@@ -1,21 +1,35 @@
 package donnafin.logic.parser;
 
-import donnafin.logic.commands.*;
+import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
+import static donnafin.testutil.Assert.assertThrows;
+import static donnafin.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import donnafin.logic.commands.AddCommand;
+import donnafin.logic.commands.AppendCommand;
+import donnafin.logic.commands.ClearCommand;
+import donnafin.logic.commands.DeleteCommand;
+import donnafin.logic.commands.EditCommand;
+import donnafin.logic.commands.ExitCommand;
+import donnafin.logic.commands.FindCommand;
+import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.ListCommand;
+import donnafin.logic.commands.RemoveCommand;
+import donnafin.logic.commands.SwitchTabCommand;
+import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.NameContainsKeywordsPredicate;
 import donnafin.model.person.Person;
 import donnafin.testutil.PersonBuilder;
 import donnafin.testutil.PersonUtil;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static donnafin.commons.core.Messages.*;
-import static donnafin.testutil.Assert.assertThrows;
-import static donnafin.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddressBookParserTest {
 
@@ -157,7 +171,8 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD));
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, ""));
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, "n/Allison Wang"));
-        assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, "a/#12-123 Phua Chu Kang Ave 7"));
+        assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD,
+                "a/#12-123 Phua Chu Kang Ave 7"));
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, "p/89012303"));
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, "e/allison@email.com"));
     }
