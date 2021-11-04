@@ -122,9 +122,6 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
-
-        //Need to run save addressBook if not it wont save.
-        this.saveAddressBook();
     }
 
     //=========== Filtered Person List Accessors =============================================================

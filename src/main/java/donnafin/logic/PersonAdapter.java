@@ -74,6 +74,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -98,6 +99,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -122,6 +124,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -146,6 +149,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -170,6 +174,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -194,6 +199,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -218,6 +224,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -242,6 +249,7 @@ public class PersonAdapter {
         this.subject = personToEdit;
         try {
             model.setPerson(curr, personToEdit);
+            model.saveAddressBook();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
