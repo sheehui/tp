@@ -1,31 +1,22 @@
 package donnafin.logic.parser;
 
-import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
-import static donnafin.testutil.Assert.assertThrows;
-import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
-import static donnafin.testutil.TypicalPersons.getTypicalPersons;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Objects;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.commands.ContactTabParser;
-import donnafin.logic.commands.EditCommand;
-import donnafin.logic.commands.ExitCommand;
-import donnafin.logic.commands.HelpCommand;
-import donnafin.logic.commands.HomeCommand;
-import donnafin.logic.commands.SwitchTabCommand;
+import donnafin.logic.commands.*;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Person;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Objects;
+
+import static donnafin.commons.core.Messages.*;
+import static donnafin.testutil.Assert.assertThrows;
+import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
+import static donnafin.testutil.TypicalPersons.getTypicalPersons;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTabParserTest {
 
@@ -104,7 +95,7 @@ public class ContactTabParserTest {
     @Test
     public void equals_nullInstance_returnsCorrectOutput() {
         ContactTabParser nullInstance = null;
-        assertEquals(false, parser.equals(nullInstance));
+        assertFalse(parser.equals(nullInstance));
     }
 
     @Test
