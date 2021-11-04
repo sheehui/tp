@@ -235,13 +235,13 @@ public class ParserUtil {
         String trimmedInput = money.trim();
 
         // Handling Default currency $XYZ or $XYZ.AB
-        final String regexDollarCents = "^\\s*\\$\\s*\\d+(\\.\\d{2})?$";
+        final String regexDollarCents = "^\\s*\\$\\s*(([1-9]\\d*)|(0))(\\.\\d{2})?$";
         final String dollarCentsPrefix = "$";
 
         if (!trimmedInput.matches(regexDollarCents)) {
             throw new ParseException(
                     String.format(
-                            "Input string '%s' does not match monetary value format. %s",
+                            "Input string '%s' does not match monetary value format.\n%s",
                             trimmedInput,
                             Money.MESSAGE_CONSTRAINTS)
             );
