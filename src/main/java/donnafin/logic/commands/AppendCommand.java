@@ -61,7 +61,7 @@ public class AppendCommand extends Command {
     public static final String MESSAGE_SIMILAR_POLICY = "New policy added. "
             + "Warning! A policy with a similar name has been added previously.";
 
-    private static String messageRESULT;
+    private static String messageResult;
     private final Consumer<PersonAdapter> editor;
     private final PersonAdapter personAdapter;
     private final Object hashableNewValue;
@@ -81,11 +81,11 @@ public class AppendCommand extends Command {
             boolean containsSimilarName = policies.stream().anyMatch(item ->
                     item.isPossibleDuplicate(policy));
             if (policies.contains(policy)) {
-                messageRESULT = MESSAGE_DUPLICATE_POLICY;
+                messageResult = MESSAGE_DUPLICATE_POLICY;
             } else {
                 policies.add(policy);
                 pa.editPolicies(policies);
-                messageRESULT = containsSimilarName ? MESSAGE_SIMILAR_POLICY : MESSAGE_SUCCESS_POLICY;
+                messageResult = containsSimilarName ? MESSAGE_SIMILAR_POLICY : MESSAGE_SUCCESS_POLICY;
             }
         };
     }
@@ -105,11 +105,11 @@ public class AppendCommand extends Command {
             boolean containsSimilarName = liabilities.stream().anyMatch(item ->
                     item.isPossibleDuplicate(liability));
             if (liabilities.contains(liability)) {
-                messageRESULT = MESSAGE_DUPLICATE_LIABILITY;
+                messageResult = MESSAGE_DUPLICATE_LIABILITY;
             } else {
                 liabilities.add(liability);
                 pa.editLiabilities(liabilities);
-                messageRESULT = containsSimilarName ? MESSAGE_SIMILAR_LIABILITY : MESSAGE_SUCCESS_LIABILITY;
+                messageResult = containsSimilarName ? MESSAGE_SIMILAR_LIABILITY : MESSAGE_SUCCESS_LIABILITY;
 
             }
         };
@@ -130,11 +130,11 @@ public class AppendCommand extends Command {
             boolean containsSimilarName = assets.stream().anyMatch(item ->
                     item.isPossibleDuplicate(asset));
             if (assets.contains(asset)) {
-                messageRESULT = MESSAGE_DUPLICATE_ASSET;
+                messageResult = MESSAGE_DUPLICATE_ASSET;
             } else {
                 assets.add(asset);
                 pa.editAssets(assets);
-                messageRESULT = containsSimilarName ? MESSAGE_SIMILAR_ASSET : MESSAGE_SUCCESS_ASSET;
+                messageResult = containsSimilarName ? MESSAGE_SIMILAR_ASSET : MESSAGE_SUCCESS_ASSET;
             }
         };
     }
@@ -153,7 +153,7 @@ public class AppendCommand extends Command {
             }
         };
 
-        return new CommandResult(messageRESULT, refresh);
+        return new CommandResult(messageResult, refresh);
     }
 
     @Override

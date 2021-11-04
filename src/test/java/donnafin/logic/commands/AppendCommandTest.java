@@ -1,5 +1,8 @@
 package donnafin.logic.commands;
 
+import static donnafin.logic.commands.AppendCommand.MESSAGE_SIMILAR_ASSET;
+import static donnafin.logic.commands.AppendCommand.MESSAGE_SIMILAR_LIABILITY;
+import static donnafin.logic.commands.AppendCommand.MESSAGE_SIMILAR_POLICY;
 import static donnafin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.GEORGE;
@@ -139,8 +142,7 @@ public class AppendCommandTest {
         AppendCommand testCommand = new AppendCommand(personAdapter, testAsset);
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarAsset);
         testCommand.execute(model);
-        assertCommandSuccess(testCommand2, model, "New asset added. "
-                + "Warning! An asset with a similar name has been added previously.", model);
+        assertCommandSuccess(testCommand2, model, MESSAGE_SIMILAR_ASSET, model);
     }
 
     @Test
@@ -148,8 +150,7 @@ public class AppendCommandTest {
         AppendCommand testCommand = new AppendCommand(personAdapter, testLiability);
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarLiability);
         testCommand.execute(model);
-        assertCommandSuccess(testCommand2, model, "New liability added. "
-                + "Warning! A liability with a similar name has been added previously.", model);
+        assertCommandSuccess(testCommand2, model, MESSAGE_SIMILAR_LIABILITY, model);
     }
 
     @Test
@@ -157,8 +158,7 @@ public class AppendCommandTest {
         AppendCommand testCommand = new AppendCommand(personAdapter, testPolicy);
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarPolicy);
         testCommand.execute(model);
-        assertCommandSuccess(testCommand2, model, "New policy added. "
-                + "Warning! A policy with a similar name has been added previously.", model);
+        assertCommandSuccess(testCommand2, model, MESSAGE_SIMILAR_POLICY, model);
     }
 
     @Test
