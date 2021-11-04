@@ -9,6 +9,7 @@ import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
+import donnafin.logic.parser.ContactTabParser;
 import donnafin.model.Model;
 import donnafin.model.person.Person;
 

@@ -16,7 +16,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.commands.ContactTabParser;
 import donnafin.logic.commands.EditCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.HelpCommand;
