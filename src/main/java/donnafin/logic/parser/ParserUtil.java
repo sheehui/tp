@@ -241,7 +241,7 @@ public class ParserUtil {
         if (!trimmedInput.matches(regexDollarCents)) {
             throw new ParseException(
                     String.format(
-                            "Input string '%s' does not match monetary value format. %s",
+                            "Input string '%s' does not match monetary value format.\n%s",
                             trimmedInput,
                             Money.MESSAGE_CONSTRAINTS)
             );
