@@ -74,8 +74,6 @@ public class AppendCommandTest {
         similarPolicy = new Policy("Golden Mile", "AIA",
                 "$1800", "$100", "$200");
 
-
-
         combinedPolicy = new HashSet<>(GEORGE.getPolicies());
         combinedPolicy.add(testPolicy);
         combinedLiability = new HashSet<>(GEORGE.getLiabilities());

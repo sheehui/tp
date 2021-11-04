@@ -79,14 +79,9 @@ public class AppendCommand extends Command {
         this.editor = pa -> {
             Set<Policy> policies = new HashSet<>(pa.getSubject().getPolicies());
             boolean containsSimilarName = policies.stream().anyMatch(item ->
-                    item.getName().equalsIgnoreCase(policy.getName()));
+                    item.isPossibleDuplicate(policy));
             if (policies.contains(policy)) {
-                try {
-                    messageRESULT = MESSAGE_DUPLICATE_POLICY;
-                    throw new CommandException(MESSAGE_DUPLICATE_POLICY);
-                } catch (CommandException e) {
-                    e.printStackTrace();
-                }
+                messageRESULT = MESSAGE_DUPLICATE_POLICY;
             } else {
                 policies.add(policy);
                 pa.editPolicies(policies);
@@ -108,14 +103,9 @@ public class AppendCommand extends Command {
         this.editor = pa -> {
             Set<Liability> liabilities = new HashSet<>(pa.getSubject().getLiabilities());
             boolean containsSimilarName = liabilities.stream().anyMatch(item ->
-                    item.getName().equalsIgnoreCase(liability.getName()));
+                    item.isPossibleDuplicate(liability));
             if (liabilities.contains(liability)) {
-                try {
-                    messageRESULT = MESSAGE_DUPLICATE_LIABILITY;
-                    throw new CommandException(MESSAGE_DUPLICATE_LIABILITY);
-                } catch (CommandException e) {
-                    e.printStackTrace();
-                }
+                messageRESULT = MESSAGE_DUPLICATE_LIABILITY;
             } else {
                 liabilities.add(liability);
                 pa.editLiabilities(liabilities);
@@ -138,14 +128,9 @@ public class AppendCommand extends Command {
         this.editor = pa -> {
             Set<Asset> assets = new HashSet<>(pa.getSubject().getAssets());
             boolean containsSimilarName = assets.stream().anyMatch(item ->
-                    item.getName().equalsIgnoreCase(asset.getName()));
+                    item.isPossibleDuplicate(asset));
             if (assets.contains(asset)) {
-                try {
-                    messageRESULT = MESSAGE_DUPLICATE_ASSET;
-                    throw new CommandException(MESSAGE_DUPLICATE_ASSET);
-                } catch (CommandException e) {
-                    e.printStackTrace();
-                }
+                messageRESULT = MESSAGE_DUPLICATE_ASSET;
             } else {
                 assets.add(asset);
                 pa.editAssets(assets);

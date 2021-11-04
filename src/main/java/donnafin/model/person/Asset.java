@@ -122,8 +122,11 @@ public class Asset implements Attribute {
 
     @Override
     public boolean isPossibleDuplicate(Attribute other) {
-        // TODO: @Donny
-        return equals(other);
+        if (other instanceof Asset) {
+            return getName().equalsIgnoreCase(((Asset) other).getName());
+        } else {
+            return false;
+        }
     }
 
     public String getName() {

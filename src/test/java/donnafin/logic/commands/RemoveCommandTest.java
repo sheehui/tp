@@ -134,6 +134,4 @@ public class RemoveCommandTest {
         assertCommandFailure(testCommand, model, "No such index found.");
     }
 
-
-
 }
