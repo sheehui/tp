@@ -375,10 +375,34 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-DonnaFin data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Donnafin will discard all data and start with an empty data file at the next run.
+
+Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
+:-------------------------:|:-------------------------:
+![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
+
+As seen in the above side by side comparsion, the first figure show the original .json data 
+regarding the client Alex Yeoh. All attributes are in the correct format. However, if you do tamper with the 
+json file directly and change one of the attributes to an invalid format, in this case the 
+total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
+discard all the data and start with an empty data file as seen below.
+When this happens however, to prevent total loss of your data, we do not delete it right away.
+
+User Interface for DonnaFin           |  `donnafin.json`
+:-------------------------:|:-------------------------:
+![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
+
+The follow error message is displayed as well:
+![InvalidFormat](images/InvalidFormatError.png)
+
+
+When *any* valid command is run, DonnaFin will assume that the intended action is to clear your data and proceed to cleanly wipe
+donnafin.json and execute your command.
+
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
