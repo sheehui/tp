@@ -14,11 +14,17 @@ public class NotesTabParser extends ClientViewParser {
     @Override
     protected Command tabSpecificHandler(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-        case "INSERT COMMAND WORD FOR EDIT HERE":
-            //TODO
+        case AppendCommand.COMMAND_WORD:
+            //fallthrough
+
+        case RemoveCommand.COMMAND_WORD:
+            //fallthrough
+
+        case EditCommand.COMMAND_WORD:
+            throw new ParseException(Messages.MESSAGE_NO_CLIENTWINDOW_COMMANDS_SUPPORTED);
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
-
     }
 }

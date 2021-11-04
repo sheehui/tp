@@ -10,6 +10,7 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -17,6 +18,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class AttributeTable<T> extends UiPart<Region> {
 
@@ -131,6 +134,16 @@ public class AttributeTable<T> extends UiPart<Region> {
             col.setPrefWidth(columnConfig.prefWidth);
             col.setMaxWidth(columnConfig.maxWidth);
             col.setCellValueFactory(new PropertyValueFactory<>(columnConfig.propertyName));
+            col.setCellFactory(tc -> {
+                TableCell<T, String> cell = new TableCell<>();
+                Text text = new Text();
+                cell.setGraphic(text);
+                cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+                text.wrappingWidthProperty().bind(col.widthProperty());
+                text.textProperty().bind(cell.itemProperty());
+                text.setFill(Color.WHITE);
+                return cell;
+            });
             columns.add(col);
         }
         columns.forEach(col -> col.setSortable(false));
