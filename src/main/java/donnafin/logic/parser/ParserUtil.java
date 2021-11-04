@@ -235,7 +235,7 @@ public class ParserUtil {
         String trimmedInput = money.trim();
 
         // Handling Default currency $XYZ or $XYZ.AB
-        final String regexDollarCents = "^\\s*\\$\\s*\\d+(\\.\\d{2})?$";
+        final String regexDollarCents = "^\\s*\\$\\s*(([1-9]\\d*)|(0))(\\.\\d{2})?$";
         final String dollarCentsPrefix = "$";
 
         if (!trimmedInput.matches(regexDollarCents)) {
