@@ -1,3 +1,4 @@
+//@@author sheehui
 package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
@@ -35,6 +36,7 @@ public class Policy implements Attribute {
             + PREFIX_YEARLY_PREMIUM + "$100 "
             + PREFIX_COMMISSION + "$10 ";
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    //@@author bharathcs
     public static final AttributeTable.TableConfig<Policy> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Policies",
         List.of(
@@ -56,6 +58,7 @@ public class Policy implements Attribute {
                 return String.format("Total Policy Commissions: $%s.%s", dollars, cents);
             }).orElse("")
     );
+    //@@author sheehui
 
     private final String name;
     private final String insurer;

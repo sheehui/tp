@@ -125,6 +125,7 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    //@@author sheehui
     /**
      * Parses a {@code String policy} into a {@code Policy}.
      * Leading and trailing whitespaces will be trimmed.
@@ -224,6 +225,7 @@ public class ParserUtil {
         return liabilitySet;
     }
 
+    //@@author bharathcs
     /**
      * Parses a {@code String money} into a {@code Money}.
      * Leading and trailing whitespaces will be trimmed.

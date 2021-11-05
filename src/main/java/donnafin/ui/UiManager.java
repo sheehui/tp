@@ -120,7 +120,7 @@ public class UiManager implements Ui {
      * Shows an alert dialog on {@code owner} with the given parameters.
      * This method only returns after the user has closed the alert dialog.
      */
-    public void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
