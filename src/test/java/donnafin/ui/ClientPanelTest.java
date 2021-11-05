@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package donnafin.ui;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -6,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import donnafin.logic.PersonAdapter;
 import donnafin.testutil.PersonBuilder;
 import guitests.guihandles.ClientInfoPanelHandle;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 public class ClientPanelTest extends GuiUnitTest {
 
