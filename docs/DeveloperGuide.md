@@ -8,16 +8,16 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
-## **1. Introduction**
+## 1. Introduction
 
 ### 1.1 Purpose
-This document intends to cover the multi-layered design architecture of DonnaFin.io, and can be used by the intended 
+This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended 
 audience in order to better understand the inner workings of the program and better understand the interaction between
 the various components than form DonnaFin.
 
 ### 1.2 Target Audience
 This developer guide is aimed at developers and advanced users of DonnaFin
-* Developers: anyone who wish to upgrade DonnaFin.IO to support more functions.
+* Developers: anyone who wish to upgrade DonnaFin to support more functions.
 * Advanced Users: Financial Advisors who wish to better understand the features that DonnaFin Provides.
 
 ### 1.3 About Donnafin
@@ -35,7 +35,7 @@ a Command Line Interface (CLI).
 
 
 
-## **2. Acknowledgements**
+## 2. Acknowledgements
 
 Code Reuse
 * [SE-EDU: Address Book 3](https://github.com/se-edu/addressbook-level3/) - served as the foundation of this project
@@ -56,7 +56,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **4. Design**
+## 4. Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -205,11 +205,11 @@ Classes used by multiple components are in the `donnafin.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **5. Implementation**
+## 5. Implementation
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6. Documentation, logging, testing, configuration, dev-ops**
+## 6. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -219,7 +219,7 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **7. Appendix: Requirements**
+## 7. Appendix: Requirements
 
 ### 7.1 Product scope
 
@@ -444,7 +444,7 @@ State: Client Window (Contact Tab)
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
-## **8. Appendix: Instructions for manual testing**
+## 8. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
