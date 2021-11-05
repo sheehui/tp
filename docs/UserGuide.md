@@ -3,21 +3,26 @@ layout: page
 title: User Guide
 ---
 
-DonnaFin.io is a desktop application used by financial advisors to keep track of their 
-client information and related tasks. This is a Java program with about 10 kloc with 
-a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a 
-faster workflow for input and output. If you can type fast, you can use our CLI-like 
-commands to manage your client information and view your notes much faster 
-than your typical customer relationship manager apps.
-
-Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## 1. Introduction
 
-## Quick start
+DonnaFin.io is a desktop application used by financial advisors to keep track of their
+client information and related tasks. This is a Java program with about 10 kloc with
+a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a
+faster workflow for input and output. If you can type fast, you can use our CLI-like
+commands to manage your client information and view your notes much faster
+than your typical customer relationship manager apps.
+
+Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
+
+### 1.1 Is this guide for you?
+
+### 1.2 How to use the user guide
+
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -25,7 +30,7 @@ Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readabilit
 
 1. Copy the file to the folder you want to use as the _home folder_ for your DonnaFin app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that DonnaFin comes with some sample clients.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -33,26 +38,49 @@ Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readabilit
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the DonnaFin.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the DonnaFin.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`view`**`3` : Opens the client window, where you can access the details of the 3rd client shown in the current list.
+   
+   * **`tab`**`a` : Access the assets tab of client that is currently viewed.
+   
+   * **`append`**`n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan` : 
+   As we are in the Asset tab now, this will add an asset to the currently viewed client.
+   * **`remove`**`1` : Removes the 1st asset in the Asset tab.
+   
+   * **`home`** : Return to home window.
+   
+   * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all clients.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the DonnaFin.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. About
+
+### 3.1 Special Icons
+
+### 3.2 Application Home Window Breakdown
+
+### 3.3 Client Explanation
+
+### 3.4 Application Client Window Breakdown
+
+### 3.5 Command Format
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
+* Command word is **case-insensitive**.<br>
+  e.g. in `remove 3`, command word `remove` can be accepted as `Remove` or `rEmOvE`.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `edit n/NAME`, `NAME` is a parameter which can be used as `edit n/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -64,10 +92,23 @@ Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readabilit
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 
-### Global Commands
-These commands can be accessed from any window of DonnaFin.
+## 4. Features
 
-#### Viewing help : `help`
+This section gives you a detailed explanation on how each of our features work.
+
+For your easy reference and navigation, we have split our features into 3 different categories:
+1. Global Features
+2. Home Window Features
+3. Client Window Features
+4. Database Features
+
+The following categories will explain the intended purpose of our features.
+
+### 4.1 Global
+Global commands consists of features that can be accessed from any (Home or Client) window of DonnaFin.
+Such features include getting help and exiting DonnaFin.
+
+#### 4.1.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -75,20 +116,25 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### Exiting the program : `exit`
+#### 4.1.2 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Home Window Commands
+### 4.2 Home Window
 
-These commands are exclusive to Home Window the default 
-window that pops up when DonnaFin is opened.
+Home Window commands consists of features that enables you to manage your client base.
+These features are exclusive to Home Window, the default window that pops up when DonnaFin is opened.
 
-#### Adding a Client : `add`
+Such features include adding and deleting clients, listing/clearing all clients, doing a specific search for clients,
+as well as viewing a client in detail.
 
-Adds a person to the DonnaFin.
+To access and update details on a specific client, refer to [Client Window Commands](#43-client-window).
+
+#### 4.2.1 Adding a Client : `add`
+
+Adds a client to the DonnaFin.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
@@ -96,29 +142,29 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-#### Deleting a Client : `delete`
+#### 4.2.2 Deleting a Client : `delete`
 
-Deletes the specified person from the DonnaFin.
+Deletes the specified client from the DonnaFin.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the DonnaFin.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the DonnaFin.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-#### Listing All Clients : `list`
+#### 4.2.3 Listing All Clients : `list`
 
-Shows a list of all persons in the DonnaFin.
+Shows a list of all clients in the DonnaFin.
 
 Format: `list`
 
-#### Locating Clients by Name: `find`
+#### 4.2.4 Locating Clients by Name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -134,18 +180,12 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+#### 4.2.5 View Client Information : `view`
 
-#### Clearing all entries : `clear`
+Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see each client field in detail and edit existing information.
+You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing `view`.
 
-Clears all entries from the DonnaFin.
-
-Format: `clear`
-
-#### View Client Information : `view`
-
-Access client information in a 'client view' mode where all data on the client is presented to you. Once in the page, you can see each field in detail and edit existing information.
-
-Format: view INDEX
+Format: `view INDEX`
 
 * Edits the client at the specified INDEX. The index refers to the index number shown in the displayed person list. 
 * The index **must be a positive integer** 1, 2, 3, ...​
@@ -158,108 +198,146 @@ Examples:
 * The information related to the client is separated to different tabs.
 * Each tab contains information closely related to the title of the tab.
 
+#### 4.2.6 Clearing all client data : `clear`
 
-### Client Window Commands
+Clears all data from the DonnaFin.
 
-These commands are exclusive to client window. They give access and writing privileges for any client information
-fields. You can access these commands once you have entered the Client Window using our `view` command.
+Format: `clear`
 
-#### Switching Tabs : `tab`
 
-Allows user to navigate to a different tab.
-* There are 5 tabs: Contacts, Policies, Assets, Liabilities and Notes.
+### 4.3 Client Window
+
+Client Window commands consists of features that enables you to manage data on each specific client.
+These features are exclusive to Client Window. They give access and writing privileges for any client information
+fields. You can access these commands once you have entered the Client Window using our [view command](#425-view-client-information--view).
+
+Such features include switching tabs, editing contact information, managing financial details, as well
+as notes for each client.
+
+#### 4.3.1 Switching Tabs In Client Window: `tab`
+
+Allows you to navigate to a different tab. 
+
+There are 5 tabs: 
+1. [Contacts](#4311-contacts-tab)
+2. [Policies](#4312-policies-tab)
+3. [Assets](#4313-assets-tab)
+4. [Liabilities](#4314-liabilities-tab)
+5. [Notes](#4315-notes-tab)
 
 Format: `tab KEYWORD`
 
-##### Contacts Tab
+##### 4.3.1.1 Contacts Tab
 
-Switches from any tab in Client Window to `Contact` tab.
+Switches you from any tab in Client Window to `Contact` tab.
 
-Keywords: `c`, `contact` or `contacts` (case insensitive)
+Keywords: `c`, `contact` or `contacts` (case-insensitive)
 
 Examples:
 * `tab c`
 * `tab contact`
 
-##### Policies Tab
+##### 4.3.1.2 Policies Tab
 
-Switches from any tab in Client Window to `Policies` tab.
+Switches you from any tab in Client Window to `Policies` tab.
 
-Keywords: `p`, `policy` or `policies` (case insensitive)
+Keywords: `p`, `policy` or `policies` (case-insensitive)
 
 Examples:
 * `tab p`
 * `tab policy`
 
-##### Assets Tab
+##### 4.3.1.3 Assets Tab
 
-Switches from any tab in Client Window to `Assets` tab.
+Switches you from any tab in Client Window to `Assets` tab.
 
-Keywords: `a`, `asset` or `assets` (case insensitive)
+Keywords: `a`, `asset` or `assets` (case-insensitive)
 
 Examples:
 * `tab a`
 * `tab asset`
 
-##### Liabilities Tab
+##### 4.3.1.4 Liabilities Tab
 
-Switches from any tab in Client Window to `Liabilities` tab.
+Switches you from any tab in Client Window to `Liabilities` tab.
 
-Keywords: `l`, `liability` or `liabilities` (case insensitive)
+Keywords: `l`, `liability` or `liabilities` (case-insensitive)
 
 Examples:
 * `tab l`
 * `tab liability`
 
-##### Notes Tab
+##### 4.3.1.5 Notes Tab
 
-Switches from any tab in Client Window to `Notes` tab.
+Switches you from any tab in Client Window to `Notes` tab.
 
-Keywords:  `n`, or `note` or `notes` (case insensitive)
+Keywords:  `n`, or `note` or `notes` (case-insensitive)
 
 Examples:
 * `tab n`
 * `tab note`
 
-#### Edit Contacts: `edit`
+#### 4.3.2 Edit Client's Contact Information: `edit`
 
-Edit your client field in contacts. You should be in `Contacts` tab to use these commands.
+You can edit your client's contact fields with our `edit` command. You should be in `Contacts` tab to use these commands.
 
-##### Edit Client Name
+Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
-Edits the name of the client you are currently viewing.
+* We support multi-field update, you may edit more than one contact field at once.
+* `edit` requires at least one field present to be valid.
+
+Example: `edit n/Allison Wang e/allison@plpgp.com`
+
+Below is a breakdown of how you can edit each contact field.
+
+##### 4.3.2.1 Edit Client's Name
+
+You can edit the name of the client you are currently viewing with our `edit` command.
 
 Format: `edit n/NAME`
 
+* This action will override client's current name.
+
 Example: `edit n/Allison Wang`
 
-##### Edit Client Phone Number
+##### 4.3.2.2 Edit Client's Phone Number
 
-Edits the phone number of the client you are currently viewing.
+You can edit the phone number of the client you are currently viewing with our `edit` command.
 
 Format: `edit p/PHONE_NUMBER`
 
+* This action will override client's current phone number.
+
 Example: `edit p/81753076`
 
-##### Edit Client Address
+##### 4.3.2.3 Edit Client's Address
 
-Edits the address of the client you are currently viewing.
+You can edit the address of the client you are currently viewing with our `edit` command.
 
 Format: `edit a/ADDRESS`
 
+* This action will override client's current address.
+
 Example: `edit a/#12-123 Phua Chu Kang Ave 7`
 
-##### Edit Client Email
+##### 4.3.2.4 Edit Client's Email
 
-Edits the email of the client you are currently viewing.
+You can edit the email of the client you are currently viewing with our `edit` command.
 
 Format: `edit e/EMAIL`
 
+* This action will override client's current email.
+
 Example: `edit e/allison@gmail.com`
 
-#### Add an Asset: `append`
+#### 4.3.3 Asset Features
 
-Adds a new asset to the current client you are viewing. You must be in the `Assets` tab.
+Asset Features consists of features that enables you to add and remove assets
+for your clients. You must be in the `Assets` tab for these functions to work as intended.
+
+##### 4.3.3.1 Add an Asset to a Client: `append`
+
+Adds a new asset to the current client you are viewing.
 
 * `$ASSET_VALUE` is a monetary value. DonnaFin will only accept whole numbers and
   values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
@@ -269,9 +347,9 @@ Format: `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`
 Example:
 * `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
 
-#### Remove an Asset: `remove`
+##### 4.3.3.2 Remove an Asset from a Client: `remove`
 
-Remove an existing asset from the current client you are viewing. You must be in the `Assets` tab.
+Remove an existing asset from the current client you are viewing.
 
 * Removes the asset at the specified `INDEX`.
 * The index refers to the index number shown in the displayed asset list.
@@ -282,9 +360,14 @@ Format: `remove INDEX`
 Example:
 * `remove 1`
 
-#### Add a Liability: `append`
+#### 4.3.4 Liability Features
 
-Adds a new liability to the current client you are viewing. You must be in the `Liabilities` tab.
+Liability Features consists of features that enables you to add and remove liabilities
+for your clients. You must be in the `Liabilities` tab for these functions to work as intended.
+
+##### 4.3.4.1 Add a Liability to a Client: `append`
+
+Adds a new liability to the current client you are viewing.
 
 * `$LIABILITY_VALUE` is a monetary value. DonnaFin will only accept whole numbers and
   values in 2 decimal places (i.e. $120 and $120.20 are valid. $120.2 is invalid).
@@ -294,9 +377,9 @@ Format: `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_
 Example:
 * `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 
-#### Remove a Liability: `remove`
+##### 4.3.4.2 Remove a Liability from a Client: `remove`
 
-Remove an existing liability from the current client you are viewing. You must be in the `Liabilities` tab.
+Remove an existing liability from the current client you are viewing.
 
 * Removes the liability at the specified `INDEX`.
 * The index refers to the index number shown in the displayed liability list.
@@ -307,7 +390,12 @@ Format: `remove INDEX`
 Example:
 * `remove 1`
 
-#### Add a Policy: `append`
+#### 4.3.5 Policy Features
+
+Policy Features consists of features that enables you to add and remove policies
+for your clients. You must be in the `Policies` tab for these functions to work as intended.
+
+##### 4.3.5.1 Add a Policy to a Client: `append`
 
 Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
 
@@ -319,7 +407,7 @@ Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$
 Example:
 * `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 
-#### Remove a Policy: `remove`
+##### 4.3.5.2 Remove a Policy from a Client: `remove`
 
 Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
 
@@ -332,59 +420,57 @@ Format: `remove INDEX`
 Example:
 * `remove 1`
 
-#### Edit Notes
+#### 4.3.6 Edit Notes
 
 You can simply add your changes inside the notes field inside `Notes` tab and DonnaFin will automatically save your data.
 
-#### Returning to Home Window: `home`
+#### 4.3.7 Returning to Home Window: `home`
 
 Allows the user to return to the home window.
 
 Format: `home`
 
-### Saving the data
+### 4.4 Database
+
+Database features consist of features that are related to how your client data is stored.
+
+#### 4.4.1 Saving the data
 
 DonnaFin data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### 4.4.2 Editing the data file
 
 DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Donnafin will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
 
+| Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
+| ---------- | --------------------------------------------------------------------- |
+| ![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
 
-Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
-:-------------------------:|:-------------------------:
-![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
-
-
-As seen in the above side by side comparsion, the first figure show the original .json data 
-regarding the client Alex Yeoh. All attributes are in the correct format. However, if you do tamper with the 
-json file directly and change one of the attributes to an invalid format, in this case the 
+The first figure shows the original JSON data 
+regarding the client Alex Yeoh. All attributes are in the correct format. However, if you tamper with the 
+JSON file directly and change one of the attributes to an invalid format, in this case the 
 total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
 discard all the data and start with an empty data file as seen below.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
 
-
-User Interface for DonnaFin           |  `donnafin.json`
-:-------------------------:|:-------------------------:
-![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
+| User Interface for DonnaFin           |  `donnafin.json`
+| ---------- | --------------------------------------------------------------------- |
+|![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
 
 
 The follow error message is displayed as well:
 ![InvalidFormat](images/InvalidFormatError.png)
 
-
 When *any* valid command is run, DonnaFin will assume that the intended action is to clear your data and proceed to cleanly wipe
 donnafin.json and execute your command.
-
-
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DonnaFin home folder.
@@ -400,29 +486,37 @@ donnafin.json and execute your command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 6. Command summary
 
-| Action     | Format                                                                | Examples
+This section gives a quick summary of how you may use DonnaFin.
+
+| Global Commands     | Format                                                                | Examples
+| ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Help**   | `help`                                                                 | `help`
+| **Exit**   | `exit`                                                                 | `exit`
+
+| Home Window Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`                | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
-| **Clear**  | `clear`                                                                | `clear`
 | **Delete** | `delete`                                                               | `delete 3`
+| **Find**   | `find KEYWORD`                                                         | `find James Jake`
+| **List**   | `list`                                                                 | `list`
+| **View Client Window**   | `view INDEX`                                                                 | `view 1`
+| **Clear**  | `clear`                                                                | `clear`
+
+| Client Window Commands     | Format                                                                | Examples
+| ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Return to Home Window**   | `home`                                                                 | `home`
+| **Switch to Contacts Tab**   | `tab KEYWORD`                                                                 | `tab c`
+| **Switch to Policies Tab**   | `tab KEYWORD`                                                                 | `tab p`
+| **Switch to Assets Tab**   | `tab KEYWORD`                                                                 | `tab a`
+| **Switch to Liabilities Tab**   | `tab KEYWORD`                                                                 | `tab l`
+| **Switch to Notes Tab**   | `tab KEYWORD`                                                                 | `tab n`
 | **Edit Name**   | `edit n/NAME` | `edit n/James Lee`
 | **Edit Address**   | `edit a/ADDRESS` | `edit a/blk 123 bukit batok ave 4`
 | **Edit Email**   | `edit e/EMAIL` | `edit e/jameslee@donnafin.com`
 | **Edit Phone Number**   | `edit p/PHONE_NUMBER` | `edit p/98374283`
-| **View**   | `view INDEX`                                                           | `view 2`
-| **Find**   | `find KEYWORD`                                                         | `find James Jake`
-| **List**   | `list`                                                                 | `list`
-| **Help**   | `help`                                                                 | `help`
-| **Home**   | `home`                                                                 | `home`
-| **View**   | `view INDEX`                                                                 | `view 1`
-| **Append Asset**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
-| **Append Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
-| **Append Policy**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
+| **Add Asset**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
+| **Add Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
+| **Add Policy**   | `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`| `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
-| **Switch to Contacts tab**   | `tab KEYWORD`                                                                 | `tab c`
-| **Switch to Policies tab**   | `tab KEYWORD`                                                                 | `tab p`
-| **Switch to Assets tab**   | `tab KEYWORD`                                                                 | `tab a`
-| **Switch to Liabilities tab**   | `tab KEYWORD`                                                                 | `tab l`
-| **Switch to Notes tab**   | `tab KEYWORD`                                                                 | `tab n`
