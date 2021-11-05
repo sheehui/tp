@@ -39,8 +39,8 @@ like below are present at the end of every section. To allow for easier navigati
 around the user guide, we suggest using the table of contents as well as these links to quickly
 find and access the information needed. 
 
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+This marks the end of the section. Click
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
@@ -79,8 +79,8 @@ This marks the end of the section. Click here to return to the top:
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+This marks the end of the section. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About
@@ -114,9 +114,9 @@ This marks the end of the section. Click here to return to the top:
 * The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
-
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+L
+This marks the end of the section. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
@@ -504,8 +504,8 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 </div>
 
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+This marks the end of the section. Click
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
@@ -522,8 +522,8 @@ This marks the end of the section. Click here to return to the top:
 **Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+This marks the end of the section. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
@@ -562,8 +562,8 @@ This section gives a quick summary of how you may use DonnaFin.
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
 
 
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+This marks the end of the section. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Glossary
@@ -574,6 +574,7 @@ This marks the end of the section. Click here to return to the top:
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
 financial protection or reimbursement against losses.
 
-This marks the end of the section. Click here to return to the top:
-<a href="#top">Back to top</a>
+This marks the end of the section. Click 
+<a href="#top">here</a>
+to return to the top:
 --------------------------------------------------------------------------------------------------------------------
