@@ -15,7 +15,7 @@ title: User Guide
 DonnaFin.io is a desktop application used by financial advisors to keep track of their
 client information and related tasks. The '.io' in our name is a reflection of our belief 
 that you deserve a faster workflow for input and output. If you can type fast, 
-you can use our CLI-like commands to manage your client information 
+you can use our [CLI-like](#7-glossary) commands to manage your client information 
 and view your notes much faster than your typical customer relationship manager apps.
 
 Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
@@ -546,3 +546,15 @@ This section gives a quick summary of how you may use DonnaFin.
 | **Add Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 | **Add Policy**   | `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`| `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Glossary
+
+* **CLI**: Abbreviation for Command line interface, where commands are processed in the form of text.
+This is opposed to the standard graphical user interface that we are use to.
+* **Private client detail**: A client detail that is not meant to be shared with others
+* **Asset**: Things of present or future value owned by a client
+* **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+financial protection or reimbursement against losses.
