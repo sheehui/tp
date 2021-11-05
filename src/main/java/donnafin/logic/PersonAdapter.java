@@ -1,5 +1,6 @@
 package donnafin.logic;
 
+import java.io.IOException;
 import java.util.Set;
 
 import donnafin.model.Model;
@@ -71,7 +72,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -91,7 +92,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -111,7 +112,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -131,7 +132,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -151,7 +152,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -171,7 +172,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -191,7 +192,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
@@ -211,7 +212,16 @@ public class PersonAdapter {
                 newAssets
         );
         this.subject = personToEdit;
-        model.setPerson(curr, personToEdit);
+        this.trySaveAddressBook(curr, personToEdit);
+    }
+
+    private void trySaveAddressBook(Person person, Person newPerson) {
+        try {
+            model.setPerson(person, newPerson);
+            model.saveAddressBook();
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 }
