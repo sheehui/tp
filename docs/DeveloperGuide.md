@@ -444,7 +444,7 @@ State: Client Window (Contact Tab)
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Appendix: Instructions for manual testing
+## **8. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
