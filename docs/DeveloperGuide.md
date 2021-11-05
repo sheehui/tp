@@ -6,8 +6,31 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
-## **Acknowledgements**
+## 1. Introduction
+
+### 1.1 Purpose
+This document intends to cover the multi-layered design architecture of DonnaFin.io, and can be used by the intended 
+audience in order to better understand the inner workings of the program and better understand the interaction between
+the various components than form DonnaFin.
+
+### 1.2 Target Audience
+This developer guide is aimed at developers and advanced users of DonnaFin
+* Developers: anyone who wish to upgrade Jarvis to support more functions.
+* Advanced Users: Financial Advisors who wish to better understand the features that DonnaFin Provides.
+
+### 1.3 About Donnafin
+DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
+Despite the application having an intuitive Graphical User Interface (GUI), it is optimized for entering commands using
+a Command Line Interface (CLI).
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+## **2. Acknowledgements**
 
 Code Reuse
 * [SE-EDU: Address Book 3](https://github.com/se-edu/addressbook-level3/) - served as the foundation of this project
@@ -22,20 +45,20 @@ Libraries / Framework
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 3.1 Architecture
 
 <img alt="Architecture Diagram" src="images/ArchitectureDiagram.png" width="280" />
 
@@ -83,7 +106,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java) specifies the API of this component.
 
@@ -100,7 +123,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -146,7 +169,7 @@ There is also another noteworthy Logic class, `PersonAdapter`, that serves as a 
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
 Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
 
-### Model component
+### 3.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img alt="Model Class Diagram" src="images/ModelClassDiagram.png" width="450" />
@@ -159,7 +182,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Storage` object and communicates with it to save address book to user files.
 
-### Storage component
+### 3.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -170,13 +193,13 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -186,9 +209,9 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **5. Appendix: Requirements**
 
-### Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 
@@ -215,7 +238,7 @@ product’s scope only covers the personal use of the product. It does not link 
 financial calculators, financial databases or cover market information.
 
 
-### User stories
+### 5.2 User stories
 
 Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikely to have) - `LOW`
 
@@ -252,7 +275,7 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `LOW`      | new user                                   | follow a tutorial when jotting down notes for a client |   learn how to jot down quick notes regarding general information of the client |
 
 
-### Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is the `DonnaFin` application and the **Actor** is the `user`, unless specified otherwise)
 
@@ -388,7 +411,7 @@ State: Client Window (Contact Tab)
       Use case resumes at step 1.
 
 
-### Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -401,14 +424,17 @@ State: Client Window (Contact Tab)
 9.  The application should not require any installer to start functioning.
 10. The GUI should appear fine for screen resolutions 1920x1080 and higher.
 
-### Glossary
+### 5.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private client detail**: A client detail that is not meant to be shared with others
-
+* **Asset**: Things of present or future value owned by a client
+* **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 6. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -417,7 +443,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -434,7 +460,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a client
+### 6.2 Deleting a client
 
 1. Deleting a client while all clients are being shown (home window)
 
@@ -451,7 +477,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Viewing and editing a client
+### 6.3 Viewing and editing a client
 
 1. Enter client window
     
@@ -468,7 +494,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 6.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
