@@ -37,6 +37,8 @@ of related information. Some tips and tricks, as well as cautions are included t
 help you get more out of the application and avoid certain common dangers. Lastly, please do use the table of contents
 at the top of the document for easier navigation throughout document. 
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
