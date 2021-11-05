@@ -37,6 +37,9 @@ of related information. Some tips and tricks, as well as cautions are included t
 help you get more out of the application and avoid certain common dangers. Lastly, please do use the table of contents
 at the top of the document for easier navigation throughout document. 
 
+Click here to return to the top:
+<a href="#top">Back to top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
@@ -75,6 +78,9 @@ at the top of the document for easier navigation throughout document.
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
+Click here to return to the top:
+<a href="#top">Back to top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About
@@ -108,6 +114,11 @@ at the top of the document for easier navigation throughout document.
 * The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
+
+Click here to return to the top:
+<a href="#top">Back to top</a>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
 
@@ -494,6 +505,9 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 </div>
 
+Click here to return to the top:
+<a href="#top">Back to top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
@@ -509,6 +523,9 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 **Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
+
+Click here to return to the top:
+<a href="#top">Back to top</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -547,14 +564,19 @@ This section gives a quick summary of how you may use DonnaFin.
 | **Add Policy**   | `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`| `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
 
+Click here to return to the top:
+<a href="#top">Back to top</a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Glossary
 
-* **CLI**: Abbreviation for Command line interface, where commands are processed in the form of text.
-This is opposed to the standard graphical user interface that we are use to.
+* **CLI**: Abbreviation for command line interface, where commands are processed in the form of text.
 * **Private client detail**: A client detail that is not meant to be shared with others
 * **Asset**: Things of present or future value owned by a client
 * **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
 financial protection or reimbursement against losses.
+
+Click here to return to the top:
+<a href="#top">Back to top</a>
