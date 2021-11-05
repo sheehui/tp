@@ -1,3 +1,4 @@
+//@@author Bluntsord
 package donnafin.ui;
 
 import donnafin.logic.PersonAdapter;
@@ -61,6 +62,7 @@ public class ClientPanel extends UiPart<Region> {
         return new AttributePanel(fieldInString, attr.toString());
     }
 
+    //@@author mrmrinal
     /**
      * Updates the VBox content to the Client's contact Details
      */
@@ -96,14 +98,6 @@ public class ClientPanel extends UiPart<Region> {
         commandExecutor.execute("tab liabilities");
     }
 
-    private void changeTab(Node node) {
-        Platform.runLater(() -> {
-            refresh();
-            attributeDisplayContainer.getChildren().add(node);
-        });
-        attributeDisplayContainer.setVgrow(node, Priority.ALWAYS);
-    }
-
     protected void changeTabToPolicies() {
         changeTab(new AttributeTable<>(Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()).getRoot());
     }
@@ -129,8 +123,16 @@ public class ClientPanel extends UiPart<Region> {
         changeTab(notesField);
     }
 
+    //@@author bharathcs
     private void refresh() {
         attributeDisplayContainer.getChildren().clear();
     }
 
+    private void changeTab(Node node) {
+        Platform.runLater(() -> {
+            refresh();
+            attributeDisplayContainer.getChildren().add(node);
+        });
+        attributeDisplayContainer.setVgrow(node, Priority.ALWAYS);
+    }
 }

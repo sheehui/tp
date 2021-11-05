@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package donnafin.ui;
 
 import static donnafin.ui.testutil.GuiTestAssert.assertCardDisplaysPerson;
@@ -9,9 +11,6 @@ import org.junit.jupiter.api.Test;
 import donnafin.model.person.Person;
 import donnafin.testutil.PersonBuilder;
 import guitests.guihandles.PersonCardHandle;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 public class PersonCardTest extends GuiUnitTest {
 

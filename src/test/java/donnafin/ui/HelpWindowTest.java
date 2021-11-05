@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package donnafin.ui;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.HelpWindowHandle;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 public class HelpWindowTest extends GuiUnitTest {
 
