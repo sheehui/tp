@@ -35,8 +35,7 @@ as new to some users. We strongly recommend that first-time users read through t
 of how to use our app. We have also included links to navigate around the user guide to allow easier access
 of related information. Some tips and tricks, as well as cautions are included throughout the guide to
 help you get more out of our application. Additionally, links back to the top of the page
-like below are present at the end of every section that bring you back to the start of our user guide.
-For easier navigation around this User Guide, we suggest using our table of contents together with these 
+like below are present at the end of every section. For easier navigation around this User Guide, we suggest using our table of contents together with these 
 links to quickly find and access the information you need.
 
 This marks the end of the introduction. Click
@@ -569,7 +568,7 @@ This marks the end of the command summary section. Click
 ## 7. Glossary
 
 * **CLI**: Abbreviation for command line interface, where commands are processed in the form of text
-as opposed to graphical user interfaces(mouse based applications).
+as opposed to graphical user interfaces(mouse-based applications).
 * **Asset**: Items that generate profit or return on investment.
 * **Liability**: Obligations that require payments from the client.
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
