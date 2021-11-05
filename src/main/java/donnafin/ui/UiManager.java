@@ -105,7 +105,7 @@ public class UiManager implements Ui {
 
 
     /**
-     * Changes the mainwindow to personlist panel, aka "Home"
+     * Changes the {@code mainWindow} to {@code personList} panel, aka "Home"
      */
     public void showHome() {
         mainWindow.switchToHome();
@@ -149,19 +149,19 @@ public class UiManager implements Ui {
 
     public GuiSettings getGuiSettings() {
         return logic.getGuiSettings();
-    };
+    }
 
     public ObservableList<Person> getFilteredPersonList() {
         return logic.getFilteredPersonList();
-    };
+    }
 
     public Path getAddressBookFilePath() {
         return logic.getAddressBookFilePath();
-    };
+    }
 
     public void setGuiSettings(GuiSettings guiSettings) {
         logic.setGuiSettings(guiSettings);
-    };
+    }
 
     public ViewFinderState getUiState() {
         return uiState.getState();
@@ -172,8 +172,6 @@ public class UiManager implements Ui {
      * uiConsumer. If there is one, apply it to the ui
      * @param commandText String entered by the user
      * @return  result of the command of class Command result
-     * @throws CommandException
-     * @throws ParseException
      */
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         CommandResult commandResult = logic.execute(commandText);
@@ -181,7 +179,7 @@ public class UiManager implements Ui {
         assert uiAction != null : "commandResult.uiAction was set as null";
         uiAction.accept(this);
         return commandResult;
-    };
+    }
 
     //For testing purposes. See UiManager Test for more info
     @Override

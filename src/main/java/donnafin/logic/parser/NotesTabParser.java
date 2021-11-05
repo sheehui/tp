@@ -24,7 +24,7 @@ public class NotesTabParser extends ClientViewParser {
             //fallthrough
 
         case EditCommand.COMMAND_WORD:
-            throw new ParseException(Messages.MESSAGE_NO_CLIENTWINDOW_COMMANDS_SUPPORTED);
+            throw new ParseException(Messages.MESSAGE_NO_CLIENT_WINDOW_COMMANDS_SUPPORTED);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

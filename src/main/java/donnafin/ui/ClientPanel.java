@@ -101,7 +101,7 @@ public class ClientPanel extends UiPart<Region> {
             refresh();
             attributeDisplayContainer.getChildren().add(node);
         });
-        attributeDisplayContainer.setVgrow(node, Priority.ALWAYS);
+        VBox.setVgrow(node, Priority.ALWAYS);
     }
 
     protected void changeTabToPolicies() {
