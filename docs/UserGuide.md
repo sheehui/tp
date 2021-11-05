@@ -102,7 +102,7 @@ For your easy reference and navigation, we have split our features into 3 differ
 1. Global Features
 2. Home Window Features
 3. Client Window Features
-4. Miscellaneous Features
+4. Database Features
 
 The following categories will explain the intended purpose of our features.
 
@@ -216,7 +216,7 @@ fields. You can access these commands once you have entered the Client Window us
 Such features include switching tabs, editing contact information, managing financial details, as well
 as notes for each client.
 
-#### 4.3.1 Switching Tabs : `tab`
+#### 4.3.1 Switching Tabs In Client Window: `tab`
 
 Allows you to navigate to a different tab. 
 
