@@ -1,6 +1,7 @@
 package donnafin.commons.core.types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -70,5 +71,6 @@ public class MoneyTest {
         assertEquals(oneDollar, oneDollarAgain);
         assertEquals(oneDollar.getValue(), oneDollarAgain.getValue());
         assertEquals(oneDollar.toString(), oneDollarAgain.toString());
+        assertNotEquals(oneDollar, "$ 1.00");
     }
 }
