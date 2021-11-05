@@ -87,21 +87,7 @@ The rest of the App consists of four components.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img alt="Architecture Sequence Diagram" src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-Here is an explanation of what takes place when the user enters the command `delete 1`
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
-* The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
-* The `Model` component then deletes the `Person` object p from the `addressBook`.
-* The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
-* The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
-
-Each of the four main components (also shown in the diagram above),
-
+Each of the four main components (also shown in the diagram above).
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
@@ -111,13 +97,29 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### 4.2 UI component
+### 4.1.1 UI component
 
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java) specifies the API of this component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in 
+home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these, 
+including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between 
+classes that represent parts of the visible GUI. 
+
+The UI that is displayed has 6 main tabs to switch between.
+ 1. `PERSON_LIST_PANEL`
+ 2. `CONTACT`
+ 3. `POLICIES`
+ 4. `ASSETS`
+ 5. `LIABILITIES`
+ 6. `NOTES`
+ 
+ The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
+each client and will thus display different information for each client. The UI keeps track of the current tab it is 
+observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
+[here](#-421-tab-switch-command). 
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -128,7 +130,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### 4.3 Logic component
+### 4.1.2 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -143,13 +145,6 @@ to parse the user command.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img alt="Parser Classes" src="images/ParserClasses.png" width="600"/>
@@ -162,19 +157,8 @@ How the parsing works:
 * `ClientViewParser` and `AddressBookParser` inherit from `ParserStrategy` while the tab specific parsers inherit from `ClientViewParser` inherit.
 
 
-<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
-How the `ABCParser` in ParserContext is updated:
-1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view.
-2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present. `LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
-3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
-
-
-There is also another noteworthy Logic class, `PersonAdapter`, that serves as a wrapper for the Model class `Person`.
-The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
-Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
-
-### 4.4 Model component
+### 4.1.3 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img alt="Model Class Diagram" src="images/ModelClassDiagram.png" width="450" />
@@ -187,7 +171,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Storage` object and communicates with it to save address book to user files.
 
-### 4.5 Storage component
+### 4.1.4 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -198,9 +182,48 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### 4.6 Common classes
+### 4.1.5 Common classes
 
 Classes used by multiple components are in the `donnafin.commons` package.
+
+### 4.2 Implementation and Commands
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img alt="Architecture Sequence Diagram" src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+Here is an explanation of what takes place when the user enters the command `delete 1`
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
+* The `Model` component then deletes the `Person` object p from the `addressBook`.
+* The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
+* The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
+
+#### 4.2.1 Command
+
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
+
+<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
+
+How the `ABCParser` in ParserContext is updated:
+1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view.
+2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present. `LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
+3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
+
+There is also another noteworthy Logic class, `PersonAdapter`, that serves as a wrapper for the Model class `Person`.
+The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
+Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
