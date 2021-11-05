@@ -24,12 +24,7 @@ public class SwitchTabCommand extends Command {
     private final Ui.ViewFinderState tab;
     private final PersonAdapter personAdapter;
 
-    /**
-     * Constructor for switchTabCommand
-     * @param tab {@tab} which is passed to switch tab command
-     * @param personAdapter {@personAdapeter} which is used to pass personAdapter to other
-     * parsers later
-     */
+    /** Constructor for switchTabCommand */
     public SwitchTabCommand(Ui.ViewFinderState tab, PersonAdapter personAdapter) {
         this.tab = tab;
         this.personAdapter = personAdapter;

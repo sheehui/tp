@@ -20,7 +20,6 @@ public class AssetTest {
     private static final Asset VALID_ASSET = new Asset(VALID_NAME, VALID_TYPE, VALID_VALUE,
             VALID_REMARKS);
 
-
     @Test
     public void constructor_allNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Asset(null, null, null,

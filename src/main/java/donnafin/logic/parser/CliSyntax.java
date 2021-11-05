@@ -17,6 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_YEARLY_PREMIUM = new Prefix("pr/");
     public static final Prefix PREFIX_COMMISSION = new Prefix("c/");
     public static final Prefix PREFIX_TYPE = new Prefix("ty/");
-    // TODO: change type to 't/' prefix
 
 }

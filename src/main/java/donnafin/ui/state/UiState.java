@@ -16,9 +16,7 @@ public class UiState {
     private ViewFinderState state;
 
 
-    /**
-     * Constructor for Uistate
-     */
+    /** Constructor for {@code UiState}. Initialises at PERSON_LIST_PANEL, aka "Home" */
     public UiState() {
         logger.info("Creating Ui State: Set to Home");
         this.state = ViewFinderState.PERSON_LIST_PANEL;

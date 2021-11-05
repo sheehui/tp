@@ -56,7 +56,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
-     * @param args
+     * @param args user input representing policy, liability or asset.
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override

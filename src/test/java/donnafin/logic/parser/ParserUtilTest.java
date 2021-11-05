@@ -147,24 +147,24 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMoney_validWithDollarSign() throws ParseException, MoneyException {
+    public void parseMoney_validWithDollarSign_success() throws ParseException, MoneyException {
         assertEquals(new Money(100), ParserUtil.parseMoney("$1"));
         assertEquals(new Money(100000), ParserUtil.parseMoney("$1000"));
     }
 
     @Test
-    public void parseMoney_validWithDollarSignCents() throws ParseException, MoneyException {
+    public void parseMoney_validWithDollarSignCents_success() throws ParseException, MoneyException {
         assertEquals(new Money(105), ParserUtil.parseMoney("$1.05"));
     }
 
     @Test
-    public void parseMoney_invalidWithoutDollarSign() throws ParseException {
+    public void parseMoney_invalidWithoutDollarSign_exceptionThrown() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.05"));
     }
 
     @Test
-    public void parseMoney_validWithWhiteSpace() throws ParseException, MoneyException {
+    public void parseMoney_validWithWhiteSpace_success() throws ParseException, MoneyException {
         // trailing whitespace
         assertEquals(new Money(100), ParserUtil.parseMoney("  $1  "));
         assertEquals(new Money(105), ParserUtil.parseMoney("  $1.05  "));
@@ -175,14 +175,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMoney_invalidWithNegative() throws ParseException {
+    public void parseMoney_negativeInput_exceptionThrown() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("-$1.00"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("-$1"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("- $1"));
     }
 
     @Test
-    public void parseMoney_invalidFormats() throws ParseException {
+    public void parseMoney_invalidFormats_exceptionThrown() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("1.00$"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$01.00"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$1.0.0"));
@@ -192,7 +192,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMoney_invalidWithWrongPrecision() {
+    public void parseMoney_wrongPrecision_exceptionThrown() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$ 1.0"));
         assertThrows(ParseException.class, () -> ParserUtil.parseMoney("$ 1.000"));
     }
@@ -253,7 +253,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTab_badSpellingOrInvalidTab_throwsParseErr() {
+    public void parseTab_badSpellingOrInvalidTab_exceptionThrown() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTab("x"));
         assertThrows(ParseException.class, () -> ParserUtil.parseTab("j"));
         assertThrows(ParseException.class, () -> ParserUtil.parseTab("k"));
@@ -264,7 +264,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTab_multipleTabs_throwError() {
+    public void parseTab_multipleTabs_exceptionThrown() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTab("contact policy"));
         assertThrows(ParseException.class, () -> ParserUtil.parseTab("c p"));
     }

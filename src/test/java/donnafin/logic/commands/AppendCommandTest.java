@@ -83,7 +83,6 @@ public class AppendCommandTest {
         combinedLiability.add(testLiability);
         combinedAssets = new HashSet<>(GEORGE.getAssets());
         combinedAssets.add(testAsset);
-
     }
 
     @Test
@@ -99,6 +98,20 @@ public class AppendCommandTest {
 
         // different AppendCommand -> returns false
         assertFalse(testCommand.equals(testCommand2));
+    }
+
+    @Test
+    public void equals_withMatchingObjects_pass() {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testPolicy);
+        AppendCommand testCommandAgain = new AppendCommand(personAdapter, testPolicy);
+        assertEquals(testCommand, testCommandAgain);
+    }
+
+    @Test
+    public void hashCode_withMatchingObjects_bothMatch() {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testPolicy);
+        AppendCommand testCommandAgain = new AppendCommand(personAdapter, testPolicy);
+        assertEquals(testCommand.hashCode(), testCommandAgain.hashCode());
     }
 
     @Test

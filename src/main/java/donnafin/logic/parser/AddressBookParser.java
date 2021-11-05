@@ -67,7 +67,7 @@ public final class AddressBookParser extends ParserStrategy {
             //fallthrough
 
         case SwitchTabCommand.COMMAND_WORD:
-            throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_HOMEWINDOW);
+            throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_HOME_WINDOW);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

@@ -29,7 +29,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
-     * @param args
+     * @param args user input indicating field to be edited and new value.
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override
