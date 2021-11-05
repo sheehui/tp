@@ -17,8 +17,8 @@ the various components than form DonnaFin.
 
 ### 1.2 Target Audience
 This developer guide is aimed at developers and advanced users of DonnaFin
-* Developers: anyone who wish to upgrade DonnaFin to support more functions.
-* Advanced Users: Financial Advisors who wish to better understand the features that DonnaFin Provides.
+* Developers: anyone who wishes to upgrade DonnaFin to support more functions.
+* Advanced Users: Financial Advisors who want to better understand the features that DonnaFin Provides.
 
 ### 1.3 About Donnafin
 DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
