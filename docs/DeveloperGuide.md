@@ -198,7 +198,17 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-
+How is `Person` stored?
+* `JsonAdaptedPerson` is created with Jackson.
+* Each `Person` in DonnaFin is stored as a `JsonAdaptedPerson` as shown in our class diagram above.
+* The name, email, phone number, address and notes of each `Person` is stored as a JsonProperty of type String.
+* Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
+and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
+and `JsonAdaptedPolicy` contains the necessary fields for their respective attributes, stored as a JsonProperty of type String.
+* As a `Person` can have more than one asset, liability and policy, we have chosen to store them as nested objects rather
+converting them into a single String before storage and converting them back to the correct attributes on retrieval from the database.
+* As such, `Asset`, `Liability` and `Policy` are stored in this special manner and any future attributes that share the same characteristics
+can be stored in the same way.
 
 ### 4.6 Common classes
 
@@ -371,16 +381,7 @@ State: Home Window
 
    Use case ends.
 
-**UC07: Exiting the application** \
-State: Works on both Home and Client Window
-
-**MSS**
-1. User requests to exit the application.
-2. DonnaFin closes itself.
-
-   Use case ends.
-
-**UC08: Switching to other tabs** \
+**UC07: Switching to other tabs** \
 State: Client Window
 
 **MSS**
@@ -397,7 +398,7 @@ State: Client Window
   * 1b1. DonnaFin shows an error message and tells the user that the tab they request does not match any existing tab. \
          Use case resumes at step 1.
 
-**UC09: Returning to Home Window**
+**UC08: Returning to Home Window**
 State: Client Window
 
 **MSS**
@@ -413,7 +414,7 @@ State: Client Window
   * 1a1. DonnaFin shows an error message. \
         Use case resumes at step 1.
 
-**UC10: Editing a client's contact information**
+**UC09: Editing a client's contact information**
 
 State: Client Window (Contacts Tab)
 
@@ -433,7 +434,7 @@ State: Client Window (Contacts Tab)
     * 1b1. Contact is not updated and DonnaFin shows an error message. \
       Use case resumes at step 1.
 
-**UC11: Adding an Asset to a Client**
+**UC10: Adding an Asset to a Client**
 
 State: Client Window (Assets Tab)
 
@@ -467,7 +468,7 @@ State: Client Window (Assets Tab)
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
 
-**UC13: Adding a Liability to a Client**
+**UC12: Adding a Liability to a Client**
 
 State: Client Window (Liabilities Tab)
 
@@ -484,7 +485,7 @@ State: Client Window (Liabilities Tab)
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
 
-**UC14: Removing a Liability from a Client**
+**UC13: Removing a Liability from a Client**
 
 State: Client Window (Liabilities Tab)
 
@@ -501,7 +502,7 @@ State: Client Window (Liabilities Tab)
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
 
-**UC15: Adding a Policy to a Client**
+**UC14: Adding a Policy to a Client**
 
 State: Client Window (Policies Tab)
 
@@ -534,6 +535,15 @@ State: Client Window (Policies Tab)
 * 1a. User's given index is invalid.
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
+    
+**UC16: Exiting the application** \
+State: Works on both Home and Client Window
+
+**MSS**
+1. User requests to exit the application.
+2. DonnaFin closes itself.
+
+   Use case ends.
 
 ### 6.4 Non-Functional Requirements
 
