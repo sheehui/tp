@@ -9,18 +9,38 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
 
+
+<img alt="DonnaFinLogo" src="./images/DonnaFin.png" width="800"/>
+
 DonnaFin.io is a desktop application used by financial advisors to keep track of their
-client information and related tasks. This is a Java program with about 10 kloc with
-a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a
-faster workflow for input and output. If you can type fast, you can use our CLI-like
-commands to manage your client information and view your notes much faster
-than your typical customer relationship manager apps.
+client information and related tasks. The '.io' in our name is a reflection of our belief 
+that you deserve a faster workflow for input and output. If you can type fast, 
+you can use our [CLI-like](#7-glossary) commands to manage your client information 
+and view your notes much faster than your typical customer relationship manager apps.
 
 Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
 
 ### 1.1 Is this guide for you?
 
+Are you a new user who is looking to get started with using DonnaFin? Perhaps you are a more 
+advanced user trying to refresh your understanding of the available commands? Look no further!
+This is the guide that will kickstart your journey as a DonnaFin whizz and even be your go-to
+reference if you need to refresh your understanding on some features. 
+Head over to [Quick Start](#2-quick-start) or [Features](#4-features) for more information.
+
 ### 1.2 How to use the user guide
+
+As most applications on the market are not CLI-based, this may come across 
+as new to some users. We strongly recommend that first-time users read through the user guide to gain a basic understanding
+of how to use our app. We have also included links to navigate around the user guide to allow easier access
+of related information. Some tips and tricks, as well as cautions are included throughout the guide to
+help you get more out of our application. Additionally, links back to the top of the page
+like below are present at the end of every section. For easier navigation around this User Guide, we suggest using our table of contents together with these 
+links to quickly find and access the information you need.
+
+This marks the end of the introduction. Click
+<a href="#top">here</a> to return to the top:
+--------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
 
@@ -58,6 +78,8 @@ Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readabilit
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
+This marks the end of the quick start. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About
@@ -91,6 +113,10 @@ Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readabilit
 * The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
+L
+This marks the end of the about section. Click 
+<a href="#top">here</a> to return to the top:
+--------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
 
@@ -477,6 +503,8 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 </div>
 
+This marks the end of the features section. Click
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
@@ -493,6 +521,8 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 **Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
+This marks the end of the FAQ section. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
@@ -529,3 +559,21 @@ This section gives a quick summary of how you may use DonnaFin.
 | **Add Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 | **Add Policy**   | `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`| `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
+
+
+This marks the end of the command summary section. Click 
+<a href="#top">here</a> to return to the top:
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Glossary
+
+* **CLI**: Abbreviation for command line interface, where commands are processed in the form of text
+as opposed to graphical user interfaces(mouse-based applications).
+* **Asset**: Items that generate profit or return on investment.
+* **Liability**: Obligations that require payments from the client.
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+financial protection or reimbursement against losses.
+
+This marks the end of the glossary. Click 
+<a href="#top">here</a> to return to the top:
+--------------------------------------------------------------------------------------------------------------------
