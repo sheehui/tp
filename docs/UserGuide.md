@@ -442,23 +442,39 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
+If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with 
+an empty data file at the next run.
 
-| Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing|
-| -----------------------------             | ---------------------------------------------------- |
-|`"totalValueInsured" : "$ 14000"`          | `"totalValueInsured" : " 14000"`                     | 
+```
+{
+  "persons" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "notes" : "Likes bread",
+    "policies" : [ {
+      "name" : "Golden Age",
+      "insurer" : "AIA",
+      "totalValueInsured" : "  14000.00", // note the invalid monetary format
+      "yearlyPremiums" : "$ 28.00",
+      "commission" : "$ 4.00"
+    } ],
+  } ]
+}
+```
 
-The first figure shows the original JSON data for totalValueInsured
-regarding the client Alex Yeoh. All attributes are in the correct format. However, if you tamper with the 
+The above figure shows the original JSON data for totalValueInsured
+regarding the client Alex Yeoh. If you tamper with the 
 JSON file directly and change one of the attributes to an invalid format, in this case the 
 total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
 discard all the data and start with an empty data file.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
+Only when *any* valid command is run, DonnaFin will assume that the intended action is to clear your data. 
+DonnaFin will then proceed to cleanly wipe donnafin.json and execute your command.
 
-When *any* valid command is run, DonnaFin will assume that the intended action is to clear your data and proceed to cleanly wipe
-donnafin.json and execute your command.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
