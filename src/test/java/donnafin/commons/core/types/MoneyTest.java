@@ -13,6 +13,11 @@ public class MoneyTest {
     public void constructor_positiveValue_success() throws MoneyException {
         assertEquals(123, new Money(123).getValue());
     }
+    
+    @Test
+    public void constructor_zero_success() throws MoneyException {
+        assertEquals(0, new Money(0).getValue());
+    }
 
     @Test
     public void constructor_negativeValue_throwsMoneyException() {
