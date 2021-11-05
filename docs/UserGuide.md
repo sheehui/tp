@@ -445,24 +445,17 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
 
-| Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
-| ---------- | --------------------------------------------------------------------- |
-| ![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
 
-The first figure shows the original JSON data 
+| Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing|
+| -----------------------------             | ---------------------------------------------------- |
+|`"totalValueInsured" : "$ 14000"`          | `"totalValueInsured" : " 14000"`                     | 
+
+The first figure shows the original JSON data for totalValueInsured
 regarding the client Alex Yeoh. All attributes are in the correct format. However, if you tamper with the 
 JSON file directly and change one of the attributes to an invalid format, in this case the 
 total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
-discard all the data and start with an empty data file as seen below.
+discard all the data and start with an empty data file.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
-
-| User Interface for DonnaFin           |  `donnafin.json`
-| ---------- | --------------------------------------------------------------------- |
-|![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
-
-
-The follow error message is displayed as well:
-![InvalidFormat](images/InvalidFormatError.png)
 
 When *any* valid command is run, DonnaFin will assume that the intended action is to clear your data and proceed to cleanly wipe
 donnafin.json and execute your command.
