@@ -353,9 +353,11 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Donnafin will discard all data and start with an empty data file at the next run.
 
+
 Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
 :-------------------------:|:-------------------------:
 ![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
+
 
 As seen in the above side by side comparsion, the first figure show the original .json data 
 regarding the client Alex Yeoh. All attributes are in the correct format. However, if you do tamper with the 
