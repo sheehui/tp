@@ -25,6 +25,7 @@ ParserContext .left.> ParserStrategy
 
 ABCParser -up-|> ParserStrategy
 ABCParser .down.> XYZCommandParser: creates >
+note right of ABCParser: Refers to any of the parsers: \n 1.AddressBookParser \n 2.ContactTabParser \n 3. PolicyTabParser \n 4.LiabilityTabParser \n 5. AssetTabParser \n 6.NotesTabparser
 
 XYZCommandParser ..> XYZCommand : creates >
 ABCParser ..> Command : returns >

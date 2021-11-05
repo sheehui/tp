@@ -148,14 +148,19 @@ to parse the user command.
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img alt="Parser Classes" src="images/ParserClasses.png" width="600"/>
-<img alt="Parser Strategy" src="images/ParserStrategy.png" width="600"/>
 
 How the parsing works:
 * `ParserContext` holds a reference to a `ParserStrategy` that is set based on the current tab the user is on etc.
-* When ParserContext calls upon the current ParserStrategy to parse a user command, the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When ParserContext calls upon the current ParserStrategy to parse a user command, 
+the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates 
+an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the
+other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the 
+implementation of commands section [here](#421-command).
+
+
+<img alt="Parser Strategy" src="images/ParserStrategy.png" width="600"/>
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` abstract class so that they can be treated similarly where possible e.g, during testing.
 * `ClientViewParser` and `AddressBookParser` inherit from `ParserStrategy` while the tab specific parsers inherit from `ClientViewParser` inherit.
-
 
 
 ### 4.1.3 Model component
@@ -210,7 +215,6 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
 
 
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
