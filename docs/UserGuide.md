@@ -92,8 +92,6 @@ Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readabilit
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 
-### 3.5 Command Terminology
-
 ## 4. Features
 
 This section gives you a detailed explanation on how each of our features work.
