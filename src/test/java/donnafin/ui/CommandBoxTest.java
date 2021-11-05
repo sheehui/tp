@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package donnafin.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,9 +14,6 @@ import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.exceptions.CommandException;
 import guitests.guihandles.CommandBoxHandle;
 import javafx.scene.input.KeyCode;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 public class CommandBoxTest extends GuiUnitTest {
 
