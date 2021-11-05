@@ -34,12 +34,12 @@ As most applications on the market are not CLI-based, this may come across
 as new to some users. We strongly recommend that first-time users read through the user guide to gain a basic understanding
 of how to use our app. We have also included links to navigate around the user guide to allow easier access
 of related information. Some tips and tricks, as well as cautions are included throughout the guide to
-help you get more out of our application and avoid certain common dangers. Also, links back to the top of the page
-like below are present at the end of every section. To allow for easier navigation 
-around the user guide, we suggest using the table of contents as well as these links to quickly
-find and access the information needed. 
+help you get more out of our application. Additionally, links back to the top of the page
+like below are present at the end of every section that bring you back to the start of our user guide.
+For easier navigation around this User Guide, we suggest using our table of contents together with these 
+links to quickly find and access the information you need.
 
-This marks the end of the section. Click
+This marks the end of the introduction. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ This marks the end of the section. Click
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
-This marks the end of the section. Click 
+This marks the end of the quick start. Click 
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -115,7 +115,7 @@ This marks the end of the section. Click
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 L
-This marks the end of the section. Click 
+This marks the end of the about section. Click 
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -504,7 +504,7 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 </div>
 
-This marks the end of the section. Click
+This marks the end of the features section. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -522,7 +522,7 @@ This marks the end of the section. Click
 **Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
-This marks the end of the section. Click 
+This marks the end of the FAQ section. Click 
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,7 +562,7 @@ This section gives a quick summary of how you may use DonnaFin.
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
 
 
-This marks the end of the section. Click 
+This marks the end of the command summary section. Click 
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -574,7 +574,6 @@ This marks the end of the section. Click
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
 financial protection or reimbursement against losses.
 
-This marks the end of the section. Click 
-<a href="#top">here</a>
-to return to the top:
+This marks the end of the glossary. Click 
+<a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
