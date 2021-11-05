@@ -54,11 +54,11 @@ public class AppendCommand extends Command {
     public static final String MESSAGE_DUPLICATE_POLICY = "Sorry, the policy with this exact specifications"
             + " has already been added!";
 
-    public static final String MESSAGE_SIMILAR_ASSET = "New asset added. "
+    public static final String MESSAGE_SIMILAR_ASSET = "New asset added. \n"
             + "Warning! An asset with a similar name has been added previously.";
-    public static final String MESSAGE_SIMILAR_LIABILITY = "New liability added. "
+    public static final String MESSAGE_SIMILAR_LIABILITY = "New liability added. \n"
             + "Warning! A liability with a similar name has been added previously.";
-    public static final String MESSAGE_SIMILAR_POLICY = "New policy added. "
+    public static final String MESSAGE_SIMILAR_POLICY = "New policy added. \n"
             + "Warning! A policy with a similar name has been added previously.";
 
     private static String messageResult;
