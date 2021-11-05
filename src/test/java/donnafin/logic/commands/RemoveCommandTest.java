@@ -1,5 +1,6 @@
 package donnafin.logic.commands;
 
+import static donnafin.logic.commands.CommandTestUtil.assertCommandFailure;
 import static donnafin.testutil.TypicalPersons.GEORGE;
 import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -127,5 +128,10 @@ public class RemoveCommandTest {
         assertEquals(GEORGE, personAdapter.getSubject());
     }
 
+    @Test
+    public void execute_invalidIndex_throwsCommandException() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldLiability, index2);
+        assertCommandFailure(testCommand, model, "No such index found.");
+    }
 
 }

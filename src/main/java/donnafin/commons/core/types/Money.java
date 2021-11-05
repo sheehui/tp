@@ -8,7 +8,8 @@ public class Money {
     public static final String MONEY_ARITHMETIC_OVERFLOW =
             "Unable to calculate due to Integer limitations.";
     public static final String MESSAGE_CONSTRAINTS = "Monetary value fields should start with '$' followed by digits."
-            + " 2 digits preceded by a '.' may be added at the end to indicate cents";
+            + " 2 digits preceded by a '.' may be added at the end to indicate cents"
+            + "\nExample: '$2.40', or '$2'";
     private static final String CURRENCY_SYMBOL = "$";
     private static final int CURRENCY_EXPONENT = 2;
 
