@@ -56,7 +56,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Design
+## 4. Design and Implementation
 
 <div markdown="span" class="alert alert-primary">
 
@@ -204,12 +204,7 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-## 5. Implementation
-
---------------------------------------------------------------------------------------------------------------------
-
-## 6. Documentation, logging, testing, configuration, dev-ops
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -219,9 +214,9 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Appendix: Requirements
+## 6. Appendix: Requirements
 
-### 7.1 Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -248,7 +243,7 @@ product’s scope only covers the personal use of the product. It does not link 
 financial calculators, financial databases or cover market information.
 
 
-### 7.2 User stories
+### 6.2 User stories
 
 Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikely to have) - `LOW`
 
@@ -285,7 +280,7 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `LOW`      | new user                                   | follow a tutorial when jotting down notes for a client |   learn how to jot down quick notes regarding general information of the client |
 
 
-### 7.3 Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `DonnaFin` application and the **Actor** is the `user`, unless specified otherwise)
 
@@ -421,7 +416,7 @@ State: Client Window (Contact Tab)
       Use case resumes at step 1.
 
 
-### 7.4 Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -434,7 +429,7 @@ State: Client Window (Contact Tab)
 9.  The application should not require any installer to start functioning.
 10. The GUI should appear fine for screen resolutions 1920x1080 and higher.
 
-### 7.5 Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private client detail**: A client detail that is not meant to be shared with others
@@ -444,7 +439,7 @@ State: Client Window (Contact Tab)
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Appendix: Instructions for manual testing
+## 7. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -453,7 +448,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 8.1 Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -470,7 +465,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### 8.2 Deleting a client
+### 7.2 Deleting a client
 
 1. Deleting a client while all clients are being shown (home window)
 
@@ -487,7 +482,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### 8.3 Viewing and editing a client
+### 7.3 Viewing and editing a client
 
 1. Enter client window
     
@@ -504,7 +499,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### 8.4 Saving data
+### 7.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
