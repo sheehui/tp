@@ -6,8 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.AppendCommand;
@@ -21,19 +24,35 @@ import donnafin.model.ModelManager;
 import donnafin.model.UserPrefs;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Person;
+import donnafin.storage.JsonAddressBookStorage;
+import donnafin.storage.JsonUserPrefsStorage;
+import donnafin.storage.Storage;
+import donnafin.storage.StorageManager;
 
 public class AssetsTabParserTest {
+
+    @TempDir
+    public Path testFolder;
+
     private PersonAdapter personAdapter;
     private Model model;
+    private Storage storage;
     private Person person;
     private AssetsTabParser parser;
 
     @BeforeEach
     private void reset() {
         person = getTypicalPersons().get(0);
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), storage);
         this.personAdapter = new PersonAdapter(model, person);
         parser = new AssetsTabParser(personAdapter);
+    }
+
+    private Path getTempFilePath(String fileName) {
+        return testFolder.resolve(fileName);
     }
 
     @Test
