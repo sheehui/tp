@@ -50,7 +50,7 @@ Libraries / Framework
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **3. Setting up, getting started**
+## 3. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
