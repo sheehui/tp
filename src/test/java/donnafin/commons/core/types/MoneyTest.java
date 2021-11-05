@@ -10,17 +10,33 @@ import donnafin.commons.core.types.Money.MoneyException;
 public class MoneyTest {
 
     @Test
-    public void getMoneyFromIntegerCheckValue() throws MoneyException {
+    public void constructor_positiveValue_success() throws MoneyException {
         assertEquals(123, new Money(123).getValue());
     }
 
     @Test
-    public void getMoneyFromNegativeValue_fails_throwsMoneyException() {
+    public void constructor_negativeValue_throwsMoneyException() {
         assertThrows(MoneyException.class, () -> new Money(-123));
     }
 
     @Test
-    public void checkMoneyOutput() throws MoneyException {
+    public void constructor_fullCentsString_success() throws MoneyException {
+        assertEquals("$ 1.23", new Money(123).toString());
+    }
+
+    @Test
+    public void constructor_paddedCentsString_success() throws MoneyException {
+        assertEquals("$ 1.03", new Money(103).toString());
+    }
+
+    @Test
+    public void constructor_onlyCentsString_success() throws MoneyException {
+        assertEquals("$ 0.03", new Money(3).toString());
+        assertEquals("$ 0.00", new Money(0).toString());
+    }
+
+    @Test
+    public void toString_checkMoneyOutput_success() throws MoneyException {
         assertEquals("$ 1.00", new Money(100).toString());
         assertEquals("$ 3.00", new Money(300).toString());
         assertEquals("$ 1.20", new Money(120).toString());
@@ -28,23 +44,7 @@ public class MoneyTest {
     }
 
     @Test
-    public void testFullCentsString() throws MoneyException {
-        assertEquals("$ 1.23", new Money(123).toString());
-    }
-
-    @Test
-    public void testPaddedCentsString() throws MoneyException {
-        assertEquals("$ 1.03", new Money(103).toString());
-    }
-
-    @Test
-    public void testOnlyCentsString() throws MoneyException {
-        assertEquals("$ 0.03", new Money(3).toString());
-        assertEquals("$ 0.00", new Money(0).toString());
-    }
-
-    @Test
-    public void mathTest() throws MoneyException {
+    public void addSubtract_validInputs_success() throws MoneyException {
         Money oneCent = new Money(1);
         Money oneDollar = new Money(100);
         assertEquals(101, Money.add(oneCent, oneDollar).getValue());
@@ -52,7 +52,8 @@ public class MoneyTest {
     }
 
     @Test
-    public void safeMaths() throws MoneyException {
+    public void addSubtract_dataOverflow_throwsMoneyException() throws MoneyException {
+        // grey box testing: using knowledge that it is based on Long
         Money maxValue = new Money(Long.MAX_VALUE);
         Money minValue = new Money(0);
         Money oneCent = new Money(1);
@@ -62,7 +63,7 @@ public class MoneyTest {
     }
 
     @Test
-    public void equals() throws MoneyException {
+    public void equals_testMoneyAddSubtract_success() throws MoneyException {
         Money oneDollar = new Money(100);
         Money oneDollarAgain = new Money(100);
 
