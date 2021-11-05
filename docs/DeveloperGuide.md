@@ -20,7 +20,7 @@ This developer guide is aimed at developers and advanced users of DonnaFin
 * Developers: anyone who wishes to upgrade DonnaFin to support more functions.
 * Advanced Users: Financial Advisors who want to better understand the features that DonnaFin Provides.
 
-### 1.3 About Donnafin
+### 1.3 About DonnaFin
 DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
 Despite the application having an intuitive Graphical User Interface (GUI), it is optimized for entering commands using
 a Command Line Interface (CLI).
@@ -198,6 +198,8 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+
+
 ### 4.6 Common classes
 
 Classes used by multiple components are in the `donnafin.commons` package.
@@ -323,6 +325,8 @@ State: Home Window
 1. User chooses to find a client within DonnaFin using the right syntax.
 2. DonnaFin displays the clients that match the keyword inputted.
 
+   Use case ends.
+
 **Extensions**
 * 1a. The user types the command using the wrong syntax.
   * 1a1. DonnaFin shows an error message.\
@@ -337,6 +341,8 @@ State: Home Window
 **MSS**
 1. User requests to view a client using the right syntax.
 2. DonnaFin displays details on the client.
+
+   Use case ends.
 
 **Extensions**
 * 1a. The user types the command using the wrong syntax.
@@ -354,6 +360,8 @@ State: Works on both Home and Client Window
 1. User requests for help to get assistance on commands.
 2. DonnaFin displays a window with the user guide for the DonnaFin application.
 
+   Use case ends.
+
 **UC06: Listing all clients** \
 State: Home Window
 
@@ -361,13 +369,16 @@ State: Home Window
 1. User requests for the list of all the registered clients.
 2. DonnaFin displays all the clients that has been registered within DonnaFin.
 
+   Use case ends.
+
 **UC07: Exiting the application** \
 State: Works on both Home and Client Window
-
 
 **MSS**
 1. User requests to exit the application.
 2. DonnaFin closes itself.
+
+   Use case ends.
 
 **UC08: Switching to other tabs** \
 State: Client Window
@@ -375,6 +386,8 @@ State: Client Window
 **MSS**
 1. User requests to view another tab within the client Window.
 2. DonnaFin switches the current tab to the requested tab.
+
+   Use case ends.
 
 **Extensions**
 * 1a. The user types the wrong command.
@@ -392,6 +405,8 @@ State: Client Window
 1. User requests to return to home window.
 2. DonnaFin switches the view back to home window.
 
+   Use case ends.
+
 **Extensions**
 
 * 1a. The user types the wrong command.
@@ -399,12 +414,15 @@ State: Client Window
         Use case resumes at step 1.
 
 **UC10: Editing a client's contact information**
-State: Client Window (Contact Tab)
+
+State: Client Window (Contacts Tab)
 
 **MSS**
 
-1. User requests to edit client's contact information
-2. Field is edited and client window with the updated field is shown
+1. User requests to edit client's contact information.
+2. Field is edited and client window with the updated field is shown.
+
+   Use case ends.
 
 **Extensions**
 
@@ -415,6 +433,107 @@ State: Client Window (Contact Tab)
     * 1b1. Contact is not updated and DonnaFin shows an error message. \
       Use case resumes at step 1.
 
+**UC11: Adding an Asset to a Client**
+
+State: Client Window (Assets Tab)
+
+**MSS**
+
+1. User requests to add an asset to the client.
+2. DonnaFin adds the asset.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+
+**UC11: Removing an Asset from a Client**
+
+State: Client Window (Assets Tab)
+
+**MSS**
+
+1. User requests to remove an asset from the client.
+2. DonnaFin removes the asset.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User's given index is invalid.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+
+**UC13: Adding a Liability to a Client**
+
+State: Client Window (Liabilities Tab)
+
+**MSS**
+
+1. User requests to add a liability to the client.
+2. DonnaFin adds the liability.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+
+**UC14: Removing a Liability from a Client**
+
+State: Client Window (Liabilities Tab)
+
+**MSS**
+
+1. User requests to remove a specific liability from the client.
+2. DonnaFin deletes the liability.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User's given index is invalid.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+
+**UC15: Adding a Policy to a Client**
+
+State: Client Window (Policies Tab)
+
+**MSS**
+
+1. User requests to add a policy to the client.
+2. DonnaFin adds the policy.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
+
+**UC15: Removing a Policy from a Client**
+
+State: Client Window (Policies Tab)
+
+**MSS**
+
+1. User requests to remove a policy from the client.
+2. DonnaFin removes the policy.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User's given index is invalid.
+    * 1a1. DonnaFin shows an error message. \
+      Use case resumes at step 1.
 
 ### 6.4 Non-Functional Requirements
 
