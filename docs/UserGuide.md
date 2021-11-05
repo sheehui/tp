@@ -99,7 +99,7 @@ Examples:
 Do take note that there is a near duplicate check for names. This means that when 
 adding a person whose name is similar to another client already found in DonnaFin, 
 the result display will prompt the user as such but the client will still be added to 
-the contact list. However, if the names are complete duplcates they will be rejected.
+the contact list. However, if the names are exact duplicates they will be rejected.
 
 Near duplicate:
 ![DuplicateRejectionMessage](images/NearDuplicateRejectionMessage.png)
@@ -107,8 +107,9 @@ Near duplicate:
 Duplicate:
 ![FullDuplicateRejectionMessage](./images/FullDuplicateRejectionMessage.png)
 
-Names are said to be near duplicates if the lowercase of both names are the same or when
-a space in the name is input as 2 or more spaces. See below for more examples
+Names are said to be near duplicates if the names differs only in case 
+(upper case letters where there are lower case letters) or 
+with spaces (user types in two or more spaces in place of one)
 
 | First Name     | Second Name                        | Is near duplicate
 | -------------- | ---------------------------------------| -------------------------------------------------------------------------------------------------- |
@@ -120,8 +121,8 @@ a space in the name is input as 2 or more spaces. See below for more examples
 | davidLi     | David Li                        | no
 | DavidLi     | David Li                        | no
 
-Note that this does not apply for near duplicates for 
-no spaces and one space as seen in the last 2 examples above.
+Note that this duplicate detection does not try to combine separated words. 
+E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 
 #### Deleting a Client : `delete`
 
