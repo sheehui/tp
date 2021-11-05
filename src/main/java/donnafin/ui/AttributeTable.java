@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import donnafin.model.person.Attribute;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,13 +22,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class AttributeTable<T> extends UiPart<Region> {
+/** Generate a rich table view for lists of attributes. */
+public class AttributeTable<T extends Attribute> extends UiPart<Region> {
 
     private static final String FXML = "AttributeTable.fxml";
 
     /**
      * ColumnConfig is a data class representing the values required to make a
-     * column in the {@code AttributeTable}.
+     * column in the {@code AttributeTable}. Used in {@code TableConfig}.
      */
     public static class ColumnConfig {
         final String heading;
@@ -42,7 +44,6 @@ public class AttributeTable<T> extends UiPart<Region> {
          *
          * @param heading title of the column
          * @param propertyName name of the variable (must have a public getter function too)
-         * @param minWidth in pixels
          */
         public ColumnConfig(String heading, String propertyName, int prefWidth, int maxWidth) {
             this.heading = heading;
@@ -64,6 +65,10 @@ public class AttributeTable<T> extends UiPart<Region> {
         String applyOn(Collection<? extends R> collection);
     }
 
+    /**
+     * TableConfig is a data class representing the values required to make a
+     * table in {@code AttributeTable}.
+     */
     public static class TableConfig<R> {
         public final String tableTitle;
         public final List<ColumnConfig> columnConfigs;
@@ -91,8 +96,6 @@ public class AttributeTable<T> extends UiPart<Region> {
 
     @FXML
     private TableView<T> table;
-
-    private final ObservableList<T> data;
 
     /**
      * Creates a custom made table for a collection of attributes.
@@ -153,13 +156,9 @@ public class AttributeTable<T> extends UiPart<Region> {
         List<T> sortedCollection = collection.stream()
                 .sorted(Comparator.comparing(Object::toString))
                 .collect(Collectors.toList());
-        data = FXCollections.observableArrayList(sortedCollection);
+        ObservableList<T> data = FXCollections.observableArrayList(sortedCollection);
         table.getColumns().addAll(columns);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.setItems(data);
-    }
-
-    public VBox getContainer() {
-        return container;
     }
 }

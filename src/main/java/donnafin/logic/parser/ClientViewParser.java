@@ -62,7 +62,7 @@ public abstract class ClientViewParser extends ParserStrategy {
             //fallthrough
 
         case ViewCommand.COMMAND_WORD:
-            throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_CLIENTWINDOW);
+            throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_CLIENT_WINDOW);
 
         default:
             return tabSpecificHandler(commandWord, arguments);
@@ -76,7 +76,7 @@ public abstract class ClientViewParser extends ParserStrategy {
         if (this == o) {
             return true;
         }
-        if (o == null || !(o instanceof ClientViewParser)) {
+        if (!(o instanceof ClientViewParser)) {
             return false;
         }
         ClientViewParser that = (ClientViewParser) o;

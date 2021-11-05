@@ -30,7 +30,7 @@ public class SwitchTabCommandTest {
     }
 
     @Test
-    public void execute_view_success() {
+    public void execute_switchTab_success() {
         assertCommandAction(
                 new SwitchTabCommand(ViewFinderState.CONTACT, personAdapter),
                 CommandTestUtil.UiActionType.SWITCH_TAB_CONTACT);

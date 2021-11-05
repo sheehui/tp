@@ -110,7 +110,6 @@ public class AppendCommand extends Command {
                 liabilities.add(liability);
                 pa.editLiabilities(liabilities);
                 messageResult = containsSimilarName ? MESSAGE_SIMILAR_LIABILITY : MESSAGE_SUCCESS_LIABILITY;
-
             }
         };
     }
