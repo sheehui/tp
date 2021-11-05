@@ -9,18 +9,33 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
 
+
+<img alt="DonnaFinLogo" src="./images/DonnaFinLogo.png" width="1232"/>
+
 DonnaFin.io is a desktop application used by financial advisors to keep track of their
-client information and related tasks. This is a Java program with about 10 kloc with
-a JavaFX GUI. The '.io' in our name is a reflection of our belief that you deserve a
-faster workflow for input and output. If you can type fast, you can use our CLI-like
-commands to manage your client information and view your notes much faster
-than your typical customer relationship manager apps.
+client information and related tasks. The '.io' in our name is a reflection of our belief 
+that you deserve a faster workflow for input and output. If you can type fast, 
+you can use our CLI-like commands to manage your client information 
+and view your notes much faster than your typical customer relationship manager apps.
 
 Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
 
 ### 1.1 Is this guide for you?
 
+Are you a new user who is looking to get started with using DonnaFin? Perhaps you are a more 
+advanced user trying to refresh your understanding of the available commands? Look no further!
+This is the guide that will kickstart your journey as a DonnaFin whizz and even be your go-to
+reference if you need to refresh your understanding on some features. 
+Head over to [Quick Start](#2-quick-start) or [Features](#4-features) for more information.
+
 ### 1.2 How to use the user guide
+
+As most applications in the market are not CLI-based, this may come across 
+as new to some users. We strongly recommend that first time users read through the user guide to gain a basic understanding
+of how to use our app. We have also included links to navigate around the user guide to allow easier access
+of related information. Some tips and tricks, as well as cautions are included throughout the guide to
+help you get more out of the application and avoid certain common dangers. Lastly, please do use the table of contents
+at the top of the document for easier navigation throughout document. 
 
 ## 2. Quick start
 
