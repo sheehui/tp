@@ -79,7 +79,6 @@ public class UiManager implements Ui {
         uiState.setStatePersonalInformationTab();
     }
 
-
     @Override
     public void switchClientViewTab(ViewFinderState tab) throws ParseException {
         mainWindow.switchClientViewTab(tab);
@@ -164,10 +163,6 @@ public class UiManager implements Ui {
         logic.setGuiSettings(guiSettings);
     };
 
-    public MainWindow getMainWindow() {
-        return this.mainWindow;
-    }
-
     public ViewFinderState getUiState() {
         return uiState.getState();
     }
@@ -183,10 +178,8 @@ public class UiManager implements Ui {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         CommandResult commandResult = logic.execute(commandText);
         Consumer<Ui> uiAction = commandResult.getUiAction();
-        assert !uiAction.equals(null) : "commandResult.uiAction was set as null";
-        if (!uiAction.equals(null)) {
-            uiAction.accept(this);
-        }
+        assert uiAction != null : "commandResult.uiAction was set as null";
+        uiAction.accept(this);
         return commandResult;
     };
 

@@ -25,7 +25,7 @@ public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": removes a row from the attribute table. "
+            + ": removes a row from the attribute table. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: remove 3";
     private static final String MESSAGE_SUCCESS = "Successfully removed row.";

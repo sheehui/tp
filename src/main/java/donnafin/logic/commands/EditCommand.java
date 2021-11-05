@@ -39,7 +39,6 @@ public class EditCommand extends Command {
     private final PersonAdapter personAdapter;
     private final Consumer<PersonAdapter> editor;
 
-
     /**
      * @param personAdapter of the person in the filtered person list to edit
      * @param editor new editor for the contact.
