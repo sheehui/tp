@@ -184,7 +184,8 @@ Examples:
 
 #### 4.2.5 View Client Information : `view`
 
-Access client information in a 'client view' mode where all data on the client is presented to you. Once in the page, you can see each field in detail and edit existing information.
+Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see each client field in detail and edit existing information.
+You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing `view`.
 
 Format: `view INDEX`
 
@@ -278,7 +279,7 @@ Examples:
 * `tab n`
 * `tab note`
 
-#### 4.3.2 Edit Contacts: `edit`
+#### 4.3.2 Edit Client's Contact Information: `edit`
 
 You can edit your client's contact fields with our `edit` command. You should be in `Contacts` tab to use these commands.
 
@@ -291,7 +292,7 @@ Example: `edit n/Allison Wang e/allison@plpgp.com`
 
 Below is a breakdown of how you can edit each contact field.
 
-##### 4.3.2.1 Edit Client Name
+##### 4.3.2.1 Edit Client's Name
 
 You can edit the name of the client you are currently viewing with our `edit` command.
 
@@ -301,7 +302,7 @@ Format: `edit n/NAME`
 
 Example: `edit n/Allison Wang`
 
-##### 4.3.2.2 Edit Client Phone Number
+##### 4.3.2.2 Edit Client's Phone Number
 
 You can edit the phone number of the client you are currently viewing with our `edit` command.
 
@@ -311,7 +312,7 @@ Format: `edit p/PHONE_NUMBER`
 
 Example: `edit p/81753076`
 
-##### 4.3.2.3 Edit Client Address
+##### 4.3.2.3 Edit Client's Address
 
 You can edit the address of the client you are currently viewing with our `edit` command.
 
@@ -321,7 +322,7 @@ Format: `edit a/ADDRESS`
 
 Example: `edit a/#12-123 Phua Chu Kang Ave 7`
 
-##### 4.3.2.4 Edit Client Email
+##### 4.3.2.4 Edit Client's Email
 
 You can edit the email of the client you are currently viewing with our `edit` command.
 
@@ -336,7 +337,7 @@ Example: `edit e/allison@gmail.com`
 Asset Features consists of features that enables you to add and remove assets
 for your clients. You must be in the `Assets` tab for these functions to work as intended.
 
-##### 4.3.3.1 Add an Asset: `append`
+##### 4.3.3.1 Add an Asset to a Client: `append`
 
 Adds a new asset to the current client you are viewing.
 
@@ -348,7 +349,7 @@ Format: `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`
 Example:
 * `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
 
-##### 4.3.3.2 Remove an Asset: `remove`
+##### 4.3.3.2 Remove an Asset from a Client: `remove`
 
 Remove an existing asset from the current client you are viewing.
 
@@ -366,7 +367,7 @@ Example:
 Liability Features consists of features that enables you to add and remove liabilities
 for your clients. You must be in the `Liabilities` tab for these functions to work as intended.
 
-##### 4.3.4.1 Add a Liability: `append`
+##### 4.3.4.1 Add a Liability to a Client: `append`
 
 Adds a new liability to the current client you are viewing.
 
@@ -378,7 +379,7 @@ Format: `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_
 Example:
 * `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
 
-##### 4.3.4.2 Remove a Liability: `remove`
+##### 4.3.4.2 Remove a Liability from a Client: `remove`
 
 Remove an existing liability from the current client you are viewing.
 
@@ -396,7 +397,7 @@ Example:
 Policy Features consists of features that enables you to add and remove policies
 for your clients. You must be in the `Policies` tab for these functions to work as intended.
 
-##### 4.3.5.1 Add a Policy: `append`
+##### 4.3.5.1 Add a Policy to a Client: `append`
 
 Adds a new policy to the current client you are viewing. You must be in the `Policies` tab.
 
@@ -408,7 +409,7 @@ Format: `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$
 Example:
 * `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
 
-##### 4.3.5.2 Remove a Policy: `remove`
+##### 4.3.5.2 Remove a Policy from a Client: `remove`
 
 Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
 
@@ -446,9 +447,9 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with an empty data file at the next run.
 
-Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
-:-------------------------:|:-------------------------:
-![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
+| Original `donnafin.json` format           |  Invalid `donnafin.json` format due to direct editing
+| ---------- | --------------------------------------------------------------------- |
+| ![DataSetAlexYeoh](images/DataSetAlexYeoh.png) | ![DataSetAlexYeohWrongFormat](./images/DataSetAlexYeohWrongFormat.png)
 
 The first figure shows the original JSON data 
 regarding the client Alex Yeoh. All attributes are in the correct format. However, if you tamper with the 
@@ -457,9 +458,9 @@ total value of assets(supposed to be prefixed with a $ to indicate that it is a 
 discard all the data and start with an empty data file as seen below.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
 
-User Interface for DonnaFin           |  `donnafin.json`
-:-------------------------:|:-------------------------:
-![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
+| User Interface for DonnaFin           |  `donnafin.json`
+| ---------- | --------------------------------------------------------------------- |
+|![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
 
 The follow error message is displayed as well:
 ![InvalidFormat](images/InvalidFormatError.png)
