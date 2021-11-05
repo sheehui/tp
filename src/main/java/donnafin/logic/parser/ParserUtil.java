@@ -235,10 +235,11 @@ public class ParserUtil {
         String trimmedInput = money.trim();
 
         // Handling Default currency $XYZ or $XYZ.AB
-        final String regexDollarCents = "^\\s*\\$\\s*(([1-9]\\d*)|(0))(\\.\\d{2})?$";
-        final String dollarCentsPrefix = "$";
+        final String positiveInts = "([1-9]\\d*)"; // rejects starting non-zero ints with a zero (e.g. '02');
+        final String regexOptionalCents = "(\\.\\d{2})?";
+        final String regexDollarFormat = "^\\$\\s*(" + positiveInts + "|(0))" + regexOptionalCents + "$";
 
-        if (!trimmedInput.matches(regexDollarCents)) {
+        if (!trimmedInput.matches(regexDollarFormat)) {
             throw new ParseException(
                     String.format(
                             "Input string '%s' does not match monetary value format.\n%s",
@@ -247,7 +248,7 @@ public class ParserUtil {
             );
         }
 
-        String decimalString = trimmedInput.replace(dollarCentsPrefix, "").replace(" ", "");
+        String decimalString = trimmedInput.replace(Money.CURRENCY_SYMBOL, "").replace(" ", "");
         if (!decimalString.contains(".")) {
             decimalString += ".00";
         }
