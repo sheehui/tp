@@ -152,12 +152,7 @@ public class PersonAdapter {
                 curr.getAssets()
         );
         this.subject = personToEdit;
-        try {
-            model.setPerson(curr, personToEdit);
-            model.saveAddressBook();
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        this.trySaveAddressBook(curr, personToEdit);
     }
 
     /**
