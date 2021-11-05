@@ -366,9 +366,11 @@ total value of assets(supposed to be prefixed with a $ to indicate that it is a 
 discard all the data and start with an empty data file as seen below.
 When this happens however, to prevent total loss of your data, we do not delete it right away.
 
+
 User Interface for DonnaFin           |  `donnafin.json`
 :-------------------------:|:-------------------------:
 ![NoUser](images/EmptyGUIForDonnaFin.png) | ![NoUserJson](./images/DataSetFullAlexYeoh.png)
+
 
 The follow error message is displayed as well:
 ![InvalidFormat](images/InvalidFormatError.png)
