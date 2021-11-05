@@ -98,12 +98,4 @@ public interface Model {
      * @return a set of sets where each set contains weak duplicates together.
      */
     Set<Person> getWeakDuplicates(Person target);
-
-    /**
-     * Find possible user errors (very similar clients of the same name).
-     * Weak duplicates refer to comparing {@code Person} and ignoring case and white space.
-     *
-     * @return result of running {@code getWeakDuplicates} on each clients.
-     */
-    Set<Set<Person>> getWeakDuplicatesAllClients();
 }

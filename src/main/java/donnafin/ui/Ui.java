@@ -2,7 +2,6 @@ package donnafin.ui;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.parser.exceptions.ParseException;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -33,10 +32,4 @@ public interface Ui {
     void showHome();
 
     ViewFinderState getUiState();
-
-    /**
-     * Shows an alert dialog on {@code owner} with the given parameters.
-     * This method only returns after the user has closed the alert dialog.
-     */
-    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText);
 }

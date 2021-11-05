@@ -149,14 +149,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Set<Set<Person>> getWeakDuplicatesAllClients() {
-        return getAddressBook().getPersonList().stream()
-                .map(this::getWeakDuplicates)
-                .filter(set -> set.size() != 1)
-                .collect(Collectors.toSet());
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
