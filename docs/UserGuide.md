@@ -568,7 +568,8 @@ This marks the end of the command summary section. Click
 
 ## 7. Glossary
 
-* **CLI**: Abbreviation for command line interface, where commands are processed in the form of text.
+* **CLI**: Abbreviation for command line interface, where commands are processed in the form of text
+as opposed to graphical user interfaces(mouse based applications).
 * **Asset**: Items that generate profit or return on investment.
 * **Liability**: Obligations that require payments from the client.
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
