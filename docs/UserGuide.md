@@ -10,7 +10,7 @@ title: User Guide
 ## 1. Introduction
 
 
-<img alt="DonnaFinLogo" src="./images/DonnaFin.png" width="1232"/>
+<img alt="DonnaFinLogo" src="./images/DonnaFin.png" width="800"/>
 
 DonnaFin.io is a desktop application used by financial advisors to keep track of their
 client information and related tasks. The '.io' in our name is a reflection of our belief 
