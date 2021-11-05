@@ -196,38 +196,50 @@ Classes used by multiple components are in the `donnafin.commons` package.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+This will be a reference to explain the general flow of how the commands work later. 
 
-<img alt="Architecture Sequence Diagram" src="images/ArchitectureSequenceDiagram.png" width="574" />
+Command types fall into 3 main categories
+1. Commands that affect Model
+2. Commands that involve changing of tab
+3. Commands that involve editing of personal information of a client
 
-Here is an explanation of what takes place when the user enters the command `delete 1`
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+|  |  |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="400" /> | <img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="400" /> | 
+
+
+Here is an explanation of what takes place when the user enters the command `delete 1` which falls under first [category](#42-implementation-and-commands).
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input. 
 * The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
 * The `Model` component then deletes the `Person` object p from the `addressBook`.
+* The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
+* The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.1 Command
-
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
+#### 4.2.2 SwitchTab Command
 
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
+Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
 How the `ABCParser` in ParserContext is updated:
-1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view.
+1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. Refer [here](#42-implementation-and-commands) for more information regarding consumers.
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present. `LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
+4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.
 
-There is also another noteworthy Logic class, `PersonAdapter`, that serves as a wrapper for the Model class `Person`.
+#### 4.2.3 Edit Command
+
+Edit command is a command that is able to change a client's contact information. This falls under the third [category](#42-implementation-and-commands)
+
+The class`PersonAdapter` is the class doing most of the legwork here.`PersonAdpater` serves as a wrapper for the Model class `Person`.
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
 Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
 
+In the edit command above, the `PersonAdapter` accepts the edit command that is parsed by `ContactTabParser`
+
+
+#### 4.2.4 Append Command
 
 --------------------------------------------------------------------------------------------------------------------
 
