@@ -30,12 +30,14 @@ Head over to [Quick Start](#2-quick-start) or [Features](#4-features) for more i
 
 ### 1.2 How to use the user guide
 
-As most applications in the market are not CLI-based, this may come across 
-as new to some users. We strongly recommend that first time users read through the user guide to gain a basic understanding
+As most applications on the market are not CLI-based, this may come across 
+as new to some users. We strongly recommend that first-time users read through the user guide to gain a basic understanding
 of how to use our app. We have also included links to navigate around the user guide to allow easier access
 of related information. Some tips and tricks, as well as cautions are included throughout the guide to
-help you get more out of the application and avoid certain common dangers. Lastly, please do use the table of contents
-at the top of the document for easier navigation throughout document. 
+help you get more out of our application and avoid certain common dangers. Also, links back to the top of the page
+like below are present at the end of every section. To allow for easier navigation 
+around the user guide, we suggest using the table of contents as well as these links to quickly
+find and access the information needed. 
 
 This marks the end of the section. Click here to return to the top:
 <a href="#top">Back to top</a>
@@ -567,9 +569,8 @@ This marks the end of the section. Click here to return to the top:
 ## 7. Glossary
 
 * **CLI**: Abbreviation for command line interface, where commands are processed in the form of text.
-* **Private client detail**: A client detail that is not meant to be shared with others
-* **Asset**: Things of present or future value owned by a client
-* **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
+* **Asset**: Items that generate profit or return on investment.
+* **Liability**: Obligations that require payments from the client.
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
 financial protection or reimbursement against losses.
 
