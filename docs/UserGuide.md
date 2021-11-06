@@ -88,6 +88,31 @@ This marks the end of the quick start. Click
 
 ### 3.2 Application Home Window Breakdown
 
+Here is an overview of the different elements that makes up the Home Window of DonnaFin
+
+![MainWindowScreenshot.png](./images/MainWindowScreenshot.png)
+
+#### 3.2.1 Quick Access Buttons
+* This area gives you access to the File button that allows the you to quickly exit the app, and the help 
+  button that redirects you to the User Guide for further guidance.
+
+#### 3.2.2 Command Box
+* The command box is where you can enter your commands in.
+
+#### 3.2.3 Results Display
+* The results display is where the action taken by DonnaFin in response to the command you keyed in is displayed.
+* In the event you enter an invalid or wrongly formatted command, the error message will be displayed here as well.
+
+#### 3.2.4 Client List Window
+In this section, you will be able to view a list of all the clients that have their records stored on DonnaFin.
+
+The following details of your client is also viewable from the Client List Window:
+1. Index
+2. Name
+3. Phone
+4. Address
+5. Email Address
+
 ### 3.3 Client Explanation
 
 ### 3.4 Application Client Window Breakdown
