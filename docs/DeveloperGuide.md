@@ -97,7 +97,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### 4.1.1 UI component
+#### 4.1.1 UI component
 
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java) specifies the API of this component.
 
@@ -130,7 +130,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### 4.1.2 Logic component
+#### 4.1.2 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -163,7 +163,7 @@ implementation of commands section [here](#421-command).
 * `ClientViewParser` and `AddressBookParser` inherit from `ParserStrategy` while the tab specific parsers inherit from `ClientViewParser` inherit.
 
 
-### 4.1.3 Model component
+#### 4.1.3 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img alt="Model Class Diagram" src="images/ModelClassDiagram.png" width="450" />
@@ -176,7 +176,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Storage` object and communicates with it to save address book to user files.
 
-### 4.1.4 Storage component
+#### 4.1.4 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -230,7 +230,7 @@ Here is an example of a `Person` in JSON form:
 }
 ```
 
-### 4.6 Common classes
+#### 4.1.5 Common classes
 
 Classes used by multiple components are in the `donnafin.commons` package.
 
