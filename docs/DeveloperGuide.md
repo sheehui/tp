@@ -32,7 +32,7 @@ a Command Line Interface (CLI).
 This activity diagram shows how one might typically navigate through the DonnaFin application.
 
 
-Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that are not 
+Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that are not
 available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
