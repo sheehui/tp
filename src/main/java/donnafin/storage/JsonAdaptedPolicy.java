@@ -1,9 +1,12 @@
 //@@author sheehui
 package donnafin.storage;
 
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Policy;
 
@@ -12,6 +15,7 @@ import donnafin.model.person.Policy;
  */
 class JsonAdaptedPolicy {
 
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPolicy.class);
     public final String policyTotalValueInsured;
     public final String policyYearlyPremiums;
     public final String policyCommission;
@@ -43,6 +47,7 @@ class JsonAdaptedPolicy {
         policyYearlyPremiums = source.getYearlyPremiums().toString();
         policyTotalValueInsured = source.getTotalValueInsured().toString();
         policyCommission = source.getCommission().toString();
+        logger.fine("JsonAdaptedPolicy successfully created for " + source);
     }
 
     @JsonProperty("name")

@@ -171,9 +171,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-Do take note that there is a near duplicate check for names. This means that when 
-adding a person whose name is similar to another client already found in DonnaFin, 
-the result display will prompt the user as such but the client will still be added to 
+Do take note that there is a near duplicate check for names. This means that when
+adding a person whose name is similar to another client already found in DonnaFin,
+the result display will prompt the user as such but the client will still be added to
 the contact list. However, if the names are exact duplicates they will be rejected.
 
 Near duplicate:
@@ -182,8 +182,8 @@ Near duplicate:
 Duplicate:
 ![FullDuplicateRejectionMessage](./images/FullDuplicateRejectionMessage.png)
 
-Names are said to be near duplicates if the names differs only in case 
-(upper case letters where there are lower case letters) or 
+Names are said to be near duplicates if the names differs only in case
+(upper case letters where there are lower case letters) or
 with spaces (user types in two or more spaces in place of one)
 
 | First Name     | Second Name                        | Is near duplicate
@@ -196,7 +196,7 @@ with spaces (user types in two or more spaces in place of one)
 | davidLi     | David Li                        | no
 | DavidLi     | David Li                        | no
 
-Note that this duplicate detection does not try to combine separated words. 
+Note that this duplicate detection does not try to combine separated words.
 E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 
 #### 4.2.2 Deleting a Client : `delete`
@@ -524,13 +524,13 @@ an empty data file at the next run.
 ```
 
 The above figure shows the original JSON data for totalValueInsured
-regarding the client Alex Yeoh. If you tamper with the 
-JSON file directly and change one of the attributes to an invalid format (in this case the 
+regarding the client Alex Yeoh. If you tamper with the
+JSON file directly and change one of the attributes to an invalid format (in this case the
 total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
 discard all the data and start with an empty data file.
 
 When this happens however, to prevent total loss of your data, **we do not delete it right away**.
-Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data. 
+Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data.
 DonnaFin will then proceed to cleanly wipe donnafin.json and execute your command.
 
 </div>
@@ -553,8 +553,9 @@ This marks the end of the features section. Click
 **Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
-This marks the end of the FAQ section. Click:
+This marks the end of the FAQ section. Click
 <a href="#top">here</a> to return to the top:
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
@@ -608,4 +609,5 @@ financial protection or reimbursement against losses.
 
 This marks the end of the glossary. Click
 <a href="#top">here</a> to return to the top:
+
 --------------------------------------------------------------------------------------------------------------------

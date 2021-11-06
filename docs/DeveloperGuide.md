@@ -193,7 +193,7 @@ How is `Person` stored?
 * The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
-and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes, 
+and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes,
 stored as a `JsonProperty` of type String.
 * As a `Person` can have more than one `Asset`, `Liability` or `Policy`, we have chosen to store them as nested objects rather
 converting them into a single String before storage and converting them back to the correct attributes on retrieval from the database.
@@ -437,7 +437,7 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `HIGH`  | new user                                       | clear all clients   | delete all clients and reset all my contacts for the application |
 | `HIGH`  |  user                                      |  edit a client's contact information  |  keep up to date with the clients information for further usage|
 | `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased|
-| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has | 
+| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |
 | `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|
 | `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|
 | `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|
@@ -492,7 +492,7 @@ Use case ends.
 * 1a. The given index is invalid.
 
     * 1a1. DonnaFin shows an error message.
-  
+
       Use case resumes from step 1.
 
 **UC03: Finding a client by name** \
@@ -703,7 +703,7 @@ State: Client Window (Policies Tab)
 * 1a. User's given index is invalid.
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
-    
+
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
 
