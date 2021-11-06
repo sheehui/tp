@@ -559,38 +559,39 @@ This marks the end of the FAQ section. Click
 
 ## 6. Command summary
 
-This section gives a quick summary of how you may use DonnaFin.
+This section gives a quick summary of how you may use DonnaFin. You may click on the links for each command to jump
+to the detailed description on how to use a specific command.
 
 | Global Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Help**   | `help`                                                                 | `help`
-| **Exit**   | `exit`                                                                 | `exit`
+| [**Help**](#411-viewing-help--help)   | `help`                                                                 | `help`
+| [**Exit** ](#412-exiting-the-program--exit)  | `exit`                                                                 | `exit`
 
 | Home Window Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`                | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
-| **Delete** | `delete`                                                               | `delete 3`
-| **Find**   | `find KEYWORD`                                                         | `find James Jake`
-| **List**   | `list`                                                                 | `list`
-| **View Client Window**   | `view INDEX`                                                                 | `view 1`
-| **Clear**  | `clear`                                                                | `clear`
+| [**Add**](#421-adding-a-client--add)   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`                | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+| [**Delete**](#422-deleting-a-client--delete)| `delete`                                                               | `delete 3`
+| [**Find**](#424-locating-clients-by-name-find)   | `find KEYWORD`                                                         | `find James Jake`
+| [**List** ](#423-listing-all-clients--list)  | `list`                                                                 | `list`
+| [**View Client Window**](#425-view-client-information--view)   | `view INDEX`                                                                 | `view 1`
+| [**Clear**](#426-clearing-all-client-data--clear)  | `clear`                                                                | `clear`
 
 | Client Window Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Return to Home Window**   | `home`                                                                 | `home`
-| **Switch to Contacts Tab**   | `tab KEYWORD`                                                                 | `tab c`
-| **Switch to Policies Tab**   | `tab KEYWORD`                                                                 | `tab p`
-| **Switch to Assets Tab**   | `tab KEYWORD`                                                                 | `tab a`
-| **Switch to Liabilities Tab**   | `tab KEYWORD`                                                                 | `tab l`
-| **Switch to Notes Tab**   | `tab KEYWORD`                                                                 | `tab n`
-| **Edit Name**   | `edit n/NAME` | `edit n/James Lee`
-| **Edit Address**   | `edit a/ADDRESS` | `edit a/blk 123 bukit batok ave 4`
-| **Edit Email**   | `edit e/EMAIL` | `edit e/jameslee@donnafin.com`
-| **Edit Phone Number**   | `edit p/PHONE_NUMBER` | `edit p/98374283`
-| **Add Asset**   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
-| **Add Liability**   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
-| **Add Policy**   | `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`| `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
-| **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
+| [**Return to Home Window**](#42-home-window)   | `home`                                                                 | `home`
+| [**Switch to Contacts Tab**](#4311-contacts-tab) | `tab KEYWORD`                                                                 | `tab c`
+| [**Switch to Policies Tab**](#4312-policies-tab)   | `tab KEYWORD`                                                                 | `tab p`
+| [**Switch to Assets Tab**](#4313-assets-tab)   | `tab KEYWORD`                                                                 | `tab a`
+| [**Switch to Liabilities Tab**](#4314-liabilities-tab)   | `tab KEYWORD`                                                                 | `tab l`
+| [**Switch to Notes Tab**](#4315-notes-tab)   | `tab KEYWORD`                                                                 | `tab n`
+| [**Edit Name**](#4321-edit-clients-name)   | `edit n/NAME` | `edit n/James Lee`
+| [**Edit Address**](#4323-edit-clients-address)  | `edit a/ADDRESS` | `edit a/blk 123 bukit batok ave 4`
+| [**Edit Email**](#4324-edit-clients-email)   | `edit e/EMAIL` | `edit e/jameslee@donnafin.com`
+| [**Edit Phone Number**](#4322-edit-clients-phone-number)   | `edit p/PHONE_NUMBER` | `edit p/98374283`
+| [**Add Asset**](#4331-add-an-asset-to-a-client-append)   | `append n/ASSET_NAME ty/ASSET_TYPE v/$ASSET_VALUE r/REMARKS_ON_ASSET`| `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan`
+| [**Add Liability**](#4341-add-a-liability-to-a-client-append)   | `append n/LIABILITY_NAME ty/LIABILITY_TYPE v/$LIABILITY_VALUE r/REMARKS_ON_LIABILITY`| `append n/Property debt with DBS ty/debt v/$100000 r/10% annual interest`
+| [**Add Policy**](#4351-add-a-policy-to-a-client-append)   | `append n/POLICY_NAME i/INSURER iv/$INSURED_VALUE pr/$YEARLY_PREMIUM c/$COMMISSION`| `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000`
+| [**Remove Asset/Liability/Policy**](#4332-remove-an-asset-from-a-client-remove)   | `remove INDEX`                                                                 | `remove 1`
 
 
 This marks the end of the command summary section. Click 
