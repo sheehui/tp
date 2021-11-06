@@ -3,7 +3,8 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ParserContext" as ParserContext LOGIC_COLOR
+participant ":ABCParser" as ABCParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +17,20 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> ParserContext: executeParserStrategyCommand("delete 1")
+activate ParserContext
+
+ParserContext -> ABCParser: parseCommand("delete 1")
+activate ABCParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+ABCParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> ABCParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+ABCParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,14 +40,18 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> ABCParser : d
 deactivate DeleteCommandParser
+
+ABCParser --> ParserContext : d
+deactivate ABCParser
+
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> ParserContext
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+ParserContext --> LogicManager : d
+deactivate ParserContext
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
@@ -59,10 +67,13 @@ DeleteCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> DeleteCommand
-deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+note over of DeleteCommand: XYZCommand = Do take note that the CommandResult \nhas 2  consumers, one for the ":Logic" the other for the  ":UI"
+
+LogicManager --> CommandResult: getLogicAction
+CommandResult --> LogicManager:
 
 [<--LogicManager
 deactivate LogicManager
