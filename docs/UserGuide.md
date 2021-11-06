@@ -123,46 +123,48 @@ user fails to follow the user guide or tamper with the files of the application.
 ### 3.3 Application Client Window Breakdown
 
 
-***Asset/Liabilities Tab***
+#### 3.3.4 Asset/Liabilities Tab
+
+###### This section covers both the asset and liability tab due to their similarities.
+
+The Asset/Liabilities tab is the Client View tab that stores all of your client's assets/liabilities. This tab can be
+accessed by pressing on the Assets/Liabilities tab when in any of the Client View tabs, or through typing the command
+`tab a`, `tab asset`, or `tab assets` for the Asset tab and typing the command `tab l`, `tab liability`, or
+`tab liabilites`.
+
+You will know that you are in the Asset tab if you see the **Assets** header below the Result Display or the Liability
+tab if you see the **Liabilities** header below the Result Display. You can see the total value of these assets/
+liabilities by looking at the number beside the **Total Asset/Liability Value**. 
+
+The Assets/Liabilities are displayed in a Table View where each row represents a new asset/liability, while each column
+represents a Field of an Asset/Liability.
 
 ![Asset/Liabilities Tab of DonnaFin](images/Asset_Liability.png)
 
-The picture above shows the layout of the Assets tab. The Liabilities tab also has a similar layout, the only difference 
-being that words that contain Asset(s) are replaced with Liability(ies) instead.
+Here are the following fields that each asset/liability records:
+1. Index
+2. Asset/Liability Name
+3. Asset/Liability Type
+4. Asset/Liability Value
+5. Remarks
 
-**Index**
+Each asset/liability has an index which is sorted by ascending order, and if you would like to remove an existing
+asset/liability , you can keep track of the index by looking at the number to the left of the asset/liability name you
+would like to delete.
 
-Shows the index of the asset/liability.
+The Asset/Liability tab also supports the `append` and `remove` command that allows you to add a new asset/liability or
+remove an existing asset/liability as shown 
+[here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#4331-add-an-asset-to-a-client-append.)
 
-**Asset/Liability Name**
+#### 3.3.5 Notes Tab
 
-Shows the name of the asset/liability.
+The Notes tab is the Client View tab that stores additional information about your client. This tab can be accessed by
+pressing on the `Notes button` when in any of the Client View tabs, or through typing the command `tab n`, `tab notes`
+or `tab notes`.
 
-**Asset/Liability Type**
-
-Shows the type of the asset/liability.
-
-**Asset/Liability Value**
-
-Shows the value of the asset/liability.
-
-**Total Asset/Liability Value**
-
-Sums up the value of all the assets/liabilities that you own.
-
-**Remarks**
-
-Additional information that you want to attach to each asset/liability.
-
-***Notes Tab***
+You will know that you are in the Notes tab if you see a big white text box below the Result Display.
 
 ![Notes Tab of DonnaFin](images/Notes.png)
-
-The picture above shows the layout of the Notes tab.
-
-**Notes**
-
-Shows the notes that you have on this particular client.
 
 ### 3.4 Command Format
 
