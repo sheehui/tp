@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +51,20 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_similarPerson_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().build();
+        Person similarPerson = new PersonBuilder(validPerson)
+                .withName(validPerson.getName().toString().toLowerCase()).build();
+        AddCommand addCommand = new AddCommand(similarPerson);
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        modelStub.addPerson(validPerson);
+        String expectedFeedback = String.format(AddCommand.MESSAGE_SUCCESS, similarPerson)
+                + String.format(AddCommand.MESSAGE_SIMILAR_PERSON, 1, validPerson.getName() + "\n");
+
+        assertEquals(expectedFeedback, addCommand.execute(modelStub).getFeedbackToUser());
     }
 
     @Test
@@ -182,7 +198,9 @@ public class AddCommandTest {
 
         @Override
         public Set<Person> getWeakDuplicates(Person target) {
-            return null;
+            return List.of(person).stream()
+                    .filter(p -> p.isPossibleDuplicate(target))
+                    .collect(Collectors.toSet());
         }
     }
 
@@ -190,7 +208,7 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private static class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final List<Person> personsAdded = new ArrayList<>();
 
         @Override
         public boolean hasPerson(Person person) {
@@ -206,7 +224,9 @@ public class AddCommandTest {
 
         @Override
         public Set<Person> getWeakDuplicates(Person target) {
-            return null;
+            return personsAdded.stream()
+                    .filter(p -> p.isPossibleDuplicate(target))
+                    .collect(Collectors.toSet());
         }
 
         @Override

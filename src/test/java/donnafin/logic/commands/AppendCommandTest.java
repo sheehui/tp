@@ -1,5 +1,8 @@
 package donnafin.logic.commands;
 
+import static donnafin.logic.commands.AppendCommand.MESSAGE_DUPLICATE_ASSET;
+import static donnafin.logic.commands.AppendCommand.MESSAGE_DUPLICATE_LIABILITY;
+import static donnafin.logic.commands.AppendCommand.MESSAGE_DUPLICATE_POLICY;
 import static donnafin.logic.commands.AppendCommand.MESSAGE_SIMILAR_ASSET;
 import static donnafin.logic.commands.AppendCommand.MESSAGE_SIMILAR_LIABILITY;
 import static donnafin.logic.commands.AppendCommand.MESSAGE_SIMILAR_POLICY;
@@ -38,10 +41,13 @@ import donnafin.storage.StorageManager;
 public class AppendCommandTest {
     private static Asset testAsset;
     private static Asset similarAsset;
+    private static Asset duplicateAsset;
     private static Liability testLiability;
     private static Liability similarLiability;
+    private static Liability duplicateLiability;
     private static Policy testPolicy;
     private static Policy similarPolicy;
+    private static Policy duplicatePolicy;
 
 
     private static Set<Asset> combinedAssets;
@@ -69,6 +75,12 @@ public class AppendCommandTest {
         testLiability = new Liability("Mortgage debt", "Debt", "$20000",
                 "23 year loan from DBS Bank.");
         testAsset = new Asset("Good Class Bungalow", "Property",
+                "$2000000", "Paid in full. No debt.");
+        duplicatePolicy = new Policy("Golden Mile", "AIA",
+                "$2000", "$100", "$200");
+        duplicateLiability = new Liability("Mortgage debt", "Debt", "$20000",
+                "23 year loan from DBS Bank.");
+        duplicateAsset = new Asset("Good Class Bungalow", "Property",
                 "$2000000", "Paid in full. No debt.");
         similarAsset = new Asset("Good Class Bungalow", "Property",
                 "$20000000", "Paid in full. No debt.");
@@ -172,6 +184,30 @@ public class AppendCommandTest {
         AppendCommand testCommand2 = new AppendCommand(personAdapter, similarPolicy);
         testCommand.execute(model);
         assertCommandSuccess(testCommand2, model, MESSAGE_SIMILAR_POLICY, model);
+    }
+
+    @Test
+    public void appendNewAsset_duplicateAssetName() throws CommandException {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testAsset);
+        AppendCommand testCommand2 = new AppendCommand(personAdapter, duplicateAsset);
+        testCommand.execute(model);
+        assertCommandSuccess(testCommand2, model, MESSAGE_DUPLICATE_ASSET, model);
+    }
+
+    @Test
+    public void appendNewLiability_duplicateLiabilityName() throws CommandException {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testLiability);
+        AppendCommand testCommand2 = new AppendCommand(personAdapter, duplicateLiability);
+        testCommand.execute(model);
+        assertCommandSuccess(testCommand2, model, MESSAGE_DUPLICATE_LIABILITY, model);
+    }
+
+    @Test
+    public void appendNewPolicy_duplicatePolicyName() throws CommandException {
+        AppendCommand testCommand = new AppendCommand(personAdapter, testPolicy);
+        AppendCommand testCommand2 = new AppendCommand(personAdapter, duplicatePolicy);
+        testCommand.execute(model);
+        assertCommandSuccess(testCommand2, model, MESSAGE_DUPLICATE_POLICY, model);
     }
 
     @Test
