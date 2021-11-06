@@ -1,9 +1,12 @@
 //@@author sheehui
 package donnafin.storage;
 
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Asset;
 
@@ -12,6 +15,7 @@ import donnafin.model.person.Asset;
  */
 class JsonAdaptedAsset {
 
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedAsset.class);
     private final String assetName;
     private final String assetType;
     private final String assetValue;
@@ -37,6 +41,7 @@ class JsonAdaptedAsset {
         assetValue = source.getValue().toString();
         assetType = source.getType();
         assetRemarks = source.getRemarks();
+        logger.fine("JsonAdaptedAsset successfully created for " + source);
     }
 
     @JsonProperty("name")
