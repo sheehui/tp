@@ -278,7 +278,7 @@ The full sequence diagram gives the overview of what happens when a command runs
 in logic, the logic specific sequence diagram as shown above takes a deeper dive into the inner details the full
 sequence diagram.
 
-From the diagram above:
+Explanation of diagram above:
 * The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which engages the `Model` component.
@@ -313,7 +313,7 @@ also deal directly with a specific client's information. Thus they fall under th
 Like other commands in the other 2 [categories](#42-implementation-and-commands), edit command follows the same general
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
-From the diagram above:
+Explanation:
 * The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
 * The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
 * The `Logic` component executes the `Edit` command.
@@ -354,8 +354,7 @@ We will be using the `SwitchTab` command as the example to illustrate and explai
 
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
-As seen from the diagram above, the command logic is very similar to commands in the first [category](#421-commands-that-affect-model-and-storage)
-
+Explanation of diagram above:
 * The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
