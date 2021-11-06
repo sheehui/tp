@@ -91,7 +91,7 @@ throughout our application and user guide.
 
 ### 3.1 Special Icons
 
-Here are the special icons used throughout the User Guide to help you utilise the User Guide more effectively.
+Here are the special icons used throughout the User Guide to help you utilise this guide more effectively.
 
 #### Tips
 
@@ -103,7 +103,7 @@ Tip: Tips are helpful!
 
 #### Notes
 
-Notes are here to provide the User with extra information that they may find useful when using DonnaFin.
+Notes are here to provide you with extra information that they may find useful when using DonnaFin.
 
 <div markdown="span" class="alert alert-primary">:information_source:
 Take notes when you see this icon!
@@ -111,8 +111,9 @@ Take notes when you see this icon!
 
 #### Caution 
 
-Cautions are around to warn users of potential unwanted side effects that may occur on certain parts of DonnaFin if the 
-user fails to follow the user guide or tamper with the files of the application.
+Cautions are around to warn you of potential unwanted side effects that may occur when using certain features of
+DonnaFin if you fail to follow this guide properly or tamper with the files of the application without adequate
+knowledge.
 
 <div markdown="span" class="alert alert-primary">
 :exclamation: Be wary of cautions!
@@ -128,16 +129,16 @@ user fails to follow the user guide or tamper with the files of the application.
 ###### This section covers both the asset and liability tab due to their similarities.
 
 The Asset/Liabilities tab is the Client View tab that stores all of your client's assets/liabilities. This tab can be
-accessed by pressing on the Assets/Liabilities tab when in any of the Client View tabs, or through typing the command
-`tab a`, `tab asset`, or `tab assets` for the Asset tab and typing the command `tab l`, `tab liability`, or
-`tab liabilites`.
+accessed by pressing on the `Assets/Liabilities` button when in any of the Client View tabs, or through typing the
+command `tab a`, `tab asset`, or `tab assets` for the Assets tab and typing the command `tab l`, `tab liability`, or
+`tab liabilites` for the Liabilities tab.
 
-You will know that you are in the Asset tab if you see the **Assets** header below the Result Display or the Liability
-tab if you see the **Liabilities** header below the Result Display. You can see the total value of these assets/
-liabilities by looking at the number beside the **Total Asset/Liability Value**. 
+You will know that you are in the Assets tab if you see the **Assets** header below the Result Display or the
+Liabilities tab if you see the **Liabilities** header below the Result Display. You can see the total value of these
+assets/liabilities by looking at the number beside the **Total Asset/Liability Value**. 
 
 The Assets/Liabilities are displayed in a Table View where each row represents a new asset/liability, while each column
-represents a Field of an Asset/Liability.
+represents a field of an Asset/Liability.
 
 ![Asset/Liabilities Tab of DonnaFin](images/Asset_Liability.png)
 
@@ -158,9 +159,8 @@ remove an existing asset/liability as shown
 
 #### 3.3.5 Notes Tab
 
-The Notes tab is the Client View tab that stores additional information about your client. This tab can be accessed by
-pressing on the `Notes button` when in any of the Client View tabs, or through typing the command `tab n`, `tab notes`
-or `tab notes`.
+The Notes tab stores additional information about your client. This tab can be accessed by pressing on the `Notes`
+button when in any of the Client View tabs, or through typing the command `tab n`, `tab notes` or `tab notes`.
 
 You will know that you are in the Notes tab if you see a big white text box below the Result Display.
 
