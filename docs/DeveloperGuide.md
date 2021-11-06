@@ -29,15 +29,15 @@ a Command Line Interface (CLI).
 
 
 ### 1.5 Overview of Application
-In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the status 
+In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the status
 quo without DonnaFin.
 
-Below is an Object-Oriented Domain Model (OODM) modelling the existing state of affairs between a Financial Advisor and 
+Below is an Object-Oriented Domain Model (OODM) modelling the existing state of affairs between a Financial Advisor and
 their Client/s.
 
 ![OverviewOodmDiagram](images/OverviewOodmDiagram.png)
 
-We can see that Financial Advisors generally have one or more clients that they have to manage, and 
+We can see that Financial Advisors generally have one or more clients that they have to manage, and
 every client has the following unique information that is important for the Financial Advisors to keep track of:
 take note of:
 1. `Contact Details`
@@ -50,7 +50,7 @@ From the diagram above it can be seen that there is no solution for the Financia
 details, and this is where DonnaFin comes in.
 
 DonnaFin gives Financial Advisors a platform to multiple clients, and store the `Contact Details`, `Policies`, `Assets`,
-`Liabilities`, and `Notes` for each and every client they want to register with the application. In the Developer Guide, 
+`Liabilities`, and `Notes` for each and every client they want to register with the application. In the Developer Guide
 it will be explained how all the different classes, and components of DonnaFin come together to create a software that
 is able to perform this functionality.
 

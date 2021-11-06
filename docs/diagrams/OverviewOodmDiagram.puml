@@ -2,9 +2,6 @@
 skinparam style strictuml
 skinparam groupInheritance 2
 skinparam linetype polyline
-
-
-
 hide empty members
 
 class "Financial Advisor" as FinancialAdvisor {
@@ -42,15 +39,10 @@ class "Liability" {
     Remarks
 }
 
-
-
 class "Notes" {
 }
 
-
-
 FinancialAdvisor -- "*" "Client": manages >
-
 "Client" -- "*" "Policy" : purchases >
 "Client" -- "*" "Asset" : owns >
 "Client" -- "*" "Liability" : owns >
