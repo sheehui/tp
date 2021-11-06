@@ -198,48 +198,105 @@ Classes used by multiple components are in the `donnafin.commons` package.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 This will be a reference to explain the general flow of how the commands work later.
 
-Command types fall into 3 main categories
-1. Commands that affect Model
+Command types fall into 3 main categories. 
+1. Commands that affect Model and storage
 2. Commands that involve changing of tab
-3. Commands that involve editing of personal information of a client
+3. Commands that involve editing of personal information of one specific client,
+be it appending or removing information.
 
-|  |  |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="400" /> | <img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="400" /> |
+Despite falling under the three broad categories, the commands still have many similarities. Thus, we give an
+in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
+the same framework but differ slightly.
 
+#### 4.2.1 Commands that affect Model and Storage
 
 Here is an explanation of what takes place when the user enters the command `delete 1` which falls under first [category](#42-implementation-and-commands).
+The key differences are:
+1. The command interacts with model through an addition or deletion
+2. The command interacts with storage through an addition or deletion.
+Commands that fall under this category are :
+* Add
+* Delete
+
+| Full sequence diagram  | Logic specific sequence diagram |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="600" /> | <img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="600" /> |
+
+The full sequence diagram gives the overview of what happens when a command runs. Since the main legwork is done
+in logic, the logic specific sequence diagram as shown above takes a deeper dive into the inner details the full
+sequence diagram.
+
 * The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
-* The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
+* The `Logic` component parses the command and returns the `Delete` command.
+* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which engages the `Model` component.
 * The `Model` component then deletes the `Person` object p from the `addressBook`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 SwitchTab Command
+#### 4.2.2 Commands that involve changing of tabs
+
+Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
+
+The key differences are:
+1. The commands do not interact with model.
+2. The commands have to handle the changing of ParserStrategy, from the current one
+to `ABCParser` of the new tab.
+3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
+Commands that fall into this category are:
+* SwitchTab
+* View
 
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
-Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
-How the `ABCParser` in ParserContext is updated:
-1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. Refer [here](#42-implementation-and-commands) for more information regarding consumers.
-2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present. `LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
+As seen from the diagram above, the command logic is very similar to commands in the first [category](#421-commands-that-affect-model-and-storage)
+
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command and returns the `SwitchTab` command.
+* The `Logic` component execues the `SwitchTab` command and returns the `SwitchTabCommandResult`
+* The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
+In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
+* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
+
+In depth explanation of how the `ABCParser` in ParserContext is updated:
+1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. 
+2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
 4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.
 
-#### 4.2.3 Edit Command
+#### 4.2.3 Commands that involve editing of one specific client
 
-Edit command is a command that is able to change a client's contact information. This falls under the third [category](#42-implementation-and-commands)
+Edit command is a command that edits the information of a specific client. Other commands like append and remove,
+also deal directly with a specific client's information. Thus they fall under the third [category](#42-implementation-and-commands)
 
-The class`PersonAdapter` is the class doing most of the legwork here.`PersonAdpater` serves as a wrapper for the Model class `Person`.
+The key differences are:
+1. The command has to update new information regarding one specific client.
+2. The command interacts and actively updates information in storage.
+However, commands in the third category differ from the first in that change information of one specific client,
+while the first adds/deletes the client specified.
+
+Commands that fall into the third category are:
+* Edit
+* Append
+* Remove
+
+Like other commands in the other 2 [categories](#42-implementation-and-commands), edit command follows the same general
+structure.
+However, for this category of commands, the class`PersonAdapter` is the class doing most of the legwork here.`PersonAdpater` serves as a wrapper for the Model class `Person`.
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
 Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
 
-In the edit command above, the `PersonAdapter` accepts the edit command that is parsed by `ContactTabParser`
-
-
-#### 4.2.4 Append Command
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
+* The `Logic` component executes the `Edit` command.
+* During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
+the specified person.
+* A `EditCommandResult` is returned from the execution of `Edit` Command. This command result,
+like the 2 other [categories](#42-implementation-and-commands) contain both a consumer for `UI` and `Logic`.
+* The `Logic` component then accepts the LogicConsumer produced from the command result.
+* The `UI` component then accepts the UiConsumer produced from the command result. **The `UI` is here to display the newly
+edits made**.
 
 --------------------------------------------------------------------------------------------------------------------
 
