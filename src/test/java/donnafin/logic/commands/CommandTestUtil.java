@@ -49,12 +49,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
 
-    public static final String VALID_LIABILITY_AMY = "property debt;;;debt;;;$500000;;;downgrade imminent";
-    public static final String VALID_LIABILITY_BOB = "company debt;;;debt;;;$100000;;;downgrade imminent";
-    public static final String VALID_POLICIES_ONE = "Diamond;;;AIA;;;$100000;;;$20;;;$1";
-    public static final String VALID_ASSET_ONE = "bitcoin;;;crypto;;;$10000000;;;mad stonks";
-
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;

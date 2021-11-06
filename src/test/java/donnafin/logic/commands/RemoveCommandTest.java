@@ -96,6 +96,20 @@ public class RemoveCommandTest {
     }
 
     @Test
+    public void equals_withMatchingObjects_pass() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);
+        RemoveCommand testCommandAgain = new RemoveCommand(personAdapter, fieldAsset, index1);
+        assertEquals(testCommand, testCommandAgain);
+    }
+
+    @Test
+    public void hashCode_withMatchingObjects_bothMatch() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);
+        RemoveCommand testCommandAgain = new RemoveCommand(personAdapter, fieldAsset, index1);
+        assertEquals(testCommand.hashCode(), testCommandAgain.hashCode());
+    }
+
+    @Test
     public void removeAsset_changesAssetList() throws CommandException, ParseException {
         AppendCommand helperCommand = new AppendCommand(personAdapter, testAsset);
         RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);

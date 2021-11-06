@@ -1,10 +1,7 @@
 package donnafin.model.util;
 
-import java.util.Arrays;
 import java.util.Set;
 
-import donnafin.logic.parser.ParserUtil;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.AddressBook;
 import donnafin.model.ReadOnlyAddressBook;
 import donnafin.model.person.Address;
@@ -21,90 +18,83 @@ import donnafin.model.person.Policy;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final String ATTRIBUTE_DELIMITER = ";;;";
-    private static final String POLICIES_STAND_IN_ONE = String.join(
-            ATTRIBUTE_DELIMITER,
+    private static final Set<Policy> POLICIES_STAND_IN_ONE = Set.of(new Policy(
             "Golden Age",
             "AIA",
             "$14000",
             "$28",
             "$4"
-    );
-    private static final String POLICIES_STAND_IN_TWO = String.join(
-            ATTRIBUTE_DELIMITER,
+    ));
+    private static final Set<Policy> POLICIES_STAND_IN_TWO = Set.of(new Policy(
             "Golden Age",
             "Prudential",
             "$100000",
             "$2800",
             "$4000"
-    );
-    private static final String ASSETS_STAND_IN_ONE = String.join(
-            ATTRIBUTE_DELIMITER,
+    ));
+    private static final Set<Asset> ASSETS_STAND_IN_ONE = Set.of(new Asset(
             "HDB @Jurong",
             "Property",
             "$300000",
             "BTO"
-    );
-    private static final String ASSETS_STAND_IN_TWO = String.join(
-            ATTRIBUTE_DELIMITER,
+    ));
+    private static final Set<Asset> ASSETS_STAND_IN_TWO = Set.of(new Asset(
             "GCB @Sentosa Cove",
             "Property",
             "$9000000",
             "Newly renovated"
-    );
-    private static final String LIABILITIES_STAND_IN_ONE = String.join(
-            ATTRIBUTE_DELIMITER,
+    ));
+    private static final Set<Liability> LIABILITIES_STAND_IN_ONE = Set.of(new Liability(
             "Bank debt",
             "debt",
             "$20000",
             "10% interest"
-    );
-    private static final String LIABILITIES_STAND_IN_TWO = String.join(
-            ATTRIBUTE_DELIMITER,
+    ));
+    private static final Set<Liability> LIABILITIES_STAND_IN_TWO = Set.of(new Liability(
             "Bank Loan for Condo @Marina",
             "Mortgage",
             "$5000000",
             "To be settled in 5 years"
-    );
+    ));
 
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
                     new Notes("Likes bread"),
-                    getPolicies(POLICIES_STAND_IN_ONE),
-                    getLiabilities(LIABILITIES_STAND_IN_ONE),
-                    getAssets(ASSETS_STAND_IN_ONE)),
+                    POLICIES_STAND_IN_ONE,
+                    LIABILITIES_STAND_IN_ONE,
+                    ASSETS_STAND_IN_ONE),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     new Notes("Has 2 children"),
-                    getPolicies(POLICIES_STAND_IN_TWO),
-                    getLiabilities(LIABILITIES_STAND_IN_TWO),
-                    getAssets(ASSETS_STAND_IN_TWO)),
+                    POLICIES_STAND_IN_TWO,
+                    LIABILITIES_STAND_IN_TWO,
+                    ASSETS_STAND_IN_TWO),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     new Notes(""),
-                    getPolicies(POLICIES_STAND_IN_ONE),
-                    getLiabilities(LIABILITIES_STAND_IN_TWO),
-                    getAssets(ASSETS_STAND_IN_TWO)),
+                    POLICIES_STAND_IN_ONE,
+                    LIABILITIES_STAND_IN_TWO,
+                    ASSETS_STAND_IN_TWO),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     new Notes(""),
-                    getPolicies(POLICIES_STAND_IN_ONE),
-                    getLiabilities(LIABILITIES_STAND_IN_ONE),
-                    getAssets(ASSETS_STAND_IN_ONE)),
+                    POLICIES_STAND_IN_ONE,
+                    LIABILITIES_STAND_IN_ONE,
+                    ASSETS_STAND_IN_ONE),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
                     new Notes(""),
-                    getPolicies(POLICIES_STAND_IN_TWO),
-                    getLiabilities(LIABILITIES_STAND_IN_ONE),
-                    getAssets(ASSETS_STAND_IN_ONE)),
+                    POLICIES_STAND_IN_TWO,
+                    LIABILITIES_STAND_IN_ONE,
+                    ASSETS_STAND_IN_ONE),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
                     new Notes(""),
-                    getPolicies(POLICIES_STAND_IN_ONE),
-                    getLiabilities(LIABILITIES_STAND_IN_ONE),
-                    getAssets(ASSETS_STAND_IN_TWO))
+                    POLICIES_STAND_IN_ONE,
+                    LIABILITIES_STAND_IN_ONE,
+                    ASSETS_STAND_IN_TWO)
         };
     }
 
@@ -114,38 +104,5 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
-    }
-
-    /**
-     * Returns a policy set containing the list of strings given.
-     */
-    public static Set<Policy> getPolicies(String... strings) {
-        try {
-            return ParserUtil.parsePolicies(Arrays.asList(strings));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Returns an asset set containing the list of strings given.
-     */
-    public static Set<Asset> getAssets(String... strings) {
-        try {
-            return ParserUtil.parseAssets(Arrays.asList(strings));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(Asset.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Returns a liability set containing the list of strings given.
-     */
-    public static Set<Liability> getLiabilities(String... strings) {
-        try {
-            return ParserUtil.parseLiabilities(Arrays.asList(strings));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(Liability.MESSAGE_CONSTRAINTS);
-        }
     }
 }

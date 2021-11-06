@@ -1,6 +1,9 @@
 //@@author Bluntsord
 package donnafin.ui;
 
+import java.util.logging.Logger;
+
+import donnafin.commons.core.LogsCenter;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.exceptions.ParseException;
@@ -23,6 +26,7 @@ import javafx.scene.layout.VBox;
 public class ClientPanel extends UiPart<Region> {
 
     private static final String FXML = "ClientInfoPanel.fxml";
+    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private final PersonAdapter personAdapter;
     private final CommandExecutor commandExecutor;
 
@@ -63,14 +67,41 @@ public class ClientPanel extends UiPart<Region> {
     }
 
     //@@author mrmrinal
-    /**
-     * Updates the VBox content to the Client's contact Details
-     */
+    /** Updates the VBox content to the Client's contact Details */
     public void changeTabToContact() {
         refresh();
         personAdapter.getContactAttributesList().stream()
                 .map(attr -> createAttributePanel(attr).getRoot())
                 .forEach(y -> attributeDisplayContainer.getChildren().add(y));
+        logger.info("Change tab in ClientPanel to Contact");
+    }
+
+    protected void changeTabToPolicies() {
+        changeTab(new AttributeTable<>(Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()).getRoot());
+        logger.info("Change tab in ClientPanel to Policies");
+    }
+
+    protected void changeTabToAssets() {
+        changeTab(new AttributeTable<>(Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()).getRoot());
+        logger.info("Change tab in ClientPanel to Assets");
+    }
+
+    protected void changeTabToLiabilities() {
+        changeTab(new AttributeTable<>(Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()).getRoot());
+        logger.info("Change tab in ClientPanel to Liabilities");
+    }
+
+    protected void changeTabToNotes() {
+        TextArea notesField = new TextArea();
+        notesField.setWrapText(true);
+        notesField.setText(personAdapter.getSubject().getNotes().getNotes());
+        notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
+            // TODO: Replace this whole listener with just calling an edit command.
+            // Any errors should be raised in the command box, after execution of the
+            // edit notes logic in Command (See how the buttons on press are handled).
+            personAdapter.edit(new Notes(newNotes));
+        });
+        changeTab(notesField);
     }
 
     /** Gets the {@code CommandExecutor} to carry out switching to contact command */
@@ -96,31 +127,6 @@ public class ClientPanel extends UiPart<Region> {
     /** Gets the {@code CommandExecutor} to carry out switching to liabilities command */
     public void makeSwitchTabLiabilitiesCommand() throws CommandException, ParseException {
         commandExecutor.execute("tab liabilities");
-    }
-
-    protected void changeTabToPolicies() {
-        changeTab(new AttributeTable<>(Policy.TABLE_CONFIG, personAdapter.getSubject().getPolicies()).getRoot());
-    }
-
-    protected void changeTabToAssets() {
-        changeTab(new AttributeTable<>(Asset.TABLE_CONFIG, personAdapter.getSubject().getAssets()).getRoot());
-    }
-
-    protected void changeTabToLiabilities() {
-        changeTab(new AttributeTable<>(Liability.TABLE_CONFIG, personAdapter.getSubject().getLiabilities()).getRoot());
-    }
-
-    protected void changeTabToNotes() {
-        TextArea notesField = new TextArea();
-        notesField.setWrapText(true);
-        notesField.setText(personAdapter.getSubject().getNotes().getNotes());
-        notesField.textProperty().addListener((observableValue, olNotes, newNotes) -> {
-            // TODO: Replace this whole listener with just calling an edit command.
-            // Any errors should be raised in the command box, after execution of the
-            // edit notes logic in Command (See how the buttons on press are handled).
-            personAdapter.edit(new Notes(newNotes));
-        });
-        changeTab(notesField);
     }
 
     //@@author bharathcs
