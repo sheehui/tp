@@ -171,6 +171,34 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
+Do take note that there is a near duplicate check for names. This means that when 
+adding a person whose name is similar to another client already found in DonnaFin, 
+the result display will prompt the user as such but the client will still be added to 
+the contact list. However, if the names are exact duplicates they will be rejected.
+
+Near duplicate:
+![DuplicateRejectionMessage](images/NearDuplicateRejectionMessage.png)
+
+Duplicate:
+![FullDuplicateRejectionMessage](./images/FullDuplicateRejectionMessage.png)
+
+Names are said to be near duplicates if the names differs only in case 
+(upper case letters where there are lower case letters) or 
+with spaces (user types in two or more spaces in place of one)
+
+| First Name     | Second Name                        | Is near duplicate
+| -------------- | ---------------------------------------| -------------------------------------------------------------------------------------------------- |
+| david Li     | David LI                        | yes
+| daviD Li     | David LI                        | yes
+| daVid Li     | David LI                        | yes
+| david Li     | David    &nbsp; LI                        | yes
+| david Li     | David     &nbsp;  &nbsp; &nbsp;     LI              | yes
+| davidLi     | David Li                        | no
+| DavidLi     | David Li                        | no
+
+Note that this duplicate detection does not try to combine separated words. 
+E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
+
 #### 4.2.2 Deleting a Client : `delete`
 
 Deletes the specified client from the DonnaFin.
