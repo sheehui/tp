@@ -49,5 +49,4 @@ FinancialAdvisor -- "*" "Client": manages >
 "Client" -- "1" "Contact Details" : has >
 "Client" -- "1" "Notes" : has >
 
-
 @enduml
