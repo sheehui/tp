@@ -38,7 +38,7 @@ help you get more out of our application. Additionally, links back to the top of
 like below are present at the end of every section. For easier navigation around this User Guide, we suggest using our table of contents together with these
 links to quickly find and access the information you need.
 
-This marks the end of the introduction. Click
+This marks the end of the Introduction. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ This marks the end of the introduction. Click
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
-This marks the end of the quick start. Click
+This marks the end of the Quick Start section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ This marks the end of the quick start. Click
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 L
-This marks the end of the about section. Click
+This marks the end of the About section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -538,7 +538,7 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 </div>
 
-This marks the end of the features section. Click
+This marks the end of the Features section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -599,7 +599,7 @@ to the detailed description on how to use a specific command.
 | [**Remove Asset/Liability/Policy**](#4332-remove-an-asset-from-a-client-remove)   | `remove INDEX`                                                                 | `remove 1`
 
 
-This marks the end of the command summary section. Click
+This marks the end of the Command Summary section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -613,7 +613,7 @@ as opposed to graphical user interfaces(mouse-based applications).
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
 financial protection or reimbursement against losses.
 
-This marks the end of the glossary. Click
+This marks the end of the Glossary. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
