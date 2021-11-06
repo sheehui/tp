@@ -84,7 +84,12 @@ This marks the end of the quick start. Click
 
 ## 3. About
 
+This section aims to help familiarise you with how our application works as well as the terminologies that we use
+throughout our application and user guide.
+
 ### 3.1 Special Icons
+
+Here are the special icons used throughout the User Guide to help you utilise the User Guide more effectively.
 
 ### 3.2 Application Home Window Breakdown
 
