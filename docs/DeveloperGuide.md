@@ -255,19 +255,14 @@ the same framework but differ slightly.
 
 <div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
 <br>
-1. The command interacts with model through an addition or deletion
-<br>
-2. The command interacts with storage through an addition or deletion.
-<br>
+1. The command interacts with model through an addition or deletion<br>
+2. The command interacts with storage through an addition or deletion.<br>
 3. The command does not access the inner details of clients but rather treat them as atomic.
 <br>
 <br>
-Commands that fall under this category are :
-<br>
-* Add
-<br>
-* Delete
-<br>
+Commands that fall under this category are :<br>
+1. Add <br>
+2. Delete <br>
 </div>
 
 The delete command is one of the commands that fall under this category.
@@ -299,22 +294,17 @@ This does not involve a consumer in any way but is always part of execute comman
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
 <br>
 <br>
-The key differences are:
-1. The command has to access and edit information regarding one specific client.
-<br>
+The key differences are:<br>
+1. The command has to access and edit information regarding one specific client.<br>
 2. The command interacts and actively updates information in storage.
 However, commands in the third category differ from the first in that change information of one specific client,
 while the first adds/deletes the client specified.
 <br>
 <br>
-Commands that fall into the second category are:
-<br>
-* Edit
-<br>
-* Append
-<br>
-* Remove
-<br>
+Commands that fall into the second category are:<br>
+1. Edit<br>
+2. Append<br>
+3. Remove<br>
 </div>
 
 Edit command is a command that edits the information of a specific client. Other commands like append and remove,
@@ -346,21 +336,16 @@ Such an implementation supports the user viewing and controlling a single client
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
 <br>
-The key differences are:
-1. The commands do not interact with model.
-<br>
-2. The commands have to handle the changing of ParserStrategy, from the current one
-<br>
+The key differences are:<br>
+1. The commands do not interact with model.<br>
+2. The commands have to handle the changing of ParserStrategy, from the current one<br>
 to `ABCParser` of the new tab.
 3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
 <br>
 <br>
-Commands that fall into this category are:
-<br>
-* SwitchTab
-<br>
-* View
-<br>
+Commands that fall into this category are:<br>
+1. SwitchTab<br>
+2. View<br>
 </div>
 
 Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
