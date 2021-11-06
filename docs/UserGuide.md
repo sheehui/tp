@@ -115,11 +115,79 @@ The following attributes of your client is also viewable from the Client List Wi
 3. `Address`
 4. `Email Address`
 
-### 3.3 Client Explanation
+### 3.3 Application Client Window Breakdown
+The Client window is accessed when you use the `view` command correctly. Though the client window shows content different
+from the main window, the `Quick Access Button`, `Command Box` and `Results Display` are all the same as explained 
+earlier in section 3.2. 
 
-### 3.4 Application Client Window Breakdown
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
-### 3.5 Command Format
+Do take note that the `Command Box` is tab specific in the Client Window 
+so do take not that you are inputting the correct command in the correct tab.
+
+</div>
+
+Here is a picture showing all the common elements spread accross all tabs in the Client View. 
+
+![ClientView](images/ClientView.png)
+
+#### 3.3.1 Client Tab Buttons
+* These buttons are specific to the Client Window, and you can use these buttons to toggle through the different tabs
+that have been implemented to access and edit client information. The tabs are as follows:
+  1. `Contact`
+  2. `Policies`
+  3. `Assets`
+  4. `Liabilities`
+  5. `Notes`
+    
+The tabs can also be toggled through using the `tab` command as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#431-switching-tabs-in-client-window-tab)
+
+#### 3.3.2 Contact Tab
+The `Contact Tab` is the Client View tab you first see when transitioning from the Home View to the Client View.
+Alternatively, this tab can also be accessed by pressing on the `Contact` button when in any of the Client View tabs,
+or through typing the command `tab c`, `tab contact` or `tab contacts`. You can access the following contact details of
+your client:
+1. `Name`
+2. `Phone`
+3. `Email`
+4. `Address`
+
+This information is represented as shown in the picture below.
+
+![ClientContactTab](images/ClientContactTab.png)
+
+The Contact tab also supports the `edit` that allows you to change any of your client's contact details as
+shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#432-edit-clients-contact-information-edit)
+
+### 3.3.3 Policies Tab
+The `Policies Tab` is the Client View tab that stores all of your client's policies. This tab can be access by pressing on
+the `Policies button` when in any of the Client View tabs, or through typing the command `tab p`, `tab policy` or `tab policies`.
+
+You will know that you are in the Policy tab if you see the **Policies** header on below the Result Display. You can access the total
+commission that you have earned through looking at the number to the right of the **Total Policy Commisions**.
+
+The Policies are displayed in a Table View where each row represents a new policy, while each column represents a Field of
+a policy.
+
+![PolicyTab](images/PolicyTab.png)
+
+Here are the following fields that each policy records:
+1. `Policy Name`
+2. `Insurer`
+3. `Insured Value`
+4. `Yearly Premium`
+5. `Commission`
+
+Each policy has an index which is sorted by Ascending order, and if you would like to remove an existing policy, you can
+keep track of the index by looking at the number to the left of the policy name you would like to delete.
+
+
+The Contact tab also supports the `append` and `remove` command that allows you to add a new policy or 
+remove an existing policy
+as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#435-policy-features)
+
+
+### 3.4 Command Format
 
 <div markdown="block" class="alert alert-info">
 
