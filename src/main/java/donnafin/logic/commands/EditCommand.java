@@ -10,7 +10,6 @@ import java.util.function.Consumer;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
 
@@ -56,16 +55,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         editor.accept(personAdapter);
 
-        //Used to refresh UI to display new attribute added
-        Consumer<Ui> refresh = x -> {
-            try {
-                x.switchClientViewTab(x.getUiState());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        };
-
-        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS, refresh);
+        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS, Ui::refreshTab);
     }
 }
 

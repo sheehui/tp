@@ -2,22 +2,23 @@ package donnafin.testutil;
 
 import static donnafin.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static donnafin.logic.commands.CommandTestUtil.VALID_ASSET_ONE;
 import static donnafin.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static donnafin.logic.commands.CommandTestUtil.VALID_LIABILITY_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static donnafin.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static donnafin.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static donnafin.logic.commands.CommandTestUtil.VALID_POLICIES_ONE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import donnafin.model.AddressBook;
+import donnafin.model.person.Asset;
+import donnafin.model.person.Liability;
 import donnafin.model.person.Person;
+import donnafin.model.person.Policy;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -25,28 +26,25 @@ import donnafin.model.person.Person;
 public class TypicalPersons {
 
 
-    public static final String POLICIES_INPUT = String.join(
-            ";;;",
+    public static final Set<Policy> POLICIES_INPUT = Set.of(new Policy(
             "XYZ Policy Name",
             "Insurer A",
             "$3",
             "$1",
             "$0.50"
-    );
-    public static final String LIABILITIES_INPUT = String.join(
-            ";;;",
+    ));
+    public static final Set<Liability> LIABILITIES_INPUT = Set.of(new Liability(
             "Home Mortgage",
             "Bank B",
             "$30",
             "5% per annum"
-    );
-    public static final String ASSETS_INPUT = String.join(
-            ";;;",
+    ));
+    public static final Set<Asset> ASSETS_INPUT = Set.of(new Asset(
             "XYZ Asset Name",
             "Crypto",
             "$3000",
             "HODL"
-    );
+    ));
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -110,8 +108,9 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withNotes("Enjoys architecture")
-            .withPolicies(VALID_POLICIES_ONE).withLiability(VALID_LIABILITY_BOB)
-            .withAssets(VALID_ASSET_ONE).build();
+            .withPolicies(Set.of(new Policy("Diamond", "AIA", "$100000", "$20", "$1")))
+            .withLiability(Set.of(new Liability("company debt", "debt", "$100000", "downgrade imminent")))
+            .withAssets(Set.of(new Asset("bitcoin", "crypto", "$10000000", "mad stonks"))).build();
 
     private TypicalPersons() {} // prevents instantiation
 

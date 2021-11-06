@@ -80,7 +80,7 @@ public class UiManager implements Ui {
     }
 
     @Override
-    public void switchClientViewTab(ViewFinderState tab) throws ParseException {
+    public void switchClientViewTab(ViewFinderState tab) {
         mainWindow.switchClientViewTab(tab);
         switch (tab) {
         case CONTACT:
@@ -99,8 +99,13 @@ public class UiManager implements Ui {
             uiState.setStateNotesTab();
             break;
         default:
-            throw new ParseException("Switched to a fake tab");
+            assert false : "Impossible enum state";
         }
+    }
+
+    @Override
+    public void refreshTab() {
+        this.switchClientViewTab(this.getUiState());
     }
 
 

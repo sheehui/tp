@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import donnafin.commons.core.types.Index;
@@ -68,15 +67,7 @@ public class RemoveCommand extends Command {
             throw new CommandException("Invalid tab for append");
         }
 
-        //Used to refresh ui to display remove attribute
-        Consumer<Ui> refresh = x -> {
-            try {
-                x.switchClientViewTab(x.getUiState());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        };
-        return new CommandResult(MESSAGE_SUCCESS, refresh);
+        return new CommandResult(MESSAGE_SUCCESS, Ui::refreshTab);
     }
 
     private <T> Set<T> removeWithOrder(Set<T> original, Index index) throws CommandException {

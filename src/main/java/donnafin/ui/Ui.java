@@ -1,7 +1,6 @@
 package donnafin.ui;
 
 import donnafin.logic.PersonAdapter;
-import donnafin.logic.parser.exceptions.ParseException;
 import javafx.stage.Stage;
 
 /**
@@ -27,7 +26,9 @@ public interface Ui {
 
     void showClientView(PersonAdapter subject);
 
-    void switchClientViewTab(ViewFinderState tab) throws ParseException;
+    void switchClientViewTab(ViewFinderState tab);
+
+    void refreshTab();
 
     void showHome();
 
