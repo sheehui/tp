@@ -104,14 +104,16 @@ Here is an overview of the different elements that makes up the Home Window of D
 * In the event you enter an invalid or wrongly formatted command, the error message will be displayed here as well.
 
 #### 3.2.4 Client List Window
-In this section, you will be able to view a list of all the clients that have their records stored on DonnaFin.
+In this section, you will be able to view a list of all the clients that have their records stored on DonnaFin. The index
+of a client corresponds to the index needed to be inputted in the `view` command. For example: if the client list is as
+per the image above, inputting the command `view 2` would take you to the client view of Bernice Yu, as she has the index
+of 2.
 
-The following details of your client is also viewable from the Client List Window:
-1. Index
-2. Name
-3. Phone
-4. Address
-5. Email Address
+The following attributes of your client is also viewable from the Client List Window:
+1. `Name`
+2. `Phone`
+3. `Address`
+4. `Email Address`
 
 ### 3.3 Client Explanation
 
