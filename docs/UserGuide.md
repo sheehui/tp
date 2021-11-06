@@ -39,7 +39,8 @@ like below are present at the end of every section. For easier navigation around
 links to quickly find and access the information you need.
 
 This marks the end of the introduction. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start
@@ -79,7 +80,8 @@ This marks the end of the introduction. Click
 1. Refer to the [Features](#4-features) below for details of each command.
 
 This marks the end of the quick start. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About
@@ -118,7 +120,8 @@ This marks the end of the quick start. Click
 </div>
 L
 This marks the end of the about section. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Features
@@ -536,7 +539,8 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 </div>
 
 This marks the end of the features section. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
@@ -554,7 +558,8 @@ This marks the end of the features section. Click
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
 This marks the end of the FAQ section. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
@@ -594,7 +599,8 @@ This section gives a quick summary of how you may use DonnaFin.
 
 
 This marks the end of the command summary section. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Glossary
@@ -607,5 +613,6 @@ as opposed to graphical user interfaces(mouse-based applications).
 financial protection or reimbursement against losses.
 
 This marks the end of the glossary. Click
-<a href="#top">here</a> to return to the top:
+<a href="#top">here</a> to return to the top
+
 --------------------------------------------------------------------------------------------------------------------
