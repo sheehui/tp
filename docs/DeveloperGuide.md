@@ -340,11 +340,13 @@ As seen from the diagram above, the command logic is very similar to commands in
 In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
 * The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
 
-In depth explanation of how the `ABCParser` in ParserContext is updated:
+
+<div markdown="block" class="alert alert-warning">:**Explanation of ParserContext:**
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. 
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
 4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.
+</div>
 
 #### 4.3 NotesTab
 
