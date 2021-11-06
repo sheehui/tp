@@ -266,7 +266,7 @@ Commands that fall under this category are :
 | Full sequence diagram  | 
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="800" /> |
 | Logic specific sequence diagram |
-|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="800" /> |
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="1200" /> |
 
 The full sequence diagram gives the overview of what happens when a command runs. Since the main legwork is done
 in logic, the logic specific sequence diagram as shown above takes a deeper dive into the inner details the full
