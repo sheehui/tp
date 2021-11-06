@@ -27,7 +27,9 @@ public class RemoveCommand extends Command {
             + ": removes a row from the attribute table. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: remove 3";
-    private static final String MESSAGE_SUCCESS = "Successfully removed row.";
+    public static final String MESSAGE_SUCCESS = "Successfully removed row.";
+    public static final String MESSAGE_INVALID_TAB = "Successfully removed row.";
+
     private final PersonAdapter personAdapter;
     private final PersonField field;
     private final Index index;
@@ -63,8 +65,7 @@ public class RemoveCommand extends Command {
             personAdapter.editAssets(newAssets);
             break;
         default:
-            assert false : "Invalid tab for append";
-            throw new CommandException("Invalid tab for append");
+            throw new CommandException(MESSAGE_INVALID_TAB);
         }
 
         return new CommandResult(MESSAGE_SUCCESS, Ui::refreshTab);
@@ -87,7 +88,7 @@ public class RemoveCommand extends Command {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof RemoveCommand)) {
             return false;
         }
         RemoveCommand that = (RemoveCommand) o;

@@ -12,7 +12,6 @@ public class CommandResultTest {
 
         // same user feedback -> returns true (uiAction cannot be compared)
         assertEquals(commandResult, new CommandResult("feedback"));
-        assertEquals(commandResult, new CommandResult("feedback"));
 
         // same object -> returns true
         assertEquals(commandResult, commandResult);

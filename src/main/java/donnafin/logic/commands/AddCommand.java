@@ -34,6 +34,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the DonnaFin";
+    public static final String MESSAGE_SIMILAR_PERSON = "\nWARNING: Found %d other clients who could be duplicate(s):"
+                            + "\n%s\nHint: REMOVE command can be useful to remove duplicates.";
 
     private final Person toAdd;
 
@@ -54,22 +56,17 @@ public class AddCommand extends Command {
         }
 
         Set<Person> weakDuplicatesSet = model.getWeakDuplicates(toAdd);
-        String duplicateWarning = "";
+        String feedbackToUser = String.format(MESSAGE_SUCCESS, toAdd);
         if (weakDuplicatesSet != null && weakDuplicatesSet.size() != 0) {
             String listDuplicates = weakDuplicatesSet.stream()
                     .filter(x -> !toAdd.equals(x))
                     .map(p -> p.getName() + "\n")
                     .reduce("", (a, b) -> a + b);
-            duplicateWarning = String.format(
-                    "\nWARNING: Found %d other clients who could be duplicate(s):\n%s\n"
-                    + "Hint: REMOVE command can be useful to remove duplicates.",
-                    weakDuplicatesSet.size(),
-                    listDuplicates
-            );
+            feedbackToUser += String.format(MESSAGE_SIMILAR_PERSON, weakDuplicatesSet.size(), listDuplicates);
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd) + duplicateWarning);
+        return new CommandResult(feedbackToUser);
     }
 
     @Override
