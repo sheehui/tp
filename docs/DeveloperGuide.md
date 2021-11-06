@@ -205,7 +205,7 @@ How is `Person` stored?
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes, 
-stored as a JsonProperty of type String.
+stored as a `JsonProperty` of type String.
 * As a `Person` can have more than one `Asset`, `Liability` or `Policy`, we have chosen to store them as nested objects rather
 converting them into a single String before storage and converting them back to the correct attributes on retrieval from the database.
 * As such, `Asset`, `Liability` and `Policy` are stored in this special manner and any future attributes that share the same characteristics
@@ -430,6 +430,7 @@ State: Client Window
          Use case resumes at step 1.
 
 **UC08: Returning to Home Window**
+
 State: Client Window
 
 **MSS**
