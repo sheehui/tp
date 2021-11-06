@@ -1,6 +1,7 @@
 package donnafin.ui;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import donnafin.model.person.Person;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.layout.Region;
 
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -50,7 +51,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        List.of(name, id, phone, address, email).stream().forEach(x -> x.setWrapText(true));
+        Stream.of(name, id, phone, address, email).forEach(x -> x.setWrapText(true));
     }
 
     @Override

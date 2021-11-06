@@ -7,8 +7,7 @@ import donnafin.ui.Ui.ViewFinderState;
 import donnafin.ui.UiManager;
 
 /**
-Class to track the current state of the Ui. E.g which tab the ui is currently on
- Currently the class does not do anything as of yet
+ * Class to track the current state of the Ui. E.g. which tab the ui is currently on
  */
 public class UiState {
 

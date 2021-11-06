@@ -4,14 +4,18 @@ package donnafin.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Asset;
+
+import java.util.logging.Logger;
 
 /**
  * Jackson-friendly version of {@link Asset}.
  */
 class JsonAdaptedAsset {
 
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedAsset.class);
     private final String assetName;
     private final String assetType;
     private final String assetValue;
@@ -27,6 +31,7 @@ class JsonAdaptedAsset {
         this.assetRemarks = assetRemarks;
         this.assetType = assetType;
         this.assetValue = assetValue;
+        logger.fine("JsonAdaptedAsset successfully created.");
     }
 
     /**
@@ -37,6 +42,7 @@ class JsonAdaptedAsset {
         assetValue = source.getValue().toString();
         assetType = source.getType();
         assetRemarks = source.getRemarks();
+        logger.fine("JsonAdaptedAsset successfully created for " + source);
     }
 
     @JsonProperty("name")

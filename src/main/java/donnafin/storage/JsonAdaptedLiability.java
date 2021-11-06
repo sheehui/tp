@@ -4,10 +4,15 @@ package donnafin.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Liability;
 
+import java.util.logging.Logger;
+
 public class JsonAdaptedLiability {
+
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedLiability.class);
     private final String liabilityName;
     private final String liabilityType;
     private final String liabilityValue;
@@ -34,6 +39,7 @@ public class JsonAdaptedLiability {
         liabilityType = source.getType();
         liabilityValue = source.getValue().toString();
         liabilityRemarks = source.getRemarks();
+        logger.fine("JsonAdaptedLiability successfully created for " + source);
     }
 
     @JsonProperty("name")
