@@ -14,6 +14,7 @@ public class DummyUiForCommands implements Ui {
     private int countExit = 0;
     private int countView = 0;
     private final List<ViewFinderState> tabSwitches = new ArrayList<>();
+    private ViewFinderState curr = ViewFinderState.CONTACT;
 
     @Override
     public void start(Stage primaryStage) {}
@@ -36,6 +37,12 @@ public class DummyUiForCommands implements Ui {
     @Override
     public void switchClientViewTab(ViewFinderState tab) {
         tabSwitches.add(tab);
+        curr = tab;
+    }
+
+    @Override
+    public void refreshTab() {
+        tabSwitches.add(curr);
     }
 
     @Override

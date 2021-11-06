@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.model.person.Asset;
 import donnafin.model.person.Liability;
@@ -143,16 +142,7 @@ public class AppendCommand extends Command {
         requireNonNull(model);
         editor.accept(this.personAdapter);
 
-        //Used to refresh UI to display new attribute added
-        Consumer<Ui> refresh = x -> {
-            try {
-                x.switchClientViewTab(x.getUiState());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        };
-
-        return new CommandResult(messageResult, refresh);
+        return new CommandResult(messageResult, Ui::refreshTab);
     }
 
     @Override

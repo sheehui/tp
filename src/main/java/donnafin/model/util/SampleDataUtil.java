@@ -1,10 +1,7 @@
 package donnafin.model.util;
 
-import java.util.Arrays;
 import java.util.Set;
 
-import donnafin.logic.parser.ParserUtil;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.AddressBook;
 import donnafin.model.ReadOnlyAddressBook;
 import donnafin.model.person.Address;
@@ -107,38 +104,5 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
-    }
-
-    /**
-     * Returns a policy set containing the list of strings given.
-     */
-    public static Set<Policy> getPolicies(String... strings) {
-        try {
-            return ParserUtil.parsePolicies(Arrays.asList(strings));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(Policy.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Returns an asset set containing the list of strings given.
-     */
-    public static Set<Asset> getAssets(String... strings) {
-        try {
-            return ParserUtil.parseAssets(Arrays.asList(strings));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(Asset.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Returns a liability set containing the list of strings given.
-     */
-    public static Set<Liability> getLiabilities(String... strings) {
-        try {
-            return ParserUtil.parseLiabilities(Arrays.asList(strings));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(Liability.MESSAGE_CONSTRAINTS);
-        }
     }
 }

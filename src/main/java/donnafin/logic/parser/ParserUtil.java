@@ -3,22 +3,16 @@ package donnafin.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.math.BigInteger;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import donnafin.commons.core.types.Index;
 import donnafin.commons.core.types.Money;
 import donnafin.commons.util.StringUtil;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.person.Address;
-import donnafin.model.person.Asset;
 import donnafin.model.person.Email;
-import donnafin.model.person.Liability;
 import donnafin.model.person.Name;
 import donnafin.model.person.Phone;
-import donnafin.model.person.Policy;
 import donnafin.ui.Ui;
 import donnafin.ui.Ui.ViewFinderState;
 
@@ -125,107 +119,6 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-    //@@author sheehui
-    /**
-     * Parses a {@code String policy} into a {@code Policy}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code policy} is invalid.
-     */
-    public static Policy parsePolicy(String policy) throws ParseException {
-        String[] details = policy.split(ATTRIBUTE_DELIMITER);
-
-        if (details.length != 5) {
-            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
-        }
-        try {
-            return new Policy(details[0], details[1], details[2], details[3], details[4]);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Parses {@code Collection<String> policy} into a {@code Set<Policy>}.
-     */
-    public static Set<Policy> parsePolicies(Collection<String> policies) throws ParseException {
-        requireNonNull(policies);
-        final Set<Policy> policySet = new HashSet<>();
-
-        for (String policyName : policies) {
-            policySet.add(parsePolicy(policyName));
-        }
-
-        return policySet;
-    }
-
-    /**
-     * Parses a {@code String asset} into a {@code Asset}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code asset} is invalid.
-     */
-    public static Asset parseAsset(String asset) throws ParseException {
-        String[] details = asset.split(ATTRIBUTE_DELIMITER);
-
-        if (details.length != 4) {
-            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
-        }
-        try {
-            return new Asset(details[0], details[1], details[2], details[3]);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Parses {@code Collection<String> assets} into a {@code Set<Asset>}.
-     */
-    public static Set<Asset> parseAssets(Collection<String> assets) throws ParseException {
-        requireNonNull(assets);
-        final Set<Asset> assetSet = new HashSet<>();
-        for (String assetName : assets) {
-            assetSet.add(parseAsset(assetName));
-        }
-
-        return assetSet;
-    }
-
-
-    /**
-     * Parses a {@code String liability} into a {@code Liability}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code liability} is invalid.
-     */
-    public static Liability parseLiability(String liability) throws ParseException {
-        String[] details = liability.split(ATTRIBUTE_DELIMITER);
-
-        if (details.length != 4) {
-            throw new ParseException(Asset.MESSAGE_CONSTRAINTS);
-        }
-        try {
-            return new Liability(details[0], details[1], details[2], details[3]);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Liability.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Parses {@code Collection<String> liabilities} into a {@code Set<Liability>}.
-     */
-    public static Set<Liability> parseLiabilities(Collection<String> liabilities) throws ParseException {
-        requireNonNull(liabilities);
-        final Set<Liability> liabilitySet = new HashSet<>();
-
-        for (String liabilityName : liabilities) {
-            liabilitySet.add(parseLiability(liabilityName));
-        }
-
-        return liabilitySet;
-    }
-
-    //@@author bharathcs
     /**
      * Parses a {@code String money} into a {@code Money}.
      * Leading and trailing whitespaces will be trimmed.

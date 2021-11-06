@@ -12,7 +12,6 @@ import donnafin.model.person.Notes;
 import donnafin.model.person.Person;
 import donnafin.model.person.Phone;
 import donnafin.model.person.Policy;
-import donnafin.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -103,24 +102,24 @@ public class PersonBuilder {
     /**
      * Sets the {@code liabilities} of the {@code Person} that we are building.
      */
-    public PersonBuilder withLiability(String ... liabilities) {
-        this.liabilities = SampleDataUtil.getLiabilities(liabilities);
+    public PersonBuilder withLiability(Set<Liability> liabilities) {
+        this.liabilities = liabilities;
         return this;
     }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withPolicies(String ... policies) {
-        this.policies = SampleDataUtil.getPolicies(policies);
+    public PersonBuilder withPolicies(Set<Policy> policies) {
+        this.policies = policies;
         return this;
     }
 
     /**
      * Parses the {@code assets} into a {@code Set<assets>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withAssets(String ... assets) {
-        this.assets = SampleDataUtil.getAssets(assets);
+    public PersonBuilder withAssets(Set<Asset> assets) {
+        this.assets = assets;
         return this;
     }
 
