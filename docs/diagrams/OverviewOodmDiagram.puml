@@ -2,6 +2,7 @@
 skinparam style strictuml
 skinparam groupInheritance 2
 
+
 hide empty members
 
 class "Financial Advisor" as FinancialAdvisor {
@@ -22,17 +23,20 @@ class "Policy" {
 }
 
 class "Asset" {
-}
-
-class "Liability" {
-}
-
-class "Equity Holding" {
     Name
     Type
     Value
     Remarks
 }
+
+class "Liability" {
+    Name
+    Type
+    Value
+    Remarks
+}
+
+
 
 class "Miscellaneous Information" {
 
@@ -63,18 +67,17 @@ FinancialAdvisor -- "*" "Client": has >
 "Client Entry" -- "1" "Client": records information of >
 
 "Client" -- "*" "Policy" : purchases >
-"Client" -- "*" "Equity Holding" : owns >
+"Client" -- "*" "Asset" : owns >
+"Client" -- "*" "Liability" : owns >
 "Client" -- "1" "Contact Information" : has >
 "Client" -- "*" "Miscellaneous Information" : has >
 
-"Equity Holding" <|-- "Asset"
-"Equity Holding" <|-- "Liability"
 
 "Client Entry" *-- "Client Contact Details"
-"Client Entry" *-- "List of Policies" :keeps >
-"Client Entry" *-- "List of Assets" :keeps >
-"Client Entry" *-- "List of Liabilities" :keeps >
-"Client Entry" *-- "Financial Plan" :keeps >
+"Client Entry" *-- "List of Policies" :records >
+"Client Entry" *-- "List of Assets" :records >
+"Client Entry" *-- "List of Liabilities" :records >
+"Client Entry" *-- "Financial Plan" :records >
 "Client Entry" *-- "Notes"
 
 "Client Contact Details" "1" -- "Contact Information": stores >
