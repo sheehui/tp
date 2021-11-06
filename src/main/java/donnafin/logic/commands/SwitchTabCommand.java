@@ -8,7 +8,9 @@ import donnafin.logic.Logic;
 import donnafin.logic.PersonAdapter;
 import donnafin.logic.commands.exceptions.CommandException;
 import donnafin.logic.parser.AssetsTabParser;
+import donnafin.logic.parser.ContactTabParser;
 import donnafin.logic.parser.LiabilitiesTabParser;
+import donnafin.logic.parser.NotesTabParser;
 import donnafin.logic.parser.PolicyTabParser;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
@@ -22,12 +24,7 @@ public class SwitchTabCommand extends Command {
     private final Ui.ViewFinderState tab;
     private final PersonAdapter personAdapter;
 
-    /**
-     * Constructor for switchTabCommand
-     * @param tab {@tab} which is passed to switch tab command
-     * @param personAdapter {@personAdapeter} which is used to pass personAdapter to other
-     * parsers later
-     */
+    /** Constructor for switchTabCommand */
     public SwitchTabCommand(Ui.ViewFinderState tab, PersonAdapter personAdapter) {
         this.tab = tab;
         this.personAdapter = personAdapter;

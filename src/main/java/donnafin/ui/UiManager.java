@@ -79,7 +79,6 @@ public class UiManager implements Ui {
         uiState.setStatePersonalInformationTab();
     }
 
-
     @Override
     public void switchClientViewTab(ViewFinderState tab) throws ParseException {
         mainWindow.switchClientViewTab(tab);
@@ -106,7 +105,7 @@ public class UiManager implements Ui {
 
 
     /**
-     * Changes the mainwindow to personlist panel, aka "Home"
+     * Changes the {@code mainWindow} to {@code personList} panel, aka "Home"
      */
     public void showHome() {
         mainWindow.switchToHome();
@@ -121,7 +120,7 @@ public class UiManager implements Ui {
      * Shows an alert dialog on {@code owner} with the given parameters.
      * This method only returns after the user has closed the alert dialog.
      */
-    public void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
@@ -150,22 +149,18 @@ public class UiManager implements Ui {
 
     public GuiSettings getGuiSettings() {
         return logic.getGuiSettings();
-    };
+    }
 
     public ObservableList<Person> getFilteredPersonList() {
         return logic.getFilteredPersonList();
-    };
+    }
 
     public Path getAddressBookFilePath() {
         return logic.getAddressBookFilePath();
-    };
+    }
 
     public void setGuiSettings(GuiSettings guiSettings) {
         logic.setGuiSettings(guiSettings);
-    };
-
-    public MainWindow getMainWindow() {
-        return this.mainWindow;
     }
 
     public ViewFinderState getUiState() {
@@ -177,18 +172,14 @@ public class UiManager implements Ui {
      * uiConsumer. If there is one, apply it to the ui
      * @param commandText String entered by the user
      * @return  result of the command of class Command result
-     * @throws CommandException
-     * @throws ParseException
      */
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         CommandResult commandResult = logic.execute(commandText);
         Consumer<Ui> uiAction = commandResult.getUiAction();
-        assert !uiAction.equals(null) : "commandResult.uiAction was set as null";
-        if (!uiAction.equals(null)) {
-            uiAction.accept(this);
-        }
+        assert uiAction != null : "commandResult.uiAction was set as null";
+        uiAction.accept(this);
         return commandResult;
-    };
+    }
 
     //For testing purposes. See UiManager Test for more info
     @Override

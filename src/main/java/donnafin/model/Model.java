@@ -79,7 +79,7 @@ public interface Model {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Person target, Person editedPerson) throws IOException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -98,12 +98,4 @@ public interface Model {
      * @return a set of sets where each set contains weak duplicates together.
      */
     Set<Person> getWeakDuplicates(Person target);
-
-    /**
-     * Find possible user errors (very similar clients of the same name).
-     * Weak duplicates refer to comparing {@code Person} and ignoring case and white space.
-     *
-     * @return result of running {@code getWeakDuplicates} on each clients.
-     */
-    Set<Set<Person>> getWeakDuplicatesAllClients();
 }

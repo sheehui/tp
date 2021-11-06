@@ -1,5 +1,6 @@
 package donnafin.logic.commands;
 
+import static donnafin.logic.commands.CommandTestUtil.assertCommandFailure;
 import static donnafin.testutil.TypicalPersons.GEORGE;
 import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,6 +96,20 @@ public class RemoveCommandTest {
     }
 
     @Test
+    public void equals_withMatchingObjects_pass() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);
+        RemoveCommand testCommandAgain = new RemoveCommand(personAdapter, fieldAsset, index1);
+        assertEquals(testCommand, testCommandAgain);
+    }
+
+    @Test
+    public void hashCode_withMatchingObjects_bothMatch() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);
+        RemoveCommand testCommandAgain = new RemoveCommand(personAdapter, fieldAsset, index1);
+        assertEquals(testCommand.hashCode(), testCommandAgain.hashCode());
+    }
+
+    @Test
     public void removeAsset_changesAssetList() throws CommandException, ParseException {
         AppendCommand helperCommand = new AppendCommand(personAdapter, testAsset);
         RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);
@@ -127,5 +142,10 @@ public class RemoveCommandTest {
         assertEquals(GEORGE, personAdapter.getSubject());
     }
 
+    @Test
+    public void execute_invalidIndex_throwsCommandException() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldLiability, index2);
+        assertCommandFailure(testCommand, model, "No such index found.");
+    }
 
 }

@@ -1,3 +1,4 @@
+//@@author sheehui
 package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
@@ -32,6 +33,7 @@ public class Asset implements Attribute {
             + PREFIX_VALUE + "$10000000 "
             + PREFIX_REMARKS + "unoccupied";
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    //@@author bharathcs
     public static final AttributeTable.TableConfig<Asset> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Assets",
         List.of(
@@ -52,6 +54,7 @@ public class Asset implements Attribute {
                 return String.format("Total Asset Value: $%s.%s", dollars, cents);
             }).orElse("")
     );
+    //@@author sheehui
 
     private final String name;
     private final String type;
@@ -122,8 +125,11 @@ public class Asset implements Attribute {
 
     @Override
     public boolean isPossibleDuplicate(Attribute other) {
-        // TODO: @Donny
-        return equals(other);
+        if (other instanceof Asset) {
+            return getName().equalsIgnoreCase(((Asset) other).getName());
+        } else {
+            return false;
+        }
     }
 
     public String getName() {

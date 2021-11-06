@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) throws IOException {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
@@ -145,14 +145,6 @@ public class ModelManager implements Model {
     public Set<Person> getWeakDuplicates(Person target) {
         return getAddressBook().getPersonList().stream()
                 .filter(p -> p.isPossibleDuplicate(target))
-                .collect(Collectors.toSet());
-    }
-
-    @Override
-    public Set<Set<Person>> getWeakDuplicatesAllClients() {
-        return getAddressBook().getPersonList().stream()
-                .map(this::getWeakDuplicates)
-                .filter(set -> set.size() != 1)
                 .collect(Collectors.toSet());
     }
 

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -130,7 +129,7 @@ public class AddCommandTest {
          * Returns the AddressBook
          */
         @Override
-        public void saveAddressBook() throws IOException {
+        public void saveAddressBook() {
         }
 
         @Override
@@ -162,11 +161,6 @@ public class AddCommandTest {
         public Set<Person> getWeakDuplicates(Person target) {
             return null;
         }
-
-        @Override
-        public Set<Set<Person>> getWeakDuplicatesAllClients() {
-            return null;
-        }
     }
 
     /**
@@ -188,11 +182,6 @@ public class AddCommandTest {
 
         @Override
         public Set<Person> getWeakDuplicates(Person target) {
-            return null;
-        }
-
-        @Override
-        public Set<Set<Person>> getWeakDuplicatesAllClients() {
             return null;
         }
     }
@@ -217,11 +206,6 @@ public class AddCommandTest {
 
         @Override
         public Set<Person> getWeakDuplicates(Person target) {
-            return null;
-        }
-
-        @Override
-        public Set<Set<Person>> getWeakDuplicatesAllClients() {
             return null;
         }
 

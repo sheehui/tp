@@ -42,8 +42,26 @@ public class AppendCommand extends Command {
         + PREFIX_VALUE + "VALUE "
         + PREFIX_REMARKS + "REMARKS ";
 
-    public static final String MESSAGE_SUCCESS = "New policy/asset/liability added";
+    public static final String MESSAGE_SUCCESS_ASSET = "New asset added";
+    public static final String MESSAGE_SUCCESS_LIABILITY = "New liability added";
+    public static final String MESSAGE_SUCCESS_POLICY = "New policy added";
 
+
+    public static final String MESSAGE_DUPLICATE_ASSET = "Sorry, an asset with this exact specifications"
+            + " has already been added!";
+    public static final String MESSAGE_DUPLICATE_LIABILITY = "Sorry, a liability with this exact specifications "
+            + "has already been added!";
+    public static final String MESSAGE_DUPLICATE_POLICY = "Sorry, a policy with this exact specifications"
+            + " has already been added!";
+
+    public static final String MESSAGE_SIMILAR_ASSET = "New asset added. \n"
+            + "Warning! An asset with a similar name has been added previously.";
+    public static final String MESSAGE_SIMILAR_LIABILITY = "New liability added. \n"
+            + "Warning! A liability with a similar name has been added previously.";
+    public static final String MESSAGE_SIMILAR_POLICY = "New policy added. \n"
+            + "Warning! A policy with a similar name has been added previously.";
+
+    private static String messageResult;
     private final Consumer<PersonAdapter> editor;
     private final PersonAdapter personAdapter;
     private final Object hashableNewValue;
@@ -54,12 +72,21 @@ public class AppendCommand extends Command {
      * @param policy the new policy being added.
      */
     public AppendCommand(PersonAdapter personAdapter, Policy policy) {
+        requireNonNull(personAdapter);
+        requireNonNull(policy);
         this.personAdapter = personAdapter;
         this.hashableNewValue = policy;
         this.editor = pa -> {
             Set<Policy> policies = new HashSet<>(pa.getSubject().getPolicies());
-            policies.add(policy);
-            pa.editPolicies(policies);
+            boolean containsSimilarName = policies.stream().anyMatch(item ->
+                    item.isPossibleDuplicate(policy));
+            if (policies.contains(policy)) {
+                messageResult = MESSAGE_DUPLICATE_POLICY;
+            } else {
+                policies.add(policy);
+                pa.editPolicies(policies);
+                messageResult = containsSimilarName ? MESSAGE_SIMILAR_POLICY : MESSAGE_SUCCESS_POLICY;
+            }
         };
     }
 
@@ -69,12 +96,21 @@ public class AppendCommand extends Command {
      * @param liability the new liability being added.
      */
     public AppendCommand(PersonAdapter personAdapter, Liability liability) {
+        requireNonNull(personAdapter);
+        requireNonNull(liability);
         this.personAdapter = personAdapter;
         this.hashableNewValue = liability;
         this.editor = pa -> {
             Set<Liability> liabilities = new HashSet<>(pa.getSubject().getLiabilities());
-            liabilities.add(liability);
-            pa.editLiabilities(liabilities);
+            boolean containsSimilarName = liabilities.stream().anyMatch(item ->
+                    item.isPossibleDuplicate(liability));
+            if (liabilities.contains(liability)) {
+                messageResult = MESSAGE_DUPLICATE_LIABILITY;
+            } else {
+                liabilities.add(liability);
+                pa.editLiabilities(liabilities);
+                messageResult = containsSimilarName ? MESSAGE_SIMILAR_LIABILITY : MESSAGE_SUCCESS_LIABILITY;
+            }
         };
     }
 
@@ -84,12 +120,21 @@ public class AppendCommand extends Command {
      * @param asset the new asset being added.
      */
     public AppendCommand(PersonAdapter personAdapter, Asset asset) {
+        requireNonNull(personAdapter);
+        requireNonNull(asset);
         this.personAdapter = personAdapter;
         this.hashableNewValue = asset;
         this.editor = pa -> {
             Set<Asset> assets = new HashSet<>(pa.getSubject().getAssets());
-            assets.add(asset);
-            pa.editAssets(assets);
+            boolean containsSimilarName = assets.stream().anyMatch(item ->
+                    item.isPossibleDuplicate(asset));
+            if (assets.contains(asset)) {
+                messageResult = MESSAGE_DUPLICATE_ASSET;
+            } else {
+                assets.add(asset);
+                pa.editAssets(assets);
+                messageResult = containsSimilarName ? MESSAGE_SIMILAR_ASSET : MESSAGE_SUCCESS_ASSET;
+            }
         };
     }
 
@@ -107,7 +152,7 @@ public class AppendCommand extends Command {
             }
         };
 
-        return new CommandResult(MESSAGE_SUCCESS, refresh);
+        return new CommandResult(messageResult, refresh);
     }
 
     @Override

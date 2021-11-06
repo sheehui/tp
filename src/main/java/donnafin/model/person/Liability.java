@@ -1,3 +1,4 @@
+//@@author sheehui
 package donnafin.model.person;
 
 import static donnafin.commons.util.AppUtil.checkArgument;
@@ -32,6 +33,7 @@ public class Liability implements Attribute {
             + PREFIX_VALUE + "$420 "
             + PREFIX_REMARKS + "mostly paid off ";
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    //@@author bharathcs
     public static final AttributeTable.TableConfig<Liability> TABLE_CONFIG = new AttributeTable.TableConfig<>(
         "Liabilities",
         List.of(
@@ -52,6 +54,7 @@ public class Liability implements Attribute {
                 return String.format("Total Liability Value: $%s.%s", dollars, cents);
             }).orElse("")
     );
+    //@@author sheehui
 
     private final String name;
     private final String type;
@@ -122,8 +125,11 @@ public class Liability implements Attribute {
 
     @Override
     public boolean isPossibleDuplicate(Attribute other) {
-        // TODO: @Donny
-        return equals(other);
+        if (other instanceof Liability) {
+            return getName().equalsIgnoreCase(((Liability) other).getName());
+        } else {
+            return false;
+        }
     }
 
     public String getName() {
