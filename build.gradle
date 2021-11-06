@@ -116,6 +116,7 @@ test {
         boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
         boolean runNonGuiTests = gradle.taskGraph.hasTask(nonGuiTests)
 
+        // Default to running all.
         if (!runGuiTests && !runNonGuiTests) {
             runGuiTests = true
             runNonGuiTests = true

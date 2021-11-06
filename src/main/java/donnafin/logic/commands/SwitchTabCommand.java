@@ -12,7 +12,6 @@ import donnafin.logic.parser.ContactTabParser;
 import donnafin.logic.parser.LiabilitiesTabParser;
 import donnafin.logic.parser.NotesTabParser;
 import donnafin.logic.parser.PolicyTabParser;
-import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;
 import donnafin.ui.Ui;
 
@@ -40,15 +39,8 @@ public class SwitchTabCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Consumer<Ui> uiAction = ui -> {
-            try {
-                ui.switchClientViewTab(tab);
-            } catch (ParseException e) {
-                //This is sufficient as its only an exception due to switch
-                //Handling all cases normally and still having a default
-                e.printStackTrace();
-            }
-        };
+
+        Consumer<Ui> uiAction = ui -> ui.switchClientViewTab(tab);
 
         Consumer<Logic> logicAction = logic -> {
             switch (tab) {
