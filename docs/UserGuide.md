@@ -107,6 +107,9 @@ This marks the end of the quick start. Click
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* Items in square brackets are optional.<br>
+  e.g. `KEYWORD [MORE_KEYWORDS]` can be used as `KEYWORD MORE_KEYWORDS` or as `KEYWORD`.
+
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -473,7 +476,7 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with 
 an empty data file at the next run.
 
-```
+``` YAML
 {
   "persons" : [ {
     "name" : "Alex Yeoh",
@@ -494,11 +497,12 @@ an empty data file at the next run.
 
 The above figure shows the original JSON data for totalValueInsured
 regarding the client Alex Yeoh. If you tamper with the 
-JSON file directly and change one of the attributes to an invalid format, in this case the 
-total value of assets(supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
+JSON file directly and change one of the attributes to an invalid format (in this case the 
+total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
 discard all the data and start with an empty data file.
-When this happens however, to prevent total loss of your data, we do not delete it right away.
-Only when *any* valid command is run, DonnaFin will assume that the intended action is to clear your data. 
+
+When this happens however, to prevent total loss of your data, **we do not delete it right away**.
+Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data. 
 DonnaFin will then proceed to cleanly wipe donnafin.json and execute your command.
 
 </div>
