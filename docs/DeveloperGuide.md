@@ -11,16 +11,17 @@ title: Developer Guide
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended
-audience in order to better understand the inner workings of the program and better understand the interaction between
-the various components than form DonnaFin.
+
+This guide covers the architecture, implementation and design choices in DonnaFin to give the reader a clear picture
+of the technical details and the inner workings of DonnaFin.
 
 ### 1.2 Target Audience
-This developer guide is aimed at developers and advanced users of DonnaFin
-* Developers: anyone who wishes to upgrade DonnaFin to support more functions.
-* Advanced Users: Financial Advisors who want to better understand the features that DonnaFin Provides.
+
+* Developers: anyone who wishes to dive into this codebase to improve or extend on DonnaFin.
+* Advanced Users: financial advisors who want to better understand the features that DonnaFin Provides.
 
 ### 1.3 About DonnaFin
+
 DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
 Despite the application having an intuitive Graphical User Interface (GUI), it is optimized for entering commands using
 a Command Line Interface (CLI).
@@ -31,11 +32,21 @@ a Command Line Interface (CLI).
 
 This activity diagram shows how one might typically navigate through the DonnaFin application.
 
-
-Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that are not
+Commands refer to the pre-defined functions available to the user. Invalid commands refer to commands that are not
 available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
+In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the
+key client details that a financial advisor has to keep track of.
+
+Below is an Object-Oriented Domain Model (OODM) modelling the existing state of affairs between a financial advisor and
+their client/s.
+
+![Overview OODM Diagram](images/OverviewOodmDiagram.png)
+
+DonnaFin gives financial advisors a platform to store their numerous clients and their details. In this guide
+it will be explained how all the different classes, and components of DonnaFin come together to create a software that
+is able to perform this functionality.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -81,7 +92,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -96,13 +107,27 @@ The rest of the App consists of four components.
 
 Each of the four main components (also shown in the diagram above).
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements the aforementioned functionality using a concrete `{Component Name}Manager` class.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java`. Other components interact with a given component through its interface as much as possible 
+rather than the concrete class or through any lower-level class, as illustrated in the (partial) class diagram below.
+Experienced programmers may recognise this as the Facade design pattern.[^facadeFootnote]
+
+[^facadeFootnote]: [Facade Design Pattern](https://refactoring.guru/design-patterns/facade)
 
 <img alt="Component Managers" src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** There are some notable exceptions to the `Facade` pattern. For example, for the `Ui` component, 
+`AttributePanel`, `PersonCard` and `ClientPanel`. Arguably the better implementation would be to restrict all the 
+interactions between components to the facades, but a design decision was made to prioritize a simple implementation of
+critical features over adhering to the design pattern.
+</div>
+
 
 #### 4.1.1 UI component
 
@@ -424,7 +449,7 @@ any notes about the client. In the main page, it collates all clients for easy a
 client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
-The product will not help them with work relations with other Financial Advisors as the
+The product will not help them with work relations with other financial advisors as the
 product’s scope only covers the personal use of the product. It does not link with any
 financial calculators, financial databases or cover market information.
 
