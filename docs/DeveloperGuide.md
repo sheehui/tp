@@ -254,11 +254,11 @@ the same framework but differ slightly.
 #### 4.2.1 Commands that involve organisation of clients
 
 <div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
-<br></br>
+<br>
 1. The command interacts with model through an addition or deletion
 2. The command interacts with storage through an addition or deletion.
 3. The command does not access the inner details of clients but rather treat them as atomic.
-<br></br>
+<br>
 Commands that fall under this category are :
 * Add
 * Delete
@@ -291,13 +291,13 @@ This does not involve a consumer in any way but is always part of execute comman
 #### 4.2.2 Commands that accesses one specific client's information
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
-<br></br>
+<br>
 The key differences are:
 1. The command has to access and edit information regarding one specific client.
 2. The command interacts and actively updates information in storage.
 However, commands in the third category differ from the first in that change information of one specific client,
 while the first adds/deletes the client specified.
-<br></br>
+<br>
 Commands that fall into the second category are:
 * Edit
 * Append
@@ -322,7 +322,7 @@ like the 2 other [categories](#42-implementation-and-commands) contain both a co
 edits made**.
 
 <div markdown="span" class="alert alert-warning">**Explanation of `PersonAdapter`:**
-<br></br>
+<br>
 In this category of commands, the class`PersonAdapter` is doing most of the legwork here.
 `PersonAdpater` serves as a wrapper for the Model class `Person`.
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
@@ -332,13 +332,13 @@ Such an implementation supports the user viewing and controlling a single client
 #### 4.2.3 Commands that involve changing of tabs
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
-<br></br>
+<br>
 The key differences are:
 1. The commands do not interact with model.
 2. The commands have to handle the changing of ParserStrategy, from the current one
 to `ABCParser` of the new tab.
 3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
-<br></br>
+<br>
 Commands that fall into this category are:
 * SwitchTab
 * View
@@ -360,7 +360,7 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
-<br></br>
+<br>
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. 
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
