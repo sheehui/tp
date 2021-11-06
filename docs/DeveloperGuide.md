@@ -200,9 +200,9 @@ This will be a reference to explain the general flow of how the commands work la
 
 Command types fall into 3 main categories. 
 1. Commands that affect Model and storage
-2. Commands that involve changing of tab
-3. Commands that involve editing of personal information of one specific client,
+2. Commands that involve editing of personal information of one specific client,
 be it appending or removing information.
+3. Commands that involve changing of tab
 
 Despite falling under the three broad categories, the commands still have many similarities. Thus, we give an
 in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
@@ -235,40 +235,10 @@ sequence diagram.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 Commands that involve changing of tabs
-
-Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
-
-The key differences are:
-1. The commands do not interact with model.
-2. The commands have to handle the changing of ParserStrategy, from the current one
-to `ABCParser` of the new tab.
-3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
-Commands that fall into this category are:
-* SwitchTab
-* View
-
-<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
-
-As seen from the diagram above, the command logic is very similar to commands in the first [category](#421-commands-that-affect-model-and-storage)
-
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
-* The `Logic` component parses the command and returns the `SwitchTab` command.
-* The `Logic` component execues the `SwitchTab` command and returns the `SwitchTabCommandResult`
-* The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
-In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
-* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
-
-In depth explanation of how the `ABCParser` in ParserContext is updated:
-1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. 
-2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
-3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
-4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.
-
-#### 4.2.3 Commands that involve editing of one specific client
+#### 4.2.2 Commands that involve editing of one specific client
 
 Edit command is a command that edits the information of a specific client. Other commands like append and remove,
-also deal directly with a specific client's information. Thus they fall under the third [category](#42-implementation-and-commands)
+also deal directly with a specific client's information. Thus they fall under the second [category](#42-implementation-and-commands)
 
 The key differences are:
 1. The command has to update new information regarding one specific client.
@@ -297,6 +267,36 @@ like the 2 other [categories](#42-implementation-and-commands) contain both a co
 * The `Logic` component then accepts the LogicConsumer produced from the command result.
 * The `UI` component then accepts the UiConsumer produced from the command result. **The `UI` is here to display the newly
 edits made**.
+
+#### 4.2.3 Commands that involve changing of tabs
+
+Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
+
+The key differences are:
+1. The commands do not interact with model.
+2. The commands have to handle the changing of ParserStrategy, from the current one
+to `ABCParser` of the new tab.
+3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
+Commands that fall into this category are:
+* SwitchTab
+* View
+
+<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
+
+As seen from the diagram above, the command logic is very similar to commands in the first [category](#421-commands-that-affect-model-and-storage)
+
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command and returns the `SwitchTab` command.
+* The `Logic` component execues the `SwitchTab` command and returns the `SwitchTabCommandResult`
+* The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
+In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
+* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
+
+In depth explanation of how the `ABCParser` in ParserContext is updated:
+1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. 
+2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
+3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
+4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.
 
 --------------------------------------------------------------------------------------------------------------------
 
