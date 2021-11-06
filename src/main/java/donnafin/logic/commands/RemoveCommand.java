@@ -28,7 +28,7 @@ public class RemoveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: remove 3";
     public static final String MESSAGE_SUCCESS = "Successfully removed row.";
-    public static final String MESSAGE_INVALID_TAB = "Successfully removed row.";
+    public static final String MESSAGE_INVALID_TAB = "Wrong tab for RemoveCommand.";
 
     private final PersonAdapter personAdapter;
     private final PersonField field;
