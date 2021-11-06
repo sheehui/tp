@@ -1,6 +1,8 @@
 @startuml Domain Model
 skinparam style strictuml
 skinparam groupInheritance 2
+skinparam linetype polyline
+
 
 
 hide empty members
@@ -9,10 +11,13 @@ class "Financial Advisor" as FinancialAdvisor {
 }
 
 class "Client" as Client {
-
 }
 
-class "Contact Information" {
+class "Contact Details" {
+    Name
+    Phone
+    Email
+    Address
 }
 
 class "Policy" {
@@ -20,6 +25,7 @@ class "Policy" {
     Insurer Name
     Value Insured
     Yearly Premium
+    Commission
 }
 
 class "Asset" {
@@ -38,57 +44,18 @@ class "Liability" {
 
 
 
-class "Miscellaneous Information" {
-
-}
-
-class "Record Keeping Tool" {
-}
-
-class "Client Entry" {
-}
-
-class "Client Contact Details" {
-    Name
-    Phone
-    Email
-    Address
-}
-
-class "List of Assets" {
+class "Notes" {
 }
 
 
-FinancialAdvisor -- "1" "Record Keeping Tool": has >
-"Record Keeping Tool" -- "*" "Client Entry" : stores >
 
-FinancialAdvisor -- "*" "Client": has >
-
-"Client Entry" -- "1" "Client": records information of >
+FinancialAdvisor -- "*" "Client": manages >
 
 "Client" -- "*" "Policy" : purchases >
 "Client" -- "*" "Asset" : owns >
 "Client" -- "*" "Liability" : owns >
-"Client" -- "1" "Contact Information" : has >
-"Client" -- "*" "Miscellaneous Information" : has >
+"Client" -- "1" "Contact Details" : has >
+"Client" -- "1" "Notes" : has >
 
-
-"Client Entry" *-- "Client Contact Details"
-"Client Entry" *-- "List of Policies" :records >
-"Client Entry" *-- "List of Assets" :records >
-"Client Entry" *-- "List of Liabilities" :records >
-"Client Entry" *-- "Financial Plan" :records >
-"Client Entry" *-- "Notes"
-
-"Client Contact Details" "1" -- "Contact Information": stores >
-"List of Policies" -- "*""Policy": stores >
-"List of Assets" -- "*""Asset": stores >
-"List of Liabilities" -- "*""Liability": stores >
-"Notes" -- "*" "Miscellaneous Information": stores >
-
-"Financial Plan" -- "List of Policies": made from >
-"Financial Plan" -- "List of Assets": made from >
-"Financial Plan" -- "List of Liabilities": made from >
-"Financial Plan" -- "Notes": made from >
 
 @enduml
