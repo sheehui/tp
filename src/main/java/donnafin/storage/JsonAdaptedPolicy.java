@@ -1,15 +1,14 @@
 //@@author sheehui
 package donnafin.storage;
 
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import donnafin.MainApp;
 import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Policy;
-
-import java.util.logging.Logger;
 
 /**
  * Jackson-friendly version of {@link Policy}.

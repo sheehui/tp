@@ -1,6 +1,5 @@
 package donnafin.ui;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import donnafin.model.person.Person;
