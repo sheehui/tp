@@ -13,29 +13,29 @@ title: User Guide
 <img alt="DonnaFinLogo" src="./images/DonnaFin.png" width="800"/>
 
 DonnaFin.io is a desktop application used by financial advisors to keep track of their
-client information and related tasks. The '.io' in our name is a reflection of our belief 
-that you deserve a faster workflow for input and output. If you can type fast, 
-you can use our [CLI-like](#7-glossary) commands to manage your client information 
+client information and related tasks. The '.io' in our name is a reflection of our belief
+that you deserve a faster workflow for input and output. If you can type fast,
+you can use our [CLI-like](#7-glossary) commands to manage your client information
 and view your notes much faster than your typical customer relationship manager apps.
 
 Note: From here on we shall refer to DonnaFin.io as DonnaFin for your readability.
 
 ### 1.1 Is this guide for you?
 
-Are you a new user who is looking to get started with using DonnaFin? Perhaps you are a more 
+Are you a new user who is looking to get started with using DonnaFin? Perhaps you are a more
 advanced user trying to refresh your understanding of the available commands? Look no further!
 This is the guide that will kickstart your journey as a DonnaFin whizz and even be your go-to
-reference if you need to refresh your understanding on some features. 
+reference if you need to refresh your understanding on some features.
 Head over to [Quick Start](#2-quick-start) or [Features](#4-features) for more information.
 
 ### 1.2 How to use the user guide
 
-As most applications on the market are not CLI-based, this may come across 
+As most applications on the market are not CLI-based, this may come across
 as new to some users. We strongly recommend that first-time users read through the user guide to gain a basic understanding
 of how to use our app. We have also included links to navigate around the user guide to allow easier access
 of related information. Some tips and tricks, as well as cautions are included throughout the guide to
 help you get more out of our application. Additionally, links back to the top of the page
-like below are present at the end of every section. For easier navigation around this User Guide, we suggest using our table of contents together with these 
+like below are present at the end of every section. For easier navigation around this User Guide, we suggest using our table of contents together with these
 links to quickly find and access the information you need.
 
 This marks the end of the introduction. Click
@@ -61,15 +61,15 @@ This marks the end of the introduction. Click
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the DonnaFin.
 
    * **`view`**`3` : Opens the client window, where you can access the details of the 3rd client shown in the current list.
-   
+
    * **`tab`**`a` : Access the assets tab of client that is currently viewed.
-   
-   * **`append`**`n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan` : 
+
+   * **`append`**`n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan` :
    As we are in the Asset tab now, this will add an asset to the currently viewed client.
    * **`remove`**`1` : Removes the 1st asset in the Asset tab.
-   
+
    * **`home`** : Return to home window.
-   
+
    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
    * **`clear`** : Deletes all clients.
@@ -78,7 +78,7 @@ This marks the end of the introduction. Click
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
-This marks the end of the quick start. Click 
+This marks the end of the quick start. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ This marks the end of the quick start. Click
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 L
-This marks the end of the about section. Click 
+This marks the end of the about section. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,9 +171,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-Do take note that there is a near duplicate check for names. This means that when 
-adding a person whose name is similar to another client already found in DonnaFin, 
-the result display will prompt the user as such but the client will still be added to 
+Do take note that there is a near duplicate check for names. This means that when
+adding a person whose name is similar to another client already found in DonnaFin,
+the result display will prompt the user as such but the client will still be added to
 the contact list. However, if the names are exact duplicates they will be rejected.
 
 Near duplicate:
@@ -182,8 +182,8 @@ Near duplicate:
 Duplicate:
 ![FullDuplicateRejectionMessage](./images/FullDuplicateRejectionMessage.png)
 
-Names are said to be near duplicates if the names differs only in case 
-(upper case letters where there are lower case letters) or 
+Names are said to be near duplicates if the names differs only in case
+(upper case letters where there are lower case letters) or
 with spaces (user types in two or more spaces in place of one)
 
 | First Name     | Second Name                        | Is near duplicate
@@ -196,7 +196,7 @@ with spaces (user types in two or more spaces in place of one)
 | davidLi     | David Li                        | no
 | DavidLi     | David Li                        | no
 
-Note that this duplicate detection does not try to combine separated words. 
+Note that this duplicate detection does not try to combine separated words.
 E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 
 #### 4.2.2 Deleting a Client : `delete`
@@ -244,7 +244,7 @@ You may refer to our [Client Window Commands](#43-client-window) to learn more a
 
 Format: `view INDEX`
 
-* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed person list. 
+* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, ...​
 * The view screen will switch to the client window.
 
@@ -273,9 +273,9 @@ as notes for each client.
 
 #### 4.3.1 Switching Tabs In Client Window: `tab`
 
-Allows you to navigate to a different tab. 
+Allows you to navigate to a different tab.
 
-There are 5 tabs: 
+There are 5 tabs:
 1. [Contacts](#4311-contacts-tab)
 2. [Policies](#4312-policies-tab)
 3. [Assets](#4313-assets-tab)
@@ -501,7 +501,7 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
-If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with 
+If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with
 an empty data file at the next run.
 
 ``` YAML
@@ -524,13 +524,13 @@ an empty data file at the next run.
 ```
 
 The above figure shows the original JSON data for totalValueInsured
-regarding the client Alex Yeoh. If you tamper with the 
-JSON file directly and change one of the attributes to an invalid format (in this case the 
+regarding the client Alex Yeoh. If you tamper with the
+JSON file directly and change one of the attributes to an invalid format (in this case the
 total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
 discard all the data and start with an empty data file.
 
 When this happens however, to prevent total loss of your data, **we do not delete it right away**.
-Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data. 
+Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data.
 DonnaFin will then proceed to cleanly wipe donnafin.json and execute your command.
 
 </div>
@@ -553,7 +553,7 @@ This marks the end of the features section. Click
 **Q**: I want to write with non-latin alphabets. Do you have support for internationalization (e.g. Chinese, Hindi, Malay)<br>
 **A**: While it may not break our system, we have developed this application with latin script in mind, and cannot guarantee a bug-free experience.
 
-This marks the end of the FAQ section. Click 
+This marks the end of the FAQ section. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -593,7 +593,7 @@ This section gives a quick summary of how you may use DonnaFin.
 | **Remove Asset/Liability/Policy**   | `remove INDEX`                                                                 | `remove 1`
 
 
-This marks the end of the command summary section. Click 
+This marks the end of the command summary section. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
 
@@ -603,9 +603,9 @@ This marks the end of the command summary section. Click
 as opposed to graphical user interfaces(mouse-based applications).
 * **Asset**: Items that generate profit or return on investment.
 * **Liability**: Obligations that require payments from the client.
-* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
 financial protection or reimbursement against losses.
 
-This marks the end of the glossary. Click 
+This marks the end of the glossary. Click
 <a href="#top">here</a> to return to the top:
 --------------------------------------------------------------------------------------------------------------------
