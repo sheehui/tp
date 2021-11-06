@@ -11,7 +11,7 @@ title: Developer Guide
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended 
+This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended
 audience in order to better understand the inner workings of the program and better understand the interaction between
 the various components than form DonnaFin.
 
@@ -103,10 +103,10 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in 
-home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these, 
-including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between 
-classes that represent parts of the visible GUI. 
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in
+home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these,
+including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
+classes that represent parts of the visible GUI.
 
 The UI that is displayed has 6 main tabs to switch between.
  1. `PERSON_LIST_PANEL`
@@ -117,9 +117,9 @@ The UI that is displayed has 6 main tabs to switch between.
  6. `NOTES`
  
  The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
-each client and will thus display different information for each client. The UI keeps track of the current tab it is 
+each client and will thus display different information for each client. The UI keeps track of the current tab it is
 observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
-[here](#-421-tab-switch-command). 
+[here](#-421-tab-switch-command).
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -139,7 +139,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550" alt="Logic Class Diagram"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc., 
+1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc.,
 to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -151,10 +151,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * `ParserContext` holds a reference to a `ParserStrategy` that is set based on the current tab the user is on etc.
-* When ParserContext calls upon the current ParserStrategy to parse a user command, 
-the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates 
+* When ParserContext calls upon the current ParserStrategy to parse a user command,
+the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates
 an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the
-other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the 
+other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the
 implementation of commands section [here](#421-command).
 
 
@@ -196,7 +196,7 @@ Classes used by multiple components are in the `donnafin.commons` package.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-This will be a reference to explain the general flow of how the commands work later. 
+This will be a reference to explain the general flow of how the commands work later.
 
 Command types fall into 3 main categories
 1. Commands that affect Model
@@ -205,11 +205,11 @@ Command types fall into 3 main categories
 
 |  |  |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="400" /> | <img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="400" /> | 
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="400" /> | <img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="400" /> |
 
 
 Here is an explanation of what takes place when the user enters the command `delete 1` which falls under first [category](#42-implementation-and-commands).
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input. 
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
 * The `Model` component then deletes the `Person` object p from the `addressBook`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
@@ -274,7 +274,7 @@ The product provides financial advisors with a clean, easy to use interface to p
 them for meetings and maintain good relationships with their clients. On a per-client basis,
 DonnaFin keeps track and displays client’s financial details, their contact details, and
 any notes about the client. In the main page, it collates all clients for easy access. In the
-client information page, financial details of the specific client selected is neatly segmented into 
+client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
 The product will not help them with work relations with other Financial Advisors as the
@@ -296,14 +296,14 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `HIGH`  | user                                       |  return to home window from client's information | move on to view my other clients instead of the current client that I am viewing |
 | `HIGH`  | new user                                       | clear all clients   | delete all clients and reset all my contacts for the application |
 | `HIGH`  |  user                                      |  edit a client's contact information  |  keep up to date with the clients information for further usage|
-| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased| 
-| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |  
-| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|  
-| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|  
-| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|  
-| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |   
-| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |   
-| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |  
+| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased|
+| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has | 
+| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|
+| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|
+| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|
+| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |
+| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |
+| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |
 | `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
 | `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
 | `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
@@ -474,7 +474,7 @@ State: Client Window (Contact Tab)
 * **Private client detail**: A client detail that is not meant to be shared with others
 * **Asset**: Things of present or future value owned by a client
 * **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
-* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
@@ -524,15 +524,15 @@ testers are expected to do more *exploratory* testing.
 ### 7.3 Viewing and editing a client
 
 1. Enter client window
-    
+
     1. Prerequisites: Currently in the home window
-    
+
     1. Test case: `view 1`<br>
        Expected: client window will be shown, and you can inspect the details of the client.
-   
+
     1. Test case: `view -4`<br>
        Expected: As it is not a valid index, you will remain in the home window with an error command output.
-       
+
     1. Test case: editing fields
        Expected: Switching tabs and editing fields with the commands listed in the user guide [here](./UserGuide.md#Client-Window-Commands) works correctly.
 
