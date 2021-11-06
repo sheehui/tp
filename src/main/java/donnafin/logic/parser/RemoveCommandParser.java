@@ -32,7 +32,7 @@ public class RemoveCommandParser {
             field = PersonField.LIABILITIES;
             break;
         default:
-            throw new ParseException("Invalid tab for append.");
+            throw new ParseException("Invalid tab for remove.");
         }
     }
 

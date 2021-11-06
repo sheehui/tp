@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Address;
 import donnafin.model.person.Asset;
@@ -26,6 +28,7 @@ import donnafin.model.person.Policy;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
 
     private final String name;
     private final String phone;
@@ -81,6 +84,7 @@ class JsonAdaptedPerson {
         liabilities.addAll(source.getLiabilities().stream()
                 .map(JsonAdaptedLiability::new)
                 .collect(Collectors.toList()));
+        logger.fine("JsonAdaptedPerson successfully created for " + source);
     }
 
     /**

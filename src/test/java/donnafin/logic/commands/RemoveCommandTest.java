@@ -51,6 +51,7 @@ public class RemoveCommandTest {
     private final PersonAdapter.PersonField fieldAsset = PersonAdapter.PersonField.ASSETS;
     private final PersonAdapter.PersonField fieldLiability = PersonAdapter.PersonField.LIABILITIES;
     private final PersonAdapter.PersonField fieldPolicy = PersonAdapter.PersonField.POLICIES;
+    private final PersonAdapter.PersonField invalidField = PersonAdapter.PersonField.NAME;
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
 
@@ -83,10 +84,12 @@ public class RemoveCommandTest {
     @Test
     public void removeCommandEqualsTest() throws ParseException {
         RemoveCommand testCommand = new RemoveCommand(personAdapter, fieldAsset, index1);
+        RemoveCommand testCommandAgain = new RemoveCommand(personAdapter, fieldAsset, index1);
         RemoveCommand testCommand2 = new RemoveCommand(personAdapter, fieldLiability, index1);
 
         // same command -> true
         assertTrue(testCommand.equals(testCommand));
+        assertTrue(testCommand.equals(testCommandAgain));
 
         // null -> false
         assertFalse(testCommand.equals(null));
@@ -148,4 +151,9 @@ public class RemoveCommandTest {
         assertCommandFailure(testCommand, model, "No such index found.");
     }
 
+    @Test
+    public void execute_invalidTab_throwsCommandException() throws ParseException {
+        RemoveCommand testCommand = new RemoveCommand(personAdapter, invalidField, index2);
+        assertCommandFailure(testCommand, model, RemoveCommand.MESSAGE_INVALID_TAB);
+    }
 }
