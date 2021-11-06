@@ -281,14 +281,12 @@ sequence diagram.
 Explanation of diagram above:
 * The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
-* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which engages the `Model` component.
-* The `Model` component then deletes the `Person` object p from the `addressBook`.
+* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
-This does not involve a consumer in any way but is always part of execute command.
+This does not involve a consumer in any way and is always part of execute command.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
-
 
 #### 4.2.2 Commands that accesses one specific client's information
 
