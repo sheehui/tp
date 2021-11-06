@@ -242,6 +242,7 @@ Here is an example of a `Person` in JSON form:
 ```
 
 ### 4.6 Common classes
+
 Classes used by multiple components are in the `donnafin.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
