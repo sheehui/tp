@@ -27,14 +27,6 @@ a Command Line Interface (CLI).
 
 ### 1.4 Typical User Workflow
 
-![Activity Diagram of DonnaFin](diagrams/ActivityDiagram.png)
-
-This Activity Diagram shows how one might navigate through the DonnaFin application in a typical usage.
-
-
-Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that do not
-exist or commands that are used with the wrong format.
-
 ### 1.5 Overview of Application
 
 
