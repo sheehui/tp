@@ -31,7 +31,6 @@ class JsonAdaptedAsset {
         this.assetRemarks = assetRemarks;
         this.assetType = assetType;
         this.assetValue = assetValue;
-        logger.fine("JsonAdaptedAsset successfully created.");
     }
 
     /**
