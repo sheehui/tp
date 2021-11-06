@@ -578,7 +578,7 @@ to the detailed description on how to use a specific command.
 
 | Client Window Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [**Return to Home Window**](#42-home-window)   | `home`                                                                 | `home`
+| [**Return to Home Window**](#437-returning-to-home-window-home)   | `home`                                                                 | `home`
 | [**Switch to Contacts Tab**](#4311-contacts-tab) | `tab KEYWORD`                                                                 | `tab c`
 | [**Switch to Policies Tab**](#4312-policies-tab)   | `tab KEYWORD`                                                                 | `tab p`
 | [**Switch to Assets Tab**](#4313-assets-tab)   | `tab KEYWORD`                                                                 | `tab a`
