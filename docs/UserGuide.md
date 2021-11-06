@@ -196,7 +196,7 @@ with spaces (user types in two or more spaces in place of one)
 Note that this duplicate detection does not try to combine separated words. 
 E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 
-#### Deleting a Client : `delete`
+#### 4.2.2 Deleting a Client : `delete`
 
 Deletes the specified client from the DonnaFin.
 
