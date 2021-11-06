@@ -11,7 +11,7 @@ title: Developer Guide
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended 
+This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended
 audience in order to better understand the inner workings of the program and better understand the interaction between
 the various components than form DonnaFin.
 
@@ -27,6 +27,13 @@ a Command Line Interface (CLI).
 
 ### 1.4 Typical User Workflow
 
+![Activity Diagram of DonnaFin](diagrams/ActivityDiagram.png)
+
+This activity diagram shows how one might typically navigate through the DonnaFin application.
+
+
+Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that are not
+available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
 In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the
@@ -162,7 +169,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550" alt="Logic Class Diagram"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc., 
+1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc.,
 to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -229,7 +236,7 @@ How is `Person` stored?
 * The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
-and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes, 
+and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes,
 stored as a `JsonProperty` of type String.
 * As a `Person` can have more than one `Asset`, `Liability` or `Policy`, we have chosen to store them as nested objects rather
 converting them into a single String before storage and converting them back to the correct attributes on retrieval from the database.
@@ -303,7 +310,7 @@ The product provides financial advisors with a clean, easy to use interface to p
 them for meetings and maintain good relationships with their clients. On a per-client basis,
 DonnaFin keeps track and displays client’s financial details, their contact details, and
 any notes about the client. In the main page, it collates all clients for easy access. In the
-client information page, financial details of the specific client selected is neatly segmented into 
+client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
 The product will not help them with work relations with other financial advisors as the
@@ -325,14 +332,14 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `HIGH`  | user                                       |  return to home window from client's information | move on to view my other clients instead of the current client that I am viewing |
 | `HIGH`  | new user                                       | clear all clients   | delete all clients and reset all my contacts for the application |
 | `HIGH`  |  user                                      |  edit a client's contact information  |  keep up to date with the clients information for further usage|
-| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased| 
-| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |  
-| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|  
-| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|  
-| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|  
-| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |   
-| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |   
-| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |  
+| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased|
+| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |
+| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|
+| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|
+| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|
+| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |
+| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |
+| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |
 | `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
 | `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
 | `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
@@ -381,7 +388,7 @@ Use case ends.
 * 1a. The given index is invalid.
 
     * 1a1. DonnaFin shows an error message.
-  
+
       Use case resumes from step 1.
 
 **UC03: Finding a client by name** \
@@ -592,7 +599,7 @@ State: Client Window (Policies Tab)
 * 1a. User's given index is invalid.
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
-    
+
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
 
@@ -621,7 +628,7 @@ State: Works on both Home and Client Window
 * **Private client detail**: A client detail that is not meant to be shared with others
 * **Asset**: Things of present or future value owned by a client
 * **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
-* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
@@ -671,15 +678,15 @@ testers are expected to do more *exploratory* testing.
 ### 7.3 Viewing and editing a client
 
 1. Enter client window
-    
+
     1. Prerequisites: Currently in the home window
-    
+
     1. Test case: `view 1`<br>
        Expected: client window will be shown, and you can inspect the details of the client.
-   
+
     1. Test case: `view -4`<br>
        Expected: As it is not a valid index, you will remain in the home window with an error command output.
-       
+
     1. Test case: editing fields
        Expected: Switching tabs and editing fields with the commands listed in the user guide [here](./UserGuide.md#Client-Window-Commands) works correctly.
 
