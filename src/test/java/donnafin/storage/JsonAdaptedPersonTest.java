@@ -33,6 +33,15 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedLiability> INVALID_LIABILITIES = List.of(
             new JsonAdaptedLiability("Philip Fry", "Human", "incalculable", "Pizza boy")
     );
+    private static final List<JsonAdaptedPolicy> POLICIES_WITH_NULL_FIELD = List.of(
+            new JsonAdaptedPolicy("Everlong", "Foo", null, "$3", "$20")
+    );
+    private static final List<JsonAdaptedAsset> ASSETS_WITH_NULL_FIELD = List.of(
+            new JsonAdaptedAsset("Bender", "Robot", null, "Bends pipes")
+    );
+    private static final List<JsonAdaptedLiability> LIABILITIES_WITH_NULL_FIELD = List.of(
+            new JsonAdaptedLiability("Bender", "Robot", null, "Bends pipes")
+    );
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -99,6 +108,22 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullPolicies_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, null, VALID_LIABILITIES, VALID_ASSETS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "policies");
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullFieldPolicy_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, POLICIES_WITH_NULL_FIELD, VALID_LIABILITIES, VALID_ASSETS);
+        String expectedMessage = "Null found value in an object in 'policies' field.";
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
 
     @Test
     public void toModelType_invalidAsset_throwsIllegalValueException() {
@@ -108,12 +133,43 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullAsset_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, VALID_LIABILITIES, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "assets");
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullFieldAsset_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, VALID_LIABILITIES, ASSETS_WITH_NULL_FIELD);
+        String expectedMessage = "Null found value in an object in 'assets' field.";
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
     @Test
     public void toModelType_invalidLiability_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_NOTES, VALID_POLICY, INVALID_LIABILITIES, VALID_ASSETS);
         String expectedMessage = Liability.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullLiability_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, null, VALID_ASSETS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "liabilities");
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullFieldLiability_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, LIABILITIES_WITH_NULL_FIELD, VALID_ASSETS);
+        String expectedMessage = "Null found value in an object in 'liabilities' field.";
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

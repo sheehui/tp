@@ -57,7 +57,7 @@ This marks the end of the Introduction. Click
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all clients.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the DonnaFin.
 
@@ -96,7 +96,7 @@ Here are the special icons used throughout our User Guide to help you utilise th
 Tips are tidbits of helpful information that can help you have a better experience with DonnaFin.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-Tip: Tips are helpful!
+**Tip:** Tips are helpful!
 </div><br>
 
 #### Notes
@@ -104,8 +104,8 @@ Tip: Tips are helpful!
 Notes are here to provide you with extra information that you may find useful when using DonnaFin.
 
 <div markdown="span" class="alert alert-primary">:information_source:
-Take notes when you see this icon!
-
+**Note:** Take notes when you see this icon!
+</div><br>
 
 #### Caution 
 
@@ -113,7 +113,7 @@ Cautions are around to warn you of potential unwanted side effects that may occu
 DonnaFin if you fail to follow this guide properly or tamper with the files of the application without adequate
 knowledge.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-warning">
 :exclamation: Here lies a cautionary tale!
 </div><br>
 
@@ -209,7 +209,7 @@ keep track of the index by looking at the number to the left of the policy name 
 
 The Policies tab also supports the `append` and `remove` command that allows you to add a new policy or
 remove an existing policy
-as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#435-policy-features)
+as shown [here](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#435-policy-features).
 
 #### 3.3.4 Asset/Liabilities Tab
 
@@ -278,7 +278,7 @@ You will know that you are in the Notes tab if you see a big white text box belo
 </div>
 
 
-This marks the end of the about section. Click <a href="#top">here</a> to return to the top
+This marks the end of the About section. Click <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -315,12 +315,15 @@ Format: `exit`
 ### 4.2 Home Window
 
 Home Window commands consists of features that enables you to manage your client base.
-These features are exclusive to Home Window, the default window that pops up when DonnaFin is opened.
+These features are exclusive to [Home Window](#32-application-home-window-breakdown), the default window that pops up when DonnaFin is opened.
 
 Such features include adding and deleting clients, listing/clearing all clients, doing a specific search for clients,
 as well as viewing a client in detail.
 
-To access and update details on a specific client, refer to [Client Window Commands](#43-client-window).
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+To access and update details on a specific client, you may refer to [Client Window Commands](#43-client-window).
+</div>
 
 #### 4.2.1 Adding a Client : `add`
 
@@ -364,6 +367,11 @@ E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 
 Deletes the specified client from the DonnaFin.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+The index reference can be taken from the number next to your client's name!
+</div>
+
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
@@ -400,21 +408,29 @@ Examples:
 
 #### 4.2.5 View Client Information : `view`
 
-Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see each client field in detail and edit existing information.
-You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing `view`.
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing our `view` command.
+</div>
+
+Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see 
+each client field in detail and edit existing information.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+The index reference can be taken from the number next to your client's name!
+</div>
 
 Format: `view INDEX`
 
-* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed person list.
+* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, ...​
-* The view screen will switch to the client window.
+* The view screen will switch to the client window as shown below.
+  ![Client View Mockup](./images/ClientContactTab.png)
+* The information related to the client is separated to **five different tabs**.
 
 Examples:
 * `view 1`
-* This will open a new view mode, where the client's data is present in field-value pairs as such:
-* ![Client View Mockup](./images/ClientContactTab.png)
-* The information related to the client is separated to different tabs.
-* Each tab contains information closely related to the title of the tab.
 
 #### 4.2.6 Clearing all client data : `clear`
 
@@ -426,7 +442,7 @@ Format: `clear`
 ### 4.3 Client Window
 
 Client Window commands consists of features that enables you to manage data on each specific client.
-These features are exclusive to Client Window. They give access and writing privileges for any client information
+These features are exclusive to [Client Window](#33-application-client-window-breakdown). They give access and writing privileges for any client information
 fields. You can access these commands once you have entered the Client Window using our [view command](#425-view-client-information--view).
 
 Such features include switching tabs, editing contact information, managing financial details, as well
@@ -436,12 +452,17 @@ as notes for each client.
 
 Allows you to navigate to a different tab.
 
-There are 5 tabs:
+There are five tabs:
 1. [Contact](#4311-contact-tab)
 2. [Policies](#4312-policies-tab)
 3. [Assets](#4313-assets-tab)
 4. [Liabilities](#4314-liabilities-tab)
 5. [Notes](#4315-notes-tab)
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+Our `tab` command works in any of these five tabs!
+</div>
 
 Format: `tab KEYWORD`
 
@@ -497,7 +518,12 @@ Examples:
 
 #### 4.3.2 Edit Client's Contact Information: `edit`
 
-You can edit your client's contact fields with our `edit` command. You should be in `Contact` tab to use these commands.
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+You should be in `Contact` tab to use these commands.
+</div>
+
+You can edit your client's contact fields with our `edit` command.
 
 Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
@@ -551,7 +577,12 @@ Example: `edit e/allison@gmail.com`
 #### 4.3.3 Asset Features
 
 Asset Features consists of features that enables you to add and remove assets
-for your clients. You must be in the `Assets` tab for these functions to work as intended.
+for your clients.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+You should be in the `Assets` tab for these functions to work as intended.
+</div>
 
 ##### 4.3.3.1 Add an Asset to a Client: `append`
 
@@ -569,6 +600,11 @@ Example:
 
 Remove an existing asset from the current client you are viewing.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+The index reference can be taken from the number on the leftmost column!
+</div>
+
 * Removes the asset at the specified `INDEX`.
 * The index refers to the index number shown in the displayed asset list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -581,7 +617,12 @@ Example:
 #### 4.3.4 Liability Features
 
 Liability Features consists of features that enables you to add and remove liabilities
-for your clients. You must be in the `Liabilities` tab for these functions to work as intended.
+for your clients.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+You should be in the `Liabilities` tab for these functions to work as intended.
+</div>
 
 ##### 4.3.4.1 Add a Liability to a Client: `append`
 
@@ -599,6 +640,11 @@ Example:
 
 Remove an existing liability from the current client you are viewing.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+The index reference can be taken from the number on the leftmost column!
+</div>
+
 * Removes the liability at the specified `INDEX`.
 * The index refers to the index number shown in the displayed liability list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -611,7 +657,12 @@ Example:
 #### 4.3.5 Policy Features
 
 Policy Features consists of features that enables you to add and remove policies
-for your clients. You must be in the `Policies` tab for these functions to work as intended.
+for your clients.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:**
+You should be in the `Policies` tab for these functions to work as intended.
+</div>
 
 ##### 4.3.5.1 Add a Policy to a Client: `append`
 
@@ -628,6 +679,11 @@ Example:
 ##### 4.3.5.2 Remove a Policy from a Client: `remove`
 
 Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+The index reference can be taken from the number on the leftmost column!
+</div>
 
 * Removes the liability at the specified `INDEX`.
 * The index refers to the index number shown in the displayed policy list.
@@ -658,12 +714,17 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 #### 4.4.2 Editing the data file
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If your changes to the data file is erroneous and causes DonnaFin to "lose its data". 
+Don't worry, as long as you do not run commands, your data is still stored. Simply undo your changes to restore.
+</div>
+
 DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
 If your changes to the data file make its format invalid, DonnaFin will discard all data and start with
-an empty data file on the next run.
+an empty data file on the next run (no clients are shown).
 
 ``` YAML
 {
@@ -688,7 +749,7 @@ The above figure shows the original JSON data for `totalValueInsured`
 regarding the client Alex Yeoh. If you tamper with the
 JSON file directly and change one of the attributes to an invalid format (in this case the
 total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
-discard all the data and start with an empty data file.
+start with an empty data file.
 
 When this happens however, to prevent total loss of your data, **we do not delete it right away**.
 Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data.
@@ -742,7 +803,7 @@ to the detailed description on how to use a specific command.
 | Client Window Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [**Return to Home Window**](#437-returning-to-home-window-home)   | `home`                                                                 | `home`
-| [**Switch to Contacts Tab**](#4311-contacts-tab) | `tab KEYWORD`                                                                 | `tab c`
+| [**Switch to Contact Tab**](#4311-contact-tab) | `tab KEYWORD`                                                                 | `tab c`
 | [**Switch to Policies Tab**](#4312-policies-tab)   | `tab KEYWORD`                                                                 | `tab p`
 | [**Switch to Assets Tab**](#4313-assets-tab)   | `tab KEYWORD`                                                                 | `tab a`
 | [**Switch to Liabilities Tab**](#4314-liabilities-tab)   | `tab KEYWORD`                                                                 | `tab l`

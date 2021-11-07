@@ -38,7 +38,7 @@ It should fail the test for AddressBookParser.
 public class ClientViewParserContextTest {
 
     private ContactTabParser contactTabParser;
-    private ParserContext parserContext = new ParserContext(contactTabParser);
+    private ParserContext parserContext;
 
     @BeforeEach
     public void reset() {
