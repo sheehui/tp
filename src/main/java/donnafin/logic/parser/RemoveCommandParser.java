@@ -1,5 +1,7 @@
 package donnafin.logic.parser;
 
+import java.util.Objects;
+
 import donnafin.commons.core.Messages;
 import donnafin.commons.core.types.Index;
 import donnafin.logic.PersonAdapter;
@@ -9,6 +11,8 @@ import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.ui.Ui;
 
 public class RemoveCommandParser {
+
+    public static final String MESSAGE_INVALID_TAB = "Invalid tab for remove.";
 
     private final PersonAdapter personAdapter;
     private final PersonField field;
@@ -20,6 +24,8 @@ public class RemoveCommandParser {
      * @throws ParseException if it is called in the wrong tab.
      */
     public RemoveCommandParser(Ui.ViewFinderState currentTab, PersonAdapter personAdapter) throws ParseException {
+        Objects.requireNonNull(personAdapter);
+
         this.personAdapter = personAdapter;
         switch (currentTab) {
         case POLICIES:
@@ -32,7 +38,7 @@ public class RemoveCommandParser {
             field = PersonField.LIABILITIES;
             break;
         default:
-            throw new ParseException("Invalid tab for remove.");
+            throw new ParseException(MESSAGE_INVALID_TAB);
         }
     }
 

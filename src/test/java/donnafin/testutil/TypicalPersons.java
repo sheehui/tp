@@ -49,7 +49,7 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withNotes("Loves cai fan")
+            .withNotes("Loves chicken rice")
             .withPolicies(POLICIES_INPUT)
             .withLiability(LIABILITIES_INPUT)
             .withAssets(ASSETS_INPUT).build();
