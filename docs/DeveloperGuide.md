@@ -283,7 +283,7 @@ Despite falling under the three broad categories, the commands still have many s
 in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
 the same framework but differ slightly.
 
-#### 4.2.1 Commands that involve organisation of clients
+#### 4.2.1 Commands that involve the organisation of clients
 
 <div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
 <br>
@@ -311,7 +311,7 @@ in logic, the logic specific sequence diagram as shown above takes a deeper dive
 sequence diagram.
 
 Explanation of diagram above:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
@@ -320,7 +320,7 @@ This does not involve a consumer in any way and is always part of execute comman
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 Commands that accesses one specific client's information
+#### 4.2.2 Commands that access one specific client's information
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
 <br>
@@ -344,7 +344,7 @@ Like other commands in the other 2 [categories](#42-implementation-and-commands)
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
@@ -385,7 +385,7 @@ We will be using the `SwitchTab` command as the example to illustrate and explai
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
 Explanation of diagram above:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
@@ -401,11 +401,12 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.<br>
 </div>
 
-#### 4.3 NotesTab
+#### 4.3 Notes tab
 
-The notes tab is different from the commands above. Instead of being command-based, the notes tab allows the user
-to type in any quick notes that the user would want. Updating it in realtime. This is opposed to the commands where,
-changes to any other component only happen when the command is executed. Hence the notes tab take advantage of a
+The notes tab accepts user input like the commands but is fundamentally different from it.
+Instead of being command-based, the notes tab allows the user to type in any quick notes that the
+user would want. Updating it in realtime. This is opposed to the commands where,
+changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
 different process.
 
 Key features about notes:
@@ -532,7 +533,7 @@ State: Home Window
 
 **MSS**
 1. User chooses to find a client within DonnaFin using the right syntax.
-2. DonnaFin displays the clients that match the keyword inputted.
+2. DonnaFin displays the clients that match the input keyword.
 
    Use case ends.
 
