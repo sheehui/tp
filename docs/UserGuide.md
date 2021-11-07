@@ -658,12 +658,17 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 #### 4.4.2 Editing the data file
 
+<div markdown="span" class="alert alert-primary">:bulb:
+If your changes to the data file is erroneous and causes DonnaFin to "lose its data". 
+Don't worry, as long as you do not run commands, your data is still stored. Simply undo your changes to restore.
+</div><br>
+
 DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
 If your changes to the data file make its format invalid, DonnaFin will discard all data and start with
-an empty data file on the next run.
+an empty data file on the next run (no clients are shown).
 
 ``` YAML
 {
@@ -688,7 +693,7 @@ The above figure shows the original JSON data for `totalValueInsured`
 regarding the client Alex Yeoh. If you tamper with the
 JSON file directly and change one of the attributes to an invalid format (in this case the
 total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
-discard all the data and start with an empty data file.
+start with an empty data file.
 
 When this happens however, to prevent total loss of your data, **we do not delete it right away**.
 Only when **any** valid command is run, DonnaFin will assume that the intended action is to clear your data.
