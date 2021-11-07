@@ -584,6 +584,9 @@ for your clients.
 You should be in the `Assets` tab for these functions to work as intended.
 </div>
 
+**The Assets Tab:**
+![assets tab](images/AssetsTab.png)
+
 ##### 4.3.3.1 Add an Asset to a Client: `append`
 
 Adds a new asset to the current client you are viewing.
@@ -624,6 +627,9 @@ for your clients.
 You should be in the `Liabilities` tab for these functions to work as intended.
 </div>
 
+**The Liabilities Tab:**
+![liabilities tab](images/LiabilitiesTab.png)
+
 ##### 4.3.4.1 Add a Liability to a Client: `append`
 
 Adds a new liability to the current client you are viewing.
@@ -663,6 +669,9 @@ for your clients.
 :information_source: **Note:**
 You should be in the `Policies` tab for these functions to work as intended.
 </div>
+
+**The Policies Tab:**
+![policies tab](images/PoliciesTab.png)
 
 ##### 4.3.5.1 Add a Policy to a Client: `append`
 
