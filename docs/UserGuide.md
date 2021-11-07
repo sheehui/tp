@@ -285,7 +285,7 @@ You will know that you are in the Notes tab if you see a big white text box belo
 </div>
 
 
-This marks the end of the about section. Click <a href="#top">here</a> to return to the top
+This marks the end of the About section. Click <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
 
