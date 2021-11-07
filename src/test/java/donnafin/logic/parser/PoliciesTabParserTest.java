@@ -8,6 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 
+import donnafin.logic.commands.AddCommand;
+import donnafin.logic.commands.ClearCommand;
+import donnafin.logic.commands.DeleteCommand;
+import donnafin.logic.commands.FindCommand;
+import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
+import donnafin.logic.commands.ListCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -116,5 +123,60 @@ public class PoliciesTabParserTest {
                 parser.tabSpecificHandler(ViewCommand.COMMAND_WORD, "view").execute(model));
         assertThrows(ParseException.class, () ->
                 parser.tabSpecificHandler(ViewCommand.COMMAND_WORD, "view 1").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_addCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(AddCommand.COMMAND_WORD, "n/john p/998 e/john@mail.com a/cck")
+                        .execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_deleteCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(DeleteCommand.COMMAND_WORD, "1").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_listCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(ListCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_findCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(FindCommand.COMMAND_WORD, "alex").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_clearCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(ClearCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_homeCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(HomeCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_helpCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(HelpCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_exitCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(HelpCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_unknownCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler("unknown command", "").execute(model));
     }
 }

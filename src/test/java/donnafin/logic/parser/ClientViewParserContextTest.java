@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import donnafin.logic.commands.AppendCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,9 +57,9 @@ public class ClientViewParserContextTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_clientParserExitThrowsParseException() {
+    public void parseCommand_multipleWordsExitCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> contactTabParser.parseCommand("exit 2"));
+            -> contactTabParser.parseCommand(ExitCommand.COMMAND_WORD,"2"));
     }
 
     @Test
@@ -67,9 +68,9 @@ public class ClientViewParserContextTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_clientParserHelpThrowsParseException() {
+    public void parseCommand_multipleWordsHelpCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> contactTabParser.parseCommand("help us"));
+            -> contactTabParser.parseCommand(HelpCommand.COMMAND_WORD, "us"));
     }
 
     @Test
@@ -78,7 +79,7 @@ public class ClientViewParserContextTest {
     }
 
     @Test
-    public void parseCommand_multipleWords_clientParserHomeThrowsParseException() {
+    public void parseCommand_multipleWordsHomeCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
             -> contactTabParser.parseCommand("home sweet home"));
     }

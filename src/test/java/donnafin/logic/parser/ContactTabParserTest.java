@@ -8,10 +8,19 @@ import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static donnafin.testutil.TypicalPersons.getTypicalPersons;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Objects;
 
+import donnafin.logic.commands.AddCommand;
+import donnafin.logic.commands.AppendCommand;
+import donnafin.logic.commands.ClearCommand;
+import donnafin.logic.commands.DeleteCommand;
+import donnafin.logic.commands.FindCommand;
+import donnafin.logic.commands.ListCommand;
+import donnafin.logic.commands.RemoveCommand;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +51,7 @@ public class ContactTabParserTest {
         this.personAdapter = new PersonAdapter(model, person);
         parser = new ContactTabParser(personAdapter);
     }
+
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
@@ -85,30 +95,99 @@ public class ContactTabParserTest {
     }
 
     @Test
+    public void parseCommand_multiFieldUpdate() throws ParseException {
+        assertTrue(parser.parseCommand(EditCommand.COMMAND_WORD,
+                "e/johndoe@email.com p/92837489") instanceof EditCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
     }
 
     @Test
-    public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
-    }
-
-    @Test
     public void equals_returnsCorrectOutput() {
         ContactTabParser newInstance = new ContactTabParser(personAdapter);
-        assertEquals(true, parser.equals(newInstance));
+        assertTrue(parser.equals(newInstance));
     }
 
     @Test
     public void equals_nullInstance_returnsCorrectOutput() {
         ContactTabParser nullInstance = null;
-        assertFalse(parser.equals(nullInstance));
+        assertNotEquals(parser, nullInstance);
     }
 
     @Test
     public void hashCode_returnsValid_output() {
         assertEquals(Objects.hash(personAdapter), parser.hashCode());
+    }
+
+    @Test
+    public void tabSpecificHandler_addCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(AddCommand.COMMAND_WORD, "n/john p/998 e/john@mail.com a/cck")
+                        .execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_deleteCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(DeleteCommand.COMMAND_WORD, "1").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_listCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(ListCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_findCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(FindCommand.COMMAND_WORD, "alex").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_clearCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(ClearCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_homeCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(HomeCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_helpCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(HelpCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_exitCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(HelpCommand.COMMAND_WORD, "").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_appendCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(AppendCommand.COMMAND_WORD, "n/asset ty/house v/$10000 r/debt")
+                        .execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_removeCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler(RemoveCommand.COMMAND_WORD, "1").execute(model));
+    }
+
+    @Test
+    public void tabSpecificHandler_unknownCommand_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                parser.tabSpecificHandler("unknown command", "").execute(model));
     }
 }
