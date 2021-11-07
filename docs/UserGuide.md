@@ -73,8 +73,6 @@ This marks the end of the introduction. Click
 
    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-   * **`clear`** : Deletes all clients.
-
    * **`exit`** : Exits the DonnaFin.
 
 1. Refer to the [Features](#4-features) below for details of each command.
@@ -223,7 +221,7 @@ This marks the end of the about section. Click
 
 This section gives you a detailed explanation on how each of our features work.
 
-For your easy reference and navigation, we have split our features into 3 different categories:
+For your easy reference and navigation, we have split our features into _four different categories_:
 1. Global Features
 2. Home Window Features
 3. Client Window Features
@@ -271,8 +269,8 @@ Examples:
 
 Do take note that there is a near duplicate check for names. This means that when
 adding a person whose name is similar to another client already found in DonnaFin,
-the result display will prompt the user as such but the client will still be added to
-the contact list. However, if the names are exact duplicates they will be rejected.
+the result display will prompt the user as shown below but the client will still be added to
+the client list. However, if the names are exact duplicates they will be rejected.
 
 Near duplicate:
 ![DuplicateRejectionMessage](images/NearDuplicateRejectionMessage.png)
@@ -280,7 +278,7 @@ Near duplicate:
 Duplicate:
 ![FullDuplicateRejectionMessage](./images/FullDuplicateRejectionMessage.png)
 
-Names are said to be near duplicates if the names differs only in case
+Names are said to be near duplicates if the names differ only in case
 (upper case letters where there are lower case letters) or
 with spaces (user types in two or more spaces in place of one)
 
@@ -374,7 +372,7 @@ as notes for each client.
 Allows you to navigate to a different tab.
 
 There are 5 tabs:
-1. [Contacts](#4311-contacts-tab)
+1. [Contact](#4311-contact-tab)
 2. [Policies](#4312-policies-tab)
 3. [Assets](#4313-assets-tab)
 4. [Liabilities](#4314-liabilities-tab)
@@ -382,7 +380,7 @@ There are 5 tabs:
 
 Format: `tab KEYWORD`
 
-##### 4.3.1.1 Contacts Tab
+##### 4.3.1.1 Contact Tab
 
 Switches you from any tab in Client Window to `Contact` tab.
 
@@ -434,7 +432,7 @@ Examples:
 
 #### 4.3.2 Edit Client's Contact Information: `edit`
 
-You can edit your client's contact fields with our `edit` command. You should be in `Contacts` tab to use these commands.
+You can edit your client's contact fields with our `edit` command. You should be in `Contact` tab to use these commands.
 
 Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
@@ -599,8 +597,8 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
-If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with
-an empty data file at the next run.
+If your changes to the data file make its format invalid, DonnaFin will discard all data and start with
+an empty data file on the next run.
 
 ``` YAML
 {
@@ -621,7 +619,7 @@ an empty data file at the next run.
 }
 ```
 
-The above figure shows the original JSON data for totalValueInsured
+The above figure shows the original JSON data for `totalValueInsured`
 regarding the client Alex Yeoh. If you tamper with the
 JSON file directly and change one of the attributes to an invalid format (in this case the
 total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will

@@ -220,7 +220,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 How is `Person` stored?
-* `JsonAdaptedPerson` is created with Jackson.
+* `JsonAdaptedPerson` is created with the Jackson framework.
 * Each `Person` in DonnaFin is stored as a `JsonAdaptedPerson` as shown in our class diagram above.
 * The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
@@ -478,9 +478,9 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |
 | `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
 | `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
-| `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
-| `LOW`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
-| `LOW`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
+| `MEDIUM`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
+| `MEDIUM`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
+| `MEDIUM`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
 | `LOW`      | new user                                   |  follow a tutorial to switch between a client's information information tabs |   learn how to view all information regarding a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when adding policies to a client's list of policies       |  learn how to add policies to the list of policies of a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when deleting policies from a client's list of policies       |  learn how to delete policies from the list of policies of a specific client   |
@@ -664,9 +664,12 @@ State: Client Window (Assets Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC12: Adding a liability to a client**
 
@@ -698,9 +701,12 @@ State: Client Window (Liabilities Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC14: Adding a policy to a client**
 
@@ -732,16 +738,19 @@ State: Client Window (Policies Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
 
 **MSS**
 1. User requests to exit the application.
-2. DonnaFin closes itself.
+2. DonnaFin exits and closes.
 
    Use case ends.
 
