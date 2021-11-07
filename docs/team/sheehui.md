@@ -40,7 +40,11 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=sheehui&tabRepo=AY2122S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-
+  * Set up DonnaFin's GitHub team organisation and repository
+  * Renaming AB3 to DonnaFin during refactoring [#41](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/41), and catching traces of AB3 when working on other features/work.
+  * Documented target user profile and value proposition
+  * Shared responsibility to maintain issues
+  * Changes AB3 links to DonnaFin in project README and our GitHub Pages
 
 * **Enhancements to existing features**:
   * Testings: 
@@ -82,7 +86,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide [#163](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/163), [#187](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/187), [#240](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/240), [#312](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/312), [#335](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/335), [#342](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/342) :
       * Sectioned our features into global, client window, home window and database
-      * Wrote the guide for `add`, `delete`, 
+      * Wrote the guide for these features: `add`, `delete`, `view`, `tab`, `edit`, `append`, `remove`, `home` and editing notes
       * Add tips and notes to help the users understand better
       * Wrote the Command Summary and added links to each command for better user experience
 
