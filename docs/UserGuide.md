@@ -93,7 +93,7 @@ Here is an overview of the different elements that makes up the Home Window of D
 ![Main Window.png](./images/MainWindowScreenshot.png)
 
 #### 3.2.1 Quick Access Buttons
-* This area gives you access to the 'File' button that allows the you to quickly exit the app, and the help 
+* This area gives you access to the 'File' button that allows the you to quickly exit the app, and the help
 button that redirects you to the User Guide for further guidance.
 
 #### 3.2.2 Command Box
@@ -117,17 +117,17 @@ The following attributes of your client is also viewable from the Client List Wi
 
 ### 3.3 Application Client Window Breakdown
 The Client window is accessed when you use the `view` command correctly. Though the client window shows content different
-from the main window, the 'Quick Access Button', 'Command Box' and 'Results Display' are all the same as explained 
-earlier in section 3.2. 
+from the main window, the 'Quick Access Button', 'Command Box' and 'Results Display' are all the same as explained
+earlier in section 3.2.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
-Do take note that the `Command Box` is tab specific in the Client Window so please ensure that you are inputting the 
+Do take note that the `Command Box` is tab specific in the Client Window so please ensure that you are inputting the
 correct command in the correct tab.
 
 </div>
 
-Here is a picture showing all the common elements spread accross all tabs in the Client View. 
+Here is a picture showing all the common elements spread accross all tabs in the Client View.
 
 ![ClientView](images/ClientView.png)
 
@@ -139,7 +139,7 @@ that have been implemented to access and edit client information. The tabs are a
   3. Assets
   4. Liabilities
   5. Notes
-    
+
 The tabs can also be toggled through using the `tab` command as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#431-switching-tabs-in-client-window-tab)
 
 #### 3.3.2 Contact Tab
@@ -182,7 +182,7 @@ Each policy has an index which is sorted by Ascending order, and if you would li
 keep track of the index by looking at the number to the left of the policy name you would like to delete.
 
 
-The Policies tab also supports the `append` and `remove` command that allows you to add a new policy or 
+The Policies tab also supports the `append` and `remove` command that allows you to add a new policy or
 remove an existing policy
 as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#435-policy-features)
 

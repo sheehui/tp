@@ -110,7 +110,7 @@ Each of the four main components (also shown in the diagram above).
 * implements the aforementioned functionality using a concrete `{Component Name}Manager` class.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
-the `LogicManager.java`. Other components interact with a given component through its interface as much as possible 
+the `LogicManager.java`. Other components interact with a given component through its interface as much as possible
 rather than the concrete class or through any lower-level class, as illustrated in the (partial) class diagram below.
 Experienced programmers may recognise this as the Facade design pattern.[^facadeFootnote]
 
@@ -122,8 +122,8 @@ The sections below give more details of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** There are some notable exceptions to the `Facade` pattern. For example, for the `Ui` component, 
-`AttributePanel`, `PersonCard` and `ClientPanel`. Arguably the better implementation would be to restrict all the 
+:bulb: **Tip:** There are some notable exceptions to the `Facade` pattern. For example, for the `Ui` component,
+`AttributePanel`, `PersonCard` and `ClientPanel`. Arguably the better implementation would be to restrict all the
 interactions between components to the facades, but a design decision was made to prioritize a simple implementation of
 critical features over adhering to the design pattern.
 </div>
@@ -147,7 +147,7 @@ The UI that is displayed has 6 main tabs to switch between.
  4. `ASSETS`
  5. `LIABILITIES`
  6. `NOTES`
- 
+
  The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
 each client and will thus display different information for each client. The UI keeps track of the current tab it is
 observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
@@ -276,7 +276,7 @@ Classes used by multiple components are in the `donnafin.commons` package.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 This will be a reference to explain the general flow of how the commands work later.
 
-Command types fall into 3 main categories. 
+Command types fall into 3 main categories.
 1. Commands that involve organisation of clients.
 2. Commands that involve editing of personal information of one specific client,
 be it appending or removing information.
@@ -288,7 +288,7 @@ the same framework but differ slightly.
 
 #### 4.2.1 Commands that involve organisation of clients
 
-<div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
+<div markdown="span" class="alert alert-info">:information_source: **Key properties:**
 <br>
 1. The command interacts with model through an addition or deletion<br>
 2. The command interacts with storage through an addition or deletion.<br>
@@ -303,7 +303,7 @@ Commands that fall under this category are :<br>
 The delete command is one of the commands that fall under this category.
 We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
 
-| Full sequence diagram  | 
+| Full sequence diagram  |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="800" /> |
 | Logic specific sequence diagram |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="1200" /> |
@@ -325,7 +325,7 @@ This does not involve a consumer in any way and is always part of execute comman
 
 #### 4.2.2 Commands that accesses one specific client's information
 
-<div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
+<div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 <br>
 The key differences are:<br>
@@ -368,7 +368,7 @@ Such an implementation supports the user viewing and controlling a single client
 
 #### 4.2.3 Commands that involve changing of tabs
 
-<div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
+<div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 The key differences are:<br>
 1. The commands do not interact with model.<br>
@@ -392,8 +392,8 @@ Explanation of diagram above:
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
-In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
-* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
+In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
+* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
