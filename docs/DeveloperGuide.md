@@ -18,7 +18,7 @@ the various components than form DonnaFin.
 ### 1.2 Target Audience
 This developer guide is aimed at developers and advanced users of DonnaFin
 * Developers: anyone who wishes to upgrade DonnaFin to support more functions.
-* Advanced Users: Financial Advisors who want to better understand the features that DonnaFin Provides.
+* Advanced Users: financial advisors who want to better understand the features that DonnaFin Provides.
 
 ### 1.3 About DonnaFin
 DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
@@ -36,6 +36,31 @@ Commands refer to the pre-defined functions that are used by the user. Invalid c
 available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
+In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the
+key client details that a financial advisor has to keep track of.
+
+Below is an Object-Oriented Domain Model (OODM) modelling the existing state of affairs between a financial advisor and
+their client/s.
+
+![Overview Oodm Diagram](images/OverviewOodmDiagram.png)
+
+We can see that financial advisors generally have one or more clients that they have to manage, and
+every client has the following categories of information unique to them that is important for the 
+financial advisors to keep track of:
+take note of:
+1. Contact Details
+2. Policies
+3. Assets
+4. Liabilities
+5. Notes
+
+From the diagram above it can be seen that there is no solution for the financial advisors to keep track of all these
+details, and this is where DonnaFin comes in.
+
+DonnaFin gives financial advisors a platform to multiple clients, and store the Contact Details, Policies, Assets,
+Liabilities, and Notes for each and every client they want to register with the application. In the Developer Guide
+it will be explained how all the different classes, and components of DonnaFin come together to create a software that
+is able to perform this functionality.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -195,7 +220,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 How is `Person` stored?
-* `JsonAdaptedPerson` is created with Jackson.
+* `JsonAdaptedPerson` is created with the Jackson framework.
 * Each `Person` in DonnaFin is stored as a `JsonAdaptedPerson` as shown in our class diagram above.
 * The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
@@ -258,7 +283,7 @@ Despite falling under the three broad categories, the commands still have many s
 in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
 the same framework but differ slightly.
 
-#### 4.2.1 Commands that involve organisation of clients
+#### 4.2.1 Commands that involve the organisation of clients
 
 <div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
 <br>
@@ -286,7 +311,7 @@ in logic, the logic specific sequence diagram as shown above takes a deeper dive
 sequence diagram.
 
 Explanation of diagram above:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
@@ -295,7 +320,7 @@ This does not involve a consumer in any way and is always part of execute comman
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 Commands that accesses one specific client's information
+#### 4.2.2 Commands that access one specific client's information
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
 <br>
@@ -319,7 +344,7 @@ Like other commands in the other 2 [categories](#42-implementation-and-commands)
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
@@ -360,7 +385,7 @@ We will be using the `SwitchTab` command as the example to illustrate and explai
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
 Explanation of diagram above:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
@@ -376,11 +401,12 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.<br>
 </div>
 
-#### 4.3 NotesTab
+#### 4.3 Notes tab
 
-The notes tab is different from the commands above. Instead of being command-based, the notes tab allows the user
-to type in any quick notes that the user would want. Updating it in realtime. This is opposed to the commands where,
-changes to any other component only happen when the command is executed. Hence the notes tab take advantage of a
+The notes tab accepts user input like the commands but is fundamentally different from it.
+Instead of being command-based, the notes tab allows the user to type in any quick notes that the
+user would want. Updating it in realtime. This is opposed to the commands where,
+changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
 different process.
 
 Key features about notes:
@@ -424,7 +450,7 @@ any notes about the client. In the main page, it collates all clients for easy a
 client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
-The product will not help them with work relations with other Financial Advisors as the
+The product will not help them with work relations with other financial advisors as the
 product’s scope only covers the personal use of the product. It does not link with any
 financial calculators, financial databases or cover market information.
 
@@ -453,9 +479,9 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |
 | `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
 | `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
-| `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
-| `LOW`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
-| `LOW`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
+| `MEDIUM`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
+| `MEDIUM`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
+| `MEDIUM`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
 | `LOW`      | new user                                   |  follow a tutorial to switch between a client's information information tabs |   learn how to view all information regarding a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when adding policies to a client's list of policies       |  learn how to add policies to the list of policies of a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when deleting policies from a client's list of policies       |  learn how to delete policies from the list of policies of a specific client   |
@@ -507,7 +533,7 @@ State: Home Window
 
 **MSS**
 1. User chooses to find a client within DonnaFin using the right syntax.
-2. DonnaFin displays the clients that match the keyword inputted.
+2. DonnaFin displays the clients that match the input keyword.
 
    Use case ends.
 
@@ -639,9 +665,12 @@ State: Client Window (Assets Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC12: Adding a liability to a client**
 
@@ -673,9 +702,12 @@ State: Client Window (Liabilities Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC14: Adding a policy to a client**
 
@@ -707,16 +739,19 @@ State: Client Window (Policies Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
 
 **MSS**
 1. User requests to exit the application.
-2. DonnaFin closes itself.
+2. DonnaFin exits and closes.
 
    Use case ends.
 

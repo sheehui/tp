@@ -38,7 +38,7 @@ help you get more out of our application. Additionally, links back to the top of
 like below are present at the end of every section. For easier navigation around this User Guide, we suggest using our table of contents together with these
 links to quickly find and access the information you need.
 
-This marks the end of the introduction. Click
+This marks the end of the Introduction. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -73,25 +73,23 @@ This marks the end of the introduction. Click
 
    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-   * **`clear`** : Deletes all clients.
-
    * **`exit`** : Exits the DonnaFin.
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
-This marks the end of the quick start. Click
+This marks the end of the Quick Start section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About
 
-This section aims to help familiarise you with how our application works as well as the terminologies that we use
+This section aims to help familiarize you with how our application works as well as the terminology that we use
 throughout our application and user guide.
 
 ### 3.1 Special Icons
 
-Here are the special icons used throughout the User Guide to help you utilise this guide more effectively.
+Here are the special icons used throughout our User Guide to help you utilise this guide more effectively.
 
 #### Tips
 
@@ -103,7 +101,7 @@ Tip: Tips are helpful!
 
 #### Notes
 
-Notes are here to provide you with extra information that they may find useful when using DonnaFin.
+Notes are here to provide you with extra information that you may find useful when using DonnaFin.
 
 <div markdown="span" class="alert alert-primary">:information_source:
 Take notes when you see this icon!
@@ -116,7 +114,7 @@ DonnaFin if you fail to follow this guide properly or tamper with the files of t
 knowledge.
 
 <div markdown="span" class="alert alert-primary">
-:exclamation: Be wary of cautions!
+:exclamation: Here lies a cautionary tale!
 </div><br>
 
 ### 3.2 Application Home Window Breakdown
@@ -250,8 +248,7 @@ asset/liability , you can keep track of the index by looking at the number to th
 would like to delete.
 
 The Asset/Liability tab also supports the `append` and `remove` command that allows you to add a new asset/liability or
-remove an existing asset/liability as shown
-[here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#4331-add-an-asset-to-a-client-append.)
+remove an existing asset/liability as shown [here](#4331-add-an-asset-to-a-client-append).
 
 #### 3.3.5 Notes Tab
 
@@ -287,8 +284,8 @@ You will know that you are in the Notes tab if you see a big white text box belo
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
 
-This marks the end of the about section. Click
-<a href="#top">here</a> to return to the top
+
+This marks the end of the about section. Click <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -296,7 +293,7 @@ This marks the end of the about section. Click
 
 This section gives you a detailed explanation on how each of our features work.
 
-For your easy reference and navigation, we have split our features into 3 different categories:
+For your easy reference and navigation, we have split our features into _four different categories_:
 1. Global Features
 2. Home Window Features
 3. Client Window Features
@@ -344,8 +341,8 @@ Examples:
 
 Do take note that there is a near duplicate check for names. This means that when
 adding a person whose name is similar to another client already found in DonnaFin,
-the result display will prompt the user as such but the client will still be added to
-the contact list. However, if the names are exact duplicates they will be rejected.
+the result display will prompt the user as shown below but the client will still be added to
+the client list. However, if the names are exact duplicates they will be rejected.
 
 Near duplicate:
 ![DuplicateRejectionMessage](images/NearDuplicateRejectionMessage.png)
@@ -353,7 +350,7 @@ Near duplicate:
 Duplicate:
 ![FullDuplicateRejectionMessage](./images/FullDuplicateRejectionMessage.png)
 
-Names are said to be near duplicates if the names differs only in case
+Names are said to be near duplicates if the names differ only in case
 (upper case letters where there are lower case letters) or
 with spaces (user types in two or more spaces in place of one)
 
@@ -447,7 +444,7 @@ as notes for each client.
 Allows you to navigate to a different tab.
 
 There are 5 tabs:
-1. [Contacts](#4311-contacts-tab)
+1. [Contact](#4311-contact-tab)
 2. [Policies](#4312-policies-tab)
 3. [Assets](#4313-assets-tab)
 4. [Liabilities](#4314-liabilities-tab)
@@ -455,7 +452,7 @@ There are 5 tabs:
 
 Format: `tab KEYWORD`
 
-##### 4.3.1.1 Contacts Tab
+##### 4.3.1.1 Contact Tab
 
 Switches you from any tab in Client Window to `Contact` tab.
 
@@ -507,7 +504,7 @@ Examples:
 
 #### 4.3.2 Edit Client's Contact Information: `edit`
 
-You can edit your client's contact fields with our `edit` command. You should be in `Contacts` tab to use these commands.
+You can edit your client's contact fields with our `edit` command. You should be in `Contact` tab to use these commands.
 
 Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
@@ -672,8 +669,8 @@ DonnaFin's data is saved as a JSON file `[JAR file location]/data/donnafin.json`
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 
-If your changes to the data file makes its format invalid, DonnaFin will discard all data and start with
-an empty data file at the next run.
+If your changes to the data file make its format invalid, DonnaFin will discard all data and start with
+an empty data file on the next run.
 
 ``` YAML
 {
@@ -694,7 +691,7 @@ an empty data file at the next run.
 }
 ```
 
-The above figure shows the original JSON data for totalValueInsured
+The above figure shows the original JSON data for `totalValueInsured`
 regarding the client Alex Yeoh. If you tamper with the
 JSON file directly and change one of the attributes to an invalid format (in this case the
 total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
@@ -706,7 +703,7 @@ DonnaFin will then proceed to cleanly wipe donnafin.json and execute your comman
 
 </div>
 
-This marks the end of the features section. Click
+This marks the end of the Features section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -767,7 +764,7 @@ to the detailed description on how to use a specific command.
 | [**Remove Asset/Liability/Policy**](#4332-remove-an-asset-from-a-client-remove)   | `remove INDEX`                                                                 | `remove 1`
 
 
-This marks the end of the command summary section. Click
+This marks the end of the Command Summary section. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
@@ -781,7 +778,7 @@ as opposed to graphical user interfaces(mouse-based applications).
 * **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
 financial protection or reimbursement against losses.
 
-This marks the end of the glossary. Click
+This marks the end of the Glossary. Click
 <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
