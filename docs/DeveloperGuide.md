@@ -11,16 +11,17 @@ title: Developer Guide
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended
-audience in order to better understand the inner workings of the program and better understand the interaction between
-the various components than form DonnaFin.
+
+This guide covers the architecture, implementation and design choices in DonnaFin to give the reader a clear picture
+of the technical details and the inner workings of DonnaFin.
 
 ### 1.2 Target Audience
-This developer guide is aimed at developers and advanced users of DonnaFin
-* Developers: anyone who wishes to upgrade DonnaFin to support more functions.
-* Advanced Users: Financial Advisors who want to better understand the features that DonnaFin Provides.
+
+* Developers: anyone who wishes to dive into this codebase to improve or extend on DonnaFin.
+* Advanced Users: financial advisors who want to better understand the features that DonnaFin provides.
 
 ### 1.3 About DonnaFin
+
 DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
 Despite the application having an intuitive Graphical User Interface (GUI), it is optimized for entering commands using
 a Command Line Interface (CLI).
@@ -31,11 +32,21 @@ a Command Line Interface (CLI).
 
 This activity diagram shows how one might typically navigate through the DonnaFin application.
 
-
-Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that are not
+Commands refer to the pre-defined functions available to the user. Invalid commands refer to commands that are not
 available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
+In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the
+key client details that a financial advisor has to keep track of.
+
+Below is an Object-Oriented Domain Model (OODM) modelling the existing state of affairs between a financial advisor and
+their client/s.
+
+![Overview OODM Diagram](images/OverviewOodmDiagram.png)
+
+DonnaFin gives financial advisors a platform to store their numerous clients and their details. In this guide
+it will be explained how all the different classes, and components of DonnaFin come together to create a software that
+is able to perform this functionality.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -80,8 +91,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -96,17 +107,31 @@ The rest of the App consists of four components.
 
 Each of the four main components (also shown in the diagram above).
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements the aforementioned functionality using a concrete `{Component Name}Manager` class.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java`. Other components interact with a given component through its interface as much as possible
+rather than the concrete class or through any lower-level class, as illustrated in the (partial) class diagram below.
+Experienced programmers may recognise this as the Facade design pattern.[^facadeFootnote]
+
+[^facadeFootnote]: [Facade Design Pattern](https://refactoring.guru/design-patterns/facade)
 
 <img alt="Component Managers" src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** There are some notable exceptions to the `Facade` pattern. For example, for the `Ui` component,
+`AttributePanel`, `PersonCard` and `ClientPanel`. Arguably the better implementation would be to restrict all the
+interactions between components to the facades, but a design decision was made to prioritize a simple implementation of
+critical features over adhering to the design pattern.
+</div>
+
+
 #### 4.1.1 UI component
 
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java) specifies the API of this component.
+[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/ui/Ui.java) specifies the API of this component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -122,13 +147,16 @@ The UI that is displayed has 6 main tabs to switch between.
  4. `ASSETS`
  5. `LIABILITIES`
  6. `NOTES`
- 
+
  The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
 each client and will thus display different information for each client. The UI keeps track of the current tab it is
 observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
 [here](#-421-tab-switch-command).
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/ui/MainWindow.java) is
+specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -139,7 +167,7 @@ The `UI` component,
 
 #### 4.1.2 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -171,7 +199,7 @@ implementation of commands section [here](#421-command).
 
 
 #### 4.1.3 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/model/Model.java)
 
 <img alt="Model Class Diagram" src="images/ModelClassDiagram.png" width="450" />
 
@@ -185,7 +213,7 @@ The `Model` component,
 
 #### 4.1.4 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/storage/Storage.java)
 
 <img alt="Storage Class Diagram" src="images/StorageClassDiagram.png" width="550" />
 
@@ -195,7 +223,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 How is `Person` stored?
-* `JsonAdaptedPerson` is created with Jackson.
+* `JsonAdaptedPerson` is created with the Jackson framework.
 * Each `Person` in DonnaFin is stored as a `JsonAdaptedPerson` as shown in our class diagram above.
 * The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
@@ -248,7 +276,7 @@ Classes used by multiple components are in the `donnafin.commons` package.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 This will be a reference to explain the general flow of how the commands work later.
 
-Command types fall into 3 main categories. 
+Command types fall into 3 main categories.
 1. Commands that involve organisation of clients.
 2. Commands that involve editing of personal information of one specific client,
 be it appending or removing information.
@@ -258,9 +286,9 @@ Despite falling under the three broad categories, the commands still have many s
 in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
 the same framework but differ slightly.
 
-#### 4.2.1 Commands that involve organisation of clients
+#### 4.2.1 Commands that involve the organisation of clients
 
-<div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
+<div markdown="span" class="alert alert-info">:information_source: **Key properties:**
 <br>
 1. The command interacts with model through an addition or deletion<br>
 2. The command interacts with storage through an addition or deletion.<br>
@@ -275,7 +303,7 @@ Commands that fall under this category are :<br>
 The delete command is one of the commands that fall under this category.
 We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
 
-| Full sequence diagram  | 
+| Full sequence diagram  |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="800" /> |
 | Logic specific sequence diagram |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="1200" /> |
@@ -286,7 +314,7 @@ in logic, the logic specific sequence diagram as shown above takes a deeper dive
 sequence diagram.
 
 Explanation of diagram above:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
@@ -295,9 +323,9 @@ This does not involve a consumer in any way and is always part of execute comman
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 Commands that accesses one specific client's information
+#### 4.2.2 Commands that access one specific client's information
 
-<div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
+<div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 <br>
 The key differences are:<br>
@@ -319,7 +347,7 @@ Like other commands in the other 2 [categories](#42-implementation-and-commands)
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
@@ -340,7 +368,7 @@ Such an implementation supports the user viewing and controlling a single client
 
 #### 4.2.3 Commands that involve changing of tabs
 
-<div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
+<div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 The key differences are:<br>
 1. The commands do not interact with model.<br>
@@ -360,12 +388,12 @@ We will be using the `SwitchTab` command as the example to illustrate and explai
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
 Explanation of diagram above:
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
-In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
-* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
+In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
+* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
@@ -376,11 +404,12 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.<br>
 </div>
 
-#### 4.3 NotesTab
+#### 4.3 Notes tab
 
-The notes tab is different from the commands above. Instead of being command-based, the notes tab allows the user
-to type in any quick notes that the user would want. Updating it in realtime. This is opposed to the commands where,
-changes to any other component only happen when the command is executed. Hence the notes tab take advantage of a
+The notes tab accepts user input like the commands but is fundamentally different from it.
+Instead of being command-based, the notes tab allows the user to type in any quick notes that the
+user would want. Updating it in realtime. This is opposed to the commands where,
+changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
 different process.
 
 Key features about notes:
@@ -424,7 +453,7 @@ any notes about the client. In the main page, it collates all clients for easy a
 client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
-The product will not help them with work relations with other Financial Advisors as the
+The product will not help them with work relations with other financial advisors as the
 product’s scope only covers the personal use of the product. It does not link with any
 financial calculators, financial databases or cover market information.
 
@@ -453,9 +482,9 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |
 | `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
 | `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
-| `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
-| `LOW`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
-| `LOW`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
+| `MEDIUM`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
+| `MEDIUM`      | new user                                   | follow a tutorial when deleting a client       | learn how to remove a client that I do not want to keep track of    |
+| `MEDIUM`      | new user                                   | follow a tutorial to view a client's personal information      |  learn how to view a specific client's contact information   |
 | `LOW`      | new user                                   |  follow a tutorial to switch between a client's information information tabs |   learn how to view all information regarding a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when adding policies to a client's list of policies       |  learn how to add policies to the list of policies of a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when deleting policies from a client's list of policies       |  learn how to delete policies from the list of policies of a specific client   |
@@ -507,7 +536,7 @@ State: Home Window
 
 **MSS**
 1. User chooses to find a client within DonnaFin using the right syntax.
-2. DonnaFin displays the clients that match the keyword inputted.
+2. DonnaFin displays the clients that match the input keyword.
 
    Use case ends.
 
@@ -639,9 +668,12 @@ State: Client Window (Assets Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC12: Adding a liability to a client**
 
@@ -673,9 +705,12 @@ State: Client Window (Liabilities Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC14: Adding a policy to a client**
 
@@ -707,16 +742,19 @@ State: Client Window (Policies Tab)
 
 **Extensions**
 
-* 1a. User's given index is invalid.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+* 1a. User's input does not conform with the specified format.
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+      Use Case resumes at step 1.
+* 1b. User's given index is invalid.
+    * 1b1. DonnaFin shows an error message.\
+      Use Case resumes at step 1.
 
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
 
 **MSS**
 1. User requests to exit the application.
-2. DonnaFin closes itself.
+2. DonnaFin exits and closes.
 
    Use case ends.
 

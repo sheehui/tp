@@ -57,7 +57,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonName_changesSubject() throws InvalidFieldException {
+    public void editPersonName_changesSubject() {
         personAdapter.edit(new Name("Peter"));
 
         assertEquals(new Person(new Name("Peter"), ALICE.getPhone(), ALICE.getEmail(),
@@ -71,7 +71,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonName_withIncorrectNameFormat_throwsInvalidFieldException() {
+    public void editPersonName_withIncorrectNameFormat_throws() {
         String emptyName = " "; // empty string
         String invalidName = "Alice*"; // contains non-alphanumeric characters
         assertThrows(IllegalArgumentException.class, () -> personAdapter.edit(new Name(emptyName)));
@@ -80,7 +80,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonPhone_changesSubject() throws InvalidFieldException {
+    public void editPersonPhone_changesSubject() {
         personAdapter.edit(new Phone("90538978"));
 
         assertEquals(new Person(ALICE.getName(), new Phone("90538978"),
@@ -94,7 +94,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonPhone_withIncorrectPhoneFormat_throwsInvalidFieldException() {
+    public void editPersonPhone_withIncorrectPhoneFormat_throws() {
         String emptyPhone = " "; // empty string
         String invalidPhone = "91"; // less than 3 numbers
         String invalidPhoneAlt = "9011p041"; // alphabets within digits
@@ -107,7 +107,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonEmail_changesSubject() throws InvalidFieldException {
+    public void editPersonEmail_changesSubject() {
         personAdapter.edit(new Email("alice29@email.com"));
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), new Email("alice29@email.com"),
@@ -121,7 +121,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonEmail_withIncorrectPhoneFormat_throwsInvalidFieldException() {
+    public void editPersonEmail_withIncorrectPhoneFormat_throws() {
         String missingLocalPart = "@example.com"; //missing local part
         String missingAtSymbol = "peterjackexample.com"; //missing '@' symbol
         String missingDomainName = "peterjack@"; //missing domain name
@@ -135,7 +135,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonAddress_changesSubject() throws InvalidFieldException {
+    public void editPersonAddress_changesSubject() {
         personAdapter.edit(new Address("28 College Ave E, #B1-01, Singapore 138598"));
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
@@ -149,7 +149,7 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonAddress_withIncorrectPhoneFormat_throwsInvalidFieldException() {
+    public void editPersonAddress_withIncorrectPhoneFormat_throws() {
         String emptyAddress = ""; //empty String
         String spacesOnly = " "; //spaces only
 
@@ -160,9 +160,9 @@ public class PersonAdapterTest {
     }
 
     @Test
-    public void editPersonNotes_changesSubject() throws InvalidFieldException {
-        personAdapter.edit(new Notes("Loves cai fan & teh ping"));
-        Notes modifiedNotes = new Notes("Loves cai fan & teh ping");
+    public void editPersonNotes_changesSubject() {
+        personAdapter.edit(new Notes("Loves chicken rice & bubble tea"));
+        Notes modifiedNotes = new Notes("Loves chicken rice & bubble tea");
 
         assertEquals(new Person(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(),
                 ALICE.getAddress(), modifiedNotes, ALICE.getPolicies(),
@@ -170,7 +170,7 @@ public class PersonAdapterTest {
                 personAdapter.getSubject());
         assertNotEquals(ALICE, personAdapter.getSubject());
 
-        personAdapter.edit(new Notes("Loves cai fan"));
+        personAdapter.edit(new Notes("Loves chicken rice"));
         assertEquals(ALICE, personAdapter.getSubject());
     }
 
