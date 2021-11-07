@@ -3,6 +3,7 @@ package donnafin.model.person;
 import static donnafin.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ public class NotesTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidNotes() {
         // null notes
         assertThrows(NullPointerException.class, () -> Notes.isValidNotes(null));
 
@@ -38,5 +39,25 @@ public class NotesTest {
         // valid notes
         assertTrue(Notes.isValidNotes("Joshua is a family-oriented client. Has a great preference for crypto"
                 + " in his portfolio."));
+    }
+
+    @Test
+    public void equals_matching_pass() {
+        assertEquals(new Notes("loves kopi"), new Notes("loves kopi"));
+    }
+
+    @Test
+    public void equals_different_fail() {
+        assertNotEquals(new Notes("loves kopi"), new Notes("hates kopi"));
+    }
+
+    @Test
+    public void isPossibleDuplicate_matching_pass() {
+        assertTrue(new Notes("loves kopi").isPossibleDuplicate(new Notes("loves kopi")));
+    }
+
+    @Test
+    public void isPossibleDuplicate_different_fail() {
+        assertFalse(new Notes("loves kopi").isPossibleDuplicate(new Notes("hates kopi")));
     }
 }
