@@ -1,19 +1,19 @@
 package donnafin.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import donnafin.logic.commands.Command;
 import donnafin.logic.parser.exceptions.ParseException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserStrategyTestUtil {
     /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-    public static void assertParseSuccess(ParserStrategy parser, String userInput, Command expectedCommand) {
+    public static void assertParseSuccess(ParserStrategy parser, String command, String args, Command expectedCommand) {
         try {
-            Command command = parser.parseCommand(userInput);
-            assertEquals(expectedCommand, command);
+            Command temp = parser.parseCommand(command, args);
+            assertEquals(temp, expectedCommand);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
         }
