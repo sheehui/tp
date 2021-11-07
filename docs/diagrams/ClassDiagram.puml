@@ -1,0 +1,102 @@
+@startuml Domain Model
+skinparam style strictuml
+skinparam groupInheritance 3
+hide empty members
+
+class "DonnaFin" as DonnaFin {
+}
+
+class "Financial Advisor" as FinancialAdvisor {
+}
+
+class "List of Clients" as ClientList {
+}
+
+
+class "Client" as Client {
+
+}
+
+class "Contact Info" {
+    Name
+    Phone
+    Email
+    Address
+}
+
+
+class "List of Policies" {
+}
+
+class "List of Assets" {
+}
+
+class "List of Liabilities" {
+}
+
+class "Policy" as Policy{
+}
+
+class "Asset" as Asset{
+}
+
+class "Liability" as Liability{
+}
+
+class "Notes" as Notes{
+}
+
+class "Client View" {
+}
+
+class "Client Tab" {
+}
+
+class "Main View"{
+
+}
+
+class "Command Box" {
+}
+
+class "Result Display" {
+}
+
+class "Main Window" {
+}
+
+ClientList *-- "*" Client: has >
+FinancialAdvisor "1" -- DonnaFin: uses >
+FinancialAdvisor -- "1" ClientList: has >
+
+"Client Tab" <|-- "Contact Info"
+"Client Tab" <|-- "List of Policies"
+"Client Tab" <|-- "List of Assets"
+"Client Tab" <|-- "List of Liabilities"
+"Client Tab" <|-- Notes
+
+"List of Assets" *-- "*" "Asset": has >
+"List of Liabilities" *-- "*" "Liability": has >
+"List of Policies" *-- "*" "Policy": has >
+
+"Main View" -- ClientList: shows >
+
+"Client View" -- "1" "Client": shows >
+
+"Client View" *-- "1" "Client Tab": displays >
+
+"DonnaFin" *-- "1" "Command Box": shows >
+
+"DonnaFin" *-- "1" "Result Display": shows >
+
+"DonnaFin" *-- "1" "Main Window": shows >
+
+"Main Window" <|-- "Main View"
+"Main Window" <|-- "Client View"
+
+"Financial Advisor" -- "Command Box": enters command >
+"Financial Advisor" -- "Result Display": views command result >
+"Financial Advisor" -- "Main Window": accesses client information >
+
+
+@enduml
