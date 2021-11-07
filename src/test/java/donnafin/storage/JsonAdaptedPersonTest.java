@@ -99,6 +99,14 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullPolicy_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, null, VALID_LIABILITIES, VALID_ASSETS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "policies");
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
 
     @Test
     public void toModelType_invalidAsset_throwsIllegalValueException() {
@@ -108,12 +116,27 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullAsset_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, VALID_LIABILITIES, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "assets");
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
     @Test
     public void toModelType_invalidLiability_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_NOTES, VALID_POLICY, INVALID_LIABILITIES, VALID_ASSETS);
         String expectedMessage = Liability.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullLiability_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NOTES, VALID_POLICY, null, VALID_ASSETS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "liabilities");
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
