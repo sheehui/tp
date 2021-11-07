@@ -1,6 +1,8 @@
 //@@author sheehui
 package donnafin.storage;
 
+import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -82,8 +84,11 @@ class JsonAdaptedPolicy {
      */
     public Policy toModelType() throws IllegalValueException {
         try {
+            requireAllNonNull(policyName, policyCommission, policyInsurer, policyYearlyPremiums, policyTotalValueInsured);
             return new Policy(
                     policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
+        } catch (NullPointerException e) {
+            throw new IllegalValueException("Null found value in an object in 'policies' field.");
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(e.getMessage());
         }

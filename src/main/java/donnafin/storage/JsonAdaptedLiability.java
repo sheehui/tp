@@ -10,6 +10,8 @@ import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Liability;
 
+import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
 public class JsonAdaptedLiability {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedLiability.class);
@@ -69,7 +71,10 @@ public class JsonAdaptedLiability {
      */
     public Liability toModelType() throws IllegalValueException {
         try {
+            requireAllNonNull(liabilityName, liabilityType, liabilityValue, liabilityRemarks);
             return new Liability(liabilityName, liabilityType, liabilityValue, liabilityRemarks);
+        } catch (NullPointerException e) {
+            throw new IllegalValueException("Null found value in an object in 'liabilities' field.");
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(e.getMessage());
         }

@@ -1,6 +1,8 @@
 //@@author sheehui
 package donnafin.storage;
 
+import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -71,7 +73,10 @@ class JsonAdaptedAsset {
      */
     public Asset toModelType() throws IllegalValueException {
         try {
+            requireAllNonNull(assetName, assetType, assetValue, assetRemarks);
             return new Asset(assetName, assetType, assetValue, assetRemarks);
+        } catch (NullPointerException ignored) {
+            throw new IllegalValueException("Null found value in an object in 'assets' field.");
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(e.getMessage());
         }
