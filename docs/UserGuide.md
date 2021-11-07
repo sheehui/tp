@@ -57,7 +57,7 @@ This marks the end of the Introduction. Click
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all clients.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the DonnaFin.
 
@@ -747,7 +747,7 @@ to the detailed description on how to use a specific command.
 | Client Window Commands     | Format                                                                | Examples
 | ---------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [**Return to Home Window**](#437-returning-to-home-window-home)   | `home`                                                                 | `home`
-| [**Switch to Contacts Tab**](#4311-contacts-tab) | `tab KEYWORD`                                                                 | `tab c`
+| [**Switch to Contact Tab**](#4311-contact-tab) | `tab KEYWORD`                                                                 | `tab c`
 | [**Switch to Policies Tab**](#4312-policies-tab)   | `tab KEYWORD`                                                                 | `tab p`
 | [**Switch to Assets Tab**](#4313-assets-tab)   | `tab KEYWORD`                                                                 | `tab a`
 | [**Switch to Liabilities Tab**](#4314-liabilities-tab)   | `tab KEYWORD`                                                                 | `tab l`
