@@ -105,7 +105,7 @@ Notes are here to provide you with extra information that you may find useful wh
 
 <div markdown="span" class="alert alert-primary">:information_source:
 Take notes when you see this icon!
-
+</div><br>
 
 #### Caution 
 
@@ -278,7 +278,7 @@ You will know that you are in the Notes tab if you see a big white text box belo
 </div>
 
 
-This marks the end of the about section. Click <a href="#top">here</a> to return to the top
+This marks the end of the About section. Click <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
 
