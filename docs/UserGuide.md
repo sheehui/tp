@@ -320,7 +320,10 @@ These features are exclusive to Home Window, the default window that pops up whe
 Such features include adding and deleting clients, listing/clearing all clients, doing a specific search for clients,
 as well as viewing a client in detail.
 
+<div markdown="span" class="alert alert-primary">
+:information_source:
 To access and update details on a specific client, refer to [Client Window Commands](#43-client-window).
+</div><br>
 
 #### 4.2.1 Adding a Client : `add`
 
@@ -364,6 +367,11 @@ E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 
 Deletes the specified client from the DonnaFin.
 
+<div markdown="span" class="alert alert-primary">
+:bulb:
+The index reference can be taken from the number next to your client's name!
+</div><br>
+
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
@@ -400,21 +408,29 @@ Examples:
 
 #### 4.2.5 View Client Information : `view`
 
-Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see each client field in detail and edit existing information.
+<div markdown="span" class="alert alert-primary">
+:information_source:
 You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing `view`.
+</div><br>
+
+Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see 
+each client field in detail and edit existing information.
+
+<div markdown="span" class="alert alert-primary">
+:bulb:
+The index reference can be taken from the number next to your client's name!
+</div><br>
 
 Format: `view INDEX`
 
-* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed person list.
+* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, ...​
-* The view screen will switch to the client window.
+* The view screen will switch to the client window as shown below.
+  ![Client View Mockup](./images/ClientContactTab.png)
+* The information related to the client is separated to **five different tabs**.
 
 Examples:
 * `view 1`
-* This will open a new view mode, where the client's data is present in field-value pairs as such:
-* ![Client View Mockup](./images/ClientContactTab.png)
-* The information related to the client is separated to different tabs.
-* Each tab contains information closely related to the title of the tab.
 
 #### 4.2.6 Clearing all client data : `clear`
 
@@ -569,6 +585,11 @@ Example:
 
 Remove an existing asset from the current client you are viewing.
 
+<div markdown="span" class="alert alert-primary">
+:bulb:
+The index reference can be taken from the number on the leftmost column!
+</div><br>
+
 * Removes the asset at the specified `INDEX`.
 * The index refers to the index number shown in the displayed asset list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -599,6 +620,11 @@ Example:
 
 Remove an existing liability from the current client you are viewing.
 
+<div markdown="span" class="alert alert-primary">
+:bulb:
+The index reference can be taken from the number on the leftmost column!
+</div><br>
+
 * Removes the liability at the specified `INDEX`.
 * The index refers to the index number shown in the displayed liability list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -628,6 +654,11 @@ Example:
 ##### 4.3.5.2 Remove a Policy from a Client: `remove`
 
 Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
+
+<div markdown="span" class="alert alert-primary">
+:bulb:
+The index reference can be taken from the number on the leftmost column!
+</div><br>
 
 * Removes the liability at the specified `INDEX`.
 * The index refers to the index number shown in the displayed policy list.
