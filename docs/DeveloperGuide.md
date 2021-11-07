@@ -151,7 +151,7 @@ The UI that is displayed has 6 main states to switch between.
  The first state, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
 each client and will thus display different information for each client. The `UI` keeps track of the current tab it is
 observing through the `UI`State, which is set on each tab switch command. Further details for the tab switch command can be found
-[here](#-421-tab-switch-command).
+[here](#423-ui-browsing-commands).
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of the
@@ -190,7 +190,7 @@ How the parsing works:
 the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates
 an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the
 other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the
-implementation of commands section [here](#421-command).
+implementation of commands section [here](#42-implementation-and-commands).
 
 
 <img alt="Parser Strategy" src="images/ParserStrategy.png" width="600"/>
