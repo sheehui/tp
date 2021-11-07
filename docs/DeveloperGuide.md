@@ -131,13 +131,13 @@ critical features over adhering to the design pattern.
 
 #### 4.1.1 UI component
 
-[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/ui/`UI`.java) specifies the API of this component.
+[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/ui/Ui.java) specifies the API of this component.
 
-![Structure of the UI Component](images/`UI`ClassDiagram.png)
+![Structure of the UI Component](images/UIClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in
 home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these,
-including the `MainWindow`, inherit from the abstract ``UI`Part` class which captures the commonalities between
+including the `MainWindow`, inherit from the abstract `UIPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
 The UI that is displayed has 6 main states to switch between.
@@ -161,7 +161,7 @@ specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tr
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
@@ -207,7 +207,7 @@ implementation of commands section [here](#42-implementation-and-commands).
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Storage` object and communicates with it to save address book to user files.
 
@@ -302,7 +302,7 @@ The `Delete` command is one of the commands that fall under this category.
 We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
 
 | Full sequence diagram  |
-|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram`UI`Part.png" width="800" /> |
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUIPart.png" width="800" /> |
 | Logic specific sequence diagram |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="1200" /> |
 
@@ -353,13 +353,14 @@ the specified person.
 * A `EditCommandResult` is returned from the execution of `Edit` Command. This `CommandResult`,
 like the two other [categories](#42-implementation-and-commands) contain both a consumer for `UI` and `Logic`.
 * The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`.
-* The `UI` component then accepts the ``UI`Consumer produced from the `CommandResult`. **The `UI` is here to display the newly
+* The `UI` component then accepts the `UIConsumer` produced from the `CommandResult`. **The `UI` is here to display the newly
 edits made**.
 
-<div markdown="span" class="alert alert-warning">**Explanation of `PersonAdapter`:**
+<div markdown="span" class="alert alert-warning">**Explanation of PersonAdapter:** 
 <br>
-In this category of commands, the class`PersonAdapter` is doing most of the legwork here.
-`PersonAdpater` serves as a wrapper for the Model class `Person`.
+
+In this category of commands, the class `PersonAdapter` is doing most of the legwork here.
+`PersonAdapter` serves as a wrapper for the Model class `Person`.
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
 Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
 </div>
@@ -368,10 +369,11 @@ Such an implementation supports the user viewing and controlling a single client
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
+
 1. The commands do not interact with model.<br>
-2. The commands have to handle the changing of `ParserStrategy, from the current one<br>
+2. The commands have to handle the changing of `ParserStrategy`, from the current one<br>
 to `ABCParser` of the new tab.
-3. The commands need to update the ``UI`State` of ``UI`` to keep track of which tab the user is currently on.
+3. The commands need to update the `UIState` of `UI` to keep track of which tab the user is currently on.
 <br>
 <br>
 Commands that fall into this category are:<br>
@@ -392,15 +394,16 @@ Explanation of diagram above:
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the `LogicConsumer` produced from the `SwitchTabCommandResult`.
 In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
-* The `UI` component then accepts the ``UI`Consumer produced from the `CommandResult`. `UI`State is set here.
+* The `UI` component then accepts the `UIConsumer` produced from the `CommandResult`. `UIState` is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
 <br>
+
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. <br>
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.<br>
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.<br>
-d. `UI` is updated to change its state, which is kept track of by ``UI`State` by accepting the consumer also in the `CommandResult`.<br>
+d. `UI` is updated to change its state, which is kept track of by `UIState` by accepting the consumer also in the `CommandResult`.<br>
 </div>
 
 #### 4.3 Notes tab
