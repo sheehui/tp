@@ -84,7 +84,8 @@ class JsonAdaptedPolicy {
      */
     public Policy toModelType() throws IllegalValueException {
         try {
-            requireAllNonNull(policyName, policyCommission, policyInsurer, policyYearlyPremiums, policyTotalValueInsured);
+            requireAllNonNull(
+                    policyName, policyCommission, policyInsurer, policyYearlyPremiums, policyTotalValueInsured);
             return new Policy(
                     policyName, policyInsurer, policyTotalValueInsured, policyYearlyPremiums, policyCommission);
         } catch (NullPointerException e) {

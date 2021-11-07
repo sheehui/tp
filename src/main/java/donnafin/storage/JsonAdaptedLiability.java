@@ -1,6 +1,8 @@
 //@@author sheehui
 package donnafin.storage;
 
+import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -9,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import donnafin.commons.core.LogsCenter;
 import donnafin.commons.exceptions.IllegalValueException;
 import donnafin.model.person.Liability;
-
-import static donnafin.commons.util.CollectionUtil.requireAllNonNull;
 
 public class JsonAdaptedLiability {
 

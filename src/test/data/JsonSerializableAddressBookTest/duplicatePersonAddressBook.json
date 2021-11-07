@@ -4,6 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "notes":  "Enjoys chicken rice.",
       "policies": [
         {
           "name": "XYZ Policy Name",
@@ -34,6 +35,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "notes":  "Enjoys chicken rice.",
       "policies": [
         {
           "name": "XYZ Policy Name",

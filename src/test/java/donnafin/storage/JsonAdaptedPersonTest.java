@@ -111,7 +111,7 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidLiability_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_NOTES, VALID_POLICY, INVALID_LIABILITIES, VALID_ASSETS);
         String expectedMessage = Liability.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
