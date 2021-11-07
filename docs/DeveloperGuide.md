@@ -273,13 +273,13 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 **How the architecture components interact with each other through commands**
 
-Command types fall into 3 main categories.
+Command types fall into three main categories.
 1. Model-level commands
 2. Client-level commands
 3. UI-browsing commands
 
 Despite falling under the three broad categories, the commands still have many similarities. Thus, we give an
-in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
+in depth explanation of how the first category works. Subsequent explanation of commands from the other two categories will follow
 the same framework but differ slightly.
 
 #### 4.2.1 Model-level commands
@@ -341,7 +341,7 @@ Commands that fall into the second category are:<br>
 
 Edit command is a command that edits the information of a specific client. Other commands like append and remove,
 also deal directly with a specific client's information. Thus, they fall under the second [category](#42-implementation-and-commands)
-Like other commands in the other 2 [categories](#42-implementation-and-commands), edit command follows the same general
+Like other commands in the other two [categories](#42-implementation-and-commands), edit command follows the same general
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
@@ -351,7 +351,7 @@ Explanation:
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
 the specified person.
 * A `EditCommandResult` is returned from the execution of `Edit` Command. This command result,
-like the 2 other [categories](#42-implementation-and-commands) contain both a consumer for `UI` and `Logic`.
+like the two other [categories](#42-implementation-and-commands) contain both a consumer for `UI` and `Logic`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result.
 * The `UI` component then accepts the UiConsumer produced from the command result. **The `UI` is here to display the newly
 edits made**.
