@@ -57,9 +57,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserClearThrowsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWordClearCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> parserContext.executeParserStrategyCommand("clear client"));
+            -> parserContext.executeParserStrategyCommand(ClearCommand.COMMAND_WORD + " client"));
     }
 
     @Test
@@ -75,9 +75,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserExitThrowsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWordExitCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> parserContext.executeParserStrategyCommand("exit client"));
+            -> parserContext.executeParserStrategyCommand(ExitCommand.COMMAND_WORD + " client"));
     }
 
     @Test
@@ -94,9 +94,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserHelpThrowsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWordHelpCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> parserContext.executeParserStrategyCommand("help client"));
+            -> parserContext.executeParserStrategyCommand(HelpCommand.COMMAND_WORD + " client"));
     }
 
     @Test
@@ -105,9 +105,9 @@ public class AddressBookParserContextTest {
     }
 
     @Test
-    public void executeParserStrategyCommand_multiWord_addressBookParserListThrowsParseException() throws Exception {
+    public void executeParserStrategyCommand_multiWordListCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> parserContext.executeParserStrategyCommand("list client info"));
+            -> parserContext.executeParserStrategyCommand(ListCommand.COMMAND_WORD + " client info"));
     }
 
     @Test
@@ -126,9 +126,12 @@ public class AddressBookParserContextTest {
     public void executeParserStrategyCommand_clientParserHome() throws Exception {
         assertTrue(strategyIsAddressBookParser());
         assertTrue(parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD) instanceof HomeCommand);
+    }
+
+    @Test
+    public void executeParserStrategyCommand_multiWordHomeCommand_throwsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> parserContext.executeParserStrategyCommand(
-               HomeCommand.COMMAND_WORD + " 3"));
+            -> parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
