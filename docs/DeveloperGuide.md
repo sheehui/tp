@@ -131,13 +131,13 @@ critical features over adhering to the design pattern.
 
 #### 4.1.1 UI component
 
-[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/ui/Ui.java) specifies the API of this component.
+[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/ui/`UI`.java) specifies the API of this component.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/`UI`ClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in
 home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these,
-including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
+including the `MainWindow`, inherit from the abstract ``UI`Part` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
 The UI that is displayed has 6 main states to switch between.
@@ -150,7 +150,7 @@ The UI that is displayed has 6 main states to switch between.
 
  The first state, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
 each client and will thus display different information for each client. The `UI` keeps track of the current tab it is
-observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
+observing through the `UI`State, which is set on each tab switch command. Further details for the tab switch command can be found
 [here](#-421-tab-switch-command).
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
@@ -186,7 +186,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * `ParserContext` holds a reference to a `ParserStrategy` that is set based on the current tab the user is on etc.
-* When ParserContext calls upon the current ParserStrategy to parse a user command,
+* When `ParserContext` calls upon the current `ParserStrategy` to parse a user command,
 the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates
 an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the
 other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the
@@ -225,8 +225,8 @@ The `Storage` component,
 How is `Person` stored?
 * `JsonAdaptedPerson` is created with the Jackson framework.
 * Each `Person` in DonnaFin is stored as a `JsonAdaptedPerson` as shown in our class diagram above.
-* The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
-* Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
+* The `Name`, `Email`, `Phone`, `Address` and `Notes` of each `Person` is stored as a `JsonProperty` of type String.
+* `Assets`, `Liabilities` and `Policy` are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes,
 stored as a `JsonProperty` of type String.
@@ -302,7 +302,7 @@ The `Delete` command is one of the commands that fall under this category.
 We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
 
 | Full sequence diagram  |
-|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="800" /> |
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram`UI`Part.png" width="800" /> |
 | Logic specific sequence diagram |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="1200" /> |
 
@@ -315,11 +315,11 @@ Explanation of diagram above:
 * The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` from `donnafin.json`.
-* The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`. This consumer will alter the logic component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 This does not involve a consumer in any way and is always part of execute command.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
-* The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `UI` component then accepts the ``UI`Consumer` produced from the `CommandResult`. This consumer will alter the UI component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 
 #### 4.2.2 Client-level commands
 
@@ -339,7 +339,7 @@ Commands that fall into the second category are:<br>
 3. Remove<br>
 </div>
 
-Edit command is a command that edits the information of a specific client. Other commands like append and remove,
+`Edit` command is a command that edits the information of a specific client. Other commands like append and remove,
 also deal directly with a specific client's information. Thus, they fall under the second [category](#42-implementation-and-commands)
 Like other commands in the other two [categories](#42-implementation-and-commands), edit command follows the same general
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
@@ -350,10 +350,10 @@ Explanation:
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
 the specified person.
-* A `EditCommandResult` is returned from the execution of `Edit` Command. This command result,
+* A `EditCommandResult` is returned from the execution of `Edit` Command. This `CommandResult`,
 like the two other [categories](#42-implementation-and-commands) contain both a consumer for `UI` and `Logic`.
-* The `Logic` component then accepts the LogicConsumer produced from the command result.
-* The `UI` component then accepts the UiConsumer produced from the command result. **The `UI` is here to display the newly
+* The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`.
+* The `UI` component then accepts the ``UI`Consumer produced from the `CommandResult`. **The `UI` is here to display the newly
 edits made**.
 
 <div markdown="span" class="alert alert-warning">**Explanation of `PersonAdapter`:**
@@ -369,9 +369,9 @@ Such an implementation supports the user viewing and controlling a single client
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 1. The commands do not interact with model.<br>
-2. The commands have to handle the changing of ParserStrategy, from the current one<br>
+2. The commands have to handle the changing of `ParserStrategy, from the current one<br>
 to `ABCParser` of the new tab.
-3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
+3. The commands need to update the ``UI`State` of ``UI`` to keep track of which tab the user is currently on.
 <br>
 <br>
 Commands that fall into this category are:<br>
@@ -390,9 +390,9 @@ Explanation of diagram above:
 * The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
-* The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
+* The `Logic` component then accepts the `LogicConsumer` produced from the `SwitchTabCommandResult`.
 In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
-* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here.
+* The `UI` component then accepts the ``UI`Consumer produced from the `CommandResult`. `UI`State is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
@@ -400,12 +400,12 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. <br>
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.<br>
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.<br>
-4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.<br>
+d. `UI` is updated to change its state, which is kept track of by ``UI`State` by accepting the consumer also in the `CommandResult`.<br>
 </div>
 
 #### 4.3 Notes tab
 
-The notes tab parser is different from other tabSpecificParsers in that it has no tab specific command. However, the
+The `NotesTabParser` is different from other `tabSpecificParsers` in that it has no tab specific command. However, the
 `TextArea` of the notes tab allows the user to type in any quick notes that the
 user would want, updating it in realtime. This is opposed to the commands however, since for commands
 changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
