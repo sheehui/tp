@@ -140,7 +140,7 @@ home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. A
 including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-The UI that is displayed has 6 main tabs to switch between.
+The UI that is displayed has 6 main states to switch between.
  1. `PERSON_LIST_PANEL`
  2. `CONTACT`
  3. `POLICIES`
@@ -148,8 +148,8 @@ The UI that is displayed has 6 main tabs to switch between.
  5. `LIABILITIES`
  6. `NOTES`
 
- The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
-each client and will thus display different information for each client. The UI keeps track of the current tab it is
+ The first state, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
+each client and will thus display different information for each client. The `UI` keeps track of the current tab it is
 observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
 [here](#-421-tab-switch-command).
 
