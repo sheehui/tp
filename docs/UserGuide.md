@@ -107,7 +107,7 @@ Notes are here to provide you with extra information that you may find useful wh
 **Note:** Take notes when you see this icon!
 </div><br>
 
-#### Caution 
+#### Caution
 
 Cautions are around to warn you of potential unwanted side effects that may occur when using certain features of
 DonnaFin if you fail to follow this guide properly or tamper with the files of the application without adequate
@@ -157,7 +157,7 @@ Here is a picture showing all the common elements spread across all tabs in the 
 ![Client View](images/ClientView.png)
 
 #### 3.3.1 Client Tab Buttons
-* These buttons are specific to the Client Window, and you can use these buttons to toggle through the different tabs 
+* These buttons are specific to the Client Window, and you can use these buttons to toggle through the different tabs
   to access and edit client information. The tabs are as follows:
   1. Contact
   2. Policies
@@ -413,7 +413,7 @@ Examples:
 You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing our `view` command.
 </div>
 
-Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see 
+Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see
 each client field in detail and edit existing information.
 
 <div markdown="span" class="alert alert-primary">
@@ -715,7 +715,7 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 #### 4.4.2 Editing the data file
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If your changes to the data file is erroneous and causes DonnaFin to "lose its data". 
+If your changes to the data file is erroneous and causes DonnaFin to "lose its data".
 Don't worry, as long as you do not run commands, your data is still stored. Simply undo your changes to restore.
 </div>
 
