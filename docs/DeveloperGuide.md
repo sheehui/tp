@@ -92,7 +92,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them with each other
+* At app launch: Initializes the components in the correct sequence, and connects them with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
