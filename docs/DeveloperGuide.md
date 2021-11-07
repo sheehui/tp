@@ -91,7 +91,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them with each other
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -131,7 +131,7 @@ critical features over adhering to the design pattern.
 
 #### 4.1.1 UI component
 
-[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/ui/Ui.java) specifies the API of this component.
+[`Ui.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/ui/Ui.java) specifies the API of this component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -153,7 +153,7 @@ each client and will thus display different information for each client. The UI 
 observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
 [here](#-421-tab-switch-command).
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -164,7 +164,7 @@ The `UI` component,
 
 #### 4.1.2 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -196,7 +196,7 @@ implementation of commands section [here](#421-command).
 
 
 #### 4.1.3 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/model/Model.java)
 
 <img alt="Model Class Diagram" src="images/ModelClassDiagram.png" width="450" />
 
@@ -210,7 +210,7 @@ The `Model` component,
 
 #### 4.1.4 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/storage/Storage.java)
 
 <img alt="Storage Class Diagram" src="images/StorageClassDiagram.png" width="550" />
 
