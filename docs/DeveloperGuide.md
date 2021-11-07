@@ -314,7 +314,7 @@ sequence diagram.
 Explanation of diagram above:
 * The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
-* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
+* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` from `donnafin.json`.
 * The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 This does not involve a consumer in any way and is always part of execute command.
