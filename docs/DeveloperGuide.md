@@ -508,7 +508,7 @@ State: Home Window
 
 **MSS**
 1. User chooses to find a client within DonnaFin using the right syntax.
-2. DonnaFin displays the clients that match the keyword being input.
+2. DonnaFin displays the clients that match the input keyword.
 
    Use case ends.
 

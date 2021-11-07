@@ -118,7 +118,6 @@ This marks the end of the Quick Start section. Click
 * The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
-L
 This marks the end of the About section. Click
 <a href="#top">here</a> to return to the top
 
