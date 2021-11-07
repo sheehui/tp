@@ -52,7 +52,7 @@ This marks the end of the Introduction. Click
 1. Copy the file to the folder you want to use as the _home folder_ for your DonnaFin app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that DonnaFin comes with some sample clients.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiMain.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -317,6 +317,9 @@ Format: `exit`
 Home Window commands consists of features that enables you to manage your client base.
 These features are exclusive to [Home Window](#32-application-home-window-breakdown), the default window that pops up when DonnaFin is opened.
 
+**The Home Window:**
+![home window](images/Ui.png)
+
 Such features include adding and deleting clients, listing/clearing all clients, doing a specific search for clients,
 as well as viewing a client in detail.
 
@@ -445,6 +448,9 @@ Client Window commands consists of features that enables you to manage data on e
 These features are exclusive to [Client Window](#33-application-client-window-breakdown). They give access and writing privileges for any client information
 fields. You can access these commands once you have entered the Client Window using our [view command](#425-view-client-information--view).
 
+**The Client Window:**
+![client window](images/ContactTab.png)
+
 Such features include switching tabs, editing contact information, managing financial details, as well
 as notes for each client.
 
@@ -518,17 +524,20 @@ Examples:
 
 #### 4.3.2 Edit Client's Contact Information: `edit`
 
+You can edit your client's contact fields with our `edit` command.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
 You should be in `Contact` tab to use these commands.
 </div>
 
-You can edit your client's contact fields with our `edit` command.
-
 Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
 * We support multi-field update, you may edit more than one contact field at once.
 * `edit` requires at least one field present to be valid.
+
+**The Contact Tab:**
+![contact tab](images/ContactTab.png)
 
 Example: `edit n/Allison Wang e/allison@plpgp.com`
 

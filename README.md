@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/AY2122S1-CS2103T-W16-1/tp/actions/workflows/runAllChecks.yml/badge.svg)](https://github.com/AY2122S1-CS2103T-W16-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2122S1-CS2103T-W16-1/tp/branch/master/graph/badge.svg?token=TI96BI7OBN)](https://codecov.io/gh/AY2122S1-CS2103T-W16-1/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UiMain.png)
 
 * This is **a project targeted towards financial advisors**.<br>
 
