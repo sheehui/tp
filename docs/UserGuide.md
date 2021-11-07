@@ -315,7 +315,7 @@ Format: `exit`
 ### 4.2 Home Window
 
 Home Window commands consists of features that enables you to manage your client base.
-These features are exclusive to Home Window, the default window that pops up when DonnaFin is opened.
+These features are exclusive to [Home Window](#32-application-home-window-breakdown), the default window that pops up when DonnaFin is opened.
 
 Such features include adding and deleting clients, listing/clearing all clients, doing a specific search for clients,
 as well as viewing a client in detail.
@@ -442,7 +442,7 @@ Format: `clear`
 ### 4.3 Client Window
 
 Client Window commands consists of features that enables you to manage data on each specific client.
-These features are exclusive to Client Window. They give access and writing privileges for any client information
+These features are exclusive to [Client Window](#33-application-client-window-breakdown). They give access and writing privileges for any client information
 fields. You can access these commands once you have entered the Client Window using our [view command](#425-view-client-information--view).
 
 Such features include switching tabs, editing contact information, managing financial details, as well
@@ -576,13 +576,13 @@ Example: `edit e/allison@gmail.com`
 
 #### 4.3.3 Asset Features
 
+Asset Features consists of features that enables you to add and remove assets
+for your clients.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
 You should be in the `Assets` tab for these functions to work as intended.
 </div>
-
-Asset Features consists of features that enables you to add and remove assets
-for your clients.
 
 ##### 4.3.3.1 Add an Asset to a Client: `append`
 
@@ -616,13 +616,13 @@ Example:
 
 #### 4.3.4 Liability Features
 
+Liability Features consists of features that enables you to add and remove liabilities
+for your clients.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
 You should be in the `Liabilities` tab for these functions to work as intended.
 </div>
-
-Liability Features consists of features that enables you to add and remove liabilities
-for your clients.
 
 ##### 4.3.4.1 Add a Liability to a Client: `append`
 
@@ -656,13 +656,13 @@ Example:
 
 #### 4.3.5 Policy Features
 
+Policy Features consists of features that enables you to add and remove policies
+for your clients.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
 You should be in the `Policies` tab for these functions to work as intended.
 </div>
-
-Policy Features consists of features that enables you to add and remove policies
-for your clients.
 
 ##### 4.3.5.1 Add a Policy to a Client: `append`
 
