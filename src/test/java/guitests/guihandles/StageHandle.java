@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package guitests.guihandles;
 
 import static java.util.Objects.requireNonNull;
@@ -11,9 +13,6 @@ import guitests.GuiRobot;
 import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 /**
  * Provides access to a stage in a JavaFx application for GUI testing purposes.

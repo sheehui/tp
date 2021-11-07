@@ -1,9 +1,8 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package guitests.guihandles;
 
 import javafx.scene.control.TextArea;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 /**
  * A handler for the {@code ResultDisplay} of the UI

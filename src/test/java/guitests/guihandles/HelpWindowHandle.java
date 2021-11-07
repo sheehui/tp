@@ -1,10 +1,9 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package guitests.guihandles;
 
 import guitests.GuiRobot;
 import javafx.stage.Stage;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 /**
  * A handle to the {@code HelpWindow} of the application.
