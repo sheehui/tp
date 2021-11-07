@@ -16,14 +16,17 @@ This project uses Gradle for **build automation and dependency management**. **Y
 Given below are how to use Gradle for some important project tasks.
 
 
-* **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).<br>
+* **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder). 
+  This would remove files like `data/*`, `config.json`, `preferences.json`. <br>
   e.g. `./gradlew clean`
 
 * **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, *if the current file is outdated*.<br>
   e.g. `./gradlew shadowJar`.
 
 * **`run`**: Builds and runs the application.<br>
-  **`runShadow`**: Builds the application as a fat JAR, and then runs it.
+  **`runShadow`**: Builds the application as a fat JAR, and then runs it.<br>
+  Note that in the interests of developers (likely the only users of a non-compiled DonnaFin codebase), these tasks 
+  have assertions enabled by default to have the JVM report assertion errors promptly.
 
 * **`checkstyleMain`**: Runs the code style check for the main code base.<br>
   **`checkstyleTest`**: Runs the code style check for the test code base.
@@ -40,11 +43,16 @@ This project uses GitHub Actions for CI. The project comes with the necessary Gi
 
 ### Code coverage
 
+**Current Code Cov Report:**
+
+[![Current Code Coverage sun-burst diagram](https://codecov.io/gh/AY2122S1-CS2103T-W16-1/tp/branch/master/graphs/sunburst.svg)](https://codecov.io/gh/AY2122S1-CS2103T-W16-1/tp)
+
+
 As part of CI, this project uses Codecov to generate coverage reports. Here are the steps to set up CodeCov for a fork of this repository.
 
 1. Sign up with Codecov using your GitHub account [here](https://codecov.io/signup).
 1. Once you are inside Codecov web app, add your fork to CodeCov.
-1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3) in that page reflects the coverage of your project.
+1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/AY2122S1-CS2103T-W16-1/tp/branch/master/graph/badge.svg?token=TI96BI7OBN)](https://codecov.io/gh/AY2122S1-CS2103T-W16-1/tp) in that page reflects the coverage of your project.
 
 ### Repository-wide checks
 
@@ -67,13 +75,28 @@ Any warnings or errors will be printed out to the console.
 
 * Check scripts must exit with a non-zero exit code if any errors occur.
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Easily remove trailing whitespace in markdown files:**
+The [Trim Trailing Whitespace github workflow](https://github.com/AY2122S1-CS2103T-W16-1/tp/actions/workflows/TrimTrailingWhitespaces.yml)
+can be used to quickly trim all the trailing whitespaces at the end of lines in markdown files. Once set up, simply
+hitting the 'Run workflow' button or scheduling this workflow will regularly create a PR (if any changes are needed) to
+trim markdown files to specifications.
+
+The set up portion, while short, does require some familiarity with Github tools. First, create a 
+[Personal Access Token](https://github.com/settings/tokens) (with admin:repo_hook, repo priveleges), and [save it as a 
+repository secret](https://github.com/AY2122S1-CS2103T-W16-1/tp/settings/secrets/actions) named `'PAT'`. You should only
+do this if you trust the users who have write and workflow access to this repository. Read more about what this means
+for the security of your profile [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Making a release
 
 Here are the steps to create a new release.
 
-1. Update the version number in [`MainApp.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
+1. Update the version number in [`MainApp.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/main/java/donnafin/MainApp.java).
 1. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
 1. Tag the repo with the version number. e.g. `v0.1`
 1. [Create a new release using GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR file you created.
