@@ -426,7 +426,8 @@ The index reference can be taken from the number next to your client's name!
 
 Format: `view INDEX`
 
-* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed client list.
+* Edits the client at the specified INDEX.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, ...​
 
 Examples:
