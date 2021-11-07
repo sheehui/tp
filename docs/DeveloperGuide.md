@@ -405,15 +405,15 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 
 #### 4.3 Notes tab
 
-The notes tab accepts user input like the commands but is fundamentally different from it.
-Instead of being command-based, the notes tab allows the user to type in any quick notes that the
-user would want. Updating it in realtime. This is opposed to the commands where,
+The notes tab parser is different from other tabSpecificParsers in that it has no tab specific command. However, the
+`TextArea` of the notes tab allows the user to type in any quick notes that the
+user would want, updating it in realtime. This is opposed to the commands however, since for commands
 changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
 different process.
 
 Key features about notes:
 1. A listener is attached to the `TextArea` of the notes tab. This allows for realtime updates
-when typing in the `TextArea`. When there any changes, the function `edit` in `PersonAdapter` is called.
+when typing in the `TextArea`. If there are any changes, the function `edit` in `PersonAdapter` is called.
 2. The `edit` function in `PersonAdapter` saves the information straight away, hence making the updates realtime.
 
 --------------------------------------------------------------------------------------------------------------------
