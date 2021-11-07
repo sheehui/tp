@@ -46,7 +46,7 @@ Given below are my contributions to the project.
   * Improves overall architecture by decoupling `Storage` and `Logic` ensuring all `Storage` calls go through `Model` layer to follow the layered architecture style[^layeredArchi]
   * The layered architecture design pattern was chosen over the current Model-View-Controller architecture in a previous team meeting to reduce complexity, simplify working on components and improve testability.
 
-* Add automated GUI tests for DonnaFin 
+* Add automated GUI tests for DonnaFin
   * Automated checks can be run on Gradle builds Github CI/CD to confirm validity of `.fxml` files and GUI logic.
   * Prevents unusable GUI changes from being added to the codebase.
   * Required spending a significant amount of time learning and understanding Java GUI testing with TestFx, adapting boilerplate and common functions from SE-EDU AB4. At all steps, this needed to support the new file structure and dependencies. [#132](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/132) [#134](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/134)
@@ -79,11 +79,11 @@ Given below are my contributions to the project.
     * Show the user a focus indicator when the tabs are being selected in `ClientView` [#101](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/101)
     * Have the 'button-like' tab buttons trigger the 'switch tab' command (e.g. clicking 'Policies' tab should be same as typing `tab p`) [#148](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/148)
     * Fix weird and obscure JavaFX lab with use of asynchronous programming [#166](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/166)
-    
+
   * Add additional tests
     * For notes [#123](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/123)
     * For `SampleDataUtils` to ensure poisoned clean starts / data inputs will be caught early [#177](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/177)
-  
+
   * Create additional tools that help developers
     * Make a `Money` data class (very similar to the existing `Index` class) [#141](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/141)
     * Add static configurations for `AttributeTable` to be easily called for `Asset`, `Liability` and `Policy` [#146](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/146)

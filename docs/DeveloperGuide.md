@@ -11,7 +11,7 @@ title: Developer Guide
 ## 1. Introduction
 
 ### 1.1 Purpose
-This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended 
+This document intends to cover the multi-layered design architecture of DonnaFin, and can be used by the intended
 audience in order to better understand the inner workings of the program and better understand the interaction between
 the various components than form DonnaFin.
 
@@ -27,6 +27,13 @@ a Command Line Interface (CLI).
 
 ### 1.4 Typical User Workflow
 
+![Activity Diagram of DonnaFin](diagrams/ActivityDiagram.png)
+
+This activity diagram shows how one might typically navigate through the DonnaFin application.
+
+
+Commands refer to the pre-defined functions that are used by the user. Invalid commands refer to commands that are not
+available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
 
@@ -87,21 +94,7 @@ The rest of the App consists of four components.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img alt="Architecture Sequence Diagram" src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-Here is an explanation of what takes place when the user enters the command `delete 1`
-* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
-* The `Logic` component parses the command and the `deletePerson` method is called which engages the `Model` component.
-* The `Model` component then deletes the `Person` object p from the `addressBook`.
-* The `Logic` component then calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
-* The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
-
-Each of the four main components (also shown in the diagram above),
-
+Each of the four main components (also shown in the diagram above).
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
@@ -111,13 +104,29 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### 4.2 UI component
+#### 4.1.1 UI component
 
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java) specifies the API of this component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` in
+home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. All these,
+including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
+classes that represent parts of the visible GUI.
+
+The UI that is displayed has 6 main tabs to switch between.
+ 1. `PERSON_LIST_PANEL`
+ 2. `CONTACT`
+ 3. `POLICIES`
+ 4. `ASSETS`
+ 5. `LIABILITIES`
+ 6. `NOTES`
+ 
+ The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
+each client and will thus display different information for each client. The UI keeps track of the current tab it is
+observing through the UiState, which is set on each tab switch command. Further details for the tab switch command can be found
+[here](#-421-tab-switch-command).
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -128,7 +137,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### 4.3 Logic component
+#### 4.1.2 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -137,44 +146,31 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550" alt="Logic Class Diagram"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc., 
+1. When `Logic` is called upon to execute a command, it chooses an `ABCParser` class e.g `AddressBookParser`, `ContactTabParser` etc.,
 to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img alt="Parser Classes" src="images/ParserClasses.png" width="600"/>
-<img alt="Parser Strategy" src="images/ParserStrategy.png" width="600"/>
 
 How the parsing works:
 * `ParserContext` holds a reference to a `ParserStrategy` that is set based on the current tab the user is on etc.
-* When ParserContext calls upon the current ParserStrategy to parse a user command, the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When ParserContext calls upon the current ParserStrategy to parse a user command,
+the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates
+an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the
+other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the
+implementation of commands section [here](#421-command).
+
+
+<img alt="Parser Strategy" src="images/ParserStrategy.png" width="600"/>
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` abstract class so that they can be treated similarly where possible e.g, during testing.
 * `ClientViewParser` and `AddressBookParser` inherit from `ParserStrategy` while the tab specific parsers inherit from `ClientViewParser` inherit.
 
 
-<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
-
-How the `ABCParser` in ParserContext is updated:
-1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view.
-2. `LogicManager` accepts this `CommandResult` object and executes the logic action if present. `LogicManager` is a facade that is able to set and change the current `ParserStrategy`.
-3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.
-
-
-There is also another noteworthy Logic class, `PersonAdapter`, that serves as a wrapper for the Model class `Person`.
-The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
-Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
-
-### 4.4 Model component
+#### 4.1.3 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img alt="Model Class Diagram" src="images/ModelClassDiagram.png" width="450" />
@@ -187,7 +183,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Storage` object and communicates with it to save address book to user files.
 
-### 4.5 Storage component
+#### 4.1.4 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -204,7 +200,7 @@ How is `Person` stored?
 * The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
 * Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
-and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes, 
+and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes,
 stored as a `JsonProperty` of type String.
 * As a `Person` can have more than one `Asset`, `Liability` or `Policy`, we have chosen to store them as nested objects rather
 converting them into a single String before storage and converting them back to the correct attributes on retrieval from the database.
@@ -241,9 +237,156 @@ Here is an example of a `Person` in JSON form:
 }
 ```
 
-### 4.6 Common classes
+#### 4.1.5 Common classes
 
 Classes used by multiple components are in the `donnafin.commons` package.
+
+### 4.2 Implementation and Commands
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+This will be a reference to explain the general flow of how the commands work later.
+
+Command types fall into 3 main categories. 
+1. Commands that involve organisation of clients.
+2. Commands that involve editing of personal information of one specific client,
+be it appending or removing information.
+3. Commands that involve changing of tab
+
+Despite falling under the three broad categories, the commands still have many similarities. Thus, we give an
+in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
+the same framework but differ slightly.
+
+#### 4.2.1 Commands that involve organisation of clients
+
+<div markdown="span" class="alert alert-info">:information_source: **Key properties:** 
+<br>
+1. The command interacts with model through an addition or deletion<br>
+2. The command interacts with storage through an addition or deletion.<br>
+3. The command does not access the inner details of clients but rather treat them as atomic.
+<br>
+<br>
+Commands that fall under this category are :<br>
+1. Add <br>
+2. Delete <br>
+</div>
+
+The delete command is one of the commands that fall under this category.
+We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
+
+| Full sequence diagram  | 
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="800" /> |
+| Logic specific sequence diagram |
+|<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagram.png" width="1200" /> |
+
+Here is an explanation of what takes place when the user enters the command `delete 1` which falls under first [category](#42-implementation-and-commands).
+The full sequence diagram gives the overview of what happens when a command runs. Since the main legwork is done
+in logic, the logic specific sequence diagram as shown above takes a deeper dive into the inner details the full
+sequence diagram.
+
+Explanation of diagram above:
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `Logic` component parses the command and returns the `Delete` command.
+* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
+* The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
+This does not involve a consumer in any way and is always part of execute command.
+* The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
+* The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
+
+#### 4.2.2 Commands that accesses one specific client's information
+
+<div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
+<br>
+<br>
+The key differences are:<br>
+1. The command has to access and edit information regarding one specific client.<br>
+2. The command interacts and actively updates information in storage.
+However, commands in the third category differ from the first in that change information of one specific client,
+while the first adds/deletes the client specified.
+<br>
+<br>
+Commands that fall into the second category are:<br>
+1. Edit<br>
+2. Append<br>
+3. Remove<br>
+</div>
+
+Edit command is a command that edits the information of a specific client. Other commands like append and remove,
+also deal directly with a specific client's information. Thus they fall under the second [category](#42-implementation-and-commands)
+Like other commands in the other 2 [categories](#42-implementation-and-commands), edit command follows the same general
+structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
+
+Explanation:
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component.
+* The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
+* The `Logic` component executes the `Edit` command.
+* During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
+the specified person.
+* A `EditCommandResult` is returned from the execution of `Edit` Command. This command result,
+like the 2 other [categories](#42-implementation-and-commands) contain both a consumer for `UI` and `Logic`.
+* The `Logic` component then accepts the LogicConsumer produced from the command result.
+* The `UI` component then accepts the UiConsumer produced from the command result. **The `UI` is here to display the newly
+edits made**.
+
+<div markdown="span" class="alert alert-warning">**Explanation of `PersonAdapter`:**
+<br>
+In this category of commands, the class`PersonAdapter` is doing most of the legwork here.
+`PersonAdpater` serves as a wrapper for the Model class `Person`.
+The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
+Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
+</div>
+
+#### 4.2.3 Commands that involve changing of tabs
+
+<div markdown="span" class="alert alert-info">:information_source: **Key Properties:** 
+<br>
+The key differences are:<br>
+1. The commands do not interact with model.<br>
+2. The commands have to handle the changing of ParserStrategy, from the current one<br>
+to `ABCParser` of the new tab.
+3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
+<br>
+<br>
+Commands that fall into this category are:<br>
+1. SwitchTab<br>
+2. View<br>
+</div>
+
+Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
+We will be using the `SwitchTab` command as the example to illustrate and explain all commands under this category.
+
+<img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
+
+Explanation of diagram above:
+* The `UI` takes in the command inputted from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Logic` component parses the command and returns the `SwitchTab` command.
+* The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
+* The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
+In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here. 
+* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here. 
+
+
+<div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
+<br>
+1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. <br>
+2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.<br>
+3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.<br>
+4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.<br>
+</div>
+
+#### 4.3 NotesTab
+
+The notes tab is different from the commands above. Instead of being command-based, the notes tab allows the user
+to type in any quick notes that the user would want. Updating it in realtime. This is opposed to the commands where,
+changes to any other component only happen when the command is executed. Hence the notes tab take advantage of a
+different process.
+
+Key features about notes:
+1. A listener is attached to the `TextArea` of the notes tab. This allows for realtime updates
+when typing in the `TextArea`. When there any changes, the function `edit` in `PersonAdapter` is called.
+2. The `edit` function in `PersonAdapter` saves the information straight away, hence making the updates realtime.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,7 +421,7 @@ The product provides financial advisors with a clean, easy to use interface to p
 them for meetings and maintain good relationships with their clients. On a per-client basis,
 DonnaFin keeps track and displays client’s financial details, their contact details, and
 any notes about the client. In the main page, it collates all clients for easy access. In the
-client information page, financial details of the specific client selected is neatly segmented into 
+client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
 The product will not help them with work relations with other Financial Advisors as the
@@ -300,14 +443,14 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `HIGH`  | user                                       |  return to home window from client's information | move on to view my other clients instead of the current client that I am viewing |
 | `HIGH`  | new user                                       | clear all clients   | delete all clients and reset all my contacts for the application |
 | `HIGH`  |  user                                      |  edit a client's contact information  |  keep up to date with the clients information for further usage|
-| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased| 
-| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |  
-| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|  
-| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|  
-| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|  
-| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |   
-| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |   
-| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |  
+| `HIGH`  |  user                                      |  add a policy to the client's list of policies |  update the current policies the client has should a new policy be purchased|
+| `HIGH`  |  user                                      |  delete a policy to the client's list of policies |  update the current policies the client has |
+| `HIGH`  |  user                                      |  add an asset to the client's  list of assets |   update the current assets the client has|
+| `HIGH`  |  user                                      |  delete an asset from the client's list of assets |   update the current assets the client has|
+| `HIGH`  |  efficient user                                      |   view the total value of all assets |   make decisions regarding the assets and inform the client about his aggregated asset value easily|
+| `HIGH`  |   user                                      |    add a liability to the client's list of liabilities | update the current liabilities that the client has   |
+| `HIGH`  |   user                                      |    delete a liability from the client's list of liabilities | update the current liabilities that the client has   |
+| `MEDIUM`  |  efficient user                                      |   view the total value of liabilities |   make decisions regarding liabilities with more useful information |
 | `MEDIUM`  |  user                                       |  jot down quick notes regarding the client | keep track of general information regarding the client |
 | `MEDIUM`  | organised user                                       | switch between different tabs of client information, e.g financial information or personal information | have access to all the information of the client easily |
 | `LOW`      | new user                                   | follow a tutorial when adding my first client | learn how to add a new client                           |
@@ -356,7 +499,7 @@ Use case ends.
 * 1a. The given index is invalid.
 
     * 1a1. DonnaFin shows an error message.
-  
+
       Use case resumes from step 1.
 
 **UC03: Finding a client by name** \
@@ -567,7 +710,7 @@ State: Client Window (Policies Tab)
 * 1a. User's given index is invalid.
     * 1a1. DonnaFin shows an error message. \
       Use case resumes at step 1.
-    
+
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
 
@@ -596,7 +739,7 @@ State: Works on both Home and Client Window
 * **Private client detail**: A client detail that is not meant to be shared with others
 * **Asset**: Things of present or future value owned by a client
 * **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
-* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives 
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
@@ -646,15 +789,15 @@ testers are expected to do more *exploratory* testing.
 ### 7.3 Viewing and editing a client
 
 1. Enter client window
-    
+
     1. Prerequisites: Currently in the home window
-    
+
     1. Test case: `view 1`<br>
        Expected: client window will be shown, and you can inspect the details of the client.
-   
+
     1. Test case: `view -4`<br>
        Expected: As it is not a valid index, you will remain in the home window with an error command output.
-       
+
     1. Test case: editing fields
        Expected: Switching tabs and editing fields with the commands listed in the user guide [here](./UserGuide.md#Client-Window-Commands) works correctly.
 

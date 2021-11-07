@@ -282,7 +282,7 @@ Here are some quick questions you can try to answer based on your execution path
     4.  `edit 1`
 
     5.  `edit 1 n/アリス ユー`
-    
+
 2.  What components will you have to modify to perform the following
     enhancements to the application?
 
