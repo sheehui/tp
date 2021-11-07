@@ -34,9 +34,9 @@ Given below are my contributions to the project.
     * Our JSON file now holds nested JSON objects, one of them is liabilities.
   * Storage [#137](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/137)
     * As mentioned above, due our decision to create a nested JSON as our data, it differed from AB3 substantially.
-    * `JsonAdaptedLiability`, `JsonAdaptedPolicy` and `JsonAdaptedAsset` all have its own `JsonProperty` fields and 
+    * `JsonAdaptedLiability`, `JsonAdaptedPolicy` and `JsonAdaptedAsset` all have its own `JsonProperty` fields and
     are stored as a `List` inside `JsonAdaptedPerson`
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=sheehui&tabRepo=AY2122S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
@@ -47,11 +47,11 @@ Given below are my contributions to the project.
   * Changes AB3 links to DonnaFin in project README and our GitHub Pages
 
 * **Enhancements to existing features**:
-  * Testings: 
+  * Testings:
     * Add `Asset`, `Policy`, `Liability` and `Notes` testings. [#172](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/172), [#193](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/193)
       * ensure null values are not accepted by any field
       * add and ensure regex validation + error message handling
-    * Improve test quality in parsers [#346](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/346/files) 
+    * Improve test quality in parsers [#346](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/346/files)
     * Add tests for valid commands in wrong window [#349](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/349)
       * created `ParserStrategyTestUtil` for cleaner test code
       * tested `clientViewParser` command
@@ -101,6 +101,6 @@ Given below are my contributions to the project.
 
 
 * **Community**:
-  * Constructive feedback: [#250](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/250), [#148](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/148), [#141](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/141), [#134](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/134), [#126](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/126), [#337](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/337), [#105](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/105), [#341](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/341) 
+  * Constructive feedback: [#250](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/250), [#148](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/148), [#141](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/141), [#134](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/134), [#126](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/126), [#337](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/337), [#105](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/105), [#341](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/341)
   * Feedback on quality: [#319](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/319), [#297](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/297), [#320](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/320), [#268](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/268), [#95](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/95)
 
