@@ -1,0 +1,52 @@
+@startuml Domain Model
+skinparam style strictuml
+skinparam groupInheritance 2
+skinparam linetype polyline
+hide empty members
+
+class "Financial Advisor" as FinancialAdvisor {
+}
+
+class "Client" as Client {
+}
+
+class "Contact Details" {
+    Name
+    Phone
+    Email
+    Address
+}
+
+class "Policy" {
+    Name
+    Insurer Name
+    Value Insured
+    Yearly Premium
+    Commission
+}
+
+class "Asset" {
+    Name
+    Type
+    Value
+    Remarks
+}
+
+class "Liability" {
+    Name
+    Type
+    Value
+    Remarks
+}
+
+class "Notes" {
+}
+
+FinancialAdvisor -- "*" "Client": manages >
+"Client" -- "*" "Policy" : purchases >
+"Client" -- "*" "Asset" : owns >
+"Client" -- "*" "Liability" : owns >
+"Client" -- "1" "Contact Details" : has >
+"Client" -- "1" "Notes" : has >
+
+@enduml

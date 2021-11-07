@@ -18,7 +18,7 @@ the various components than form DonnaFin.
 ### 1.2 Target Audience
 This developer guide is aimed at developers and advanced users of DonnaFin
 * Developers: anyone who wishes to upgrade DonnaFin to support more functions.
-* Advanced Users: Financial Advisors who want to better understand the features that DonnaFin Provides.
+* Advanced Users: financial advisors who want to better understand the features that DonnaFin Provides.
 
 ### 1.3 About DonnaFin
 DonnaFin.io is a desktop application for financial advisors to keep track of their client information and related tasks.
@@ -36,6 +36,31 @@ Commands refer to the pre-defined functions that are used by the user. Invalid c
 available in the current window or commands that are used with the wrong format.
 
 ### 1.5 Overview of Application
+In order to better understand how DonnaFin helps financial advisors, it is useful to understand and model the
+key client details that a financial advisor has to keep track of.
+
+Below is an Object-Oriented Domain Model (OODM) modelling the existing state of affairs between a financial advisor and
+their client/s.
+
+![Overview Oodm Diagram](images/OverviewOodmDiagram.png)
+
+We can see that financial advisors generally have one or more clients that they have to manage, and
+every client has the following categories of information unique to them that is important for the 
+financial advisors to keep track of:
+take note of:
+1. Contact Details
+2. Policies
+3. Assets
+4. Liabilities
+5. Notes
+
+From the diagram above it can be seen that there is no solution for the financial advisors to keep track of all these
+details, and this is where DonnaFin comes in.
+
+DonnaFin gives financial advisors a platform to multiple clients, and store the Contact Details, Policies, Assets,
+Liabilities, and Notes for each and every client they want to register with the application. In the Developer Guide
+it will be explained how all the different classes, and components of DonnaFin come together to create a software that
+is able to perform this functionality.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -424,7 +449,7 @@ any notes about the client. In the main page, it collates all clients for easy a
 client information page, financial details of the specific client selected is neatly segmented into
 tabs for convenient and quick access.
 
-The product will not help them with work relations with other Financial Advisors as the
+The product will not help them with work relations with other financial advisors as the
 product’s scope only covers the personal use of the product. It does not link with any
 financial calculators, financial databases or cover market information.
 
