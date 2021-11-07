@@ -416,7 +416,7 @@ Examples:
 You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing our `view` command.
 </div>
 
-Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see 
+Allows you to open the [client window](#33-application-client-window-breakdown) to access all data on your specific chosen client. Once in this window, you can see 
 each client field in detail and edit existing information.
 
 <div markdown="span" class="alert alert-primary">
@@ -428,9 +428,6 @@ Format: `view INDEX`
 
 * Edits the client at the specified INDEX. The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, ...​
-* The view screen will switch to the client window as shown below.
-  ![Client View Mockup](./images/ClientContactTab.png)
-* The information related to the client is separated to **five different tabs**.
 
 Examples:
 * `view 1`
