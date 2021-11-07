@@ -134,10 +134,10 @@ button that redirects you to the User Guide for further guidance.
 * The result display is where the response to the command entered is displayed.
 * In the event you enter an invalid or wrongly formatted command, the error message will be displayed here as well.
 
-#### 3.2.4 Client List Window
+#### 3.2.4 Client List Panel
 In this section, you will be able to view a list of all the clients that have their records stored on DonnaFin. The index
-of a client corresponds to the index needed to be inputted in the `view` command. For example: if the client list is as
-per the image above, inputting the command `view 2` would take you to the client view of Bernice Yu, as she has the index
+of a client corresponds to the index needed to be entered in the `view` command. For example: if the client list is as
+per the image above, entering the input `view 2` would take you to the client window of Bernice Yu, as she has the index
 of 2.
 
 The following attributes of your client is also viewable from the Client List Window:
@@ -149,23 +149,16 @@ The following attributes of your client is also viewable from the Client List Wi
 ### 3.3 Application Client Window Breakdown
 
 The Client window is accessed when you use the `view` command correctly. Though the client window shows content different
-from the main window, the 'Quick Access Button', 'Command Box' and 'Results Display' are all the same as explained
+from the main window, the 'Quick Access Button', 'Command Box' and 'Result Display' are all the same as explained
 earlier in section 3.2.
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Here is a picture showing all the common elements spread across all tabs in the Client View.
 
-Do take note that the `Command Box` is tab specific in the Client Window so please ensure that you are inputting the
-correct command in the correct tab.
-
-</div>
-
-Here is a picture showing all the common elements spread accross all tabs in the Client View.
-
-![ClientView](images/ClientView.png)
+![Client View](images/ClientView.png)
 
 #### 3.3.1 Client Tab Buttons
-* These buttons are specific to the Client Window, and you can use these buttons to toggle through the different tabs
-that have been implemented to access and edit client information. The tabs are as follows:
+* These buttons are specific to the Client Window, and you can use these buttons to toggle through the different tabs 
+  to access and edit client information. The tabs are as follows:
   1. Contact
   2. Policies
   3. Assets
@@ -175,7 +168,7 @@ that have been implemented to access and edit client information. The tabs are a
 The tabs can also be toggled through using the `tab` command as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#431-switching-tabs-in-client-window-tab)
 
 #### 3.3.2 Contact Tab
-The Contact Tab is the Client View tab you first see when transitioning from the Home View to the Client View.
+The Contact Tab is the Client Window tab you first see when transitioning from the Home View to the Client View.
 Alternatively, this tab can also be accessed by pressing on the `Contact` button when in any of the Client View tabs,
 or through typing the command `tab c`, `tab contact` or `tab contacts`. You can access the following contact details of
 your client:
@@ -192,8 +185,8 @@ The Contact tab also supports the `edit` that allows you to change any of your c
 shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#432-edit-clients-contact-information-edit)
 
 #### 3.3.3 Policies Tab
-The `Policies Tab` is the Client View tab that stores all of your client's policies. This tab could be accessed by pressing on
-the `Policies button` when in any of the Client View tabs, or by typing the command `tab p`, `tab policy` or `tab policies`.
+The Policies Tab is the Client View tab that stores all of your client's policies. This tab could be accessed by pressing on
+the **Policies** button when in any of the Client View tabs, or by typing the command `tab p`, `tab policy` or `tab policies`.
 
 You will know that you are in the Policy tab if you see the **Policies** header below the Result Display. You can access the total
 commission that you have earned through looking at the number to the right of the **Total Policy Commisions**.
@@ -419,7 +412,7 @@ Format: `view INDEX`
 Examples:
 * `view 1`
 * This will open a new view mode, where the client's data is present in field-value pairs as such:
-* ![Client View Mockup](./images/ClientViewNew.png)
+* ![Client View Mockup](./images/ClientContactTab.png)
 * The information related to the client is separated to different tabs.
 * Each tab contains information closely related to the title of the tab.
 
