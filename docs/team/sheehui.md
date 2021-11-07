@@ -52,6 +52,9 @@ Given below are my contributions to the project.
       * created `ParserStrategyTestUtil` for cleaner test code
       * tested `clientViewParser` command
       * tested error message handling for valid commands in wrong window
+    * More storage tests + null tests for `JsonAdaptedLiability`, `JsonAdaptedPolicy` and `JsonAdaptedAsset` [#349](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/349)
+      * This is to prevent `NullPointerException` from occurring, which completely breaks the app.
+      * Prevent duplicates/ purposeful insertion of null value
 
   * Bug fixes:
     * Ensure single-word commands cannot be activated when input is more than one word. Add support of upper/lower cases in command word. [#144](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/144)
@@ -66,17 +69,31 @@ Given below are my contributions to the project.
     * Refactor directory from seedu.address to donnafin [#83](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/83)
     * Add css to horizontal tabs (when it existed)  [#97](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/97)
     * Remove traces of AB3 + change person -> client [#41](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/41), [#94](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/94), [#328](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/328), [#293](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/293), [#328](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/328)
+      * this happens consistently throughout my contributions that are hard to record at times
     * Remove Edit command and tags [#56](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/56), [#246](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/246)
       * We no longer support tagging as it does not fit our use case
       * AB3 edit command is not relevant to how our edits will be conducted
+    * Update Project README to match DonnaFin [#30](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/30)
     * Map escape key to home window (since removed) [#80](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/80)
     * Add function to trigger edit for specific contact fields [#82](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/82)
     * Add fxml files for home and client window switching [#62](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/62)
     * Improve code quality [#328](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/328)
-* **Documentation**:
-    * User Guide:
 
-    * Developer Guide:
+* **Documentation**:
+    * User Guide [#163](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/163), [#187](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/187), [#240](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/240), [#312](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/312), [#335](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/335), [#342](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/342) :
+      * Sectioned our features into global, client window, home window and database
+      * Wrote the guide for `add`, `delete`, 
+      * Add tips and notes to help the users understand better
+      * Wrote the Command Summary and added links to each command for better user experience
+
+    * Developer Guide [#43](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/43), [#28](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/28), [#326](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/326), [#349](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/349):
+      * Transferred our initial user stories to our repo
+      * Added target user and value proposition
+      * update UML description for Ui and Logic [#171](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/171)
+        * Added new ClientPanel and explained our `ParserStrategy` and `ParserContext` implementation
+      * Explain how storage for `Asset`, `Policy`, `Liability` work using `JsonAdaptedLiability`, `JsonAdaptedPolicy` and `JsonAdaptedAsset`
+        * nested JSON objects are stored and implemented differently
+      * Add use cases for `Asset`, `Policy`, `Liability` features
 
 
 * **Community**:
