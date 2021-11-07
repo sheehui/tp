@@ -446,7 +446,7 @@ These features are exclusive to [Client Window](#33-application-client-window-br
 fields. You can access these commands once you have entered the Client Window using our [view command](#425-view-client-information--view).
 
 **The Client Window:**
-![client window](images/ContactTab.png)
+![ClientContactTab](images/ClientContactTab.png)
 
 Such features include switching tabs, editing contact information, managing financial details, as well
 as notes for each client.
@@ -534,7 +534,7 @@ Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 * `edit` requires at least one field present to be valid.
 
 **The Contact Tab:**
-![contact tab](images/ContactTab.png)
+![ClientContactTab](images/ClientContactTab.png)
 
 Example: `edit n/Allison Wang e/allison@plpgp.com`
 
