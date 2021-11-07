@@ -19,12 +19,10 @@ import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static donnafin.testutil.TypicalPersons.getTypicalPersons;
 import static donnafin.logic.parser.ParserStrategyTestUtil.assertParseFailure;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ClientViewParserTest {
 
     private ClientViewParser parser;
-    private AddressBookParser addressBookParser;
 
     @BeforeEach
     public void reset() {
@@ -33,10 +31,9 @@ public class ClientViewParserTest {
         PersonAdapter personAdapter = new PersonAdapter(model, person);
         parser = new ClientViewParser(personAdapter) {
             protected Command tabSpecificHandler(String commandWord, String arguments) throws ParseException {
-                return null;
+                throw new ParseException(Messages.MESSAGE_COMMAND_NOT_IN_CLIENT_WINDOW);
             };
         };
-        addressBookParser = new AddressBookParser();
     }
 
     @Test
@@ -48,23 +45,21 @@ public class ClientViewParserTest {
     public void parseCommand_addCommand_failure() throws ParseException{
         String prefixedName = " n/john doe";
         String prefixedPhone = " p/29387983";
-        String prefixedEmail = " n/john@doe.com";
-        String prefixedAddress = " n/marina bay sands";
+        String prefixedEmail = " e/john@doe.com";
+        String prefixedAddress = " a/marina bay sands";
         String userInput =  prefixedName +  prefixedPhone + prefixedEmail + prefixedAddress;
-        AddCommandParser addCommandParser = new AddCommandParser();
 
-        assertTrue(addressBookParser.parseCommand(AddCommand.COMMAND_WORD, userInput) instanceof AddCommand);
-        assertParseFailure(parser, userInput, Messages.MESSAGE_COMMAND_NOT_IN_CLIENT_WINDOW);
+        assertNotNull(new AddCommandParser().parse(userInput));
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + userInput, Messages.MESSAGE_COMMAND_NOT_IN_CLIENT_WINDOW);
     }
 
     @Test
     public void parseCommand_deleteCommand_failure() throws ParseException{
-        String index = " 1";
-        String userInput = DeleteCommand.COMMAND_WORD + index;
+        String userInput = " 1";
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
 
         assertNotNull(deleteCommandParser.parse(userInput));
-        assertParseFailure(parser, userInput, Messages.MESSAGE_COMMAND_NOT_IN_CLIENT_WINDOW);
+        assertParseFailure(parser, DeleteCommand.COMMAND_WORD + userInput, Messages.MESSAGE_COMMAND_NOT_IN_CLIENT_WINDOW);
     }
 
 
