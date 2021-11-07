@@ -45,7 +45,7 @@ public class MainWindowTest {
         FxToolkit.showStage();
     }
 
+    /** Do nothing but test that it can load properly */
     @Test
-    public void display() {
-    }
+    public void display() {}
 }
