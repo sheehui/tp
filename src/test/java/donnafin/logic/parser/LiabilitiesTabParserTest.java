@@ -8,20 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 
-import donnafin.logic.commands.AddCommand;
-import donnafin.logic.commands.ClearCommand;
-import donnafin.logic.commands.DeleteCommand;
-import donnafin.logic.commands.FindCommand;
-import donnafin.logic.commands.HelpCommand;
-import donnafin.logic.commands.HomeCommand;
-import donnafin.logic.commands.ListCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.commands.AddCommand;
 import donnafin.logic.commands.AppendCommand;
+import donnafin.logic.commands.ClearCommand;
+import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.EditCommand;
+import donnafin.logic.commands.FindCommand;
+import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
+import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.RemoveCommand;
 import donnafin.logic.commands.ViewCommand;
 import donnafin.logic.commands.exceptions.CommandException;

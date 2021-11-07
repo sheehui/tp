@@ -131,7 +131,7 @@ public class AddressBookParserContextTest {
     @Test
     public void executeParserStrategyCommand_multiWordHomeCommand_throwsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD + " 3"));
+            -> parserContext.executeParserStrategyCommand(HomeCommand.COMMAND_WORD + " 3"));
     }
 
     @Test

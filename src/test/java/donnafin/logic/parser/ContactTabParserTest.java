@@ -1,34 +1,31 @@
 package donnafin.logic.parser;
 
 import static donnafin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static donnafin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static donnafin.commons.core.Messages.MESSAGE_USE_HELP_COMMAND;
 import static donnafin.testutil.Assert.assertThrows;
 import static donnafin.testutil.TypicalPersons.getTypicalAddressBook;
 import static donnafin.testutil.TypicalPersons.getTypicalPersons;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Objects;
 
-import donnafin.logic.commands.AddCommand;
-import donnafin.logic.commands.AppendCommand;
-import donnafin.logic.commands.ClearCommand;
-import donnafin.logic.commands.DeleteCommand;
-import donnafin.logic.commands.FindCommand;
-import donnafin.logic.commands.ListCommand;
-import donnafin.logic.commands.RemoveCommand;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import donnafin.logic.PersonAdapter;
+import donnafin.logic.commands.AddCommand;
+import donnafin.logic.commands.AppendCommand;
+import donnafin.logic.commands.ClearCommand;
+import donnafin.logic.commands.DeleteCommand;
 import donnafin.logic.commands.EditCommand;
 import donnafin.logic.commands.ExitCommand;
+import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
 import donnafin.logic.commands.HomeCommand;
+import donnafin.logic.commands.ListCommand;
+import donnafin.logic.commands.RemoveCommand;
 import donnafin.logic.commands.SwitchTabCommand;
 import donnafin.logic.parser.exceptions.ParseException;
 import donnafin.model.Model;

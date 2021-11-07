@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
-import donnafin.logic.commands.AppendCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +58,7 @@ public class ClientViewParserContextTest {
     @Test
     public void parseCommand_multipleWordsExitCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-            -> contactTabParser.parseCommand(ExitCommand.COMMAND_WORD,"2"));
+            -> contactTabParser.parseCommand(ExitCommand.COMMAND_WORD, "2"));
     }
 
     @Test

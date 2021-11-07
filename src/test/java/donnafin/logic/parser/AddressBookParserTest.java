@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
-import donnafin.logic.commands.HomeCommand;
 import org.junit.jupiter.api.Test;
 
 import donnafin.logic.commands.AddCommand;
@@ -22,6 +21,7 @@ import donnafin.logic.commands.EditCommand;
 import donnafin.logic.commands.ExitCommand;
 import donnafin.logic.commands.FindCommand;
 import donnafin.logic.commands.HelpCommand;
+import donnafin.logic.commands.HomeCommand;
 import donnafin.logic.commands.ListCommand;
 import donnafin.logic.commands.RemoveCommand;
 import donnafin.logic.commands.SwitchTabCommand;
@@ -70,8 +70,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_multipleWordsExitCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parser.parseCommand(ExitCommand.COMMAND_WORD,"client"));
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () ->
+            parser.parseCommand(ExitCommand.COMMAND_WORD, "client"));
     }
 
     @Test
@@ -90,8 +90,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_multipleWordsHelpCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, ()
-                -> parser.parseCommand(HelpCommand.COMMAND_WORD,  "me"));
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () ->
+            parser.parseCommand(HelpCommand.COMMAND_WORD, "me"));
     }
 
     @Test
@@ -102,8 +102,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_multipleWordsListCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND,
-                () -> parser.parseCommand(ListCommand.COMMAND_WORD, "2"));
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () ->
+            parser.parseCommand(ListCommand.COMMAND_WORD, "2"));
     }
 
     @Test
@@ -114,8 +114,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_multipleWordsHomeCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND,
-                () -> parser.parseCommand(HomeCommand.COMMAND_WORD, "sweet home"));
+        assertThrows(ParseException.class, MESSAGE_USE_HELP_COMMAND, () ->
+            parser.parseCommand(HomeCommand.COMMAND_WORD, "sweet home"));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()-> parser.parseCommand("unknownCommand"));
     }
 
     @Test
