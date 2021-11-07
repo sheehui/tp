@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package donnafin.ui;
 
 import static donnafin.testutil.Assert.assertThrows;
@@ -12,9 +14,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import donnafin.MainApp;
 import javafx.fxml.FXML;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 public class UiPartTest {
 

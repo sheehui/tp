@@ -1,3 +1,5 @@
+//@@author bharathcs-reused
+//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 package guitests.guihandles;
 
 import java.util.List;
@@ -7,9 +9,6 @@ import java.util.Set;
 import donnafin.model.person.Person;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-
-//@@author bharathcs-reused
-//Reused from https://github.com/se-edu/addressbook-level4/ with minor modifications.
 
 /**
  * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
