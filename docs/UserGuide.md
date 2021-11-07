@@ -84,7 +84,38 @@ This marks the end of the Quick Start section. Click
 
 ## 3. About
 
+This section aims to help familiarize you with how our application works as well as the terminology that we use
+throughout our application and user guide.
+
 ### 3.1 Special Icons
+
+Here are the special icons used throughout our User Guide to help you utilise this guide more effectively.
+
+#### Tips
+
+Tips are tidbits of helpful information that can help you have a better experience with DonnaFin.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+Tip: Tips are helpful!
+</div><br>
+
+#### Notes
+
+Notes are here to provide you with extra information that you may find useful when using DonnaFin.
+
+<div markdown="span" class="alert alert-primary">:information_source:
+Take notes when you see this icon!
+
+
+#### Caution 
+
+Cautions are around to warn you of potential unwanted side effects that may occur when using certain features of
+DonnaFin if you fail to follow this guide properly or tamper with the files of the application without adequate
+knowledge.
+
+<div markdown="span" class="alert alert-primary">
+:exclamation: Here lies a cautionary tale!
+</div><br>
 
 ### 3.2 Application Home Window Breakdown
 
@@ -116,6 +147,7 @@ The following attributes of your client is also viewable from the Client List Wi
 4. Email Address
 
 ### 3.3 Application Client Window Breakdown
+
 The Client window is accessed when you use the `view` command correctly. Though the client window shows content different
 from the main window, the 'Quick Access Button', 'Command Box' and 'Results Display' are all the same as explained
 earlier in section 3.2.
@@ -186,6 +218,46 @@ The Policies tab also supports the `append` and `remove` command that allows you
 remove an existing policy
 as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#435-policy-features)
 
+#### 3.3.4 Asset/Liabilities Tab
+
+###### This section covers both the asset and liability tab due to their similarities.
+
+The Asset/Liabilities tab is the Client View tab that stores all of your client's assets/liabilities. This tab can be
+accessed by pressing on the `Assets/Liabilities` button when in any of the Client View tabs, or through typing the
+command `tab a`, `tab asset`, or `tab assets` for the Assets tab and typing the command `tab l`, `tab liability`, or
+`tab liabilites` for the Liabilities tab.
+
+You will know that you are in the Assets tab if you see the **Assets** header below the Result Display or the
+Liabilities tab if you see the **Liabilities** header below the Result Display. You can see the total value of these
+assets/liabilities by looking at the number beside the **Total Asset/Liability Value**.
+
+The Assets/Liabilities are displayed in a Table View where each row represents a new asset/liability, while each column
+represents a field of an Asset/Liability.
+
+![Asset/Liabilities Tab of DonnaFin](images/Asset_Liability.png)
+
+Here are the following fields that each asset/liability records:
+1. Index
+2. Asset/Liability Name
+3. Asset/Liability Type
+4. Asset/Liability Value
+5. Remarks
+
+Each asset/liability has an index which is sorted by ascending order, and if you would like to remove an existing
+asset/liability , you can keep track of the index by looking at the number to the left of the asset/liability name you
+would like to delete.
+
+The Asset/Liability tab also supports the `append` and `remove` command that allows you to add a new asset/liability or
+remove an existing asset/liability as shown [here](#4331-add-an-asset-to-a-client-append).
+
+#### 3.3.5 Notes Tab
+
+The Notes tab stores additional information about your client. This tab can be accessed by pressing on the `Notes`
+button when in any of the Client View tabs, or through typing the command `tab n`, `tab notes` or `tab notes`.
+
+You will know that you are in the Notes tab if you see a big white text box below the Result Display.
+
+![Notes Tab of DonnaFin](images/Notes.png)
 
 ### 3.4 Command Format
 
@@ -211,8 +283,9 @@ as shown [here.](https://ay2122s1-cs2103t-w16-1.github.io/tp/UserGuide.html#435-
 * The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
   e.g. A valid input for `v/$ASSET_VALUE` is `v/$1000`. `v/1000` will not be accepted by DonnaFin.
 </div>
-This marks the end of the About section. Click
-<a href="#top">here</a> to return to the top
+
+
+This marks the end of the about section. Click <a href="#top">here</a> to return to the top
 
 --------------------------------------------------------------------------------------------------------------------
 
