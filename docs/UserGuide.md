@@ -323,7 +323,7 @@ as well as viewing a client in detail.
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
 To access and update details on a specific client, you may refer to [Client Window Commands](#43-client-window).
-</div><br>
+</div>
 
 #### 4.2.1 Adding a Client : `add`
 
@@ -410,7 +410,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
-You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing `view`.
+You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing our `view` command.
 </div>
 
 Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see 
@@ -603,7 +603,7 @@ Remove an existing asset from the current client you are viewing.
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**
 The index reference can be taken from the number on the leftmost column!
-</div><br>
+</div>
 
 * Removes the asset at the specified `INDEX`.
 * The index refers to the index number shown in the displayed asset list.
