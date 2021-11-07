@@ -321,7 +321,7 @@ Such features include adding and deleting clients, listing/clearing all clients,
 as well as viewing a client in detail.
 
 <div markdown="span" class="alert alert-primary">
-:information_source:
+:information_source: Note:
 To access and update details on a specific client, refer to [Client Window Commands](#43-client-window).
 </div><br>
 
@@ -368,7 +368,7 @@ E.g. 'John Son' and 'Johnson' would not be seen as near duplicates.
 Deletes the specified client from the DonnaFin.
 
 <div markdown="span" class="alert alert-primary">
-:bulb:
+:bulb: Tip:
 The index reference can be taken from the number next to your client's name!
 </div><br>
 
@@ -409,7 +409,7 @@ Examples:
 #### 4.2.5 View Client Information : `view`
 
 <div markdown="span" class="alert alert-primary">
-:information_source:
+:information_source: Note:
 You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing `view`.
 </div><br>
 
@@ -417,7 +417,7 @@ Allows you to open the client window to access all data on your specific chosen 
 each client field in detail and edit existing information.
 
 <div markdown="span" class="alert alert-primary">
-:bulb:
+:bulb: Tip:
 The index reference can be taken from the number next to your client's name!
 </div><br>
 
@@ -452,12 +452,17 @@ as notes for each client.
 
 Allows you to navigate to a different tab.
 
-There are 5 tabs:
+There are five tabs:
 1. [Contact](#4311-contact-tab)
 2. [Policies](#4312-policies-tab)
 3. [Assets](#4313-assets-tab)
 4. [Liabilities](#4314-liabilities-tab)
 5. [Notes](#4315-notes-tab)
+
+<div markdown="span" class="alert alert-primary">
+:information_source: Note:
+Our `tab` commands works in any of these five tabs!
+</div><br>
 
 Format: `tab KEYWORD`
 
@@ -513,7 +518,12 @@ Examples:
 
 #### 4.3.2 Edit Client's Contact Information: `edit`
 
-You can edit your client's contact fields with our `edit` command. You should be in `Contact` tab to use these commands.
+<div markdown="span" class="alert alert-primary">
+:information_source: Note:
+You should be in `Contact` tab to use these commands.
+</div><br>
+
+You can edit your client's contact fields with our `edit` command.
 
 Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
@@ -566,8 +576,13 @@ Example: `edit e/allison@gmail.com`
 
 #### 4.3.3 Asset Features
 
+<div markdown="span" class="alert alert-primary">
+:information_source: Note:
+You should be in the `Assets` tab for these functions to work as intended.
+</div><br>
+
 Asset Features consists of features that enables you to add and remove assets
-for your clients. You must be in the `Assets` tab for these functions to work as intended.
+for your clients.
 
 ##### 4.3.3.1 Add an Asset to a Client: `append`
 
@@ -586,7 +601,7 @@ Example:
 Remove an existing asset from the current client you are viewing.
 
 <div markdown="span" class="alert alert-primary">
-:bulb:
+:bulb: Tip:
 The index reference can be taken from the number on the leftmost column!
 </div><br>
 
@@ -601,8 +616,13 @@ Example:
 
 #### 4.3.4 Liability Features
 
+<div markdown="span" class="alert alert-primary">
+:information_source: Note:
+You should be in the `Liabilities` tab for these functions to work as intended.
+</div><br>
+
 Liability Features consists of features that enables you to add and remove liabilities
-for your clients. You must be in the `Liabilities` tab for these functions to work as intended.
+for your clients.
 
 ##### 4.3.4.1 Add a Liability to a Client: `append`
 
@@ -621,7 +641,7 @@ Example:
 Remove an existing liability from the current client you are viewing.
 
 <div markdown="span" class="alert alert-primary">
-:bulb:
+:bulb: Tip:
 The index reference can be taken from the number on the leftmost column!
 </div><br>
 
@@ -636,8 +656,13 @@ Example:
 
 #### 4.3.5 Policy Features
 
+<div markdown="span" class="alert alert-primary">
+:information_source: Note:
+You should be in the `Policies` tab for these functions to work as intended.
+</div><br>
+
 Policy Features consists of features that enables you to add and remove policies
-for your clients. You must be in the `Policies` tab for these functions to work as intended.
+for your clients.
 
 ##### 4.3.5.1 Add a Policy to a Client: `append`
 
@@ -656,7 +681,7 @@ Example:
 Remove an existing policy from the current client you are viewing. You must be in the `Policies` tab.
 
 <div markdown="span" class="alert alert-primary">
-:bulb:
+:bulb: Tip:
 The index reference can be taken from the number on the leftmost column!
 </div><br>
 
@@ -689,7 +714,7 @@ DonnaFin data are saved in the hard disk automatically after any command that ch
 
 #### 4.4.2 Editing the data file
 
-<div markdown="span" class="alert alert-primary">:bulb:
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
 If your changes to the data file is erroneous and causes DonnaFin to "lose its data". 
 Don't worry, as long as you do not run commands, your data is still stored. Simply undo your changes to restore.
 </div><br>
