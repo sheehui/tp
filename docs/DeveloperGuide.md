@@ -271,22 +271,18 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 ### 4.2 Implementation and Commands
 
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-This will be a reference to explain the general flow of how the commands work later.
+**How the architecture components interact with each other through commands**
 
 Command types fall into 3 main categories.
-1. Commands that involve organisation of clients.
-2. Commands that involve editing of personal information of one specific client,
-be it appending or removing information.
-3. Commands that involve changing of tab
+1. Model-level commands
+2. Client-level commands
+3. UI-browsing commands
 
 Despite falling under the three broad categories, the commands still have many similarities. Thus, we give an
 in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
 the same framework but differ slightly.
 
-#### 4.2.1 Commands that involve the organisation of clients
+#### 4.2.1 Model-level commands
 
 <div markdown="span" class="alert alert-info">:information_source: **Key properties:**
 <br>
@@ -298,9 +294,11 @@ the same framework but differ slightly.
 Commands that fall under this category are :<br>
 1. Add <br>
 2. Delete <br>
+3. Find <br>
+4. List <br>
 </div>
 
-The delete command is one of the commands that fall under this category.
+The `Delete` command is one of the commands that fall under this category.
 We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
 
 | Full sequence diagram  |
@@ -323,16 +321,16 @@ This does not involve a consumer in any way and is always part of execute comman
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
 * The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 Commands that access one specific client's information
+#### 4.2.2 Client-level commands
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 <br>
-The key differences are:<br>
 1. The command has to access and edit information regarding one specific client.<br>
 2. The command interacts and actively updates information in storage.
-However, commands in the third category differ from the first in that change information of one specific client,
-while the first adds/deletes the client specified.
+<br>
+However, commands in the third category differ from the first in that this category deals with information within one specific client,
+while the first adds/deletes the client specified within the entire model.
 <br>
 <br>
 Commands that fall into the second category are:<br>
@@ -342,7 +340,7 @@ Commands that fall into the second category are:<br>
 </div>
 
 Edit command is a command that edits the information of a specific client. Other commands like append and remove,
-also deal directly with a specific client's information. Thus they fall under the second [category](#42-implementation-and-commands)
+also deal directly with a specific client's information. Thus, they fall under the second [category](#42-implementation-and-commands)
 Like other commands in the other 2 [categories](#42-implementation-and-commands), edit command follows the same general
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
@@ -366,11 +364,10 @@ The key differences are that `Person` is immutable and does not support edits, w
 Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
 </div>
 
-#### 4.2.3 Commands that involve changing of tabs
+#### 4.2.3 UI-browsing commands
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
-The key differences are:<br>
 1. The commands do not interact with model.<br>
 2. The commands have to handle the changing of ParserStrategy, from the current one<br>
 to `ABCParser` of the new tab.
@@ -380,9 +377,11 @@ to `ABCParser` of the new tab.
 Commands that fall into this category are:<br>
 1. SwitchTab<br>
 2. View<br>
+3. Home<br>
 </div>
 
-Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation-and-commands)
+Switch tab command is a command that explicitly involves the changing of tabs, which fall under the third
+[category](#42-implementation-and-commands).
 We will be using the `SwitchTab` command as the example to illustrate and explain all commands under this category.
 
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
