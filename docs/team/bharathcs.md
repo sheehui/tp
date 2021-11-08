@@ -12,12 +12,6 @@ If you can type fast, you can use our CLI-like commands to manage and view your 
 
 Given below are my contributions to the project.
 
-* **New Feature**:
-    * What it does:
-    * Justification:
-    * Highlights:
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
 * Support passing instructions to `Ui` from `Commands`
   * Uses functional programming to hand a callback from the result of command execution (`CommandResult.uiAction : Consumer<Ui>`) that can perform the necessary side effect in `Ui`
   * Our application's front end is getting steadily more complex and our commands need to be able to execute actual functions on `Ui`. However, other solutions would require global variables or drilling down a reference to `Ui` into `Command`. A simpler and cleaner workaround was to use functions as a first class object to instruct `Ui` on the appropriate actions (show help / exit / show client view, etc)
@@ -35,24 +29,30 @@ Given below are my contributions to the project.
   * User must easily be able to cycle through contact information, policy table, asset table etc
   * Needs to be a simple and easy to use command in the command bar.
 
-* Create a generic class to create tables for Client View tabs on Polices, Assets, Liabilities to support future extension. [#125](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/125), [#154](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/154), [#156](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/156)
+* Create a generic class to create tables for Client View tabs on Polices, Assets, Liabilities to support future extension. [#125](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/125), [#154](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/154), [#156](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/156), [#195](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/195), [#250](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/250), [#268](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/268), [#361](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/361), [#190](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/190)
   * Create a JavaFX component that can create a fully functional and rich table for any data class.
   * Made the entire front end for the yet-to-be-completed `Policy`, `Asset` and `Liability` classes as they all share a similar format of being represented in a table.
   * Makes good use of software engineering principles:
     * Open-Closed Principle: Open for configuring and extension but closed to modification. All instances of `AttributeTable` is configured by `TableConfig` and `ColumnConfig` and `Aggregator` to accept any manner of data classes.
     * Encapsulate and support creation of configuration data class in a manner similar to many open source modules (e.g. JavaScript modules like axios);
+  * Add a bare bones automated GUI testing with TestFX to ensure the class can be loaded, with a proper `Attribute` stub that can be used to populate values
 
 * Re-organise application architecture by separating `Storage` and `Logic` [#18](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/18), [#17](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/17)
   * Improves overall architecture by decoupling `Storage` and `Logic` ensuring all `Storage` calls go through `Model` layer to follow the layered architecture style. (See:  [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html))
   * The layered architecture design pattern was chosen over the current Model-View-Controller architecture in a previous team meeting to reduce complexity, simplify working on components and improve testability.
 
+* Support `Policy`, `Asset`, and `Liability` with monetary values with a `Money` class. [#182](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/182), [#141](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/141)
+  * Create a class that keeps track of monetary values, support arithmetic and can be converted to a valid '$' formatted string.
+  * Update the attributes that require it to support these fields
+  * Highlights
+    * Integration Tests: Ensure that an attribute created with the invalid monetary formats should throw correctly: [#193](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/193), [#311](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/311)
+
 * Add automated GUI tests for DonnaFin
   * Automated checks can be run on Gradle builds Github CI/CD to confirm validity of `.fxml` files and GUI logic.
   * Prevents unusable GUI changes from being added to the codebase.
-  * Required spending a significant amount of time learning and understanding Java GUI testing with TestFx, adapting boilerplate and common functions from SE-EDU AB4. At all steps, this needed to support the new file structure and dependencies. [#132](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/132) [#134](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/134)
+  * Required spending a significant amount of time learning and understanding Java GUI testing with TestFx, adapting boilerplate and common functions from SE-EDU AB4. At all steps, this needed to support the new file structure and dependencies. [#132](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/132), [#134](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/134), [#352](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/352), [#353](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/353)
   * Adapted from the SE-EDU: Address Book 4 codebase
-
-
+  
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=bharathcs&tabRepo=AY2122S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
@@ -60,15 +60,9 @@ Given below are my contributions to the project.
     * Gradle improvements:
       * Have Gradle test commands run only if code / CI changes. [#1](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/1)
       * Enable assertions for every Gradle run [#151](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/151)
-      * Have Gradle automatically wipe the `./data/` folder to ensure clean starts [#135](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/135)
+      * Have Gradle automatically wipe the `./data/` folder to ensure clean starts [#135](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/135), [#299](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/299)
     * Conduct the minimal repo-wide checks for non-code changes (EOF, EOL, illegal characters) [#37](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/37)
     * Update Github CI / CD to support feature / branch workflow [#35](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/35)
-  * Provided constructive feedback to PRs
-    * Improving code quality [#69](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/69), [#57](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/57), [#157](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/157)
-    * Minor changes for CheckStyle & CI [#63](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/63)
-    * Constructive feedback on code quality [#179](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/179)
-    * Pair programming & support for difficult tasks [#155](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/155)
-
 
 * **Enhancements to existing features**:
 
@@ -79,22 +73,30 @@ Given below are my contributions to the project.
     * Fix weird and obscure JavaFX lab with use of asynchronous programming [#166](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/166)
 
   * Add additional tests
-    * For notes [#123](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/123)
-    * For `SampleDataUtils` to ensure poisoned clean starts / data inputs will be caught early [#177](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/177)
+    * For notes [#123](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/123), policies, assets, liabilities [#196](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/196)
+    * For `SampleDataUtils` to ensure poisoned clean starts / data inputs will be caught early [#177](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/177), [#290](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/290)
+    * For commands: append [#194](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/194), edit [#199](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/199G), [#327](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/327), [#344](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/344), [#183](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/183)
 
-  * Create additional tools that help developers
+  * Additional changes that help developers
     * Make a `Money` data class (very similar to the existing `Index` class) [#141](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/141)
     * Add static configurations for `AttributeTable` to be easily called for `Asset`, `Liability` and `Policy` [#146](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/146)
+    * Work on cohesion [#321](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/321), [#322](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/322)
+  
+  * Squash numerous bugs [#250](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/250), [#293](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/293)
 
 * **Documentation**:
     * User Guide:
       * Update commands [#27](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/27), [#42](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/42/)
+      * Info on the tabs and how to use it [#341](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/341)
 
     * Developer Guide:
       * Storage - Logic link updates: Sequence diagrams, Class Diagrams, [#21](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/21)
       * `PersonAdapter`, `Person`, Architecture Sequence Diagram, cleanup [#103](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/103)
       * Update UML class for v1.2b - v1.3 [#165](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/165)
       * New sequence diagrams for `SwitchTabCommand` [#170](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/170)
+      * Minor changes [#191](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/191/), [#192](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/192/)
+      * Explain `commons` package and uses for such classes (wrt to good SE practices) [#360](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/360),
+      * Update matters of CI & Testing [#351](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/351)
 
 * **Community**:
   * Explaining why I think Java's Stream implementation makes using multiple Scanners very bug-prone ([#78](https://github.com/nus-cs2103-AY2122S1/forum/issues/78#issuecomment-908386678))
@@ -102,6 +104,11 @@ Given below are my contributions to the project.
   * Optimising CI tasks to run only on Linux where helpful ([#200](https://github.com/nus-cs2103-AY2122S1/forum/issues/200#issuecomment-914049272))
   * Reminding people of checkstyle gaps ([#169](https://github.com/nus-cs2103-AY2122S1/forum/issues/169#issuecomment-914045772))
   * Offering a tip for people who like to make many commits ([#139](https://github.com/nus-cs2103-AY2122S1/forum/issues/139#issuecomment-908866902))
+  * Provided constructive feedback to PRs in my team repo:
+    * Improving code quality [#69](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/69), [#57](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/57), [#157](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/157)
+    * Minor changes for CheckStyle & CI [#63](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/63)
+    * Constructive feedback on code quality [#179](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/179)
+    * Pair programming & support for difficult tasks [#155](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/155), 
 
 * **Tools**:
   * Used Figma to wireframe the user pathway to 'single client view'.
