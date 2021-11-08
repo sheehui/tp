@@ -143,7 +143,7 @@ home view and `CommandBox`, `ResultDisplay`, and `ClientPanel` in client view. A
 including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-The UI that is displayed has 6 main tabs to switch between.
+The UI that is displayed has 6 main states to switch between.
  1. `PERSON_LIST_PANEL`
  2. `CONTACT`
  3. `POLICIES`
@@ -151,10 +151,10 @@ The UI that is displayed has 6 main tabs to switch between.
  5. `LIABILITIES`
  6. `NOTES`
 
- The first tab, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
-each client and will thus display different information for each client. The UI keeps track of the current tab it is
-observing through the UiState, which is set on each switch tab command. Further details for the switch tab command can be found
-[here](#423-commands-that-involve-changing-of-tabs).
+ The first state, `PERSON_LIST_PANEL` represents the home view of the client. It is where the user sees the information of multiple clients at the same time. The other 5 are tabs specific to
+each client and will thus display different information for each client. The `Ui` keeps track of the current tab it is
+observing through the `UiState`, which is set on each tab switch command. Further details for the tab switch command can be found
+[here](#423-ui-browsing-commands).
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of the
@@ -165,7 +165,7 @@ The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* keeps a reference to the `Logic` component, because the `Ui` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 #### 4.1.2 Logic component
@@ -189,7 +189,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * `ParserContext` holds a reference to a `ParserStrategy` that is set based on the current tab the user is on etc.
-* When ParserContext calls upon the current ParserStrategy to parse a user command,
+* When `ParserContext` calls upon the current `ParserStrategy` to parse a user command,
 the `ABCParser` (`ABC` is a placeholder for the specific parser strategy e.g.,`ContactTabParser`) creates
 an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the
 other classes above to parse the user command and create a `XYZCommand` object. Further details can be seen in the
@@ -210,7 +210,7 @@ implementation of commands section [here](#42-implementation).
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the `Ui` can be bound to this list so that the `Ui` automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores `Storage` object and communicates with it to save address book to user files.
 
@@ -228,8 +228,8 @@ The `Storage` component,
 How is `Person` stored?
 * `JsonAdaptedPerson` is created with the Jackson framework.
 * Each `Person` in DonnaFin is stored as a `JsonAdaptedPerson` as shown in our class diagram above.
-* The name, email, phone number, address and notes of each `Person` is stored as a `JsonProperty` of type String.
-* Assets, liabilities and policies are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
+* The `Name`, `Email`, `Phone`, `Address` and `Notes` of each `Person` is stored as a `JsonProperty` of type String.
+* `Assets`, `Liabilities` and `Policy` are stored as a List of `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` respectively. Each `JsonAdaptedAsset`, `JsonAdaptedLiability`
 and `JsonAdaptedPolicy` is created separately using Jackson and contains the necessary fields for their respective attributes,
 stored as a `JsonProperty` of type String.
@@ -274,22 +274,18 @@ Classes used by multiple components are in the `donnafin.commons` package.
 
 ### 4.2 Implementation
 
-**How the architecture components interact with each other**
+**How the architecture components interact with each other through commands**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-This will be a reference to explain the general flow of how the commands work later.
-
-Command types fall into 3 main categories.
-1. Commands that involve organisation of clients.
-2. Commands that involve editing of personal information of one specific client,
-be it appending or removing information.
-3. Commands that involve changing of tab
+Command types fall into three main categories.
+1. Model-level commands
+2. Client-level commands
+3. UI-browsing commands
 
 Despite falling under the three broad categories, the commands still have many similarities. Thus, we give an
-in depth explanation of how the first category works. Subsequent explanation of commands from the other 2 categories will follow
+in depth explanation of how the first category works. Subsequent explanation of commands from the other two categories will follow
 the same framework but differ slightly.
 
-#### 4.2.1 Commands that involve the organisation of clients
+#### 4.2.1 Model-level commands
 
 <div markdown="span" class="alert alert-info">:information_source: **Key properties:**
 <br>
@@ -301,10 +297,12 @@ the same framework but differ slightly.
 Commands that fall under this category are :<br>
 1. Add <br>
 2. Delete <br>
+3. Find <br>
+4. List <br>
 </div>
 
-The delete command is one of the commands that fall under this category.
-We will be using the `Delete` command as the example to illustrate and explain all commands under this category.
+The `delete` command is one of the commands that fall under this category.
+We will be using the `delete` command as the example to illustrate and explain all commands under this category.
 
 | Full sequence diagram  |
 |<img alt="Architecture Sequence Diagram" src="images/DeleteSequenceDiagramUiPart.png" width="800" /> |
@@ -319,23 +317,23 @@ sequence diagram.
 Explanation of diagram above:
 * The `UI` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
-* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` object p from `donnafin.json`.
-* The `Logic` component then accepts the LogicConsumer produced from the command result. This consumer will alter the logic component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` from `donnafin.json`.
+* The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`. This consumer will alter the logic component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 This does not involve a consumer in any way and is always part of execute command.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
-* The `UI` component then accepts the UiConsumer produced from the command result. This consumer will alter the UI component depending on the command result. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. This consumer will alter the UI component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 
-#### 4.2.2 Commands that access one specific client's information
+#### 4.2.2 Client-level commands
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
 <br>
-The key differences are:<br>
 1. The command has to access and edit information regarding one specific client.<br>
 2. The command interacts and actively updates information in storage.
-However, commands in the third category differ from the first in that change information of one specific client,
-while the first adds/deletes the client specified.
+<br>
+However, commands in the third category differ from the first in that this category deals with information within one specific client,
+while the first adds/deletes the client specified within the entire model.
 <br>
 <br>
 Commands that fall into the second category are:<br>
@@ -344,9 +342,9 @@ Commands that fall into the second category are:<br>
 3. Remove<br>
 </div>
 
-Edit command is a command that edits the information of a specific client. Other commands like append and remove,
-also deal directly with a specific client's information. Thus they fall under the second [category](#42-implementation)
-Like other commands in the other 2 [categories](#42-implementation), edit command follows the same general
+`Edit` command is a command that edits the information of a specific client. Other commands like append and remove,
+also deal directly with a specific client's information. Thus, they fall under the second [category](#42-implementation)
+Like other commands in the other two [categories](#42-implementation), edit command follows the same general
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
@@ -355,27 +353,28 @@ Explanation:
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
 the specified person.
-* A `EditCommandResult` is returned from the execution of `Edit` Command. This command result,
-like the 2 other [categories](#42-implementation) contain both a consumer for `UI` and `Logic`.
-* The `Logic` component then accepts the LogicConsumer produced from the command result.
-* The `UI` component then accepts the UiConsumer produced from the command result. **The `UI` is here to display the newly
+* A `EditCommandResult` is returned from the execution of `Edit` Command. This `CommandResult`,
+like the two other [categories](#42-implementation) contain both a consumer for `UI` and `Logic`.
+* The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`.
+* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. **The `Ui` is here to display the newly
 edits made**.
 
-<div markdown="span" class="alert alert-warning">**Explanation of `PersonAdapter`:**
+<div markdown="span" class="alert alert-warning">**Explanation of PersonAdapter:**
 <br>
-In this category of commands, the class`PersonAdapter` is doing most of the legwork here.
-`PersonAdpater` serves as a wrapper for the Model class `Person`.
+
+In this category of commands, the class `PersonAdapter` is doing most of the legwork here.
+`PersonAdapter` serves as a wrapper for the Model class `Person`.
 The key differences are that `Person` is immutable and does not support edits, while the `PersonAdapter` effectively supports edits by wrapping a single `Person` object and replacing it with an edited copy as and when necessary.
 Such an implementation supports the user viewing and controlling a single client like with the `ViewCommand`.
 </div>
 
-#### 4.2.3 Commands that involve changing of tabs
+#### 4.2.3 UI-browsing commands
 
 <div markdown="span" class="alert alert-info">:information_source: **Key Properties:**
 <br>
-The key differences are:<br>
+
 1. The commands do not interact with model.<br>
-2. The commands have to handle the changing of ParserStrategy, from the current one<br>
+2. The commands have to handle the changing of `ParserStrategy`, from the current one<br>
 to `ABCParser` of the new tab.
 3. The commands need to update the `UiState` of `Ui` to keep track of which tab the user is currently on.
 <br>
@@ -383,9 +382,10 @@ to `ABCParser` of the new tab.
 Commands that fall into this category are:<br>
 1. SwitchTab<br>
 2. View<br>
+3. Home<br>
 </div>
 
-Switch tab command is a command that explicitly involves the changing of tabs, which fall under the second [category](#42-implementation)
+Switch tab command is a command that explicitly involves the changing of tabs, which fall under the third [category](#42-implementation)
 We will be using the `SwitchTab` command as the example to illustrate and explain all commands under this category.
 
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
@@ -394,17 +394,18 @@ Explanation of diagram above:
 * The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
-* The `Logic` component then accepts the LogicConsumer produced from the `SwitchTabCommandResult`.
+* The `Logic` component then accepts the `LogicConsumer` produced from the `SwitchTabCommandResult`.
 In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
-* The `UI` component then accepts the UiConsumer produced from the command result. UiState is set here.
+* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. `UiState` is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
 <br>
+
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. <br>
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.<br>
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.<br>
-4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the command result.<br>
+4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the `CommandResult`.<br>
 </div>
 
 #### 4.3 Contact Tab
@@ -458,9 +459,9 @@ The steps taken in constructing these tabs are very similar to those for the Con
 
 #### 4.5 Notes tab
 
-The notes tab accepts user input like the commands but is fundamentally different from it.
-Instead of being command-based, the notes tab allows the user to type in any quick notes that the
-user would want. Updating it in realtime. This is opposed to the commands where,
+The `NotesTabParser` is different from other `tabSpecificParsers` in that it has no tab specific command. However, the
+`TextArea` of the notes tab allows the user to type in any quick notes that the
+user would want, updating it in realtime. This is opposed to the commands however, since for commands
 changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
 different process.
 
@@ -480,7 +481,7 @@ complicated and unintuitive.
 
 Key details of the `TextArea`:
 1. A listener is attached to the `TextArea` of the notes tab. This allows for realtime updates
-   when typing in the `TextArea`. When there any changes, the function `edit` in `PersonAdapter` is called.
+   when typing in the `TextArea`. If there are any changes, the function `edit` in `PersonAdapter` is called.
 2. The `edit` function in `PersonAdapter` saves the information straight away, hence making the updates realtime.
 
 --------------------------------------------------------------------------------------------------------------------
