@@ -66,19 +66,7 @@ Given below are my contributions to the project.
         
         * **PR**: []      
      
-     5. **Add home command**:
-     <br>
-     
-        * **What it does:**
-        Allows the user to return to the home page.
-        
-        * **Justification:**
-        The user needs to be able to navigate between tabs and the home screen, having home
-        would be an appropriate command.
-        
-        * **PR:** [Home command](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/76/files) 
-     
-     6. **Add different tabs for the other financial information:**
+    5. **Add different tabs for the other financial information:**
      <br> 
      
         * **What it does:**
@@ -94,8 +82,8 @@ Given below are my contributions to the project.
 
 
 * **Project management**:
-    * Provided architecture advise:
-        * Proposed architecture changes for the entire project along with my other teammate ![Bharath](bharathcs.md)
+    * Directed architecture changes alongside [Bharath](bharathcs.md):
+        * Proposed architecture changes for the entire project.
         * Suggested the layered architecture as the best way to allow for better test and briefed each team mate on how
         to make the changes.
         [^layeredArchi]: [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
@@ -103,7 +91,21 @@ Given below are my contributions to the project.
         * Look through multiple PRs and provided further insights and corrections that could be done.
     
 * **Enhancements to existing features**:
-
+    * Provided architecture advise:
+        * Proposed architecture changes for the entire project along with my other teammate ![Bharath](bharathcs.md)
+        [^layeredArchi]: [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
+ 
+    *. **Add home command**:
+       * **What it does:**
+       Allows the user to return to the home page.
+       
+       * **Justification:**
+       The user needs to be able to navigate between tabs and the home screen, having home
+       would be an appropriate command.
+       
+       * **PR:** [Home command](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/76/files) 
+      
+         
 * **Documentation**:
   * User Guide:
     1. Create the DonnaFin logo and updated the introduction. [#320](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/320)
