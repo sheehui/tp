@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Set up DonnaFin's GitHub team organisation and repository
   * Renaming AB3 to DonnaFin during refactoring [#41](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/41), and catching traces of AB3 when working on other features/work.
-  * Documented target user profile and value proposition
+  * Documented project README, target user profile and value proposition
   * Shared responsibility to maintain issues
   * Changes AB3 links to DonnaFin in project README and our GitHub Pages
 
@@ -82,6 +82,7 @@ Given below are my contributions to the project.
     * Add function to trigger edit for specific contact fields [#82](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/82)
     * Add fxml files for home and client window switching [#62](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/62)
     * Improve code quality [#328](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/328)
+      * added loggers as well
 
 * **Documentation**:
     * User Guide [#163](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/163), [#187](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/187), [#240](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/240), [#312](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/312), [#335](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/335), [#342](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/342) :
