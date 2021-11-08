@@ -115,9 +115,7 @@ Each of the four main components (also shown in the diagram above).
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java`. Other components interact with a given component through its interface as much as possible
 rather than the concrete class or through any lower-level class, as illustrated in the (partial) class diagram below.
-Experienced programmers may recognise this as the Facade design pattern.[^facadeFootnote]
-
-[^facadeFootnote]: [Facade Design Pattern](https://refactoring.guru/design-patterns/facade)
+Experienced programmers may recognise this as the Facade design pattern. (See: [Facade Design Pattern](https://refactoring.guru/design-patterns/facade))
 
 <img alt="Component Managers" src="images/ComponentManagers.png" width="300" />
 
@@ -272,6 +270,32 @@ Here is an example of a `Person` in JSON form:
 
 Classes used by multiple components are in the `donnafin.commons` package.
 
+There are three main groups of Common classes, and here is a brief description of each and examples of how they are used
+in this codebase.
+
+**Type classes**
+
+There are two classes that can be found under`donnafin.commons.core.types`:
+* `Index`: Abstracts away the difference between one-based index (display / user input) and zero-based index (native
+  Java indexing of data structures). Serves to minimise programming errors, particularly those of the 'off-by-one' 
+  category that can happen when dealing with these incompatible numbering styles.
+* `Money`: Provides a numerically sound structure that can be used to represent monetary values with precision and
+  support arithmetic operations without foregoing easy in built conversion to a human-readable format with the currency
+  symbol ('$').
+
+**Utility classes**
+There are multiple classes in `donnafin.commons.core.util` that serve a variety of purpose. In general, they can be seen
+as a common library of pure functions that can be used throughout the application to fulfil certain purposes. It reduces
+on code duplication and improves the cohesion of our code. For example, we often do defensive programming checks to 
+ensure that multiple objects are not null, and the `CollectionUtil` package has useful static functions that can be 
+called on to do this.
+
+**Exception classes**
+There are custom built exceptions `donnafin.commons.exception`, that are used throughout the code base. Some custom 
+exceptions (like `ParseException`) are only used in certain packages, and are therefore can be found in those packages.
+In this package, we currently have `DataConversionException` and `IllegalValueException`, both of which handle a very
+common issue throughout the application of handling and reporting bad formats (syntax) or bad inputs (semantics).
+
 ### 4.2 Implementation
 
 **How the architecture components interact with each other through commands**
@@ -410,16 +434,19 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 
 #### 4.3 Contact Tab
 
+The following screenshot shows the user in the Client View. You may notice that the primary controller for this view is
+not the `MainWindow`, but a different class, `ClientPanel`. This JavaFX controller encapsulate all the logic for Client
+View specific actions.
+
 ![Contacts Tab Screenshot](./images/ContactsTabDevGuideScreenshot.png)
 
-*The dark blue rectangle indicates a `VBox` (vertical box) containing 4 `AttributePanel` instances.*
+*The dark blue rectangle indicates a `VBox` (vertical box) containing 4 `AttributePanel` instances (1 for each attribute: `Name`, `Email`, `Phone`, `Address`.*
 
-The `ClientPanel` is the JavaFX controller that encapsulates all interaction in the `ClientView`. On every call to changing
-tab or refreshing, it takes the following steps:
+On every call to changing tab or refreshing, the `ClientPanel` takes the following steps:
 
 1. The `VBox` container in `ClientPanel` will clear all its children 
 1. `ClientPanel` will create a list of `AttributePanel`s (a handy class for constructing a display for any single valued attribute)
-1. The `VBox` container will add the list of `AttributePanel`s as its children and show.
+1. The `VBox` container will add the list of `AttributePanel`s as its child.
 
 #### 4.4 Policies, Assets and Liabilities Tab
 
@@ -434,7 +461,8 @@ as an example.
 *The purple rectangle is the standard JavaFX `TableView` component.*
 
 `AttributeTable` is a generic class that aims to provide a standardised rich table view of any multi-valued attribute.
-In aid of this, it was written as a generic class with the 'open-closed principle' in mind,[^openClosedPrinciple].
+In aid of this, it was written as a generic class with the 'open-closed principle' in mind.
+(See SE-EDU: [Open Closed Principle](https://nus-cs2103-ay2122s1.github.io/website/se-book-adapted/chapters/principles.html#open-closed-principle))
 You can look at a very minimal example of how to create `TableConfig` and set up an attribute for `AttributeTable`
 in [`AttributeTableTest`](../src/test/java/donnafin/ui/AttributeTableTest.java). In short, you have the `TableConfig`
 holds the following:
@@ -444,15 +472,13 @@ holds the following:
   (e.g. Total value of commissions)
 * A list of `ColumnConfig` that specifies the property name, the column heading to show, the preferred and max widths
   for each column, as well.
-  
-[openClosedPrinciple]: SE-EDU: [Open Closed Principle](https://nus-cs2103-ay2122s1.github.io/website/se-book-adapted/chapters/principles.html#open-closed-principle)
 
 The steps taken in constructing these tabs are very similar to those for the Contact tab.
 
 1. The `VBox` container in `ClientPanel` will clear all its children.
 1. The attribute intended to be used (policy in this case) will provide the `TableConfig` required as a public static member.
-1. `ClientPanel` will create an `AttributeTable`s using the configuration, and the data (list of values from the `PersonAdapter`)
-1. The `VBox` container will add the `AttributeTable`s as its children.
+1. `ClientPanel` will create an `AttributeTable` using this configuration and the data (list of values from the `PersonAdapter`)
+1. The `VBox` container will add the `AttributeTable` as its child.
 
 
 **`AttributeTable`**
