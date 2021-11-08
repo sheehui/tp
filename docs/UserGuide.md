@@ -52,7 +52,7 @@ This marks the end of the Introduction. Click
 1. Copy the file to the folder you want to use as the _home folder_ for your DonnaFin app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that DonnaFin comes with some sample clients.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiMain.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -317,6 +317,9 @@ Format: `exit`
 Home Window commands consists of features that enables you to manage your client base.
 These features are exclusive to [Home Window](#32-application-home-window-breakdown), the default window that pops up when DonnaFin is opened.
 
+**The Home Window:**
+![home window](images/Ui.png)
+
 Such features include adding and deleting clients, listing/clearing all clients, doing a specific search for clients,
 as well as viewing a client in detail.
 
@@ -413,7 +416,7 @@ Examples:
 You may refer to our [Client Window Commands](#43-client-window) to learn more about what you can do after executing our `view` command.
 </div>
 
-Allows you to open the client window to access all data on your specific chosen client. Once in this window, you can see 
+Allows you to open the [client window](#33-application-client-window-breakdown) to access all data on your specific chosen client. Once in this window, you can see 
 each client field in detail and edit existing information.
 
 <div markdown="span" class="alert alert-primary">
@@ -423,11 +426,9 @@ The index reference can be taken from the number next to your client's name!
 
 Format: `view INDEX`
 
-* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed client list.
+* Edits the client at the specified INDEX.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, ...​
-* The view screen will switch to the client window as shown below.
-  ![Client View Mockup](./images/ClientContactTab.png)
-* The information related to the client is separated to **five different tabs**.
 
 Examples:
 * `view 1`
@@ -444,6 +445,9 @@ Format: `clear`
 Client Window commands consists of features that enables you to manage data on each specific client.
 These features are exclusive to [Client Window](#33-application-client-window-breakdown). They give access and writing privileges for any client information
 fields. You can access these commands once you have entered the Client Window using our [view command](#425-view-client-information--view).
+
+**The Client Window:**
+![ClientContactTab](images/ClientContactTab.png)
 
 Such features include switching tabs, editing contact information, managing financial details, as well
 as notes for each client.
@@ -518,17 +522,20 @@ Examples:
 
 #### 4.3.2 Edit Client's Contact Information: `edit`
 
+You can edit your client's contact fields with our `edit` command.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:**
 You should be in `Contact` tab to use these commands.
 </div>
 
-You can edit your client's contact fields with our `edit` command.
-
 Format: `edit [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`
 
 * We support multi-field update, you may edit more than one contact field at once.
 * `edit` requires at least one field present to be valid.
+
+**The Contact Tab:**
+![ClientContactTab](images/ClientContactTab.png)
 
 Example: `edit n/Allison Wang e/allison@plpgp.com`
 
@@ -584,6 +591,9 @@ for your clients.
 You should be in the `Assets` tab for these functions to work as intended.
 </div>
 
+**The Assets Tab:**
+![assets tab](images/AssetsTab.png)
+
 ##### 4.3.3.1 Add an Asset to a Client: `append`
 
 Adds a new asset to the current client you are viewing.
@@ -624,6 +634,9 @@ for your clients.
 You should be in the `Liabilities` tab for these functions to work as intended.
 </div>
 
+**The Liabilities Tab:**
+![liabilities tab](images/LiabilitiesTab.png)
+
 ##### 4.3.4.1 Add a Liability to a Client: `append`
 
 Adds a new liability to the current client you are viewing.
@@ -663,6 +676,9 @@ for your clients.
 :information_source: **Note:**
 You should be in the `Policies` tab for these functions to work as intended.
 </div>
+
+**The Policies Tab:**
+![policies tab](images/PoliciesTab.png)
 
 ##### 4.3.5.1 Add a Policy to a Client: `append`
 
