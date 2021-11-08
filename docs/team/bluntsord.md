@@ -44,8 +44,6 @@ Given below are my contributions to the project.
         * **PR:** [Controller](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/69)                                                    
         
     3. **Financial information:**
-    <br>
-        
         * **What it does**
         Required field that stores information regarding the client. Namely, assets
         liabilities, policies.
@@ -56,8 +54,6 @@ Given below are my contributions to the project.
         * **PR:** : [Financial information](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/105)
     
     5. **Add different tabs for the other financial information:**
-     <br> 
-     
         * **What it does:**
         Create the actual tabs that the `SwitchTabCommand` can access
         
