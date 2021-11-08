@@ -112,7 +112,7 @@ Notes are here to provide you with extra information that you may find useful wh
 
 Cautions are around to warn you of potential pitfalls that unfamiliar users may encounter. For example, if you fail
 to heed warnings around commands like `clear` or tamper with application files without adequate knowledge, you may
-inadvertantly lose data permanently.
+inadvertently lose data permanently.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: Here lies a cautionary tale!
@@ -190,7 +190,7 @@ The Policies Tab is the Client View tab that stores all of your client's policie
 the **Policies** button when in any of the Client View tabs, or by typing the command `tab p`, `tab policy` or `tab policies`.
 
 You will know that you are in the Policy tab if you see the **Policies** header below the Result Display. You can access the total
-commission that you have earned through looking at the number to the right of the **Total Policy Commisions**.
+commission that you have earned through looking at the number to the right of the **Total Policy Commissions**.
 
 The table displays each policy in its own row, with each field of the policy (e.g. insurer, commission) displayed in columns.
 
@@ -417,7 +417,7 @@ Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -880,7 +880,7 @@ This marks the end of the Command Summary section. Click
   to graphical user interfaces (mouse-based applications) that have the user click buttons or similar control surfaces.
 * **Asset**: Items that generate profit or return on investment.
 * **Liability**: Obligations that require payments from the client.
-* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policyholder receives
 financial protection or reimbursement against losses.
 
 This marks the end of the Glossary. Click
