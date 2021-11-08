@@ -102,7 +102,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#411-ui-component): The UI of the App.
+* [**`Ui`**](#411-ui-component): The UI of the App.
 * [**`Logic`**](#412-logic-component): The command executor.
 * [**`Model`**](#413-model-component): Holds the data of the App in memory.
 * [**`Storage`**](#414-storage-component): Reads data from, and writes data to, the hard disk.
@@ -156,12 +156,12 @@ each client and will thus display different information for each client. The `Ui
 observing through the `UiState`, which is set on each tab switch command. Further details for the tab switch command can be found
 [here](#423-ui-browsing-commands).
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of the
 [`MainWindow`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/ui/MainWindow.java) is
 specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -315,14 +315,14 @@ in logic, the logic specific sequence diagram as shown above takes a deeper dive
 sequence diagram.
 
 Explanation of diagram above:
-* The `UI` takes in the input command from the user and passes it to the `Logic` component.
+* The `Ui` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` from `donnafin.json`.
 * The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`. This consumer will alter the logic component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 This does not involve a consumer in any way and is always part of execute command.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
-* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. This consumer will alter the UI component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `Ui` component then accepts the `Consumer<Ui>` produced from the `CommandResult`. This consumer will alter the UI component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 
 #### 4.2.2 Client-level commands
 
@@ -348,15 +348,15 @@ Like other commands in the other two [categories](#42-implementation), edit comm
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
-* The `UI` takes in the input command from the user and passes it to the `Logic` component.
+* The `Ui` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
 the specified person.
 * A `EditCommandResult` is returned from the execution of `Edit` Command. This `CommandResult`,
-like the two other [categories](#42-implementation) contain both a consumer for `UI` and `Logic`.
+like the two other [categories](#42-implementation) contain both a consumer for `Ui` and `Logic`.
 * The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`.
-* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. **The `Ui` is here to display the newly
+* The `Ui` component then accepts the `Consumer<Ui>` produced from the `CommandResult`. **The `Ui` is here to display the newly
 edits made**.
 
 <div markdown="span" class="alert alert-warning">**Explanation of PersonAdapter:**
@@ -391,12 +391,12 @@ We will be using the `SwitchTab` command as the example to illustrate and explai
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
 Explanation of diagram above:
-* The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Ui` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the `LogicConsumer` produced from the `SwitchTabCommandResult`.
 In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
-* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. `UiState` is set here.
+* The `Ui` component then accepts the `Consumer<Ui>` produced from the `CommandResult`. `UiState` is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
@@ -405,7 +405,7 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. <br>
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.<br>
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.<br>
-4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the `CommandResult`.<br>
+4. `Ui` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the `CommandResult`.<br>
 </div>
 
 #### 4.3 Contact Tab
