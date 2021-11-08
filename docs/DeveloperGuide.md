@@ -102,7 +102,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#411-ui-component): The UI of the App.
+* [**`Ui`**](#411-ui-component): The UI of the App.
 * [**`Logic`**](#412-logic-component): The command executor.
 * [**`Model`**](#413-model-component): Holds the data of the App in memory.
 * [**`Storage`**](#414-storage-component): Reads data from, and writes data to, the hard disk.
@@ -115,9 +115,7 @@ Each of the four main components (also shown in the diagram above).
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java`. Other components interact with a given component through its interface as much as possible
 rather than the concrete class or through any lower-level class, as illustrated in the (partial) class diagram below.
-Experienced programmers may recognise this as the Facade design pattern.[^facadeFootnote]
-
-[^facadeFootnote]: [Facade Design Pattern](https://refactoring.guru/design-patterns/facade)
+Experienced programmers may recognise this as the Facade design pattern. (See: [Facade Design Pattern](https://refactoring.guru/design-patterns/facade))
 
 <img alt="Component Managers" src="images/ComponentManagers.png" width="300" />
 
@@ -156,12 +154,12 @@ each client and will thus display different information for each client. The `Ui
 observing through the `UiState`, which is set on each tab switch command. Further details for the tab switch command can be found
 [here](#423-ui-browsing-commands).
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of the
 [`MainWindow`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/java/donnafin/ui/MainWindow.java) is
 specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W16-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -272,6 +270,32 @@ Here is an example of a `Person` in JSON form:
 
 Classes used by multiple components are in the `donnafin.commons` package.
 
+There are three main groups of Common classes, and here is a brief description of each and examples of how they are used
+in this codebase.
+
+**Type classes**
+
+There are two classes that can be found under`donnafin.commons.core.types`:
+* `Index`: Abstracts away the difference between one-based index (display / user input) and zero-based index (native
+  Java indexing of data structures). Serves to minimise programming errors, particularly those of the 'off-by-one' 
+  category that can happen when dealing with these incompatible numbering styles.
+* `Money`: Provides a numerically sound structure that can be used to represent monetary values with precision and
+  support arithmetic operations without foregoing easy in built conversion to a human-readable format with the currency
+  symbol ('$').
+
+**Utility classes**
+There are multiple classes in `donnafin.commons.core.util` that serve a variety of purpose. In general, they can be seen
+as a common library of pure functions that can be used throughout the application to fulfil certain purposes. It reduces
+on code duplication and improves the cohesion of our code. For example, we often do defensive programming checks to 
+ensure that multiple objects are not null, and the `CollectionUtil` package has useful static functions that can be 
+called on to do this.
+
+**Exception classes**
+There are custom built exceptions `donnafin.commons.exception`, that are used throughout the code base. Some custom 
+exceptions (like `ParseException`) are only used in certain packages, and are therefore can be found in those packages.
+In this package, we currently have `DataConversionException` and `IllegalValueException`, both of which handle a very
+common issue throughout the application of handling and reporting bad formats (syntax) or bad inputs (semantics).
+
 ### 4.2 Implementation
 
 **How the architecture components interact with each other through commands**
@@ -315,14 +339,14 @@ in logic, the logic specific sequence diagram as shown above takes a deeper dive
 sequence diagram.
 
 Explanation of diagram above:
-* The `UI` takes in the input command from the user and passes it to the `Logic` component.
+* The `Ui` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the command and returns the `Delete` command.
 * The `Logic` component executes the `Delete` command. The `deletePerson` method in `Model` is called which then deletes the `Person` from `donnafin.json`.
 * The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`. This consumer will alter the logic component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 * The `Logic` component then continues with the `execute` command and calls the `saveAddressBook` method to save the updated `addressBook` with the deleted person.
 This does not involve a consumer in any way and is always part of execute command.
 * The `Model` component then calls `saveAddressBook` method that engages the `Storage` component to save the updated changes to storage locally.
-* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. This consumer will alter the UI component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
+* The `Ui` component then accepts the `Consumer<Ui>` produced from the `CommandResult`. This consumer will alter the UI component depending on the `CommandResult`. In this case, for the `delete` command, the consumer makes no change to logic.
 
 #### 4.2.2 Client-level commands
 
@@ -348,15 +372,15 @@ Like other commands in the other two [categories](#42-implementation), edit comm
 structure. We will be using the `Edit` command as the example to illustrate and explain all commands under this category.
 
 Explanation:
-* The `UI` takes in the input command from the user and passes it to the `Logic` component.
+* The `Ui` takes in the input command from the user and passes it to the `Logic` component.
 * The `Logic` component parses the input and the `Edit` command is returned. **A consumer for `PersonAdapter` is created here.**
 * The `Logic` component executes the `Edit` command.
 * During the execution of the `Edit` command above, the `PersonAdapter` accepts the consumer that edits
 the specified person.
 * A `EditCommandResult` is returned from the execution of `Edit` Command. This `CommandResult`,
-like the two other [categories](#42-implementation) contain both a consumer for `UI` and `Logic`.
+like the two other [categories](#42-implementation) contain both a consumer for `Ui` and `Logic`.
 * The `Logic` component then accepts the `LogicConsumer` produced from the `CommandResult`.
-* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. **The `Ui` is here to display the newly
+* The `Ui` component then accepts the `Consumer<Ui>` produced from the `CommandResult`. **The `Ui` is here to display the newly
 edits made**.
 
 <div markdown="span" class="alert alert-warning">**Explanation of PersonAdapter:**
@@ -391,12 +415,12 @@ We will be using the `SwitchTab` command as the example to illustrate and explai
 <img alt="SwitchTabExecution" src="images/SwitchTabExecutionSequenceDiagram.png" width="600"/>
 
 Explanation of diagram above:
-* The `UI` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
+* The `Ui` takes in the input command from the user and passes it to the `Logic` component that is responsible for parsing the input.
 * The `Logic` component parses the command and returns the `SwitchTab` command.
 * The `Logic` component executes the `SwitchTab` command and returns the `SwitchTabCommandResult`
 * The `Logic` component then accepts the `LogicConsumer` produced from the `SwitchTabCommandResult`.
 In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
-* The `UI` component then accepts the `UiConsumer` produced from the `CommandResult`. `UiState` is set here.
+* The `Ui` component then accepts the `Consumer<Ui>` produced from the `CommandResult`. `UiState` is set here.
 
 
 <div markdown="span" class="alert alert-warning">**Explanation of ParserContext:**
@@ -405,21 +429,24 @@ In this case, for the `SwitchTab` command, a new `ParserStrategy` is set here.
 1. When a `XYZCommand` class (e.g. `HomeCommand`, `ViewCommand`,...) is executed, it returns a `CommandResult` object containing a logic action if the `XYZCommand` requires a change in tab or view. <br>
 2. `LogicManager` accepts this `CommandResult` object and executes the logic action here.`LogicManager` is a facade that is able to set and change the current `ParserStrategy`.<br>
 3. `ParserContext` in `LogicManager` is updated to contain the `ABCParser` of the new view or tab.<br>
-4. `UI` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the `CommandResult`.<br>
+4. `Ui` is updated to change its state, which is kept track of by `UiState` by accepting the consumer also in the `CommandResult`.<br>
 </div>
 
 #### 4.3 Contact Tab
 
+The following screenshot shows the user in the Client View. You may notice that the primary controller for this view is
+not the `MainWindow`, but a different class, `ClientPanel`. This JavaFX controller encapsulate all the logic for Client
+View specific actions.
+
 ![Contacts Tab Screenshot](./images/ContactsTabDevGuideScreenshot.png)
 
-*The dark blue rectangle indicates a `VBox` (vertical box) containing 4 `AttributePanel` instances.*
+*The dark blue rectangle indicates a `VBox` (vertical box) containing 4 `AttributePanel` instances (1 for each attribute: `Name`, `Email`, `Phone`, `Address`.*
 
-The `ClientPanel` is the JavaFX controller that encapsulates all interaction in the `ClientView`. On every call to changing
-tab or refreshing, it takes the following steps:
+On every call to changing tab or refreshing, the `ClientPanel` takes the following steps:
 
 1. The `VBox` container in `ClientPanel` will clear all its children 
 1. `ClientPanel` will create a list of `AttributePanel`s (a handy class for constructing a display for any single valued attribute)
-1. The `VBox` container will add the list of `AttributePanel`s as its children and show.
+1. The `VBox` container will add the list of `AttributePanel`s as its child.
 
 #### 4.4 Policies, Assets and Liabilities Tab
 
@@ -434,7 +461,8 @@ as an example.
 *The purple rectangle is the standard JavaFX `TableView` component.*
 
 `AttributeTable` is a generic class that aims to provide a standardised rich table view of any multi-valued attribute.
-In aid of this, it was written as a generic class with the 'open-closed principle' in mind,[^openClosedPrinciple].
+In aid of this, it was written as a generic class with the 'open-closed principle' in mind.
+(See SE-EDU: [Open Closed Principle](https://nus-cs2103-ay2122s1.github.io/website/se-book-adapted/chapters/principles.html#open-closed-principle))
 You can look at a very minimal example of how to create `TableConfig` and set up an attribute for `AttributeTable`
 in [`AttributeTableTest`](../src/test/java/donnafin/ui/AttributeTableTest.java). In short, you have the `TableConfig`
 holds the following:
@@ -444,15 +472,13 @@ holds the following:
   (e.g. Total value of commissions)
 * A list of `ColumnConfig` that specifies the property name, the column heading to show, the preferred and max widths
   for each column, as well.
-  
-[openClosedPrinciple]: SE-EDU: [Open Closed Principle](https://nus-cs2103-ay2122s1.github.io/website/se-book-adapted/chapters/principles.html#open-closed-principle)
 
 The steps taken in constructing these tabs are very similar to those for the Contact tab.
 
 1. The `VBox` container in `ClientPanel` will clear all its children.
 1. The attribute intended to be used (policy in this case) will provide the `TableConfig` required as a public static member.
-1. `ClientPanel` will create an `AttributeTable`s using the configuration, and the data (list of values from the `PersonAdapter`)
-1. The `VBox` container will add the `AttributeTable`s as its children.
+1. `ClientPanel` will create an `AttributeTable` using this configuration and the data (list of values from the `PersonAdapter`)
+1. The `VBox` container will add the `AttributeTable` as its child.
 
 
 **`AttributeTable`**

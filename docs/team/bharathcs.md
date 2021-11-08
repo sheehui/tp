@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Encapsulate and support creation of configuration data class in a manner similar to many open source modules (e.g. JavaScript modules like axios);
 
 * Re-organise application architecture by separating `Storage` and `Logic` [#18](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/18), [#17](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/17)
-  * Improves overall architecture by decoupling `Storage` and `Logic` ensuring all `Storage` calls go through `Model` layer to follow the layered architecture style[^layeredArchi]
+  * Improves overall architecture by decoupling `Storage` and `Logic` ensuring all `Storage` calls go through `Model` layer to follow the layered architecture style. (See:  [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html))
   * The layered architecture design pattern was chosen over the current Model-View-Controller architecture in a previous team meeting to reduce complexity, simplify working on components and improve testability.
 
 * Add automated GUI tests for DonnaFin
@@ -52,8 +52,6 @@ Given below are my contributions to the project.
   * Required spending a significant amount of time learning and understanding Java GUI testing with TestFx, adapting boilerplate and common functions from SE-EDU AB4. At all steps, this needed to support the new file structure and dependencies. [#132](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/132) [#134](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/134)
   * Adapted from the SE-EDU: Address Book 4 codebase
 
-
-[^layeredArchi]: [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=bharathcs&tabRepo=AY2122S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
