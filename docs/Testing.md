@@ -34,17 +34,17 @@ This project has three types of tests:
    e.g. `donnafin.storage.StorageManagerTest`
 1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
    e.g. `donnafin.logic.LogicManagerTest`
-   
+
 ### Automated GUI Testing
-   
+
 It is important to note that there are automated headless GUI testing done for a subset of JavaFX controller classes. We
 have substantial tests for smaller components like `ResultDisplay`, `PersonListPanel`, `HelpWindow`, etc that even may
-include user input and action (see 
+include user input and action (see
 [`CommandBoxTest.java`](https://github.com/AY2122S1-CS2103T-W16-1/tp/blob/master/src/test/java/donnafin/ui/CommandBoxTest.java)).
 
 Notably, `AttributeTable`, and `ClientPanel` are only tested to ensure that it can be loaded and instantiated. While
 additional and more rigorous UI testing is possible, due to the difficulty of integrating them with headless CI actions,
-the current developers have elected to only testing up to instantiation point (i.e loading up the UI without 
+the current developers have elected to only testing up to instantiation point (i.e loading up the UI without
 any user interaction).
 
 This already ensures `AttributeTable` and `ClientPanel` code and their corresponding `.fxml` files are valid and can be

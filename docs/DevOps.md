@@ -16,7 +16,7 @@ This project uses Gradle for **build automation and dependency management**. **Y
 Given below are how to use Gradle for some important project tasks.
 
 
-* **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder). 
+* **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).
   This would remove files like `data/*`, `config.json`, `preferences.json`. <br>
   e.g. `./gradlew clean`
 
@@ -25,7 +25,7 @@ Given below are how to use Gradle for some important project tasks.
 
 * **`run`**: Builds and runs the application.<br>
   **`runShadow`**: Builds the application as a fat JAR, and then runs it.<br>
-  Note that in the interests of developers (likely the only users of a non-compiled DonnaFin codebase), these tasks 
+  Note that in the interests of developers (likely the only users of a non-compiled DonnaFin codebase), these tasks
   have assertions enabled by default to have the JVM report assertion errors promptly.
 
 * **`checkstyleMain`**: Runs the code style check for the main code base.<br>
@@ -83,8 +83,8 @@ can be used to quickly trim all the trailing whitespaces at the end of lines in 
 hitting the 'Run workflow' button or scheduling this workflow will regularly create a PR (if any changes are needed) to
 trim markdown files to specifications.
 
-The set up portion, while short, does require some familiarity with Github tools. First, create a 
-[Personal Access Token](https://github.com/settings/tokens) (with admin:repo_hook, repo priveleges), and [save it as a 
+The set up portion, while short, does require some familiarity with Github tools. First, create a
+[Personal Access Token](https://github.com/settings/tokens) (with admin:repo_hook, repo priveleges), and [save it as a
 repository secret](https://github.com/AY2122S1-CS2103T-W16-1/tp/settings/secrets/actions) named `'PAT'`. You should only
 do this if you trust the users who have write and workflow access to this repository. Read more about what this means
 for the security of your profile [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
