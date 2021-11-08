@@ -255,9 +255,7 @@ allows you to indent lines with spaces.
 
 ### 3.4 Command Format
 
-In DonnaFin, we provide the user with a Command-Line-Input (or CLI). The command message is generally in this format:
-
-<span style="color: red">COMMAND_WORD</span><span style="color: blue"> ARG1 ARG2 ARG3</span>
+In DonnaFin, we provide the user with a Command-Line-Input (or CLI). The command message is generally in the format of a `COMMAND_WORD` followed optionally by a number of arguments (`COMMAND_WORD ARG1 ARG2 ARG3`).
 
 The `COMMAND_WORD` directly describes the intent (e.g. `add`, `delete`, `view`).
 The optional arguments are additional information that may be required by the command. For example, `delete` requires
