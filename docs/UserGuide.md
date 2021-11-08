@@ -464,7 +464,7 @@ Clears all data from the DonnaFin.
 <div markdown="span" class="alert alert-warning">
 :exclamation: This is a destructive command that cannot be recovered from, please take care when
 you use it.
-</div><br>
+</div>
 
 
 Format: `clear`
