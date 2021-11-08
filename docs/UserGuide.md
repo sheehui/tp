@@ -307,10 +307,10 @@ This marks the end of the About section. Click <a href="#top">here</a> to return
 This section gives you a detailed explanation on how each of our features work.
 
 For your easy reference and navigation, we have split our features into _four different categories_:
-1. Global Features
-2. Home Window Features
-3. Client Window Features
-4. Database Features
+1. [Global Features](#41-global)
+2. [Home Window Features](#42-home-window)
+3. [Client Window Features](#43-client-window)
+4. [Database Features](#44-database)
 
 The following categories will explain the intended purpose of our features.
 
