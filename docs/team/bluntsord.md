@@ -89,7 +89,7 @@ Given below are my contributions to the project.
         of just having one page display everything. Tabs are a very efficient way of doing that.
         
         * **PR:** [Add different tabs](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/86)  
-        
+     
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=Bluntsord&tabRepo=AY2122S1-CS2103T-W16-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 
@@ -106,6 +106,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
+    1. Create the DonnaFin logo and updated the introduction. [#320](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/320)
+    2. Updated the guide for duplicates and near duplicates. [#302](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/302)
   * Developer Guide: Update architecture diagram (Pull requests [\#23](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/23))
   * AboutUs
 
