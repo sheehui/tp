@@ -884,7 +884,7 @@ testers are expected to do more *exploratory* testing.
 3. Adding a client in the client window.
 
    1. Test case: `add n/Steve Rogers p/91820392 e/thefirstavenger@test.com a/33 Apple Road, 928103`
-      Expected: No client is added as add is a home window command that cannot be executed in the client window. Error 
+      Expected: Client is not added as add is a home window command that cannot be executed in the client window. Error 
       details shown in the result display.
 
 ### 7.3 Deleting a client
@@ -897,7 +897,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First client is deleted from the list. Details of the deleted client shown in the result display.
 
    3. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the result display.
+      Expected: Client is not deleted. Error details shown in the result display.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -905,7 +905,7 @@ testers are expected to do more *exploratory* testing.
 2. Deleting a client while being in the client window.
 
    1. Test case: `delete 1` <br>
-      Expected: No client is deleted as delete is a home window command that cannot be executed in the client window. 
+      Expected: Client is not deleted as delete is a home window command that cannot be executed in the client window. 
       Error details shown in the result display.
    
 ### 7.4 Viewing and editing a client's contact details
@@ -956,7 +956,7 @@ testers are expected to do more *exploratory* testing.
       asset/liability has been appended will appear in the result display.
    
    3. Test case: `append n/Good Class Bungalow v/$10000000 r/newly bought with bank loan` <br>
-      Expected: No asset/liability will be added as an invalid format has been used. An error message showing the 
+      Expected: Asset/Liability will be not  added as an invalid format has been used. An error message showing the 
       correct format will be shown in the result display.
    
 2. Appending a policy to a client.
@@ -969,7 +969,7 @@ testers are expected to do more *exploratory* testing.
       will appear in the result display.
    
    3. Test case: `append n/Diamond Policy iv/$10000 pr/$200 c/$1000` <br>
-      Expected: No policy will be added as an invalid format has been used. An error message showing the
+      Expected: Policy will not be added as an invalid format has been used. An error message showing the
       correct format will be shown in the result display.
    
 3. Removing an asset/liability/policy from a client.
@@ -982,7 +982,7 @@ testers are expected to do more *exploratory* testing.
       asset/liability/policy has been removed will be shown in the result display.
    
    3. Test case: `remove 0` <br>
-      Expected: No asset/liability/policy will be removed from the list. An error message showing the
+      Expected: Asset/Liability/Policy will not be removed from the list. An error message showing the
       correct format will be shown in the result display.
    
    4. Other incorrect remove commands to try: `remove`, `remove a`, `remove @`, `remove X`, `...` (where x is larger
