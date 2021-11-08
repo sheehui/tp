@@ -510,12 +510,13 @@ State: Home Window
 
 **MSS**
 
-1.  User requests to add client along with the relevant details.
-2.  DonnaFin announces that the client has been successfully added.\
-    Use Case ends.
+1. User requests to add client along with the relevant details.
+2. DonnaFin announces that the client has been successfully added.
+
+   Use Case ends.
 
 **Extensions**
-* 1a. The user types the command using the wrong syntax.
+* 1a. User’s input does not conform with the specified format.
   * 1a1. DonnaFin shows an error message and displays the correct format for the user to use and a correct example.\
          Use Case resumes from step 1.
 
@@ -526,7 +527,8 @@ State: Home Window
 
 1. User requests to delete a client from DonnaFin using the right syntax.
 2. DonnaFin announces that the client has been successfully deleted.\
-Use case ends.
+   
+   Use case ends.
 
 **Extensions**
 
@@ -540,13 +542,13 @@ Use case ends.
 State: Home Window
 
 **MSS**
-1. User chooses to find a client within DonnaFin using the right syntax.
+1. User chooses to find a client within DonnaFin.
 2. DonnaFin displays the clients that match the input keyword.
 
    Use case ends.
 
 **Extensions**
-* 1a. The user types the command using the wrong syntax.
+* 1a. User’s input does not conform with the specified format.
   * 1a1. DonnaFin shows an error message.\
          Use Case resumes at step 1.
 * 1b. The keyword does not match any client.
@@ -557,13 +559,13 @@ State: Home Window
 State: Home Window
 
 **MSS**
-1. User requests to view a client using the right syntax.
+1. User requests to view a client.
 2. DonnaFin displays details on the client.
 
    Use case ends.
 
 **Extensions**
-* 1a. The user types the command using the wrong syntax.
+* 1a. User’s input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message.\
       Use Case resumes at step 1.
 * 1b. The given index is invalid.
@@ -599,11 +601,8 @@ State: Client Window
    Use case ends.
 
 **Extensions**
-* 1a. The user types the wrong command.
-  * 1a1. DonnaFin shows an error message. \
-         Use case resumes at step 1.
-* 1b. The user types the wrong tab title.
-  * 1b1. DonnaFin shows an error message and tells the user that the tab they request does not match any existing tab. \
+* 1a. The user types the wrong tab title.
+  * 1a1. DonnaFin shows an error message and tells the user that the tab they request does not match any existing tab. \
          Use case resumes at step 1.
 
 **UC08: Returning to Home Window**
@@ -616,12 +615,6 @@ State: Client Window
 2. DonnaFin switches the view back to home window.
 
    Use case ends.
-
-**Extensions**
-
-* 1a. The user types the wrong command.
-  * 1a1. DonnaFin shows an error message. \
-        Use case resumes at step 1.
 
 **UC09: Editing a client's contact information**
 
@@ -636,11 +629,8 @@ State: Client Window (Contacts Tab)
 
 **Extensions**
 
-* 1a. The user types the wrong command.
-    * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
-* 1b. The user types in the new field with the unsupported format.
-    * 1b1. Contact is not updated and DonnaFin shows an error message. \
+* 1a. The user types in the new field with the unsupported format.
+    * 1a1. Contact is not updated and DonnaFin shows an error message. \
       Use case resumes at step 1.
 
 **UC10: Adding an asset to a client**
@@ -674,7 +664,7 @@ State: Client Window (Assets Tab)
 **Extensions**
 
 * 1a. User's input does not conform with the specified format.
-    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example.\
       Use Case resumes at step 1.
 * 1b. User's given index is invalid.
     * 1b1. DonnaFin shows an error message.\
@@ -711,7 +701,7 @@ State: Client Window (Liabilities Tab)
 **Extensions**
 
 * 1a. User's input does not conform with the specified format.
-    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example.\
       Use Case resumes at step 1.
 * 1b. User's given index is invalid.
     * 1b1. DonnaFin shows an error message.\
@@ -748,7 +738,7 @@ State: Client Window (Policies Tab)
 **Extensions**
 
 * 1a. User's input does not conform with the specified format.
-    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example\
+    * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example.\
       Use Case resumes at step 1.
 * 1b. User's given index is invalid.
     * 1b1. DonnaFin shows an error message.\
@@ -810,43 +800,134 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### 7.2 Adding a client
 
-### 7.2 Deleting a client
+1. Adding a client in the home window.
+
+   1. Test case: `add n/Steve Rogers p/91820392 e/thefirstavenger@test.com a/33 Apple Road, 928103`
+      Expected: New client with the details are added to the end of the list. Details of the added client are shown in
+                the status message and in the result display.
+   
+   2. Test case: `e/thefirstavenger@test.com add n/Steve Rogers a/33 Apple Road, 928103 p/91820392`
+      Expected: Similar to previous as the input order of the details does not matter.
+   
+   3. Test case: `add n/@$%^&&* p/91820392 e/thefirstavenger@test.com a/33 Apple Road, 928103`
+      Expected: No client is added. Error details shown in the status message and in the result display.
+   
+   4. Other incorrect add commands to try: `add n/@$%^&&* p/abcde e/thefirstavenger@test.com a/33 Apple Road, 928103`,
+      `add n/@$%^&&* p/92810283 e/thefirstavenger a/33 Apple Road, 928103`, `...`.
+      Expected: Similar to previous.
+   
+3. Adding a client in the client window.
+
+   1. Test case: `add n/Steve Rogers p/91820392 e/thefirstavenger@test.com a/33 Apple Road, 928103`
+      Expected: No client is added as add is a home window command that cannot be executed in the client window. Error 
+      details shown in the status message and in the result display.
+
+### 7.3 Deleting a client
 
 1. Deleting a client while all clients are being shown (home window)
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete 1`<br>
+      Expected: First client is deleted from the list. Details of the deleted client shown in the status message and in
+      the result display.
 
-   1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+   
+2. Deleting a client while being in the client window.
+
+   1. Test case: `delete 1` <br>
+      Expected: No client is deleted as delete is a home window command that cannot be executed in the client window. 
+      Error details shown in the status message and in the result display.
+   
+### 7.4 Viewing and editing a client's contact details
+
+1. Entering a client window
+
+    1. Prerequisites: Currently in the home window and a client exists in the list.
+
+    2. Test case: `view 1`<br>
+       Expected: Client window will be shown, and you can inspect the details of the client.
+
+    3. Test case: `view -4`<br>
+       Expected: As it is not a valid index, you will remain in the home window with an error command output.
+   
+    4. Other incorrect view commands to try: `view`, `view a`, `view X`, `...` (where x is larger than the list size)
+       <br>
+       Expected: Similar to previous.
+
+2. Editing a client's details.
+
+   1. Prerequisites: Currently in the client window and in the contact tab.
+   
+   2. Test case: `edit n/John` <br>
+      Expected: The name of the client will be changed to John. Details of the newly edited client will be shown in the 
+      status message and in the result display.
+   
+   3. Test case: `edit n/Jane p/82893109` <br>
+      Expected: Details of the client will change according to the input as multi-field editing is supported. Details 
+      of the newly edited client will be shown in the status message and in the result display.
+   
+   4. Test case: `edit n/&$^@*@!` <br>
+      Expected: Details of the client will not change as an invalid format has been used. Error details shown in the 
+      status message and in the result display.
+
+   5. Other incorrect edit commands to try: `edit p/test`, `edit n/David p/wrongphone`, `...` <br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### 7.5 Appending and removing a client's asset/policy/liability list
 
-### 7.3 Viewing and editing a client
+1. Appending an asset/liability to a client.
 
-1. Enter client window
+   1. Prerequisites: Currently in the client window and in the assets/liabilities tab (according to what financial
+      information you want to append).
+   
+   2. Test case: `append n/Good Class Bungalow ty/Property v/$10000000 r/newly bought with bank loan` <br>
+      Expected: An asset/liability with the input details will be added to the client's financial information. The list
+      of assets/liabilities will be sorted (including the newly added asset/liability). A message confirming that the
+      asset/liability has been appended will appear in the result display.
+   
+   3. Test case: `append n/Good Class Bungalow v/$10000000 r/newly bought with bank loan` <br>
+      Expected: No asset/liability will be added as an invalid format has been used. An error message showing the 
+      correct format will be shown in the status message and in the result display.
+   
+2. Appending a policy to a client.
 
-    1. Prerequisites: Currently in the home window
+   1. Prerequisites: Currently in the client window and in the policies tab.
 
-    1. Test case: `view 1`<br>
-       Expected: client window will be shown, and you can inspect the details of the client.
+   2. Test case: `append n/Diamond Policy i/AIA iv/$10000 pr/$200 c/$1000` <br>
+      Expected: A policy with the input details will be added to the client's financial information. The list of
+      policies will be sorted (including the newly added policy). A message confirming that the policy has been appended
+      will appear in the result display.
+   
+   3. Test case: `append n/Diamond Policy iv/$10000 pr/$200 c/$1000` <br>
+      Expected: No policy will be added as an invalid format has been used. An error message showing the
+      correct format will be shown in the status message and in the result display.
+   
+3. Removing an asset/liability/policy from a client.
 
-    1. Test case: `view -4`<br>
-       Expected: As it is not a valid index, you will remain in the home window with an error command output.
+   1. Prerequisites: Currently in the client window and in the assets/liabilities/policies tab (according to which 
+      financial information to remove). Additionally, there are assets/liabilities/policies to be removed.
+   
+   2. Test case: `remove 1` <br>
+      Expected: The first asset/liability/policy is removed from the list. A message to notify that the 
+      asset/liability/policy has been removed will be shown in the status message and in the result display.
+   
+   3. Test case: `remove 0` <br>
+      Expected: No asset/liability/policy will be removed from the list. An error message showing the
+      correct format will be shown in the status message and in the result display.
+   
+   4. Other incorrect remove commands to try: `remove`, `remove a`, `remove @`, `remove X`, `...` (where x is larger
+      than the number of assets/liabilities/policies listed).
+      Expected: Similar to previous.
 
-    1. Test case: editing fields
-       Expected: Switching tabs and editing fields with the commands listed in the user guide [here](./UserGuide.md#Client-Window-Commands) works correctly.
-
-1. _{ more test cases …​ }_
-
-### 7.4 Saving data
+### 7.6 Saving data
 
 1. Dealing with missing/corrupted data files
 
