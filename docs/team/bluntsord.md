@@ -13,8 +13,6 @@ Given below are my contributions to the project.
 
 * **New Feature**: 
     1. **Parser Stategy and Parser Context**
-    <br>
-    
         * **What it does:**
         Allows for switching of `ParserStrategy` when executing a command. This happens
         during the change of tabs and allows some commands to be rejected in certain tabs
@@ -35,8 +33,7 @@ Given below are my contributions to the project.
         * **PR:** [ParserContext](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/179)
     
     2. **Controllers for UI, `ClientPanel`:**
-    <br>
-        
+    
         * **What it does:**
         Handles the logic when accessing the other tabs etc
         
@@ -47,8 +44,6 @@ Given below are my contributions to the project.
         * **PR:** [Controller](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/69)                                                    
         
     3. **Financial information:**
-    <br>
-        
         * **What it does**
         Required field that stores information regarding the client. Namely, assets
         liabilities, policies.
@@ -58,17 +53,7 @@ Given below are my contributions to the project.
         
         * **PR:** : [Financial information](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/105)
     
-    4. **Realtime update for notes**
-     <br>
-     
-        * **What it does:**
-        Previously, our commands would only save after executing another command. 
-        
-        * **PR**: []      
-     
     5. **Add different tabs for the other financial information:**
-     <br> 
-     
         * **What it does:**
         Create the actual tabs that the `SwitchTabCommand` can access
         
@@ -91,11 +76,23 @@ Given below are my contributions to the project.
         * Look through multiple PRs and provided further insights and corrections that could be done.
     
 * **Enhancements to existing features**:
-    * Provided architecture advise:
+    1. Notable BugFix:
+        *. **Realtime update for notes**
+            Previously, our commands would only save after executing another command. 
+            * **PR**: [#307](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/307)
+            
+        *. **Make Attribute table expand when window expands**
+            * **PR**: [#304](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/304)
+                 
+        *. **Add wrap to multiple text box**
+            * **PR**: [#288](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/288)
+            * **PR**: [#298](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/298)
+            
+    2. Provided architecture advise:
         * Proposed architecture changes for the entire project along with my other teammate ![Bharath](bharathcs.md)
         [^layeredArchi]: [_O' Reilly_ Chapter 1. Layered Architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
  
-    *. **Add home command**:
+    3. **Add home command**:
        * **What it does:**
        Allows the user to return to the home page.
        
@@ -104,8 +101,7 @@ Given below are my contributions to the project.
        would be an appropriate command.
        
        * **PR:** [Home command](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/76/files) 
-      
-         
+        
 * **Documentation**:
   * User Guide:
     1. Create the DonnaFin logo and updated the introduction. [#320](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/320)
