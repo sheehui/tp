@@ -179,7 +179,7 @@ How the `Logic` component works:
 to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned by `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -291,7 +291,7 @@ ensure that multiple objects are not null, and the `CollectionUtil` package has 
 called on to do this.
 
 **Exception classes**
-There are custom built exceptions `donnafin.commons.exception`, that are used throughout the code base. Some custom 
+There are custom-built exceptions `donnafin.commons.exception`, that are used throughout the code base. Some custom 
 exceptions (like `ParseException`) are only used in certain packages, and are therefore can be found in those packages.
 In this package, we currently have `DataConversionException` and `IllegalValueException`, both of which handle a very
 common issue throughout the application of handling and reporting bad formats (syntax) or bad inputs (semantics).
@@ -488,7 +488,7 @@ The steps taken in constructing these tabs are very similar to those for the Con
 The `NotesTabParser` is different from other `tabSpecificParsers` in that it has no tab specific command. However, the
 `TextArea` of the notes tab allows the user to type in any quick notes that the
 user would want, updating it in realtime. This is opposed to the commands however, since for commands
-changes to any other component only happen when the command is executed. Hence the notes tab takes advantage of a
+changes to any other component only happen when the command is executed. Hence, the notes tab takes advantage of a
 different process.
 
 This is a planned deviation in user workflow, and done so as notes are more infrequently used, and there is an expectation
@@ -582,7 +582,7 @@ Priorities: (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikel
 | `LOW`      | new user                                   | follow a tutorial when adding policies to a client's list of policies       |  learn how to add policies to the list of policies of a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when deleting policies from a client's list of policies       |  learn how to delete policies from the list of policies of a specific client   |
 | `LOW`      | new user                                   | follow a tutorial when adding assets to a client's list of assets      |   learn how to add assets to the list of assets of a specific client  |
-| `LOW`      | new user                                   | follow a tutorial when adding delete from a client's list of asssets   |   learn how to delete assets from the list of assets of a specific client  |
+| `LOW`      | new user                                   | follow a tutorial when adding delete from a client's list of assets   |   learn how to delete assets from the list of assets of a specific client  |
 | `LOW`      | new user                                   | follow a tutorial when adding liabilities to a client's list of liabilities      |   learn how to add liabilities to the list of liabilities of a specific client  |
 | `LOW`      | new user                                   | follow a tutorial when deleting liabilities from a client's list of liabilities      |   learn how to delete liabilities from the list of liabilities of a specific client  |
 | `LOW`      | new user                                   | follow a tutorial when jotting down notes for a client |   learn how to jot down quick notes regarding general information of the client |
@@ -601,12 +601,12 @@ State: Home Window
 1. User requests to add client along with the relevant details.
 2. DonnaFin announces that the client has been successfully added.
 
-   Use Case ends.
+   Use case ends.
 
 **Extensions**
 * 1a. User’s input does not conform with the specified format.
   * 1a1. DonnaFin shows an error message and displays the correct format for the user to use and a correct example.\
-         Use Case resumes from step 1.
+         Use case resumes from step 1.
 
 **UC02: Deleting a client from DonnaFin** \
 State: Home Window
@@ -621,10 +621,8 @@ State: Home Window
 **Extensions**
 
 * 1a. The given index is invalid.
-
-    * 1a1. DonnaFin shows an error message.
-
-      Use case resumes from step 1.
+    * 1a1. DonnaFin shows an error message. 
+           Use case resumes from step 1.
 
 **UC03: Finding a client by name** \
 State: Home Window
@@ -638,10 +636,10 @@ State: Home Window
 **Extensions**
 * 1a. User’s input does not conform with the specified format.
   * 1a1. DonnaFin shows an error message.\
-         Use Case resumes at step 1.
+         Use case resumes from step 1.
 * 1b. The keyword does not match any client.
   * 1b1. DonnaFin does not display any client.\
-         Use Case ends.
+         Use case ends.
 
 **UC04: Viewing the details of a client** \
 State: Home Window
@@ -655,10 +653,10 @@ State: Home Window
 **Extensions**
 * 1a. User’s input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 * 1b. The given index is invalid.
     * 1b1. DonnaFin shows an error message.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 
 
 **UC05: Getting help** \
@@ -691,7 +689,7 @@ State: Client Window
 **Extensions**
 * 1a. The user's input cannot be mapped to any tab.
   * 1a1. DonnaFin shows an error message and tells the user that the tab they request does not match any existing tab. \
-         Use case resumes at step 1.
+         Use case resumes from step 1.
 
 **UC08: Returning to Home Window**
 
@@ -706,7 +704,7 @@ State: Client Window
 
 **UC09: Editing a client's contact information**
 
-State: Client Window (Contacts Tab)
+State: Client Window (Contact Tab)
 
 **MSS**
 
@@ -719,7 +717,7 @@ State: Client Window (Contacts Tab)
 
 * 1a. User’s input does not conform with the specified format.
     * 1a1. Contact is not updated and DonnaFin shows an error message. \
-      Use case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC10: Adding an asset to a client**
 
@@ -736,7 +734,7 @@ State: Client Window (Assets Tab)
 
 * 1a. User's input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC11: Removing an asset from a client**
 
@@ -753,10 +751,10 @@ State: Client Window (Assets Tab)
 
 * 1a. User's input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 * 1b. User's given index is invalid.
     * 1b1. DonnaFin shows an error message.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC12: Adding a liability to a client**
 
@@ -773,7 +771,7 @@ State: Client Window (Liabilities Tab)
 
 * 1a. User's input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC13: Removing a liability from a client**
 
@@ -790,10 +788,10 @@ State: Client Window (Liabilities Tab)
 
 * 1a. User's input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 * 1b. User's given index is invalid.
     * 1b1. DonnaFin shows an error message.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC14: Adding a policy to a client**
 
@@ -810,7 +808,7 @@ State: Client Window (Policies Tab)
 
 * 1a. User's input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message. \
-      Use case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC15: Removing a policy from a client**
 
@@ -827,10 +825,10 @@ State: Client Window (Policies Tab)
 
 * 1a. User's input does not conform with the specified format.
     * 1a1. DonnaFin shows an error message and displays the correct format for the user to use with a correct example.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 * 1b. User's given index is invalid.
     * 1b1. DonnaFin shows an error message.\
-      Use Case resumes at step 1.
+      Use case resumes from step 1.
 
 **UC16: Exiting the application** \
 State: Works on both Home and Client Window
@@ -860,7 +858,7 @@ State: Works on both Home and Client Window
 * **Private client detail**: A client detail that is not meant to be shared with others
 * **Asset**: Things of present or future value owned by a client
 * **Liability**: Things that the client owes to a debtor which would lead to an outflow of money in the future.
-* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policy holder receives
+* **Policy**: A contract between an insurer and policyholder (the client in this case) where the policyholder receives
 financial protection or reimbursement against losses.
 --------------------------------------------------------------------------------------------------------------------
 
@@ -966,7 +964,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the client will not change as an invalid format has been used. Error details shown in the 
       result display.
 
-   5. Other incorrect edit commands to try: `edit p/test`, `edit n/David p/wrongphone`, `...` <br>
+   5. Other incorrect edit commands to try: `edit p/test`, `...` <br>
       Expected: Similar to previous.
    
 ### 7.5 Appending and removing a client's asset/policy/liability list
