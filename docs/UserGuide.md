@@ -110,8 +110,9 @@ Notes are here to provide you with extra information that you may find useful wh
 
 #### Caution
 
-Cautions are around to warn you of potential unwanted side effects that may occur when using certain features of
-DonnaFin if you fail to follow this guide properly or tamper with application files without adequate knowledge.
+Cautions are around to warn you of potential pitfalls that unfamiliar users may encounter. For example, if you fail
+to heed warnings around commands like `clear` or tamper with application files without adequate knowledge, you may
+inadvertantly lose data permanently.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: Here lies a cautionary tale!
@@ -224,7 +225,7 @@ You will know that you are in the Assets tab if you see the **Assets** header be
 Liabilities tab if you see the **Liabilities** header below the Result Display. You can see the total value of these
 assets/liabilities by looking at the number beside the **Total Asset/Liability Value**.
 
-The table displays each asset / liability in a row by itself with each field of the asset / liability displayed in columns.
+The table displays each asset / liability in a row with each field of the asset / liability displayed in columns.
 
 ![Asset/Liabilities Tab of DonnaFin](images/Asset_Liability.png)
 
@@ -458,8 +459,13 @@ Examples:
 
 #### 4.2.6 Clearing all client data : `clear`
 
-Clears all data from the DonnaFin. This is a destructive command that cannot be recovered from, please take care when
+Clears all data from the DonnaFin. 
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: This is a destructive command that cannot be recovered from, please take care when
 you use it.
+</div><br>
+
 
 Format: `clear`
 
