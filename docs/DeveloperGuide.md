@@ -964,7 +964,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the client will not change as an invalid format has been used. Error details shown in the 
       result display.
 
-   5. Other incorrect edit commands to try: `edit p/test`, `edit n/David p/{wrong phone number}`, `...` <br>
+   5. Other incorrect edit commands to try: `edit p/test`, `...` <br>
       Expected: Similar to previous.
    
 ### 7.5 Appending and removing a client's asset/policy/liability list
