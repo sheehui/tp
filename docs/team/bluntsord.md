@@ -108,9 +108,17 @@ Given below are my contributions to the project.
   * User Guide:
     1. Create the DonnaFin logo and updated the introduction. [#320](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/320)
     2. Updated the guide for duplicates and near duplicates. [#302](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/302)
-  * Developer Guide: Update architecture diagram (Pull requests [\#23](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/23))
-  * AboutUs
-
+  * Developer Guide: 
+    1. Update architecture diagram (Pull requests [\#23](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/23))
+    2. Created and handled puml diagrams for most of Section 4: Architecture 
+    and Implementation part of our dev guide. Notable
+    contributions include how `ParserContext` and `ParserStrategy` works, how commands are being execute, and even 
+    partitioning the command into the three main categories, Model-level, Client-Level and Ui-browsing level commands.
+    After which going into detail about how each work. [#323](https://github.com/AY2122S1-CS2103T-W16-1/tp/pull/323)
+    (Disclaimer: [Bharath](bharathcs.md) has made much contributions in this aspect as well)
+    
+    3. Section 6.2: User stories. Created most of the user stories there are currently seen in the developer's guide.
+    
 * **Community**:
-* **Tools**:
+    
 
