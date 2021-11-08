@@ -140,7 +140,7 @@ of a client corresponds to the index needed to be entered in the `view` command.
 per the image above, entering the input `view 2` would take you to the client window of Bernice Yu, as she has the index
 of 2.
 
-The following attributes of your client is also viewable from the Client List Window:
+The following client details are also viewable from the Client List Window:
 1. Name
 2. Phone
 3. Address
@@ -177,7 +177,7 @@ your client:
 3. Email
 4. Address
 
-The picture below shows how these attributes are displayed.
+The picture below shows how these are displayed:
 
 ![ClientContactTab](images/ClientContactTab.png)
 
@@ -203,7 +203,7 @@ Here are the following fields that each policy records:
 5. Commission
 
 Each policy has an index which is sorted by ascending order, and if you would like to remove an existing policy, you can
-use its index as an argument for delete. To save you the effort of counting rows, we have indexed the rows with a counter
+use its index as a parameter for `delete`. To save you the effort of counting rows, we have indexed the rows with a counter
 on the leftmost column.
 
 
@@ -224,7 +224,7 @@ You will know that you are in the Assets tab if you see the **Assets** header be
 Liabilities tab if you see the **Liabilities** header below the Result Display. You can see the total value of these
 assets/liabilities by looking at the number beside the **Total Asset/Liability Value**.
 
-The table displays each asset/liability in a row by itself with each field of the attribute displayed in columns.
+The table displays each asset / liability in a row by itself with each field of the asset / liability displayed in columns.
 
 ![Asset/Liabilities Tab of DonnaFin](images/Asset_Liability.png)
 
@@ -236,7 +236,7 @@ Here are the following fields that each asset/liability records:
 5. Remarks
 
 Each asset/liability has an index which is sorted by ascending order, and if you would like to remove an existing
-asset/liability, you can use its index as an argument for delete. To save you the effort of counting rows, we have
+asset/liability, you can use its index as a parameter for `delete`. To save you the effort of counting rows, we have
 indexed the rows with a counter on the leftmost column.
 
 The Asset/Liability tab also supports the `append` and `remove` command that allows you to add a new asset/liability or
@@ -255,18 +255,19 @@ allows you to indent lines with spaces.
 
 ### 3.4 Command Format
 
-In DonnaFin, we provide the user with a Command-Line-Input (or CLI). The command message is generally in the format of a `COMMAND_WORD` followed optionally by a number of arguments (`COMMAND_WORD ARG1 ARG2 ARG3`).
+In DonnaFin, we provide the user with a Command-Line-Input (or CLI). The command message is generally in the format of a
+`COMMAND_WORD` followed optionally by a number of parameters (`COMMAND_WORD PARAMETER1 PARAMETER2 PARAMETER3`).
 
 The `COMMAND_WORD` directly describes the intent (e.g. `add`, `delete`, `view`).
-The optional arguments are additional information that may be required by the command. For example, `delete` requires
-one argument — the index of the client being listed, so the full command would be `delete 1`
+The optional parameters are additional information that may be required by the command. For example, `delete` requires
+one parameter — the index of the client being listed, so the full command would be `delete 1`
 
 Command syntax takes these three possible forms:
 
-* Commands that do not require arguments (e.g. `list`, `home`)
-* Commands that require 1 argument (e.g. `view 1`, `delete 1`, `find pat`)
-* Commands that require more than 1 argument. In these cases, arguments must always be prefixed and order does not matter.
-  (e.g. `add n/John McClane e/mcclane@notnakatomi.com a/3 Mountain View Rd, SG 244220 p/90249024`)
+* Commands that do not require parameters (e.g. `list`, `home`)
+* Commands that require 1 parameter (e.g. `view 1`, `delete 1`, `find pat`)
+* Commands that require more than 1 parameter. In these cases, parameters must always be prefixed and order does not
+  matter. (e.g. `add n/John McClane e/mcclane@notnakatomi.com a/3 Mountain View Rd, SG 244220 p/90249024`)
 
 <div markdown="block" class="alert alert-info">
 
@@ -287,7 +288,7 @@ Command syntax takes these three possible forms:
 * Items in square brackets are optional.<br>
   e.g. `KEYWORD [MORE_KEYWORDS]` can be used as `KEYWORD MORE_KEYWORDS` or as `KEYWORD`.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken.<br> e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * The format given for monetary parameters includes `$`, you should add it or the input will be rejected. <br>
@@ -785,8 +786,8 @@ an empty data file on the next run (no clients are shown).
 
 The above figure shows the original JSON data for `totalValueInsured`
 regarding the client Alex Yeoh. If you tamper with the
-JSON file directly and change one of the attributes to an invalid format (in this case the
-total value of assets is supposed to be prefixed with a $ to indicate that it is a monetary value), DonnaFin will
+JSON file directly and change one of client details to an invalid format (in this case the
+total value of assets is supposed to be start with a '$' to indicate that it is a monetary value), DonnaFin will
 start with an empty data file.
 
 When this happens however, to prevent total loss of your data, **we do not delete it right away**.
