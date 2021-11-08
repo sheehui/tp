@@ -219,7 +219,7 @@ remove an existing policy as shown
 The Asset/Liabilities tab is the Client View tab that stores all of your client's assets/liabilities. This tab can be
 accessed by pressing on the `Assets/Liabilities` button when in any of the Client View tabs, or through typing the
 command `tab a`, `tab asset`, or `tab assets` for the Assets tab and typing the command `tab l`, `tab liability`, or
-`tab liabilites` for the Liabilities tab.
+`tab liabilities` for the Liabilities tab.
 
 You will know that you are in the Assets tab if you see the **Assets** header below the Result Display or the
 Liabilities tab if you see the **Liabilities** header below the Result Display. You can see the total value of these
@@ -246,7 +246,7 @@ remove an existing asset/liability as shown [here](#4331-add-an-asset-to-a-clien
 #### 3.3.5 Notes Tab
 
 The Notes tab stores additional information about your client. This tab can be accessed by pressing on the `Notes`
-button when in any of the Client View tabs, or through typing the command `tab n`, `tab notes` or `tab notes`.
+button when in any of the Client View tabs, or through typing the command `tab n`, `tab note` or `tab notes`.
 
 You will know that you are in the Notes tab if you see a big white text box below the Result Display. You may simply
 type into it, and all the edits you make will be saved. Unlike the command box, this supports multi-line input and
